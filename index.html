@@ -1,17 +1,1117 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#08182B" />
-    <title>Grupo Arcondec · Infraestructura eléctrica industrial y data centers</title>
-    <meta name="description" content="Diseñamos, instalamos y supervisamos infraestructura crítica: ingeniería eléctrica e implementación de data centers. Más de 30 años. Enciende tus ideas." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Grupo Arcondec — Infraestructura eléctrica industrial y data centers en México. Más de 30 años en proyectos llave en mano, desde la etapa conceptual hasta la entrega final.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--====== Title ======-->
+    <title>Grupo Arcondec — Infraestructura Eléctrica Industrial y Data Centers</title>
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="assets/images/arcondec/brand/favicon.ico" type="image/x-icon">
+
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+
+    <!--====== animate css ======-->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="assets/css/slick.css">
+
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="assets/css/default.css">
+
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!--====== Ajustes mínimos para contenido Arcondec (sin tocar style.css) ======-->
+    <style>
+        .header-top .header-top-item .info ul li a { color: inherit; }
+        /* El titular oficial es más largo que el demo: se ajusta lo justo para conservar la escala sin cortarse */
+        .hero-2-content.hero-11-content .title { font-size: 72px; line-height: 1.1; }
+        @media only screen and (min-width: 992px) and (max-width: 1200px) {
+            .hero-2-content.hero-11-content .title { font-size: 58px; line-height: 1.12; }
+        }
+        @media only screen and (min-width: 576px) and (max-width: 767px) {
+            .hero-2-content.hero-11-content .title { font-size: 46px; line-height: 1.15; }
+        }
+        @media (max-width: 575px) {
+            .hero-2-content.hero-11-content .title { font-size: 34px; line-height: 1.2; }
+        }
+        .lang-switch.active { font-weight: 700; text-decoration: underline; }
+        /* Fondo del hero optimizado para web (mismo encuadre, 360 KB vs 2 MB del PNG) */
+        .hero-area.hero-2-area .section__bg { background-image: url(assets/images/hero-bg-2-opt.jpg); }
+        /* El topbar y el nav llevan textos más largos que el demo: se compactan en tablets para que no desborden */
+        @media only screen and (min-width: 992px) and (max-width: 1200px) {
+            .header-top .header-top-item .info ul li { margin-right: 18px; font-size: 15px; }
+            .header-top .header-top-item .info ul li:nth-child(2) { display: none; }
+            .header-nav .navigation .navbar .navbar-nav .nav-item a { font-size: 15px; margin-right: 16px; white-space: nowrap; }
+            /* El nav de Arcondec tiene rótulos más largos que el demo: en este rango basta el ítem Contáctanos del menú */
+            .header-nav .navbar-btn { display: none !important; }
+        }
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            .header-top .header-top-item .info ul li:nth-child(2),
+            .header-top .header-top-item .info ul li:nth-child(3) { display: none; }
+        }
+        /* Los logos de clientes varían de tamaño: se acotan para que las filas queden parejas */
+        .brand-3-items .item img { max-height: 60px; width: auto; max-width: 170px; }
+        /* Sello D-U-N-S (blanco) sobre la franja oscura del footer, como en arcondec.mx */
+        .footer-2-top .footer-logo img.duns { height: 42px; width: auto; display: block; margin-top: 14px; }
+        /* Las tarjetas Data Center usan foto en el overlay (el demo usa un avatar de 139px) */
+        .team-12-item .team-overlay-2 img { width: 139px; height: 139px; object-fit: cover; border-radius: 10px; }
+        /* Las fotos reales de Arcondec tienen proporciones variadas: se fuerzan las proporciones
+           exactas del demo para que renglones y columnas queden alineados (responsive con aspect-ratio) */
+        .article-11-item .article-thumb img { width: 100%; aspect-ratio: 320 / 260; object-fit: cover; }
+        .article-11-item .article-content h3.title { min-height: 90px; }
+        .team-12-item > img { width: 100%; aspect-ratio: 255 / 322; object-fit: cover; }
+        .testimonial-11-thumb img { width: 100%; aspect-ratio: 445 / 600; object-fit: cover; }
+        .service-2-item.service-11-item { min-height: 370px; }
+        /* Botón flotante de WhatsApp (FAB verde oficial) */
+        .whatsapp-float { position: fixed; right: 25px; bottom: 95px; z-index: 99; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%; background: #25D366; box-shadow: 0 6px 18px rgba(0, 0, 0, .35); transition: transform .2s ease, background .2s ease; }
+        .whatsapp-float:hover { transform: scale(1.1); background: #1EBE5D; }
+        .whatsapp-float svg { width: 34px; height: 34px; display: block; }
+        @media (max-width: 767px) {
+            .whatsapp-float { width: 52px; height: 52px; right: 16px; bottom: 88px; }
+            .whatsapp-float svg { width: 30px; height: 30px; }
+        }
+
+        /* ===== Piel de marca Arcondec — colores oficiales de arcondec.mx ===== */
+        /* Naranja #FFBB00 / #F7931E (acento y botones) · Azul marino #1F439B / #132D67 (fondos) */
+        .main-btn { background-color: #FFBB00; border-color: #FFBB00; color: #132D67; }
+        .main-btn:hover { background-color: transparent; color: #D09021; border-color: #FFBB00; }
+        .main-btn.main-btn-3 { background: #FFBB00; color: #132D67; }
+        .main-btn.main-btn-3:hover { background: #D09021; color: #fff; }
+        .hero-2-content.hero-11-content ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
+        .hero-2-content.hero-11-content ul li a:hover { background: #D09021; border-color: #D09021; color: #fff; }
+        .hero-2-content.hero-11-content ul li a.main-btn-2 { background: #1F439B; border-color: #1F439B; color: #fff; }
+        .hero-2-content.hero-11-content ul li a.main-btn-2:hover { background: #132D67; border-color: #132D67; color: #fff; }
+        /* Header en el azul oficial del logo (#1F439B) */
+        .header-2-area .header-top { background: #132D67; }
+        .header-area.header-2-area .header-nav.sticky { background-color: #1F439B; }
+        /* Logo oficial (wordmark blanco + ícono naranja) */
+        .navbar-brand img { width: 170px; height: auto; }
+        @media (min-width: 1201px) {
+            .header-nav .navigation .navbar .navbar-nav .nav-item a { margin-right: 22px; white-space: nowrap; }
+        }
+        .footer-2-top .footer-logo a img { width: 190px; height: auto; }
+        /* Fondos del footer en el azul oficial */
+        .footer-2-area .footer-2-top { background: #1F439B; }
+        footer.footer-area.footer-2-area { background: #132D67; }
+        .header-2-area.header-11-area .header-top .sicial ul li a:hover { color: #FFBB00; }
+        .header-nav .navigation .navbar .navbar-nav .nav-item a:hover { color: #FFBB00; }
+        .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu li a:hover { color: #F7931E; }
+        /* Tarjetas del carrusel de servicios: ícono temático de cada servicio en el círculo del template */
+        .service-2-item.service-11-item .icon { background: rgba(255, 187, 0, 0.14); }
+        .service-2-item.service-11-item .icon i { font-size: 38px; line-height: 90px; color: #1F439B; }
+        /* Fondo de la sección de servicios: foto industrial oficial con overlay azul de marca */
+        .service-2-area.service-11-area .section__bg { background-image: linear-gradient(rgba(19, 45, 103, 0.88), rgba(19, 45, 103, 0.88)), url(assets/images/arcondec/secciones/servicios-bg.jpg); }
+        /* Tabs de cobertura */
+        .case-tab-btn.case-tab-btn-11 .nav .nav-link span::before { background: #FFBB00; }
+        .case-tab-btn.case-tab-btn-11 .nav .nav-link.active { background: #1F439B; }
+        /* Franja CTA */
+        .subscribe-area.subscribe-11-area { background: #1F439B; }
+        .subscribe-form.subscribe-11-form ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
+        /* Bloque del testimonial */
+        .testimonial-9-active .testimonial-11-thumb::before { background: #1F439B; }
+        /* Overlay de las tarjetas Data Center */
+        .team-2-item.team-12-item .team-overlay { background: linear-gradient(rgba(255, 187, 0, 0.25) 0%, #1F439B 100%); }
+        /* Caja "30+ Años" y caja de fecha con el degradado naranja de la marca */
+        .about-2-thumb .thumb-2 .box { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
+        .article-2-item .article-content .date .item { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
+        .article-2-item .article-content .date .item .title, .article-2-item .article-content .date .item span { color: #132D67; }
+        .article-2-item .article-content > a .icon::before { background: #1F439B; }
+        .article-2-item .article-content .title a:hover { color: #F7931E; }
+        /* Newsletter del footer */
+        .footer-newsletter-item.footer-newsletter-item-11 { background: #1F439B; }
+        /* Botón subir y enlaces de acento */
+        .back-to-top.back-to-top-11 { background: #FFBB00; color: #132D67; }
+        .footer-copyright p a { color: #FFBB00; }
+        /* Reglas del template con mayor especificidad (variante header/hero/about/article -11) */
+        .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
+        .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a:hover { background: transparent; border-color: #FFBB00; color: #FFBB00; }
+        @media (max-width: 991px) {
+            .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-collapse { background: #1F439B; }
+        }
+        .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu > li:hover > a { color: #F7931E; }
+        .hero-play-11 a { color: #F7931E; }
+        .hero-play-11 a:hover { background: #FFBB00; color: #132D67; }
+        .hero-slider.hero-11-slider .slick-dots li.slick-active button { background: #FFBB00; }
+        .about-2-content.about-11-content .item.active::before, .about-2-content.about-11-content .item:hover::before { background: #FFBB00; }
+        .about-2-content.about-11-content a.main-btn-3 { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
+        .about-2-content.about-11-content a.main-btn-3:hover { background: #D09021; color: #fff; }
+        .about-2-thumb.about-11-thumb .thumb-2 .box { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
+        .service-2-item.service-11-item::before { background: linear-gradient(rgba(255, 187, 0, 0.16) 0%, #1F439B 100%); }
+        .service-11-active .slick-arrow:hover { background: #FFBB00; color: #132D67; }
+        .article-11-item .article-content .date .item { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
+        .article-11-item .article-content > a .icon::before { background: #1F439B; }
+        .footer-item .footer-list.footer-list-11 ul li a:hover { color: #FFBB00; }
+        .footer-2-area .footer-copyright.footer-copyright-11 ul li a::before { background: #FFBB00; }
+    </style>
+
+</head>
+
+<body class="bg-white">
+
+    <!-- LOADER -->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!-- END LOADER -->
+
+    <!--====== HEADER PART START ======-->
+
+    <header class="header-area header-2-area header-11-area">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header-top-item">
+                            <div class="info">
+                                <ul>
+                                    <li><img src="assets/images/phone.svg" alt=""> <a href="tel:+528119341192">81 1934 1192</a> / <a href="tel:+528119341194">81 1934 1194</a></li>
+                                    <li><img src="assets/images/email.svg" alt=""> <a href="mailto:info@arcondec.mx">info@arcondec.mx</a> / <a href="mailto:ventas@arcondec.mx" data-href-en="mailto:sales@arcondec.mx" data-i18n="topSalesMail">ventas@arcondec.mx</a></li>
+                                    <li><a href="https://apps.arcondec.mx/" target="_blank" rel="noopener" data-i18n="topLogin">Iniciar sesión</a></li>
+                                    <li><a class="lang-switch active" href="#" data-lang="es">ESP</a> | <a class="lang-switch" href="#" data-lang="en">EN</a></li>
+                                </ul>
+                            </div>
+                            <div class="sicial">
+                                <ul>
+                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="navigation">
+                            <nav class="navbar navbar-expand-lg navbar-light ">
+
+                                <a class="navbar-brand" href="index.html"><img src="assets/images/arcondec/brand/logo-arcondec-white.png" alt="Grupo Arcondec"></a> <!-- logo -->
+
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                </button> <!-- navbar toggler -->
+
+                                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="https://arcondec.mx/Nosotros.aspx" data-href-en="https://arcondec.mx/EN/About.aspx" data-i18n="navAbout">Sobre nosotros</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://arcondec.mx/Proyectos.aspx" data-href-en="https://arcondec.mx/EN/Projects.aspx" data-i18n="navProjects">Proyectos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-i18n="navServices">Servicios</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="https://arcondec.mx/Servicios/proyectos-eléctricos-integrales.aspx" data-href-en="https://arcondec.mx/EN/Services/PROYE.aspx" data-i18n="navSrvProye">Proyectos eléctricos</a></li>
+                                                <li><a href="https://arcondec.mx/Servicios/estudios-eléctricos-especializados.aspx" data-href-en="https://arcondec.mx/EN/Services/ESTEL.aspx" data-i18n="navSrvEstel">Estudios eléctricos</a></li>
+                                                <li><a href="https://arcondec.mx/Servicios/soluciones-en-corriente-directa-dc.aspx" data-href-en="https://arcondec.mx/EN/Services/CORAC.aspx" data-i18n="navSrvCorac">Corriente directa (DC)</a></li>
+                                                <li><a href="https://arcondec.mx/Servicios/gestión-integral-de-proyectos-eléctricos.aspx" data-href-en="https://arcondec.mx/EN/Services/GESPR.aspx" data-i18n="navSrvGespr">Gestión de proyectos</a></li>
+                                                <li><a href="https://arcondec.mx/Servicios/construcción-de-data-center.aspx" data-href-en="https://arcondec.mx/EN/Services/COSDC.aspx" data-i18n="navSrvCosdc">Construcción llave en mano</a></li>
+                                                <li><a href="https://arcondec.mx/Servicios/ingeniería-civil-para-data-center.aspx" data-href-en="https://arcondec.mx/EN/Services/CIVDC.aspx" data-i18n="navSrvCivdc">Ingeniería civil</a></li>
+                                                <li><a href="https://arcondec.mx/Servicios/servicios-de-ingeniería-integral.aspx" data-href-en="https://arcondec.mx/EN/Services/INGDC.aspx" data-i18n="navSrvIngdc">Servicios de Ingeniería</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://arcondec.mx/Reclutamiento.aspx" data-href-en="https://arcondec.mx/EN/Careers.aspx" data-i18n="navWork">Trabaja con nosotros</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://arcondec.mx/Blogs.aspx" data-href-en="https://arcondec.mx/Blogs" data-i18n="navBlogs">Blogs</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="https://arcondec.mx/Contactanos.aspx" data-href-en="https://arcondec.mx/EN/Contact.aspx" data-i18n="navContact">Contáctanos</a>
+                                        </li>
+                                    </ul>
+                                </div> <!-- navbar collapse -->
+
+                                <div class="navbar-btn d-none d-sm-block">
+                                    <a class="main-btn main-btn-3" href="https://arcondec.mx/Contactanos.aspx" data-href-en="https://arcondec.mx/EN/Contact.aspx" data-i18n="navContactBtn">Contáctanos</a>
+                                </div>
+
+                            </nav>
+                        </div> <!-- navigation -->
+                    </div>
+                </div> <!-- row -->
+            </div>
+        </div>
+    </header>
+
+    <!--====== HEADER PART ENDS ======-->
+
+    <!--====== HERO PART START ======-->
+
+    <section class="hero-slider hero-11-slider">
+        <div class="hero-area hero-2-area">
+            <div class="section__bg"></div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="hero-2-content hero-11-content">
+                            <span data-animation="fadeInDown" data-delay="0.5s" data-i18n="heroBrand">GRUPO ARCONDEC</span>
+                            <h1 class="title" data-animation="fadeInLeft" data-delay="0.6s" data-i18n="heroTitle">INFRAESTRUCTURA ELÉCTRICA INDUSTRIAL Y DATA CENTER LISTOS PARA OPERAR</h1>
+                            <div class="text" data-animation="fadeInLeft" data-delay="0.7s">
+                                <p data-i18n="heroText">Diseñamos, instalamos y supervisamos infraestructura crítica, integrando servicios de ingeniería eléctrica y la implementación de data centers con enfoque en calidad, confiabilidad y ejecución responsable.</p>
+                            </div>
+                            <ul data-animation="fadeInUp" data-delay="0.8s">
+                                <li><a class="main-btn" href="https://wa.me/525530326595?text=Hola,%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20que%20ofrece%20GRUPO%20ARCONDEC.%20%C2%BFPodr%C3%ADan%20proporcionarme%20informaci%C3%B3n%20adicional%3F%20Agradezco%20de%20antemano%20su%20atenci%C3%B3n." target="_blank" rel="noopener" data-i18n="heroBtn">Habla con un asesor</a></li>
+                                <li><a class="main-btn main-btn-2" href="https://arcondec.mx/Contactanos.aspx" data-href-en="https://arcondec.mx/EN/Contact.aspx" data-i18n="navContact">Contáctanos</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="hero-play-11 text-lg-right text-left">
+                            <a class="video-popup" href="https://www.youtube.com/watch?v=Q9PNm51CVK8" aria-label="Ver video"><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-area hero-2-area hero-11-area">
+            <div class="section__bg"></div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="hero-2-content hero-11-content">
+                            <span data-animation="fadeInDown" data-delay="0.5s" data-i18n="heroBrand">GRUPO ARCONDEC</span>
+                            <h1 class="title" data-animation="fadeInLeft" data-delay="0.6s" data-i18n="hero2Title">Implementación de centro de datos</h1>
+                            <div class="text" data-animation="fadeInLeft" data-delay="0.7s">
+                                <p data-i18n="hero2Text">Infraestructura crítica que respalda tu operación 24/7.</p>
+                            </div>
+                            <ul data-animation="fadeInUp" data-delay="0.8s">
+                                <li><a class="main-btn" href="https://arcondec.mx/Contactanos.aspx" data-href-en="https://arcondec.mx/EN/Contact.aspx" data-i18n="mapBtn">Agenda tu consulta con nuestros especialistas</a></li>
+                                <li><a class="main-btn main-btn-2" href="https://wa.me/525530326595?text=Hola,%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20que%20ofrece%20GRUPO%20ARCONDEC.%20%C2%BFPodr%C3%ADan%20proporcionarme%20informaci%C3%B3n%20adicional%3F%20Agradezco%20de%20antemano%20su%20atenci%C3%B3n." target="_blank" rel="noopener" data-i18n="heroBtn">Habla con un asesor</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="hero-play-11 text-lg-right text-left">
+                            <a class="video-popup" href="https://www.youtube.com/watch?v=Q9PNm51CVK8" aria-label="Ver video"><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== HERO PART ENDS ======-->
+
+    <!--====== SUB 2 PART START ======-->
+
+    <section class="sub-2-area">
+        <div class="container">
+            <div class="sub-box">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="sub-2-item mt-30">
+                            <img src="assets/images/icon/sub-1.png" alt="">
+                            <h4 class="title" data-i18n="sec1Title">Soluciones en Ingeniería Eléctrica</h4>
+                            <p data-i18n="sec1Card1">Diseñamos sistemas eléctricos listos para operar desde el primer día</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="sub-2-item mt-30">
+                            <img src="assets/images/icon/sub-2.png" alt="">
+                            <h4 class="title" data-i18n="sec2Title">Implementación de centro de datos</h4>
+                            <p data-i18n="hero2Text">Infraestructura crítica que respalda tu operación 24/7.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="sub-2-item mt-30 item-3">
+                            <img src="assets/images/icon/sub-3.png" alt="">
+                            <h4 class="title" data-i18n="mapTitle">Cobertura Nacional de Infraestructura</h4>
+                            <p data-i18n="mapBtn">Agenda tu consulta con nuestros especialistas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== SUB 2 PART ENDS ======-->
+
+    <!--====== ABOUT 2 PART START ======-->
+
+    <section class="about-2-area about-11-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-9">
+                    <div class="about-2-content about-11-content mt-30">
+                        <h3 class="title" data-i18n="aboutTitle">SOMOS UNA EMPRESA MEXICANA CON MÁS DE 30 AÑOS DE EXPERIENCIA CREANDO PROYECTOS DE ALTA CALIDAD</h3>
+                        <p data-i18n="aboutText">Estamos conformados por un equipo multidisciplinario altamente capacitado lo que nos convierte en especialistas en proyectos llave en mano comerciales e industriales de gran alcance, complejidad y tiempo ajustado desde etapa conceptual hasta entrega final.</p>
+                        <div class="item mt-30">
+                            <h4 class="title" data-i18n="dunsLabel">Certificación D-U-N-S</h4>
+                            <p data-i18n="aboutDunsText">Contamos con una certificación financiera.</p>
+                        </div>
+                        <a class="main-btn main-btn-3 mt-45" href="https://arcondec.mx/Nosotros.aspx" data-href-en="https://arcondec.mx/EN/About.aspx" data-i18n="navAbout2">Sobre nosotros</a>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="about-2-thumb about-11-thumb mt-30 animated wow fadeInRight" data-wow-duration="3000ms" data-wow-delay="0ms">
+                        <div class="thumb text-right">
+                            <img src="assets/images/arcondec/secciones/about-thumb-main.jpg" alt="Grupo Arcondec — proyectos de infraestructura">
+                        </div>
+                        <div class="thumb-2 ml-80">
+                            <img src="assets/images/arcondec/secciones/about-thumb-small.jpg" alt="Grupo Arcondec — ingeniería y construcción">
+                            <div class="box">
+                                <h3 class="title"><span>30</span>+</h3>
+                                <span data-i18n="aboutYears">Años de experiencia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== ABOUT 2 PART ENDS ======-->
+
+    <!--====== SERVICE 2 PART START ======-->
+
+    <section class="service-2-area service-11-area">
+        <div class="section__bg"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-9">
+                    <div class="section-title-9 section-white text-left">
+                        <h3 class="title" data-i18n="navServices">Servicios</h3>
+                        <div class="text">
+                            <p data-i18n="svcIntro">Ingeniería eléctrica y centros de datos, desde etapa conceptual hasta entrega final.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row service-11-active">
+                <div class="col-lg-4 col-md-6 col-sm-11">
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-project-diagram"></i></div>
+                        <h4 class="title" data-i18n="ie1">Proyectos eléctricos</h4>
+                        <p data-i18n="listIETitle">Ingeniería Eléctrica</p>
+                    </div>
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-bolt"></i></div>
+                        <h4 class="title" data-i18n="ie2">Corriente alterna (AC) y directa (DC)</h4>
+                        <p data-i18n="listIETitle">Ingeniería Eléctrica</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-11">
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-clipboard-check"></i></div>
+                        <h4 class="title" data-i18n="ie3">Estudios eléctricos</h4>
+                        <p data-i18n="listIETitle">Ingeniería Eléctrica</p>
+                    </div>
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-plug"></i></div>
+                        <h4 class="title" data-i18n="ie4">Servicios eléctricos</h4>
+                        <p data-i18n="listIETitle">Ingeniería Eléctrica</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-11">
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-network-wired"></i></div>
+                        <h4 class="title" data-i18n="ie5">Diseño de red de tierras</h4>
+                        <p data-i18n="listIETitle">Ingeniería Eléctrica</p>
+                    </div>
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-solar-panel"></i></div>
+                        <h4 class="title" data-i18n="ie6">Sistemas fotovoltaicos</h4>
+                        <p data-i18n="listIETitle">Ingeniería Eléctrica</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-11">
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-tools"></i></div>
+                        <h4 class="title" data-i18n="ie7">Mantenimiento eléctrico preventivo y correctivo</h4>
+                        <p data-i18n="listIETitle">Ingeniería Eléctrica</p>
+                    </div>
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-battery-full"></i></div>
+                        <h4 class="title" data-i18n="dc1">Sistema de respaldo UPS (Power System)</h4>
+                        <p data-i18n="listDCTitle">Data Centers</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-11">
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-th-large"></i></div>
+                        <h4 class="title" data-i18n="dc2">Instalación de tablero de distribución en corriente directa tipo BDCBB</h4>
+                        <p data-i18n="listDCTitle">Data Centers</p>
+                    </div>
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-cogs"></i></div>
+                        <h4 class="title" data-i18n="dc3">Generadores de emergencia</h4>
+                        <p data-i18n="listDCTitle">Data Centers</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-11">
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-industry"></i></div>
+                        <h4 class="title" data-i18n="dc4">Plantas de Corriente Directa</h4>
+                        <p data-i18n="listDCTitle">Data Centers</p>
+                    </div>
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-car-battery"></i></div>
+                        <h4 class="title" data-i18n="dc5">Inversores y banco de baterías</h4>
+                        <p data-i18n="listDCTitle">Data Centers</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-11">
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-broadcast-tower"></i></div>
+                        <h4 class="title" data-i18n="dc6">Sistema de tierras física y pararrayos</h4>
+                        <p data-i18n="listDCTitle">Data Centers</p>
+                    </div>
+                    <div class="service-2-item service-11-item text-center mt-30">
+                        <div class="icon"><i class="fas fa-hard-hat"></i></div>
+                        <h4 class="title" data-i18n="navSrvCivdc">Ingeniería civil</h4>
+                        <p data-i18n="listDCTitle">Data Centers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== SERVICE 2 PART ENDS ======-->
+
+    <!--====== SUBSCRIBE PART START ======-->
+
+    <div class="subscribe-area subscribe-11-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="subscribe-item">
+                        <h3 class="title" data-i18n="mapBtn">Agenda tu consulta con nuestros especialistas</h3>
+                        <span data-i18n="commitText">Fortalecemos cada día nuestro compromiso contigo, brindando un servicio excepcional como tu aliado estratégico en ingeniería eléctrica y centros de datos.</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="subscribe-form subscribe-11-form text-lg-right text-left">
+                        <ul>
+                            <li><a class="main-btn" href="https://arcondec.mx/Contactanos.aspx" data-href-en="https://arcondec.mx/EN/Contact.aspx" data-i18n="navContact">Contáctanos</a></li>
+                            <li><a class="main-btn main-btn-2" href="https://wa.me/525530326595?text=Hola,%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20que%20ofrece%20GRUPO%20ARCONDEC.%20%C2%BFPodr%C3%ADan%20proporcionarme%20informaci%C3%B3n%20adicional%3F%20Agradezco%20de%20antemano%20su%20atenci%C3%B3n." target="_blank" rel="noopener" data-i18n="heroBtn">Habla con un asesor</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--====== SUBSCRIBE PART ENDS ======-->
+
+    <!--====== OUR CASE PART START ======-->
+
+    <section class="our-case-area pt-90 pb-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-9">
+                    <div class="section-title-9 text-center">
+                        <h3 class="title" data-i18n="mapTitle">Cobertura Nacional de Infraestructura</h3>
+                        <div class="text">
+                            <p data-i18n="hubsLine">Hubs en Mexicali, Querétaro, Monterrey, Apodaca, Valle Oriente, Delicias, Toluca, Isla Mujeres y Ciudad de México.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="case-tab-btn case-tab-btn-11 mt-30">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                                <span>Nuevo León</span>
+                                <h5 class="title" data-i18n="hub1Name">Monterrey · Oficinas centrales</h5>
+                            </a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                <span>Ciudad de México</span>
+                                <h5 class="title" data-i18n="hub2Name">Ciudad de México · Matriz</h5>
+                            </a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                                <span>Chihuahua</span>
+                                <h5 class="title" data-i18n="hub3Name">Hub Delicias</h5>
+                            </a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                                <span>Quintana Roo</span>
+                                <h5 class="title" data-i18n="hub4Name">Hub Isla Mujeres</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="case-content mt-30">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <div class="item">
+                                    <div class="case-thumb">
+                                        <img src="assets/images/arcondec/secciones/mapa-proyectos.gif" alt="Mapa de proyectos de Grupo Arcondec en México">
+                                    </div>
+                                    <div class="case-text">
+                                        <p data-i18n="mapBtn">Agenda tu consulta con nuestros especialistas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <div class="item">
+                                    <div class="case-thumb">
+                                        <img src="assets/images/arcondec/secciones/mapa-proyectos.gif" alt="Mapa de proyectos de Grupo Arcondec en México">
+                                    </div>
+                                    <div class="case-text">
+                                        <p data-i18n="mapBtn">Agenda tu consulta con nuestros especialistas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                <div class="item">
+                                    <div class="case-thumb">
+                                        <img src="assets/images/arcondec/secciones/mapa-proyectos.gif" alt="Mapa de proyectos de Grupo Arcondec en México">
+                                    </div>
+                                    <div class="case-text">
+                                        <p data-i18n="mapBtn">Agenda tu consulta con nuestros especialistas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                <div class="item">
+                                    <div class="case-thumb">
+                                        <img src="assets/images/arcondec/secciones/mapa-proyectos.gif" alt="Mapa de proyectos de Grupo Arcondec en México">
+                                    </div>
+                                    <div class="case-text">
+                                        <p data-i18n="mapBtn">Agenda tu consulta con nuestros especialistas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== OUR CASE PART ENDS ======-->
+
+    <!--====== TESTIMONIAL PART START ======-->
+
+    <section class="testimonial-3-area">
+        <div class="container">
+            <div class="testimonial-3-active testimonial-9-active">
+                <div class="testimonial-items testimonial-9-items">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 order-lg-1 order-2">
+                            <div class="testimonial-3-thumb testimonial-9-thumb testimonial-11-thumb">
+                                <img src="assets/images/arcondec/secciones/testimonial-1.jpg" alt="Grupo Arcondec — servicios de ingeniería">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-2 order-1">
+                            <div class="testimonial-3-content">
+                                <h3 class="title" data-i18n="commitTitle">Fortalecemos cada día nuestro compromiso contigo</h3>
+                                <img src="assets/images/icon/quote-2.png" alt="">
+                                <p data-i18n="commitText">Fortalecemos cada día nuestro compromiso contigo, brindando un servicio excepcional como tu aliado estratégico en ingeniería eléctrica y centros de datos.</p>
+                                <div class="info">
+                                    <h5 class="title">Grupo Arcondec</h5>
+                                    <span data-i18n="dunsLabel">Certificación D-U-N-S</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-items testimonial-9-items">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 order-lg-1 order-2">
+                            <div class="testimonial-3-thumb testimonial-9-thumb testimonial-11-thumb">
+                                <img src="assets/images/arcondec/secciones/testimonial-2.jpg" alt="Grupo Arcondec — gestión de proyectos">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-2 order-1">
+                            <div class="testimonial-3-content">
+                                <h3 class="title" data-i18n="commitTitle">Fortalecemos cada día nuestro compromiso contigo</h3>
+                                <img src="assets/images/icon/quote-2.png" alt="">
+                                <p data-i18n="commitText">Fortalecemos cada día nuestro compromiso contigo, brindando un servicio excepcional como tu aliado estratégico en ingeniería eléctrica y centros de datos.</p>
+                                <div class="info">
+                                    <h5 class="title">Grupo Arcondec</h5>
+                                    <span data-i18n="dunsLabel">Certificación D-U-N-S</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== TESTIMONIAL PART ENDS ======-->
+
+    <!--====== TEAM 2 PART START (tarjetas con imagen del template para Data Center) ======-->
+
+    <section class="article-2-area article-11-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-9">
+                    <div class="section-title-9 text-center">
+                        <h3 class="title" data-i18n="sec2Title">Implementación de centro de datos</h3>
+                        <div class="text">
+                            <p data-i18n="hero2Text">Infraestructura crítica que respalda tu operación 24/7.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-6 col-sm-8">
+                    <div class="team-2-item team-12-item mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0ms">
+                        <img src="assets/images/arcondec/secciones/comunicacion-eficiente.jpg" alt="Comunicación eficiente">
+                        <div class="team-overlay">
+                            <div class="item">
+                                <h4 class="title" data-i18n="sec2Card1">Comunicación eficiente</h4>
+                                <span data-i18n="catDC">Data Center</span>
+                                <ul>
+                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team-overlay-2 text-center">
+                            <img src="assets/images/arcondec/secciones/comunicacion-eficiente.jpg" alt="Comunicación eficiente">
+                            <h4 class="title" data-i18n="sec2Card1">Comunicación eficiente</h4>
+                            <span data-i18n="catDC">Data Center</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-8">
+                    <div class="team-2-item team-12-item mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <img src="assets/images/arcondec/secciones/infraestructura-conecta.jpg" alt="Infraestructura que conecta">
+                        <div class="team-overlay">
+                            <div class="item">
+                                <h4 class="title" data-i18n="sec2Card2">Infraestructura que conecta</h4>
+                                <span data-i18n="catDC2">Data Center</span>
+                                <ul>
+                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team-overlay-2 text-center">
+                            <img src="assets/images/arcondec/secciones/infraestructura-conecta.jpg" alt="Infraestructura que conecta">
+                            <h4 class="title" data-i18n="sec2Card2">Infraestructura que conecta</h4>
+                            <span data-i18n="catDC">Data Center</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-8">
+                    <div class="team-2-item team-12-item mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <img src="assets/images/arcondec/secciones/infraestructura-critica.jpg" alt="Infraestructura crítica que respalda tu operación 24/7">
+                        <div class="team-overlay">
+                            <div class="item">
+                                <h4 class="title" data-i18n="sec2Card3">Infraestructura crítica que respalda tu operación 24/7</h4>
+                                <span data-i18n="catDC3">Data Center</span>
+                                <ul>
+                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team-overlay-2 text-center">
+                            <img src="assets/images/arcondec/secciones/infraestructura-critica.jpg" alt="Infraestructura crítica que respalda tu operación 24/7">
+                            <h4 class="title" data-i18n="sec2Card3">Infraestructura crítica que respalda tu operación 24/7</h4>
+                            <span data-i18n="catDC">Data Center</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-8">
+                    <div class="team-2-item team-12-item mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="900ms">
+                        <img src="assets/images/arcondec/secciones/team-llave-en-mano.jpg" alt="Construcción llave en mano">
+                        <div class="team-overlay">
+                            <div class="item">
+                                <h4 class="title" data-i18n="navSrvCosdc">Construcción llave en mano</h4>
+                                <span data-i18n="catDC">Data Center</span>
+                                <ul>
+                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team-overlay-2 text-center">
+                            <img src="assets/images/arcondec/secciones/team-llave-en-mano.jpg" alt="Construcción llave en mano">
+                            <h4 class="title" data-i18n="navSrvCosdc">Construcción llave en mano</h4>
+                            <span data-i18n="catDC">Data Center</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== TEAM PART ENDS ======-->
+
+    <!--====== BRAND 3 PART START ======-->
+
+    <div class="brand-3-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="brand-3-items d-flex justify-content-between">
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/izzi.png" alt="izzi"></a>
+                        </div>
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/cablemas.png" alt="Cablemás"></a>
+                        </div>
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/bestel.png" alt="Bestel"></a>
+                        </div>
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/femsa.png" alt="FEMSA"></a>
+                        </div>
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/totalplay.png" alt="Totalplay"></a>
+                        </div>
+                    </div>
+                    <div class="brand-3-items d-flex justify-content-between mt-85">
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/gtac.png" alt="GTAC"></a>
+                        </div>
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/delta.png" alt="Delta"></a>
+                        </div>
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/mabe.png" alt="Mabe"></a>
+                        </div>
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/vant.png" alt="Vant"></a>
+                        </div>
+                        <div class="item">
+                            <a><img src="assets/images/arcondec/clients/logrand.png" alt="Logrand"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--====== BRAND 3 PART ENDS ======-->
+
+    <!--====== ARTICLE 2 PART START (tarjetas del template para Ingeniería Eléctrica) ======-->
+
+    <section class="article-2-area article-11-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-9">
+                    <div class="section-title-9 text-center">
+                        <h3 class="title" data-i18n="sec1Title">Soluciones en Ingeniería Eléctrica</h3>
+                        <div class="text">
+                            <p data-i18n="svcIntro">Ingeniería eléctrica y centros de datos, desde etapa conceptual hasta entrega final.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-9">
+                    <div class="article-2-item article-11-item mt-30 animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="0ms">
+                        <div class="article-thumb">
+                            <img src="assets/images/arcondec/secciones/soluciones-ingenieria.jpg" alt="Soluciones en Ingeniería Eléctrica">
+                        </div>
+                        <div class="article-content">
+                            <div class="date">
+                                <div class="item">
+                                    <h5 class="title">30+</h5>
+                                    <span data-i18n="yearsShort">AÑOS</span>
+                                </div>
+                                <span data-i18n="catIE">Ingeniería Eléctrica</span>
+                            </div>
+                            <h3 class="title"><a href="https://arcondec.mx/Servicios/proyectos-eléctricos-integrales.aspx" data-href-en="https://arcondec.mx/EN/Services/PROYE.aspx" data-i18n="sec1Card1">Diseñamos sistemas eléctricos listos para operar desde el primer día</a></h3>
+                            <a href="https://arcondec.mx/Servicios/proyectos-eléctricos-integrales.aspx" data-href-en="https://arcondec.mx/EN/Services/PROYE.aspx">
+                                <span data-i18n="learnMore">Conoce más</span>
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10.196" height="12.663" viewBox="0 0 10.196 12.663">
+                                      <path data-name="Path 18155" d="M32.324,974.539,28.2,978.448a.731.731,0,0,0-.052.947.678.678,0,0,0,.948,0l3.027-2.864v9.346a.652.652,0,1,0,1.3,0v-9.346l3.027,2.864a.664.664,0,0,0,.948,0,.714.714,0,0,0-.052-.947l-4.126-3.909A.661.661,0,0,0,32.324,974.539Z" transform="translate(-27.676 -974.112)" fill="#fff" stroke="#fff" stroke-width="0.5"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-9">
+                    <div class="article-2-item article-11-item mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <div class="article-thumb">
+                            <img src="assets/images/arcondec/secciones/potencia-segura.jpg" alt="Potencia segura y eficiente">
+                        </div>
+                        <div class="article-content">
+                            <div class="date">
+                                <div class="item">
+                                    <h5 class="title">30+</h5>
+                                    <span data-i18n="yearsShort">AÑOS</span>
+                                </div>
+                                <span data-i18n="catIE2">Ingeniería Eléctrica</span>
+                            </div>
+                            <h3 class="title"><a href="https://arcondec.mx/Servicios/proyectos-eléctricos-integrales.aspx" data-href-en="https://arcondec.mx/EN/Services/PROYE.aspx" data-i18n="sec1Card2">Potencia segura y eficiente</a></h3>
+                            <a href="https://arcondec.mx/Servicios/proyectos-eléctricos-integrales.aspx" data-href-en="https://arcondec.mx/EN/Services/PROYE.aspx">
+                                <span data-i18n="learnMore">Conoce más</span>
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10.196" height="12.663" viewBox="0 0 10.196 12.663">
+                                      <path data-name="Path 18155" d="M32.324,974.539,28.2,978.448a.731.731,0,0,0-.052.947.678.678,0,0,0,.948,0l3.027-2.864v9.346a.652.652,0,1,0,1.3,0v-9.346l3.027,2.864a.664.664,0,0,0,.948,0,.714.714,0,0,0-.052-.947l-4.126-3.909A.661.661,0,0,0,32.324,974.539Z" transform="translate(-27.676 -974.112)" fill="#fff" stroke="#fff" stroke-width="0.5"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-9">
+                    <div class="article-2-item article-11-item mt-30 item-3 animated wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="article-thumb">
+                            <img src="assets/images/arcondec/secciones/instalaciones-normadas.jpg" alt="Instalaciones normadas">
+                        </div>
+                        <div class="article-content">
+                            <div class="date">
+                                <div class="item">
+                                    <h5 class="title">30+</h5>
+                                    <span data-i18n="yearsShort">AÑOS</span>
+                                </div>
+                                <span data-i18n="catIE3">Ingeniería Eléctrica</span>
+                            </div>
+                            <h3 class="title"><a href="https://arcondec.mx/Servicios/proyectos-eléctricos-integrales.aspx" data-href-en="https://arcondec.mx/EN/Services/PROYE.aspx" data-i18n="sec1Card3">Instalaciones normadas</a></h3>
+                            <a href="https://arcondec.mx/Servicios/proyectos-eléctricos-integrales.aspx" data-href-en="https://arcondec.mx/EN/Services/PROYE.aspx">
+                                <span data-i18n="learnMore">Conoce más</span>
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10.196" height="12.663" viewBox="0 0 10.196 12.663">
+                                      <path data-name="Path 18155" d="M32.324,974.539,28.2,978.448a.731.731,0,0,0-.052.947.678.678,0,0,0,.948,0l3.027-2.864v9.346a.652.652,0,1,0,1.3,0v-9.346l3.027,2.864a.664.664,0,0,0,.948,0,.714.714,0,0,0-.052-.947l-4.126-3.909A.661.661,0,0,0,32.324,974.539Z" transform="translate(-27.676 -974.112)" fill="#fff" stroke="#fff" stroke-width="0.5"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== ARTICLE 2 PART ENDS ======-->
+
+    <!--====== CONTÁCTANOS (bloque "sub 2" del template, información oficial de arcondec.mx) ======-->
+
+    <section class="sub-2-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-9">
+                    <div class="section-title-9 text-center">
+                        <h3 class="title" data-i18n="contactTitle">Contáctanos</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-box">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="sub-2-item mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0ms">
+                            <img src="assets/images/icon/footer-icon-4.png" alt="">
+                            <h4 class="title" data-i18n="contactOffice">Oficina Monterrey</h4>
+                            <p><a href="https://www.google.com/maps/place/Grupo+Arcondec+S.A.+de+C.V./@25.7124378,-100.3761168,17z" target="_blank" rel="noopener">Calle del Gran Parque 419, Cumbres 2o, 64610 Monterrey, N.L.</a></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="sub-2-item mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+                            <img src="assets/images/icon/footer-icon-5.png" alt="">
+                            <h4 class="title" data-i18n="contactCall">Llama ahora</h4>
+                            <p><a href="tel:+528119341192">81 1934 1192</a> · <a href="tel:+528119341194">81 1934 1194</a><br><a href="tel:+525530326595" data-i18n="contactMobile">Celular (55) 3032 6595</a></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="sub-2-item mt-30 item-3 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms">
+                            <img src="assets/images/icon/footer-icon-6.png" alt="">
+                            <h4 class="title" data-i18n="contactMail">Correos</h4>
+                            <p><a href="mailto:info@arcondec.mx">info@arcondec.mx</a><br><a href="mailto:ventas@arcondec.mx" data-href-en="mailto:sales@arcondec.mx" data-i18n="contactSalesMail">ventas@arcondec.mx</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== CONTÁCTANOS ENDS ======-->
+
+    <!--====== FOOTER PART START ======-->
+
+    <footer class="footer-area footer-2-area">
+        <div class="footer-2-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                        <div class="footer-logo">
+                            <a href="index.html"><img src="assets/images/arcondec/brand/logo-arcondec-white.png" alt="Grupo Arcondec"></a>
+                            <img class="duns" src="assets/images/arcondec/brand/duns_v2.png" alt="Certificación D-U-N-S">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="footer-info">
+                            <ul>
+                                <li><img src="assets/images/icon/footer-icon-4.png" alt=""> Calle del Gran Parque 419, Cumbres 2o, 64610 Monterrey, N.L.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="footer-info ml-60">
+                            <ul>
+                                <li><img src="assets/images/icon/footer-icon-5.png" alt=""> 81 1934 1192</li>
+                                <li> 81 1934 1194 · (55) 3032 6595</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="footer-info">
+                            <ul>
+                                <li><img src="assets/images/icon/footer-icon-6.png" alt=""> info@arcondec.mx</li>
+                                <li data-i18n="footSalesMail"> ventas@arcondec.mx</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="footer-item">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer-list footer-list-11 mt-30">
+                            <h4 class="title" data-i18n="footCompany">Compañía</h4>
+                            <ul>
+                                <li><a href="https://arcondec.mx/Nosotros.aspx" data-href-en="https://arcondec.mx/EN/About.aspx" data-i18n="footAbout">Sobre nosotros</a></li>
+                                <li><a href="https://arcondec.mx/Proyectos.aspx" data-href-en="https://arcondec.mx/EN/Projects.aspx" data-i18n="footProjects">Proyectos</a></li>
+                                <li><a href="https://arcondec.mx/Reclutamiento.aspx" data-href-en="https://arcondec.mx/EN/Careers.aspx" data-i18n="footWork">Trabaja con nosotros</a></li>
+                                <li><a href="https://arcondec.mx/Blogs.aspx" data-href-en="https://arcondec.mx/Blogs" data-i18n="footBlogs">Blogs</a></li>
+                                <li><a href="https://arcondec.mx/Contactanos.aspx" data-href-en="https://arcondec.mx/EN/Contact.aspx" data-i18n="footContact">Contáctanos</a></li>
+                                <li><a href="https://apps.arcondec.mx/" target="_blank" rel="noopener" data-i18n="footLogin">Iniciar sesión</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer-list footer-list-11 mt-30">
+                            <h4 class="title" data-i18n="footIETitle">Ingeniería eléctrica</h4>
+                            <ul>
+                                <li><a href="https://arcondec.mx/Servicios/proyectos-eléctricos-integrales.aspx" data-href-en="https://arcondec.mx/EN/Services/PROYE.aspx" data-i18n="footSrvProye">Proyectos eléctricos</a></li>
+                                <li><a href="https://arcondec.mx/Servicios/estudios-eléctricos-especializados.aspx" data-href-en="https://arcondec.mx/EN/Services/ESTEL.aspx" data-i18n="footSrvEstel">Estudios eléctricos</a></li>
+                                <li><a href="https://arcondec.mx/Servicios/soluciones-en-corriente-directa-dc.aspx" data-href-en="https://arcondec.mx/EN/Services/CORAC.aspx" data-i18n="footSrvCorac">Corriente directa (DC)</a></li>
+                                <li><a href="https://arcondec.mx/Servicios/gestión-integral-de-proyectos-eléctricos.aspx" data-href-en="https://arcondec.mx/EN/Services/GESPR.aspx" data-i18n="footSrvGespr">Gestión de proyectos</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-5">
+                        <div class="footer-list footer-list-11 mt-30">
+                            <h4 class="title" data-i18n="footDCTitle">Centro de datos</h4>
+                            <ul>
+                                <li><a href="https://arcondec.mx/Servicios/construcción-de-data-center.aspx" data-href-en="https://arcondec.mx/EN/Services/COSDC.aspx" data-i18n="footSrvCosdc">Construcción llave en mano</a></li>
+                                <li><a href="https://arcondec.mx/Servicios/ingeniería-civil-para-data-center.aspx" data-href-en="https://arcondec.mx/EN/Services/CIVDC.aspx" data-i18n="footSrvCivdc">Ingeniería civil</a></li>
+                                <li><a href="https://arcondec.mx/Servicios/servicios-de-ingeniería-integral.aspx" data-href-en="https://arcondec.mx/EN/Services/INGDC.aspx" data-i18n="footSrvIngdc">Servicios de Ingeniería</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-7">
+                        <div class="footer-newsletter-item footer-newsletter-item-11 mt-30">
+                            <div class="dot">
+                                <img src="assets/images/icon/footer-newsletter-dot.png" alt="">
+                            </div>
+                            <h3 class="title" data-i18n="newsTitle">Suscríbete a nuestro boletín para recibir novedades.</h3>
+                            <form action="#" onsubmit="location.href='mailto:ventas@arcondec.mx';return false">
+                                <div class="input-box">
+                                    <input type="email" name="email" autocomplete="email" aria-label="Correo electrónico" placeholder="Escribe tu correo…" data-i18n-placeholder="newsPlaceholder">
+                                    <button class="main-btn-3" type="submit" data-i18n="newsBtn">Únete</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-copyright footer-copyright-11 d-flex align-items-end">
+                        <ul>
+                            <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                        <p><span data-i18n="footCopy">Grupo Arcondec S.A. de C.V. Copyright © 2026 | Todos los derechos Reservados</span> | <a href="https://www.arcondec.mx/AvisoPrivacidad.pdf" target="_blank" rel="noopener" data-i18n="footPrivacy2">Aviso de privacidad</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--====== FOOTER PART ENDS ======-->
+
+    <!--====== WHATSAPP FLOTANTE ======-->
+
+    <a class="whatsapp-float" href="https://wa.me/525530326595?text=Hola,%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20que%20ofrece%20GRUPO%20ARCONDEC.%20%C2%BFPodr%C3%ADan%20proporcionarme%20informaci%C3%B3n%20adicional%3F%20Agradezco%20de%20antemano%20su%20atenci%C3%B3n." target="_blank" rel="noopener" aria-label="WhatsApp Grupo Arcondec">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true"><path fill="#ffffff" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+    </a>
+
+    <!--====== WHATSAPP FLOTANTE ENDS ======-->
+
+    <!--====== BACK TO TOP START ======-->
+
+    <a class="back-to-top back-to-top-11" role="button" tabindex="0" aria-label="Volver arriba">
+        <i class="fal fa-angle-up"></i>
+    </a>
+
+    <!--====== BACK TO TOP ENDS ======-->
+
+    <!--====== jquery js ======-->
+    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+
+    <!--====== appear js ======-->
+    <script src="assets/js/jquery.appear.min.js"></script>
+
+    <!--====== Slick js ======-->
+    <script src="assets/js/slick.min.js"></script>
+
+    <!--====== wow js ======-->
+    <script src="assets/js/wow.js"></script>
+
+    <!--====== Isotope js ======-->
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+
+    <!--====== Images Loaded js ======-->
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+
+    <!--====== Magnific Popup js ======-->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+    <!--====== Main js ======-->
+    <script src="assets/js/main.js"></script>
+
+    <!--====== i18n ES/EN Arcondec ======-->
+    <script src="assets/js/arcondec-i18n.js"></script>
+
+</body>
+
 </html>

@@ -1,13 +1,1 @@
-# dependencias y build
-node_modules/
-dist/
-.vite/
-
-# sistema / editor
 .DS_Store
-*.local
-*.log
-
-# material interno de trabajo (no forma parte del producto)
-audit/
-.claude/
