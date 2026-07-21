@@ -31,7 +31,7 @@
             navContactBtn: 'Contáctanos',
 
             heroBrand: 'GRUPO ARCONDEC',
-            heroTitle: 'INFRAESTRUCTURA ELÉCTRICA INDUSTRIAL Y DATA CENTER LISTOS PARA OPERAR',
+            heroTitle: 'Infraestructura eléctrica industrial y data center listos para operar',
             heroText: 'Diseñamos, instalamos y supervisamos infraestructura crítica, integrando servicios de ingeniería eléctrica y la implementación de data centers con enfoque en calidad, confiabilidad y ejecución responsable.',
             heroBtn: 'Habla con un asesor',
 
@@ -68,7 +68,7 @@
             newsPlaceholder: 'Escribe tu correo…',
             newsBtn: 'Únete',
 
-            aboutTitle: 'SOMOS UNA EMPRESA MEXICANA CON MÁS DE 30 AÑOS DE EXPERIENCIA CREANDO PROYECTOS DE ALTA CALIDAD',
+            aboutTitle: 'Somos una empresa mexicana con más de 30 años de experiencia creando proyectos de alta calidad',
             aboutText: 'Estamos conformados por un equipo multidisciplinario altamente capacitado lo que nos convierte en especialistas en proyectos llave en mano comerciales e industriales de gran alcance, complejidad y tiempo ajustado desde etapa conceptual hasta entrega final.',
             navAbout2: 'Sobre nosotros',
             aboutYears: 'Años de experiencia',
@@ -150,7 +150,7 @@
             navContactBtn: 'Contact Us',
 
             heroBrand: 'GRUPO ARCONDEC',
-            heroTitle: 'ELECTRICAL SOLUTIONS AND DATA CENTERS READY TO OPERATE',
+            heroTitle: 'Electrical solutions and data centers ready to operate',
             heroText: 'We design, install, and supervise critical infrastructure, integrating electrical engineering services and data center implementation with a focus on quality, reliability, and responsible execution.',
             heroBtn: 'Speak with an Advisor',
 
@@ -187,7 +187,7 @@
             newsPlaceholder: 'Enter email…',
             newsBtn: 'Join us',
 
-            aboutTitle: 'WE ARE A MEXICAN COMPANY WITH OVER 30 YEARS OF EXPERIENCE DELIVERING HIGH-QUALITY PROJECTS',
+            aboutTitle: 'We are a Mexican company with over 30 years of experience delivering high-quality projects',
             aboutText: 'We are made up of a highly skilled multidisciplinary team, making us specialists in large-scale, high-complexity turnkey commercial and industrial projects — from conceptual stage to final delivery, even under tight timelines.',
             navAbout2: 'About Us',
             aboutYears: 'Years of Experience',
