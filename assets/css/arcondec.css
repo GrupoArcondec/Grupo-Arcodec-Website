@@ -1,0 +1,976 @@
+/*
+ * Grupo Arcondec — piel de marca sobre el template aball (index-12).
+ * Ajusta colores, tipografia y proporciones del template SIN modificar style.css,
+ * para que una actualizacion del template no pise estos cambios.
+ * Compartido por todas las paginas (ES y EN).
+ *
+ * Paleta oficial: naranja #FFBB00 / #F7931E · azul marino #1F439B / #132D67
+ */
+
+.header-top .header-top-item .info ul li a { color: inherit; }
+/* Escala tipográfica del template (100px demo): 80px es el máximo que admite el titular oficial sin cortarse */
+.hero-2-content.hero-11-content .title { font-size: 80px; line-height: 1.08; }
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .hero-2-content.hero-11-content .title { font-size: 62px; line-height: 1.1; }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .hero-2-content.hero-11-content .title { font-size: 46px; line-height: 1.15; }
+}
+@media (max-width: 575px) {
+    .hero-2-content.hero-11-content .title { font-size: 36px; line-height: 1.2; }
+}
+.lang-switch.active { font-weight: 700; text-decoration: underline; }
+/* Fondo del hero optimizado para web (mismo encuadre, 360 KB vs 2 MB del PNG) */
+.hero-area.hero-2-area .section__bg { background-image: url(../images/hero-bg-2-opt.jpg); }
+/* El topbar y el nav llevan textos más largos que el demo: se compactan en tablets para que no desborden */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .header-top .header-top-item .info ul li { margin-right: 18px; font-size: 15px; }
+    .header-top .header-top-item .info ul li:nth-child(2) { display: none; }
+    .header-nav .navigation .navbar .navbar-nav > .nav-item > a { font-size: 15px; margin-right: 16px; white-space: nowrap; }
+    /* El nav de Arcondec tiene rótulos más largos que el demo: en este rango basta el ítem Contáctanos del menú */
+    .header-nav .navbar-btn { display: none !important; }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .header-top .header-top-item .info ul li:nth-child(2),
+    .header-top .header-top-item .info ul li:nth-child(3) { display: none; }
+}
+/* Los logos de clientes varían de tamaño: se acotan para que las filas queden parejas */
+.brand-3-items .item img { max-height: 60px; width: auto; max-width: 170px; }
+/* Sello D-U-N-S (blanco) sobre la franja oscura del footer, como en arcondec.mx */
+.footer-2-top .footer-logo img.duns { height: 42px; width: auto; display: block; margin-top: 14px; }
+/* Las tarjetas Data Center usan foto en el overlay (el demo usa un avatar de 139px) */
+.team-12-item .team-overlay-2 img { width: 139px; height: 139px; object-fit: cover; border-radius: 10px; }
+/* Las fotos reales de Arcondec tienen proporciones variadas: se fuerzan las proporciones
+   exactas del demo para que renglones y columnas queden alineados (responsive con aspect-ratio) */
+.article-11-item .article-thumb img { width: 100%; aspect-ratio: 320 / 260; object-fit: cover; }
+.article-11-item .article-content h3.title { min-height: 90px; }
+.team-12-item > img { width: 100%; aspect-ratio: 255 / 322; object-fit: cover; }
+.testimonial-11-thumb img { width: 100%; aspect-ratio: 445 / 600; object-fit: cover; }
+.service-2-item.service-11-item { min-height: 370px; }
+/* Botón flotante de WhatsApp (FAB verde oficial) */
+.whatsapp-float { position: fixed; right: 25px; bottom: 95px; z-index: 99; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%; background: #25D366; box-shadow: 0 6px 18px rgba(0, 0, 0, .35); transition: transform .2s ease, background .2s ease; }
+.whatsapp-float:hover { transform: scale(1.1); background: #1EBE5D; }
+.whatsapp-float svg { width: 34px; height: 34px; display: block; }
+@media (max-width: 767px) {
+    .whatsapp-float { width: 52px; height: 52px; right: 16px; bottom: 88px; }
+    .whatsapp-float svg { width: 30px; height: 30px; }
+}
+
+/* ===== Piel de marca Arcondec — colores oficiales de arcondec.mx ===== */
+/* Naranja #FFBB00 / #F7931E (acento y botones) · Azul marino #1F439B / #132D67 (fondos) */
+.main-btn { background-color: #FFBB00; border-color: #FFBB00; color: #132D67; }
+.main-btn:hover { background-color: transparent; color: #D09021; border-color: #FFBB00; }
+.main-btn.main-btn-3 { background: #FFBB00; color: #132D67; }
+.main-btn.main-btn-3:hover { background: #D09021; color: #fff; }
+.hero-2-content.hero-11-content ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
+.hero-2-content.hero-11-content ul li a:hover { background: #D09021; border-color: #D09021; color: #fff; }
+.hero-2-content.hero-11-content ul li a.main-btn-2 { background: #1F439B; border-color: #1F439B; color: #fff; }
+.hero-2-content.hero-11-content ul li a.main-btn-2:hover { background: #132D67; border-color: #132D67; color: #fff; }
+/* Header en el azul oficial del logo (#1F439B) */
+.header-2-area .header-top { background: #132D67; }
+.header-area.header-2-area .header-nav.sticky { background-color: #1F439B; }
+/* Logo oficial (wordmark blanco + ícono naranja) */
+.navbar-brand img { width: 170px; height: auto; }
+@media (min-width: 1201px) {
+    .header-nav .navigation .navbar .navbar-nav > .nav-item > a { margin-right: 22px; white-space: nowrap; }
+}
+.footer-2-top .footer-logo a img { width: 190px; height: auto; }
+/* Fondos del footer en el azul oficial */
+.footer-2-area .footer-2-top { background: #1F439B; }
+footer.footer-area.footer-2-area { background: #132D67; }
+.header-2-area.header-11-area .header-top .sicial ul li a:hover { color: #FFBB00; }
+.header-nav .navigation .navbar .navbar-nav .nav-item a:hover { color: #FFBB00; }
+.header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu li a:hover { color: #F7931E; }
+/* Tarjetas del carrusel de servicios: ícono temático de cada servicio en el círculo del template */
+.service-2-item.service-11-item .icon { background: rgba(255, 187, 0, 0.14); }
+.service-2-item.service-11-item .icon i { font-size: 38px; line-height: 90px; color: #1F439B; }
+/* Fondo de la sección de servicios: foto industrial oficial con overlay azul de marca */
+.service-2-area.service-11-area .section__bg { background-image: linear-gradient(rgba(19, 45, 103, 0.88), rgba(19, 45, 103, 0.88)), url(../images/arcondec/secciones/servicios-bg.jpg); }
+/* Tabs de cobertura */
+.case-tab-btn.case-tab-btn-11 .nav .nav-link span::before { background: #FFBB00; }
+.case-tab-btn.case-tab-btn-11 .nav .nav-link.active { background: #1F439B; }
+/* Franja CTA */
+.subscribe-area.subscribe-11-area { background: #1F439B; }
+.subscribe-form.subscribe-11-form ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
+/* Bloque del testimonial */
+.testimonial-9-active .testimonial-11-thumb::before { background: #1F439B; }
+/* Overlay de las tarjetas Data Center */
+.team-2-item.team-12-item .team-overlay { background: linear-gradient(rgba(255, 187, 0, 0.25) 0%, #1F439B 100%); }
+/* Caja "30+ Años" y caja de fecha con el degradado naranja de la marca */
+.about-2-thumb .thumb-2 .box { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
+.article-2-item .article-content .date .item { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
+.article-2-item .article-content .date .item .title, .article-2-item .article-content .date .item span { color: #132D67; }
+.article-2-item .article-content > a .icon::before { background: #1F439B; }
+.article-2-item .article-content .title a:hover { color: #F7931E; }
+/* Newsletter del footer */
+.footer-newsletter-item.footer-newsletter-item-11 { background: #1F439B; }
+/* Botón subir y enlaces de acento */
+.back-to-top.back-to-top-11 { background: #FFBB00; color: #132D67; }
+.footer-copyright p a { color: #FFBB00; }
+/* Reglas del template con mayor especificidad (variante header/hero/about/article -11) */
+.header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
+.header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a:hover { background: transparent; border-color: #FFBB00; color: #FFBB00; }
+@media (max-width: 991px) {
+    .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-collapse { background: #1F439B; }
+}
+.header-2-area.header-11-area .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu > li:hover > a { color: #F7931E; }
+.hero-play-11 a { color: #F7931E; }
+.hero-play-11 a:hover { background: #FFBB00; color: #132D67; }
+.hero-slider.hero-11-slider .slick-dots li.slick-active button { background: #FFBB00; }
+.about-2-content.about-11-content .item.active::before, .about-2-content.about-11-content .item:hover::before { background: #FFBB00; }
+.about-2-content.about-11-content a.main-btn-3 { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
+.about-2-content.about-11-content a.main-btn-3:hover { background: #D09021; color: #fff; }
+.about-2-thumb.about-11-thumb .thumb-2 .box { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
+.service-2-item.service-11-item::before { background: linear-gradient(rgba(255, 187, 0, 0.16) 0%, #1F439B 100%); }
+.service-11-active .slick-arrow:hover { background: #FFBB00; color: #132D67; }
+.article-11-item .article-content .date .item { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
+.article-11-item .article-content > a .icon::before { background: #1F439B; }
+.footer-item .footer-list.footer-list-11 ul li a:hover { color: #FFBB00; }
+.footer-2-area .footer-copyright.footer-copyright-11 ul li a::before { background: #FFBB00; }
+
+/* ==========================================================================
+   Componentes de las páginas interiores (prefijo .arc-)
+   --------------------------------------------------------------------------
+   El template aball no trae maquetación para páginas de servicio, proyectos,
+   contacto ni reclutamiento, así que estos bloques se construyen aquí usando
+   su mismo lenguaje visual: tipografía space_grotesk, radio de 15px, títulos
+   en #000 y texto en #33415C, con los azules y el naranja de la marca.
+   ========================================================================== */
+
+/* --- Franja de entradilla bajo el banner de página --- */
+.service-lead-strip {
+    max-width: 900px;
+    margin: 50px auto 0;
+    padding: 0 15px;
+    text-align: center;
+    font-size: 22px;
+    line-height: 1.5;
+    color: #33415C;
+}
+@media (max-width: 767px) {
+    .service-lead-strip { font-size: 18px; margin-top: 35px; }
+}
+
+/* --- Antetítulo en versalitas --- */
+.service-eyebrow,
+.about-2-content .service-eyebrow,
+.about-2-content span.service-eyebrow {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 8px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    height: auto;
+    text-transform: uppercase;
+    border-radius: 30px;
+    background: linear-gradient(rgba(255, 187, 0, .18) 0%, rgba(247, 147, 30, .18) 100%);
+    color: #B36F00;
+}
+
+/* --- Sección con fondo suave, para alternar el ritmo de la página --- */
+.arc-soft-area { background: #F6F8FC; }
+
+/* --- Panel blanco (listas, datos de contacto, bloques destacados) --- */
+.arc-panel {
+    background: #fff;
+    border: 1px solid #E7EBF3;
+    border-radius: 15px;
+    padding: 40px;
+}
+@media (max-width: 767px) {
+    .arc-panel { padding: 25px; }
+}
+.arc-panel > .title { color: #132D67; margin-bottom: 18px; }
+.arc-panel p { color: #33415C; }
+
+/* --- Ítem con palomita (listas de servicios especializados) --- */
+
+/* --- Tarjeta con icono circular (beneficios, valores) --- */
+
+/* --- Banda de llamada a la acción --- */
+.arc-cta {
+    background: linear-gradient(120deg, #1F439B 0%, #132D67 100%);
+    border-radius: 15px;
+    padding: 55px 50px;
+    color: #fff;
+}
+@media (max-width: 767px) {
+    .arc-cta { padding: 35px 25px; }
+}
+.arc-cta .title { color: #fff; margin-bottom: 14px; }
+.arc-cta p { color: rgba(255, 255, 255, .85); margin-bottom: 0; }
+@media (max-width: 991px) {
+    .arc-cta .main-btn { margin-top: 25px; }
+}
+
+/* --- Listas de enlaces (otros servicios, capacidades) --- */
+.arc-links ul { padding: 0; margin: 0; list-style: none; }
+.arc-links ul li { display: inline-block; margin: 8px 6px 0; }
+.arc-links ul li a,
+.arc-links ul li {
+    color: #33415C;
+    line-height: 1.6;
+}
+.arc-links ul li a {
+    display: inline-block;
+    padding: 9px 20px;
+    border: 1px solid #E7EBF3;
+    border-radius: 30px;
+    transition: all .3s ease;
+}
+.arc-links ul li a:hover {
+    background: #1F439B;
+    border-color: #1F439B;
+    color: #fff;
+}
+/* Cuando la lista es informativa (no enlaces), se muestra apilada */
+.arc-panel.arc-links ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 12px;
+}
+.arc-panel.arc-links ul li i { margin-top: 5px; color: #FFBB00; }
+
+/* --- Contadores de la página de proyectos --- */
+.overview-counter-item {
+    border: 1px solid #E7EBF3;
+    height: calc(100% - 30px);
+}
+.arc-counter-pre {
+    display: block;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #F7931E;
+    font-weight: 700;
+}
+.overview-counter-item .title {
+    padding-top: 10px !important;
+    color: #132D67;
+    font-size: 46px !important;
+    line-height: 1.1;
+}
+.overview-counter-item p { color: #33415C; margin-bottom: 0; }
+
+/* --- Tarjeta de proyecto (leyenda siempre visible, también en móvil) --- */
+.arc-project {
+    background: #fff;
+    border: 1px solid #E7EBF3;
+    border-radius: 15px;
+    overflow: hidden;
+    height: calc(100% - 30px);
+    transition: box-shadow .3s ease, transform .3s ease;
+}
+.arc-project:hover {
+    box-shadow: 0 18px 40px rgba(19, 45, 103, .12);
+    transform: translateY(-4px);
+}
+.arc-project-thumb { overflow: hidden; }
+.arc-project-thumb img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+}
+.arc-project:hover .arc-project-thumb img { transform: scale(1.06); }
+.arc-project-caption { padding: 22px 25px 25px; }
+.arc-project-caption .title { color: #132D67; margin-bottom: 4px; }
+.arc-project-caption span { color: #33415C; font-size: 15px; }
+
+/* --- Formulario de contacto (usa .contact-us-box del template) --- */
+.contact-us-box .input-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #132D67;
+}
+.contact-us-box .input-box select {
+    width: 100%;
+    height: 55px;
+    padding: 0 20px;
+    border: 1px solid #E7EBF3;
+    border-radius: 5px;
+    background: #fff;
+    color: #33415C;
+    font-family: "space_grotesk";
+}
+.contact-us-box .input-box textarea { min-height: 150px; }
+.form-legal { font-size: 14px; color: #6B7794; }
+
+/* El template pinta un fondo oscuro en .contact-us-area; aquí la sección es
+   clara, así que el recuadro del formulario se deja sobre blanco. */
+.contact-us-box { background: #fff; }
+
+/* --- Distintivo "Próximamente" en las tarjetas del blog --- */
+.article-soon {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 5px 14px;
+    border-radius: 30px;
+    background: rgba(255, 187, 0, .18);
+    color: #8A6400;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+/* --- Migas de pan del banner --- */
+.page-title-content .breadcrumb {
+    background: transparent;
+    justify-content: center;
+    padding: 0;
+    margin-top: 12px;
+}
+.page-title-content .breadcrumb-item,
+.page-title-content .breadcrumb-item a { color: rgba(255, 255, 255, .85); }
+.page-title-content .breadcrumb-item a:hover { color: #FFBB00; }
+.page-title-content .breadcrumb-item.active { color: #FFBB00; }
+.page-title-content .breadcrumb-item + .breadcrumb-item::before { color: rgba(255, 255, 255, .55); }
+
+/* El banner de página interior acepta una foto propia por página */
+.page-title-area .section__bg {
+    background-size: cover;
+    background-position: center;
+}
+
+/* --- Galería de servicio --- */
+.portfolio-style-3-area .portfolio-style-2-item img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+/* --- Ajustes del bloque intro reutilizado en páginas interiores --- */
+.about-2-area .about-2-thumb .thumb img { border-radius: 15px; }
+.about-2-content.about-11-content h2.title {
+    font-size: 40px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+@media (max-width: 767px) {
+    .about-2-content.about-11-content h2.title { font-size: 28px; }
+}
+
+/* --- Correcciones sobre el bloque intro reutilizado --- */
+/* El template pinta el antetítulo con un degradado rojo/amarillo del demo;
+   se sustituye por el ámbar de la marca. */
+.about-2-content .service-eyebrow {
+    background: linear-gradient(rgba(255, 187, 0, .18) 0%, rgba(247, 147, 30, .18) 100%);
+    height: 40px;
+    line-height: 40px;
+    padding: 0 22px;
+    border-radius: 30px;
+    color: #8A6400;
+}
+
+/* Las fotos de servicio son apaisadas; sin acotar, la columna crecía el doble
+   que el texto y dejaba un hueco enorme. */
+.about-2-thumb.about-11-thumb .thumb img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    max-height: 460px;
+}
+
+/* Las <img> llevan width/height explícitos (evitan saltos de maquetación al
+   cargar, bueno para el CLS de Core Web Vitals). Ese atributo fija la altura y
+   anula aspect-ratio, así que hay que devolverla a auto donde recortamos. */
+.about-2-thumb.about-11-thumb .thumb img,
+.arc-project-thumb img,
+.portfolio-style-3-area .portfolio-style-2-item img,
+.article-11-item .article-thumb img {
+    height: auto;
+}
+
+/* ==========================================================================
+   Correcciones de responsividad
+   --------------------------------------------------------------------------
+   El template está pensado para textos cortos en inglés. Los rótulos reales de
+   Arcondec son más largos ("Agenda tu consulta con nuestros especialistas") y
+   provocaban desbordamiento horizontal en móvil y tablet.
+   ========================================================================== */
+
+/* .main-btn trae white-space:nowrap del template: con rótulos largos el botón
+   medía 473px dentro de una pantalla de 390px y empujaba toda la página. */
+@media (max-width: 767px) {
+    .main-btn,
+    .main-btn-2,
+    .main-btn-3 {
+        white-space: normal;
+        line-height: 1.4;
+        padding: 14px 24px;
+        max-width: 100%;
+    }
+    .hero-2-content.hero-11-content ul li {
+        display: block;
+        margin-right: 0;
+    }
+    .hero-2-content.hero-11-content ul li a {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* El bloque de imágenes de "Sobre nosotros" apila dos fotos con un desfase de
+   80px (.ml-80). Por debajo de lg esa suma superaba el ancho disponible. */
+@media (max-width: 991px) {
+    .about-2-thumb .thumb img,
+    .about-2-thumb .thumb-2 img {
+        max-width: 100%;
+        height: auto;
+    }
+    .about-2-thumb .thumb-2.ml-80 {
+        margin-left: 0;
+    }
+    .about-2-thumb,
+    .about-2-thumb .thumb,
+    .about-2-thumb .thumb-2 {
+        max-width: 100%;
+    }
+}
+
+/* NO usar `overflow-x: hidden` en html/body.
+   En Safari convierte a <html> en contenedor de scroll y `jQuery(window).scrollTop()`
+   se queda en 0. De eso dependen DOS cosas del template:
+     · el header pegajoso (main.js añade .sticky según el scroll)
+     · WOW.js, que mantiene los bloques .wow en visibility:hidden hasta animarlos
+   Con la regla puesta, el header no se formaba y las fotos nunca aparecían.
+   Las causas reales del desbordamiento ya están corregidas arriba (botones que
+   no partían línea y el desfase .ml-80), así que esta red de seguridad sobra. */
+
+/* Palabras técnicas largas (NOM-001-SEDE, BDCBB…) no deben romper la caja */
+    .arc-cta { text-align: center; }
+    .arc-cta .main-btn { margin-top: 20px; }
+}
+
+/* --- Listas y enlaces dentro de los paneles blancos --- */
+/* Sin esto, los <ul> de datos de contacto salen con viñetas del navegador. */
+.arc-panel ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.arc-panel ul li { margin-bottom: 10px; color: #33415C; }
+.arc-panel ul li:last-child { margin-bottom: 0; }
+.arc-panel ul li span { color: #132D67; font-weight: 500; }
+.arc-panel a { color: #1F439B; }
+.arc-panel a:hover { color: #F7931E; }
+
+/* --- Campos del formulario, al estilo del template --- */
+.contact-us-box .input-box select,
+.contact-us-box .input-box input,
+.contact-us-box .input-box textarea {
+    background: #F5F5F5;
+    border: 0;
+    border-radius: 5px;
+}
+.contact-us-box .input-box select { height: 60px; padding: 0 20px; }
+.contact-us-box .input-box textarea { padding-top: 15px; }
+.contact-us-box .input-box label {
+    color: #132D67;
+    font-weight: 500;
+}
+.contact-us-box { padding: 45px 40px; border: 1px solid #E7EBF3; border-radius: 15px; }
+@media (max-width: 575px) {
+    .contact-us-box { padding: 28px 20px; }
+}
+
+/* El mapa incrustado hereda el radio de la tarjeta */
+.contact-map iframe { border-radius: 10px; display: block; width: 100%; }
+
+/* Clase de utilidad para lectores de pantalla (etiqueta del boletín) */
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap; border: 0;
+}
+
+/* --- Tarjetas del índice de blog con altura uniforme --- */
+/* Los títulos y resúmenes tienen longitudes distintas; sin esto, el distintivo
+   "Próximamente" queda a alturas distintas y la retícula se ve desalineada. */
+.article-2-area .row > [class*="col-"] { display: flex; }
+.article-2-item.article-11-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #E7EBF3;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: box-shadow .3s ease, transform .3s ease;
+}
+.article-2-item.article-11-item:hover {
+    box-shadow: 0 18px 40px rgba(19, 45, 103, .12);
+    transform: translateY(-4px);
+}
+.article-11-item .article-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 25px;
+}
+.article-11-item .article-content .title { color: #132D67; }
+.article-11-item .article-content p { color: #33415C; flex: 1 1 auto; }
+.article-11-item .article-content .article-soon { align-self: flex-start; }
+
+/* ==========================================================================
+   Submenú de Servicios
+   --------------------------------------------------------------------------
+   El template fija .sub-menu en 205px, pensado para rótulos cortos en inglés.
+   Los de Arcondec ("Construcción llave en mano", "Corriente directa (DC)")
+   no caben y se salían de la caja blanca. Se deja que el submenú crezca con
+   su contenido, con un tope para que no invada el resto del menú.
+   ========================================================================== */
+@media (min-width: 992px) {
+    .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu {
+        width: auto;
+        min-width: 290px;
+        max-width: 320px;
+    }
+    .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu > li > a {
+        white-space: normal;
+        line-height: 1.45;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+}
+
+/* La animación fadeInRight de WOW desplaza el bloque de imágenes ~100px a la
+   derecha mientras dura (1s). El template original hace exactamente lo mismo.
+   Se contiene EN LA PROPIA SECCIÓN, no en html/body: así no se crea un
+   contenedor de scroll y jQuery(window).scrollTop() sigue funcionando, que es
+   de lo que dependen el header pegajoso y el propio WOW. */
+.about-2-area,
+.about-11-area {
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Tarjetas de servicio — modelo services-2.html del template
+   --------------------------------------------------------------------------
+   Se reutiliza .service-2-item tal cual (geometría, radios, hover y punteado
+   del template). Solo se cambia la paleta: el demo usa un degradado rojo/amarillo
+   y aquí van los colores oficiales de Arcondec. La tipografía es la del
+   template (space_grotesk), heredada; no se introduce ninguna otra.
+   ========================================================================== */
+
+/* Relleno del hover con el azul de marca (el demo trae #ff564f → #fad029) */
+.service-2-item::before {
+    background: linear-gradient(330deg, #1F439B 0%, #132D67 80%);
+}
+
+/* Círculo del icono con el ámbar de marca */
+.service-2-item .icon {
+    background: rgba(255, 187, 0, .16);
+}
+.service-2-item .icon i {
+    font-size: 34px;
+    line-height: 90px;
+    color: #1F439B;
+    transition: color .4s ease-out 0s;
+}
+.service-2-item:hover .icon i {
+    color: #132D67;
+}
+
+/* Las tarjetas del índice son enlaces: se comportan como bloque y no subrayan */
+a.service-2-item {
+    display: block;
+    text-decoration: none;
+    height: calc(100% - 30px);
+}
+a.service-2-item:hover { text-decoration: none; }
+.service-2-item .title { color: #132D67; }
+.service-2-item p { color: #33415C; }
+
+/* "Ver servicio" con la flecha del template */
+.service-more {
+    display: inline-block;
+    margin-top: 18px;
+    font-weight: 600;
+    color: #1F439B;
+    transition: color .4s ease-out 0s;
+}
+.service-more i { margin-left: 6px; }
+.service-2-item:hover .service-more { color: #FFBB00; }
+
+/* Variante sin párrafo: las viñetas de "Servicios especializados" son frases
+   cortas, así que la tarjeta se compacta y el título no queda descolgado. */
+.service-2-item.arc-spec { padding: 32px 24px; }
+.service-2-item.arc-spec .title {
+    font-size: 19px;
+    margin-top: 24px;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+@media (max-width: 767px) {
+    .service-2-item.arc-spec .title { font-size: 18px; }
+}
+
+/* Alturas parejas SOLO en la rejilla de tarjetas. Si se aplicara a todas las
+   filas de la sección, la columna del título también se volvería contenedor
+   flex y el encabezado se encogería y dejaría de estar centrado. */
+.arc-service-grid > [class*="col-"] { display: flex; }
+.arc-service-grid .service-2-item { width: 100%; height: calc(100% - 30px); }
+
+/* Los textos de cada servicio tienen longitudes distintas; con flex el enlace
+   "Ver servicio" queda a la misma altura en toda la fila, como en el mockup. */
+a.service-2-item {
+    display: flex;
+    flex-direction: column;
+}
+a.service-2-item .title { margin-bottom: 12px; }
+a.service-2-item p { flex: 1 1 auto; margin-bottom: 0; }
+a.service-2-item .service-more { align-self: center; }
+
+/* ==========================================================================
+   Un solo lenguaje de tarjeta en todo el sitio
+   --------------------------------------------------------------------------
+   Antes convivían dos: .service-2-item del template (centrada, icono en
+   círculo, título 25px/600) y una propia (.arc-card, alineada a la izquierda,
+   título 22px/500). Mezclar pesos 500/600/700 se lee como "otra tipografía"
+   aunque la familia sea la misma. Ahora todo usa .service-2-item, que ES la
+   del template, y la escala queda: 56px título de sección · 25px título de
+   tarjeta · 17px texto.
+   ========================================================================== */
+
+/* Los servicios relacionados son enlaces con el mismo aspecto de tarjeta */
+a.service-2-item.arc-spec { display: flex; flex-direction: column; justify-content: center; }
+a.service-2-item.arc-spec .title { margin-bottom: 0; }
+
+/* Título de tarjeta: el 25px/600 del template, con margen algo menor para que
+   la retícula respire igual en tarjetas con y sin párrafo. */
+.arc-service-grid .service-2-item .title { margin-top: 28px; }
+
+/* El punteado decorativo del template se desbordaba por la derecha en las
+   tarjetas más estrechas; se ancla al pie como en el mockup original. */
+.service-2-item .service-dot { overflow: hidden; }
+.service-2-item .service-dot > img { max-width: 100%; height: auto; }
+
+/* El botón secundario de la franja de compromiso salía blanco sobre azul */
+.subscribe-form.subscribe-11-form ul li a.main-btn-2 {
+    background: transparent;
+    border-color: #fff;
+    color: #fff;
+}
+.subscribe-form.subscribe-11-form ul li a.main-btn-2:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #1F439B;
+}
+
+/* La galería de obra necesita su propio encabezado para no quedar suelta */
+
+/* ==========================================================================
+   Indicador de desplegable en "Servicios"
+   --------------------------------------------------------------------------
+   Avisa de que el ítem despliega el resto de servicios.
+
+   Se dibuja con ::after y NO se reutiliza el <button class="sub-nav-toggler">
+   que inyecta main.js: ese botón sigue siendo el control táctil por debajo de
+   992px y, si se mostrara en escritorio, seguiría siendo enfocable por teclado;
+   pulsarlo con Intro dispararía el slideToggle de jQuery y dejaría el submenú
+   en display:none, rompiendo la apertura por hover hasta recargar.
+   Así el indicador es puramente decorativo y el móvil queda intacto.
+   ========================================================================== */
+@media (min-width: 992px) {
+    .header-nav .navigation .navbar .navbar-nav > .nav-item.arc-has-sub > a::after {
+        content: "\f107";                    /* fa-angle-down */
+        font-family: "Font Awesome 5 Pro";
+        font-weight: 300;                    /* equivale a .fal */
+        font-size: 13px;
+        line-height: 1;
+        margin-left: 7px;
+        display: inline-block;
+        vertical-align: middle;
+        transition: transform .3s ease-out 0s;
+    }
+    /* Gira al abrirse el submenú, como cualquier desplegable */
+    .header-nav .navigation .navbar .navbar-nav > .nav-item.arc-has-sub:hover > a::after {
+        transform: rotate(180deg);
+    }
+}
+
+/* ==========================================================================
+   Franja superior del pie
+   --------------------------------------------------------------------------
+   El template no contemplaba enlaces aquí (su pie es texto plano). Al hacer
+   los teléfonos y correos pulsables, los <a> caían al azul por defecto del
+   navegador: azul sobre azul marino, ilegible. Además los números se partían
+   a mitad al final de línea.
+   ========================================================================== */
+.footer-2-area .footer-2-top a {
+    color: #E0E0E0;
+    text-decoration: none;
+    transition: color .3s ease-out 0s;
+}
+.footer-2-area .footer-2-top a:hover {
+    color: #FFBB00;
+    text-decoration: none;
+}
+/* Un teléfono partido en dos líneas deja de ser legible como número */
+.footer-2-area .footer-info ul li a[href^="tel:"],
+.footer-2-area .footer-info ul li a[href^="mailto:"] {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* Ritmo vertical: las cuatro columnas alineadas arriba y con la misma altura
+   de línea, para que la retícula se lea de un vistazo. */
+.footer-2-area .footer-info ul li {
+    line-height: 1.75;
+    margin-bottom: 2px;
+}
+.footer-2-area .footer-info ul li img {
+    top: 9px;
+}
+
+/* Logo y sello D-U-N-S: el sello iba pegado al logotipo y con la leyenda
+   ilegible; se le da aire y un tamaño que permita leerla. */
+.footer-2-area .footer-2-top .footer-logo { padding-top: 4px; }
+.footer-2-top .footer-logo img.duns {
+    height: 54px;
+    margin-top: 20px;
+}
+
+@media (max-width: 991px) {
+    /* En tablet y móvil las columnas se apilan: separación clara entre bloques */
+    .footer-2-area .footer-2-top .footer-info { margin-top: 26px; }
+    .footer-2-area .footer-2-top .footer-logo { margin-bottom: 6px; }
+}
+
+/* --- Columnas de enlaces del pie --- */
+/* El template fija line-height:36px en los enlaces. Con rótulos largos como
+   "Construcción llave en mano" el enlace se parte y las dos líneas quedan tan
+   separadas que se leen como dos enlaces distintos. Se compacta la línea y se
+   separan los ítems entre sí, que es lo que de verdad debe respirar. */
+.footer-item .footer-list ul li a {
+    line-height: 1.55;
+    display: inline-block;
+}
+.footer-item .footer-list ul li {
+    margin-bottom: 13px;
+}
+.footer-item .footer-list ul li:last-child { margin-bottom: 0; }
+.footer-item .footer-list .title { margin-bottom: 26px; }
+
+/* Botón del boletín con el ámbar de la marca (el template lo deja en blanco) */
+.footer-newsletter-item .input-box button {
+    background: #FFBB00;
+    color: #132D67;
+    font-weight: 600;
+    line-height: 54px;
+    transition: background .3s ease-out 0s, color .3s ease-out 0s;
+}
+.footer-newsletter-item .input-box button:hover {
+    background: #D09021;
+    color: #fff;
+}
+
+/* La caja del boletín se alinea con las columnas de enlaces */
+.footer-newsletter-item.footer-newsletter-item-11 { border-radius: 10px; }
+
+/* Entre 992 y 1200px las cuatro columnas del pie quedan en su punto más
+   estrecho y "Construcción llave en mano" no cabe en una línea. Se reduce
+   ligeramente el cuerpo, igual que hace el template en otros bloques. */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .footer-item .footer-list ul li a { font-size: 15px; }
+    .footer-item .footer-list .title { font-size: 19px; }
+}
+
+/* ==========================================================================
+   Accesibilidad
+   --------------------------------------------------------------------------
+   El template hace `a:focus, button:focus { outline: none }` (style.css:104)
+   y no lo repone: NINGÚN elemento mostraba foco. Quien navega con teclado no
+   sabía dónde estaba. Se repone con :focus-visible, que no molesta al ratón.
+   ========================================================================== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid #F7931E;
+    outline-offset: 2px;
+}
+
+/* El submenú de Servicios solo abría con :hover, así que sus 7 enlaces eran
+   inalcanzables con el tabulador. :focus-within lo abre también con teclado. */
+@media (min-width: 992px) {
+    .header-nav .navigation .navbar .navbar-nav .nav-item:focus-within .sub-menu {
+        opacity: 1;
+        visibility: visible;
+        top: 100%;
+    }
+    .header-nav .navigation .navbar .navbar-nav .nav-item:focus-within > a::after {
+        transform: rotate(180deg);
+    }
+}
+
+/* Saltar al contenido: había 20 elementos focalizables antes del <main> */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 999;
+    padding: 12px 22px;
+    background: #FFBB00;
+    color: #132D67;
+    font-weight: 600;
+    border-radius: 0 0 6px 0;
+}
+.skip-link:focus {
+    left: 0;
+    color: #132D67;
+}
+
+/* El botón "volver arriba" pasó de <a> a <button>: se neutraliza el aspecto
+   nativo para que conserve exactamente el diseño del template. */
+button.back-to-top {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* animate.css ya respeta prefers-reduced-motion, pero el preloader no lleva
+   la clase .animated y seguía girando. */
+@media (prefers-reduced-motion: reduce) {
+    .lds-ellipsis span,
+    .preloader * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* --- Caja de los titulares --- */
+/* El template aplica text-transform:capitalize, pensado para inglés. En español
+   produce "Servicios Especializados" o "Trabaja Con Nosotros", que es ortografía
+   incorrecta. Se desactiva y los textos se muestran tal como están escritos en
+   el contenido oficial. */
+.page-title-content > .title,
+.about-2-content > .title,
+.section-title-9 .title,
+.service-2-item .title {
+    text-transform: none;
+}
+
+/* ==========================================================================
+   Fugas de la plantilla que ganaban por especificidad
+   ========================================================================== */
+
+/* El botón de ENVIAR del formulario —el único botón de conversión del sitio—
+   salía en el coral del demo (#FF564F) y en morado al pasar el cursor, porque
+   style.css lo ataca con .contact-us-box .input-box button (0-2-1) y nuestro
+   .main-btn (0-1-0) perdía aunque se cargue después. */
+.contact-us-box .input-box button {
+    background: #FFBB00;
+    border-color: #FFBB00;
+    color: #132D67;
+}
+.contact-us-box .input-box button:hover {
+    background: #D09021;
+    border-color: #D09021;
+    color: #fff;
+}
+
+/* "Playfair Display" se declara en style.css pero NUNCA se carga: esos textos
+   caían a una serif del sistema, rompiendo la unidad tipográfica. */
+.contact-us-box .title,
+.testimonial-3-content .info .title {
+    font-family: "space_grotesk";
+}
+.contact-us-box .title { font-size: 28px; line-height: 1.25; font-weight: 700; }
+.testimonial-3-content .info .title { font-weight: 600; }
+
+/* line-height (48px) menor que font-size (56px): a dos líneas, las tildes de
+   la segunda invadían la primera. Muy visible en español. */
+.section-title-9 .title {
+    font-size: 48px;
+    line-height: 1.18;
+}
+@media (max-width: 767px) {
+    .section-title-9 .title { font-size: 32px; line-height: 1.22; }
+}
+
+/* Bootstrap define .h3/.h4/.h5 con font-weight:500 y gana a los h1..h6 de
+   style.css por especificidad de clase. Afectaba a 204 encabezados, que salían
+   más ligeros que sus hermanos sin la clase. */
+.title.h3,
+.title.h4,
+.title.h5 {
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+/* Longitud de línea: el panel a col-lg-10 daba 99 caracteres por línea */
+.arc-panel p { max-width: 68ch; margin-left: auto; margin-right: auto; }
+
+/* El botón flotante de WhatsApp quedaba por debajo de otras capas */
+.whatsapp-float { z-index: 998; }
+
+/* ==========================================================================
+   Móvil: correcciones de uso real
+   ========================================================================== */
+
+/* Los botones .main-btn-3 se aplastaban a 22px de alto: style.css los ataca
+   con .main-btn.main-btn-3 (0-2-0) y nuestra regla de .main-btn (0-1-0) perdía. */
+@media (max-width: 767px) {
+    .main-btn,
+    .main-btn.main-btn-2,
+    .main-btn.main-btn-3 {
+        white-space: normal;
+        line-height: 1.4;
+        padding: 14px 24px;
+        min-height: 48px;
+        max-width: 100%;
+    }
+}
+
+/* Áreas táctiles: el mínimo recomendado es 44px y varias quedaban en 22-40px */
+@media (max-width: 991px) {
+    .header-nav .navigation .navbar .navbar-nav .nav-item a,
+    .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu > li a {
+        line-height: 1.4;
+        padding: 13px 0;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+    .navbar-toggler { padding: 11px 12px; }
+    .header-nav .navigation .navbar .navbar-nav .nav-item .sub-nav-toggler { width: 48px; }
+}
+@media (max-width: 575px) {
+    .arc-panel ul li a,
+    .footer-item .footer-list ul li a,
+    .footer-copyright p a,
+    .page-title-content .breadcrumb-item a {
+        display: inline-block;
+        padding: 10px 0;
+    }
+    .arc-panel ul li,
+    .footer-item .footer-list ul li { margin-bottom: 2px; }
+
+    /* El banner ocupaba 425px de los 568px de un iPhone SE */
+    .page-title-content { padding-top: 130px; padding-bottom: 24px; }
+
+    /* El FAB de WhatsApp se montaba sobre el botón del hero, ya a ancho completo */
+    .whatsapp-float { bottom: 104px; }
+
+    .contact-us-box .input-box select { font-size: 15px; padding: 0 12px; }
+}
+
+/* quejasysugerencias@arcondec.mx se salía de su tarjeta a 320px */
+.arc-panel ul li,
+.arc-panel a { overflow-wrap: anywhere; }
+
+/* Único texto del sitio por debajo de 14px */
+.article-soon { font-size: 14px; }

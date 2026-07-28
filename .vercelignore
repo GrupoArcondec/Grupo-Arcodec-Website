@@ -1,0 +1,8 @@
+# El generador y sus fuentes no forman parte del sitio publicado.
+# Las páginas HTML ya vienen generadas en el repositorio: Vercel las sirve tal cual.
+tools/
+
+# Documentación y mapa de fuentes del template (expone el SCSS y pesa 159 KB)
+README.md
+.gitignore
+assets/css/style.css.map
