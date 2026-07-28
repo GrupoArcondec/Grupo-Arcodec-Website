@@ -1,0 +1,1782 @@
+{
+ "/assets/images/about-4-thumb.png": [
+  600,
+  627
+ ],
+ "/assets/images/about-6-thumb.jpg": [
+  570,
+  670
+ ],
+ "/assets/images/about-brand-1.png": [
+  100,
+  28
+ ],
+ "/assets/images/about-brand-2.png": [
+  71,
+  20
+ ],
+ "/assets/images/about-brand-3.png": [
+  125,
+  24
+ ],
+ "/assets/images/about-thumb-10.png": [
+  597,
+  592
+ ],
+ "/assets/images/about-thumb-2.png": [
+  500,
+  540
+ ],
+ "/assets/images/about-thumb-3.png": [
+  420,
+  400
+ ],
+ "/assets/images/about-thumb-4.png": [
+  500,
+  540
+ ],
+ "/assets/images/about-thumb-5.png": [
+  420,
+  400
+ ],
+ "/assets/images/about-thumb-9.png": [
+  655,
+  643
+ ],
+ "/assets/images/about-thumb.jpg": [
+  445,
+  592
+ ],
+ "/assets/images/about-thumb.png": [
+  570,
+  670
+ ],
+ "/assets/images/arcondec/blog/19-junio-2025.jpg": [
+  271,
+  218
+ ],
+ "/assets/images/arcondec/blog/28-junio-2025.jpg": [
+  271,
+  218
+ ],
+ "/assets/images/arcondec/blog/5-junio-2025.jpg": [
+  271,
+  218
+ ],
+ "/assets/images/arcondec/blog/arcondec-mazatlan-05.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/arcondec-tijuana-05.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/arcondec-valle-oriente-05.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/avances-proyecto-obra-civil.jpg": [
+  1200,
+  1500
+ ],
+ "/assets/images/arcondec/blog/beneficios-de-sistemas-corriente-directa-telecomunicaciones.jpg": [
+  1200,
+  1500
+ ],
+ "/assets/images/arcondec/blog/blog-1.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/blog-10.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/blog-2.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/blog-3.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/comunicacion-eficiente.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/control-acceso-monitoreo-videovigilancia.jpg": [
+  1600,
+  553
+ ],
+ "/assets/images/arcondec/blog/corriente-directa-en-centros-de-datos-copia.jpg": [
+  1075,
+  516
+ ],
+ "/assets/images/arcondec/blog/corriente-directa-en-centros-de-datos.jpg": [
+  1493,
+  516
+ ],
+ "/assets/images/arcondec/blog/datacenter-electricos-arcondec-2.jpg": [
+  1600,
+  566
+ ],
+ "/assets/images/arcondec/blog/datacenter-electricos-arcondec-3.jpg": [
+  1600,
+  555
+ ],
+ "/assets/images/arcondec/blog/dcorriente-directar-arcondec-1.jpg": [
+  1600,
+  557
+ ],
+ "/assets/images/arcondec/blog/diseno-de-red-de-tierras-arcondec-1.jpg": [
+  1600,
+  551
+ ],
+ "/assets/images/arcondec/blog/estudios-electricos-codigo.jpg": [
+  1360,
+  653
+ ],
+ "/assets/images/arcondec/blog/hub-apodaca.jpg": [
+  350,
+  294
+ ],
+ "/assets/images/arcondec/blog/ia-datacenter.jpg": [
+  796,
+  275
+ ],
+ "/assets/images/arcondec/blog/ia-datacenterv2.jpg": [
+  573,
+  275
+ ],
+ "/assets/images/arcondec/blog/infraestructura-critica-data-center.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/infraestructura-electrica-data.jpg": [
+  1600,
+  553
+ ],
+ "/assets/images/arcondec/blog/infraestructura-que-conecta.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/instalacion-tableros-auto-soportados.jpg": [
+  1493,
+  516
+ ],
+ "/assets/images/arcondec/blog/instalacion-y-mantenimiento-arcondec-3.jpg": [
+  1600,
+  560
+ ],
+ "/assets/images/arcondec/blog/instalaciones-normadas.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/modernizacion-electrica-2.jpg": [
+  809,
+  413
+ ],
+ "/assets/images/arcondec/blog/modernizacion-electrica.jpg": [
+  1392,
+  481
+ ],
+ "/assets/images/arcondec/blog/not-1.jpg": [
+  275,
+  218
+ ],
+ "/assets/images/arcondec/blog/not-2.jpg": [
+  275,
+  218
+ ],
+ "/assets/images/arcondec/blog/not-3.jpg": [
+  271,
+  218
+ ],
+ "/assets/images/arcondec/blog/not-4.jpg": [
+  275,
+  218
+ ],
+ "/assets/images/arcondec/blog/not-5.jpg": [
+  509,
+  401
+ ],
+ "/assets/images/arcondec/blog/nueva-era-de-data-center-pq.jpg": [
+  1200,
+  1200
+ ],
+ "/assets/images/arcondec/blog/nueva-era-de-data-center.jpg": [
+  1194,
+  413
+ ],
+ "/assets/images/arcondec/blog/peinado-de-cables-2.jpg": [
+  809,
+  413
+ ],
+ "/assets/images/arcondec/blog/peinado-de-cables.jpg": [
+  1294,
+  447
+ ],
+ "/assets/images/arcondec/blog/potencia-segura-y-eficiente.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/revolucion-electrica-centros-de-datos-ia-hpc.jpg": [
+  1600,
+  552
+ ],
+ "/assets/images/arcondec/blog/servicios-electricos-arcondec-1.jpg": [
+  1600,
+  460
+ ],
+ "/assets/images/arcondec/blog/sistema-contra-incendios.jpg": [
+  1360,
+  653
+ ],
+ "/assets/images/arcondec/blog/soluciones-en-ingenieria-electrica.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/blog/tendencias-infraestructura.jpg": [
+  1500,
+  1500
+ ],
+ "/assets/images/arcondec/blog/tierras-fisicas-pararrayos.jpg": [
+  1600,
+  552
+ ],
+ "/assets/images/arcondec/blog/transformando-el-proyecto-de-data-center.jpg": [
+  1200,
+  1500
+ ],
+ "/assets/images/arcondec/blog/tres-puntos-clave-para-un-sistema-electrico-eficiente.jpg": [
+  1200,
+  1500
+ ],
+ "/assets/images/arcondec/brand/duns_v2.png": [
+  200,
+  77
+ ],
+ "/assets/images/arcondec/brand/logo-arcondec-white.png": [
+  434,
+  73
+ ],
+ "/assets/images/arcondec/brand/logo-icon.png": [
+  1920,
+  1080
+ ],
+ "/assets/images/arcondec/brand/logo-light.png": [
+  200,
+  38
+ ],
+ "/assets/images/arcondec/brand/logo.png": [
+  130,
+  54
+ ],
+ "/assets/images/arcondec/clients/bestel.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/clients/cablemas.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/clients/delta.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/clients/femsa.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/clients/gtac.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/clients/izzi.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/clients/logrand.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/clients/mabe.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/clients/totalplay.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/clients/vant.png": [
+  200,
+  58
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-apodaca-01.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-durango-01.jpg": [
+  1600,
+  836
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-garcia-01.jpg": [
+  1600,
+  840
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-islas-mujeres-01.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-mazatlan-01.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-monterrey-01.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-queretaro-01.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-santa-fe-01.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-sevilla-01.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-slrc-01.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-tepic-01.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-teziutlan-01.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-tijuana-01.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-toluca-01.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-tuxpan-01.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/arcondec-valle-oriente-01.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/centro-de-datos-con-charolas-de-fibra-y-racks-en-valle-oriente.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/construccion-de-area-segura-interior-con-estructura-metalica-en-slrc.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/construccion-de-mezanine-metalico-en-techo-sevilla-cdmx.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/estructura-metalica-para-cubierta-de-generador-en-garcia.jpg": [
+  1600,
+  840
+ ],
+ "/assets/images/arcondec/proyectos/infraestructura-de-charolas-y-tuberia-electrica-en-toluca.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/instalacion-de-piso-elevado-en-data-center-queretaro.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/instalacion-de-soporte-de-charolas-en-data-center-tijuana.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/instalacion-de-tuberia-pvc-verde-y-charola-metalica-en-tepic.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/instalacion-electrica-en-cuarto-de-tableros-tge-durango.jpg": [
+  1600,
+  836
+ ],
+ "/assets/images/arcondec/proyectos/instalacion-y-pruebas-de-banco-de-baterias-en-monterrey.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/montaje-de-estructura-metalica-en-proyecto-teziutlan.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/oficinas-corporativas-en-planta-santa-fe.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/sala-electrica-de-distribucion-en-media-tension.jpg": [
+  1600,
+  837
+ ],
+ "/assets/images/arcondec/proyectos/sistema-de-transferencia-y-tableros-electricos-en-tuxpan.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/tendido-de-cableado-en-charola-industrial-mazatlan.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/proyectos/traslado-de-equipos-para-proyecto-en-islas-mujeres.jpg": [
+  1600,
+  838
+ ],
+ "/assets/images/arcondec/rh/centro-de-datos-con-racks.jpg": [
+  684,
+  413
+ ],
+ "/assets/images/arcondec/rh/empledado.jpg": [
+  288,
+  360
+ ],
+ "/assets/images/arcondec/rh/estudios-de-ingenieria-electrica.jpg": [
+  544,
+  715
+ ],
+ "/assets/images/arcondec/rh/historia.jpg": [
+  544,
+  715
+ ],
+ "/assets/images/arcondec/rh/img-1.jpg": [
+  684,
+  413
+ ],
+ "/assets/images/arcondec/rh/img-2.jpg": [
+  684,
+  413
+ ],
+ "/assets/images/arcondec/rh/mision-y-vision-arcondec.jpg": [
+  1600,
+  900
+ ],
+ "/assets/images/arcondec/rh/nosotros.jpg": [
+  1600,
+  1166
+ ],
+ "/assets/images/arcondec/rh/tableros-de-distribucion-industrial.jpg": [
+  684,
+  413
+ ],
+ "/assets/images/arcondec/secciones/about-thumb-main.jpg": [
+  500,
+  540
+ ],
+ "/assets/images/arcondec/secciones/about-thumb-small.jpg": [
+  420,
+  400
+ ],
+ "/assets/images/arcondec/secciones/centro-datos-arcondec.jpg": [
+  1500,
+  613
+ ],
+ "/assets/images/arcondec/secciones/comunicacion-eficiente.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/secciones/equipo-arcondec.jpg": [
+  429,
+  320
+ ],
+ "/assets/images/arcondec/secciones/infraestructura-conecta.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/secciones/infraestructura-critica.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/secciones/instalaciones-normadas.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/secciones/mapa-proyectos.gif": [
+  1920,
+  1080
+ ],
+ "/assets/images/arcondec/secciones/potencia-segura.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/secciones/servicios-bg.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/secciones/soluciones-ingenieria.jpg": [
+  760,
+  714
+ ],
+ "/assets/images/arcondec/secciones/team-llave-en-mano.jpg": [
+  1200,
+  901
+ ],
+ "/assets/images/arcondec/secciones/testimonial-1.jpg": [
+  1200,
+  901
+ ],
+ "/assets/images/arcondec/secciones/testimonial-2.jpg": [
+  1200,
+  901
+ ],
+ "/assets/images/arcondec/servicios/civdc-1.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/civdc-2.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/civdc-3.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/civdc-4.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/civdc-5.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/civdc-6.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/corac-1.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/corac-2.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/corac-3.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/corac-4.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/corac-5.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/corac-6.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/cosdc-1.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/cosdc-2.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/cosdc-3.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/cosdc-4.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/cosdc-5.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/cosdc-6.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/estel-3.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/estel-5.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/estel-6.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/gespr-1.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/gespr-2.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/gespr-3.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/gespr-4.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/gespr-5.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/gespr-6.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/ingdc-1.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/ingdc-2.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/ingdc-3.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/ingdc-4.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/ingdc-5.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/ingdc-6.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/proele-1.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/proele-2.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/proele-3.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/proele-4.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/proele-5.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/arcondec/servicios/proele-6.jpg": [
+  1600,
+  1201
+ ],
+ "/assets/images/article-1.jpg": [
+  350,
+  250
+ ],
+ "/assets/images/article-2.jpg": [
+  350,
+  250
+ ],
+ "/assets/images/article-3.jpg": [
+  350,
+  250
+ ],
+ "/assets/images/article-4.png": [
+  320,
+  260
+ ],
+ "/assets/images/article-5.png": [
+  320,
+  260
+ ],
+ "/assets/images/article-6.png": [
+  320,
+  260
+ ],
+ "/assets/images/article-thumb-1.png": [
+  540,
+  330
+ ],
+ "/assets/images/article-thumb-2.png": [
+  165,
+  165
+ ],
+ "/assets/images/article-thumb-3.png": [
+  165,
+  165
+ ],
+ "/assets/images/article-thumb-4.png": [
+  165,
+  165
+ ],
+ "/assets/images/banner-thumb-5.png": [
+  695,
+  520
+ ],
+ "/assets/images/brand-1.png": [
+  110,
+  26
+ ],
+ "/assets/images/brand-2.png": [
+  84,
+  26
+ ],
+ "/assets/images/brand-3.png": [
+  95,
+  24
+ ],
+ "/assets/images/brand/Our Services.png": [
+  318,
+  72
+ ],
+ "/assets/images/brand/apple-store.png": [
+  24,
+  29
+ ],
+ "/assets/images/brand/brand-1.png": [
+  182,
+  44
+ ],
+ "/assets/images/brand/brand-2.png": [
+  135,
+  41
+ ],
+ "/assets/images/brand/brand-3.png": [
+  182,
+  41
+ ],
+ "/assets/images/brand/brand-4.png": [
+  145,
+  40
+ ],
+ "/assets/images/brand/brand-5.png": [
+  161,
+  41
+ ],
+ "/assets/images/brand/brand-6.png": [
+  147,
+  39
+ ],
+ "/assets/images/brand/brand-8.1.png": [
+  133,
+  25
+ ],
+ "/assets/images/brand/brand-8.2.png": [
+  97,
+  25
+ ],
+ "/assets/images/brand/brand-8.3.png": [
+  125,
+  28
+ ],
+ "/assets/images/brand/brand-8.4.png": [
+  96,
+  27
+ ],
+ "/assets/images/brand/brand-8.5.png": [
+  110,
+  29
+ ],
+ "/assets/images/brand/brand-item-1.png": [
+  179,
+  34
+ ],
+ "/assets/images/brand/brand-item-2.png": [
+  131,
+  33
+ ],
+ "/assets/images/brand/brand-item-3.png": [
+  168,
+  37
+ ],
+ "/assets/images/brand/brand-item-4.png": [
+  129,
+  36
+ ],
+ "/assets/images/brand/brand-item-5.png": [
+  147,
+  39
+ ],
+ "/assets/images/brand/fun-facts-1.png": [
+  46,
+  60
+ ],
+ "/assets/images/brand/fun-facts-2.png": [
+  45,
+  61
+ ],
+ "/assets/images/brand/fun-facts-3.png": [
+  57,
+  62
+ ],
+ "/assets/images/brand/fun-facts-4.png": [
+  66,
+  54
+ ],
+ "/assets/images/brand/item-1.png": [
+  68,
+  73
+ ],
+ "/assets/images/brand/item-2.png": [
+  57,
+  75
+ ],
+ "/assets/images/brand/item-3.png": [
+  56,
+  76
+ ],
+ "/assets/images/brand/item-4.png": [
+  74,
+  62
+ ],
+ "/assets/images/brand/play-store.png": [
+  26,
+  27
+ ],
+ "/assets/images/case-thumb.jpg": [
+  730,
+  456
+ ],
+ "/assets/images/case.png": [
+  367,
+  735
+ ],
+ "/assets/images/client-bg.jpg": [
+  1600,
+  650
+ ],
+ "/assets/images/company-bg.jpg": [
+  1600,
+  731
+ ],
+ "/assets/images/contact-us-bg.png": [
+  1582,
+  1047
+ ],
+ "/assets/images/footer/footer-post-1.png": [
+  100,
+  65
+ ],
+ "/assets/images/footer/footer-post-2.png": [
+  100,
+  65
+ ],
+ "/assets/images/footer/footer-post-3.png": [
+  100,
+  65
+ ],
+ "/assets/images/footer/footer-post-4.png": [
+  100,
+  65
+ ],
+ "/assets/images/footer/popular-post-1.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-10.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-11.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-12.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-2.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-3.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-4.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-5.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-6.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-7.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-8.png": [
+  100,
+  80
+ ],
+ "/assets/images/footer/popular-post-9.png": [
+  100,
+  80
+ ],
+ "/assets/images/gallery-1.png": [
+  110,
+  110
+ ],
+ "/assets/images/gallery-2.png": [
+  110,
+  110
+ ],
+ "/assets/images/gallery-3.png": [
+  110,
+  110
+ ],
+ "/assets/images/gallery-4.png": [
+  110,
+  110
+ ],
+ "/assets/images/gallery-5.png": [
+  110,
+  110
+ ],
+ "/assets/images/gallery-6.png": [
+  110,
+  110
+ ],
+ "/assets/images/gallery-7.png": [
+  110,
+  110
+ ],
+ "/assets/images/gallery-8.png": [
+  110,
+  110
+ ],
+ "/assets/images/gallery-9.png": [
+  110,
+  110
+ ],
+ "/assets/images/hero-6-thumb.jpg": [
+  500,
+  615
+ ],
+ "/assets/images/hero-bg-14.jpg": [
+  1920,
+  850
+ ],
+ "/assets/images/hero-bg-2-opt.jpg": [
+  1601,
+  950
+ ],
+ "/assets/images/hero-bg-2.png": [
+  1601,
+  950
+ ],
+ "/assets/images/hero-bg-3.jpg": [
+  1601,
+  950
+ ],
+ "/assets/images/hero-bg.jpg": [
+  1601,
+  950
+ ],
+ "/assets/images/hero-case-7.png": [
+  954,
+  778
+ ],
+ "/assets/images/hero-dot.png": [
+  195,
+  195
+ ],
+ "/assets/images/hero-line-2.png": [
+  283,
+  73
+ ],
+ "/assets/images/hero-line-3.png": [
+  283,
+  73
+ ],
+ "/assets/images/hero-line-4.png": [
+  50,
+  5
+ ],
+ "/assets/images/hero-line-5.png": [
+  50,
+  5
+ ],
+ "/assets/images/hero-line-6.png": [
+  283,
+  73
+ ],
+ "/assets/images/hero-line-7.png": [
+  485,
+  190
+ ],
+ "/assets/images/hero-line-8.png": [
+  697,
+  1326
+ ],
+ "/assets/images/hero-line.png": [
+  60,
+  7
+ ],
+ "/assets/images/hero-shape-14.png": [
+  490,
+  160
+ ],
+ "/assets/images/hero-shape-15.png": [
+  595,
+  200
+ ],
+ "/assets/images/hero-shape-7.2.png": [
+  435,
+  205
+ ],
+ "/assets/images/hero-shape-7.png": [
+  355,
+  245
+ ],
+ "/assets/images/hero-thumb-10.png": [
+  755,
+  689
+ ],
+ "/assets/images/hero-thumb-4.png": [
+  755,
+  710
+ ],
+ "/assets/images/hero-thumb-9.png": [
+  574,
+  565
+ ],
+ "/assets/images/hero-thumb.png": [
+  730,
+  710
+ ],
+ "/assets/images/icon/arrow.png": [
+  25,
+  20
+ ],
+ "/assets/images/icon/email-2.png": [
+  16,
+  12
+ ],
+ "/assets/images/icon/footer-icon-1.png": [
+  16,
+  22
+ ],
+ "/assets/images/icon/footer-icon-2.png": [
+  16,
+  16
+ ],
+ "/assets/images/icon/footer-icon-3.png": [
+  16,
+  12
+ ],
+ "/assets/images/icon/footer-icon-4.png": [
+  16,
+  22
+ ],
+ "/assets/images/icon/footer-icon-5.png": [
+  16,
+  16
+ ],
+ "/assets/images/icon/footer-icon-6.png": [
+  16,
+  12
+ ],
+ "/assets/images/icon/footer-newsletter-dot.png": [
+  351,
+  141
+ ],
+ "/assets/images/icon/fun-facts-1.png": [
+  46,
+  60
+ ],
+ "/assets/images/icon/fun-facts-2.png": [
+  45,
+  61
+ ],
+ "/assets/images/icon/fun-facts-3.png": [
+  57,
+  62
+ ],
+ "/assets/images/icon/fun-facts-4.png": [
+  67,
+  56
+ ],
+ "/assets/images/icon/header-dot.png": [
+  40,
+  40
+ ],
+ "/assets/images/icon/hero-icon-1.png": [
+  16,
+  14
+ ],
+ "/assets/images/icon/hero-icon-2.png": [
+  18,
+  18
+ ],
+ "/assets/images/icon/hero-icon.png": [
+  20,
+  20
+ ],
+ "/assets/images/icon/phone-2.png": [
+  17,
+  17
+ ],
+ "/assets/images/icon/planing-1.png": [
+  45,
+  50
+ ],
+ "/assets/images/icon/planing-2.png": [
+  67,
+  50
+ ],
+ "/assets/images/icon/planing-3.png": [
+  57,
+  50
+ ],
+ "/assets/images/icon/planing-4.png": [
+  41,
+  51
+ ],
+ "/assets/images/icon/planing-5.png": [
+  50,
+  50
+ ],
+ "/assets/images/icon/portfolio-arrow-2.png": [
+  17,
+  17
+ ],
+ "/assets/images/icon/portfolio-arrow.png": [
+  25,
+  20
+ ],
+ "/assets/images/icon/post-icon-1.png": [
+  20,
+  20
+ ],
+ "/assets/images/icon/post-icon-2.png": [
+  19,
+  17
+ ],
+ "/assets/images/icon/quote-2.png": [
+  54,
+  40
+ ],
+ "/assets/images/icon/quote-3.png": [
+  54,
+  40
+ ],
+ "/assets/images/icon/quote-icon.png": [
+  70,
+  52
+ ],
+ "/assets/images/icon/quote.png": [
+  54,
+  40
+ ],
+ "/assets/images/icon/service-icon-1.png": [
+  89,
+  100
+ ],
+ "/assets/images/icon/service-icon-2.png": [
+  133,
+  100
+ ],
+ "/assets/images/icon/service-icon-3.png": [
+  45,
+  39
+ ],
+ "/assets/images/icon/service-icon-4.png": [
+  40,
+  49
+ ],
+ "/assets/images/icon/service-icon-5.png": [
+  48,
+  48
+ ],
+ "/assets/images/icon/service-icon-6.png": [
+  44,
+  41
+ ],
+ "/assets/images/icon/sub-1.png": [
+  45,
+  49
+ ],
+ "/assets/images/icon/sub-2.png": [
+  45,
+  45
+ ],
+ "/assets/images/icon/sub-3.png": [
+  46,
+  45
+ ],
+ "/assets/images/key-1.png": [
+  380,
+  560
+ ],
+ "/assets/images/key-2.png": [
+  380,
+  560
+ ],
+ "/assets/images/laptop.png": [
+  728,
+  468
+ ],
+ "/assets/images/logo-11.png": [
+  243,
+  50
+ ],
+ "/assets/images/logo-4.png": [
+  243,
+  50
+ ],
+ "/assets/images/logo-arcondec-white.png": [
+  1748,
+  256
+ ],
+ "/assets/images/logo-arcondec.png": [
+  1748,
+  256
+ ],
+ "/assets/images/logo.png": [
+  137,
+  42
+ ],
+ "/assets/images/overview-1.png": [
+  57,
+  75
+ ],
+ "/assets/images/overview-2.png": [
+  71,
+  77
+ ],
+ "/assets/images/overview-3.png": [
+  52,
+  70
+ ],
+ "/assets/images/overview-4.png": [
+  75,
+  62
+ ],
+ "/assets/images/page-bg-2.jpg": [
+  1601,
+  600
+ ],
+ "/assets/images/page-bg.jpg": [
+  1601,
+  950
+ ],
+ "/assets/images/page-info.png": [
+  48,
+  48
+ ],
+ "/assets/images/play-dot.png": [
+  715,
+  715
+ ],
+ "/assets/images/popular-post-1.png": [
+  110,
+  85
+ ],
+ "/assets/images/popular-post-2.png": [
+  110,
+  85
+ ],
+ "/assets/images/popular-post-3.png": [
+  110,
+  85
+ ],
+ "/assets/images/popular-post-4.png": [
+  110,
+  85
+ ],
+ "/assets/images/popular-post-5.png": [
+  110,
+  85
+ ],
+ "/assets/images/portfolio-1.png": [
+  385,
+  600
+ ],
+ "/assets/images/portfolio-2.png": [
+  385,
+  600
+ ],
+ "/assets/images/portfolio-3.png": [
+  405,
+  632
+ ],
+ "/assets/images/portfolio-4.png": [
+  385,
+  600
+ ],
+ "/assets/images/portfolio-details-thumb-1.png": [
+  540,
+  450
+ ],
+ "/assets/images/portfolio-details-thumb-2.png": [
+  540,
+  450
+ ],
+ "/assets/images/portfolio-details-thumb.png": [
+  730,
+  530
+ ],
+ "/assets/images/portfolio/portfolio-1.png": [
+  400,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-2.png": [
+  400,
+  400
+ ],
+ "/assets/images/portfolio/portfolio-3.png": [
+  400,
+  500
+ ],
+ "/assets/images/portfolio/portfolio-4.png": [
+  400,
+  500
+ ],
+ "/assets/images/portfolio/portfolio-5.png": [
+  400,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-6.png": [
+  400,
+  400
+ ],
+ "/assets/images/portfolio/portfolio-7.png": [
+  400,
+  400
+ ],
+ "/assets/images/portfolio/portfolio-8.png": [
+  400,
+  500
+ ],
+ "/assets/images/portfolio/portfolio-9.png": [
+  400,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-item-1.png": [
+  255,
+  255
+ ],
+ "/assets/images/portfolio/portfolio-item-2.png": [
+  255,
+  255
+ ],
+ "/assets/images/portfolio/portfolio-item-3.png": [
+  540,
+  540
+ ],
+ "/assets/images/portfolio/portfolio-item-4.png": [
+  540,
+  540
+ ],
+ "/assets/images/portfolio/portfolio-item-5.png": [
+  255,
+  255
+ ],
+ "/assets/images/portfolio/portfolio-item-6.png": [
+  255,
+  255
+ ],
+ "/assets/images/portfolio/portfolio-item-7.png": [
+  255,
+  255
+ ],
+ "/assets/images/portfolio/portfolio-item-8.png": [
+  540,
+  255
+ ],
+ "/assets/images/portfolio/portfolio-item-9.png": [
+  255,
+  255
+ ],
+ "/assets/images/portfolio/portfolio-style-1.png": [
+  540,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-style-10.png": [
+  540,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-style-11.png": [
+  400,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-style-12.png": [
+  400,
+  400
+ ],
+ "/assets/images/portfolio/portfolio-style-13.png": [
+  400,
+  500
+ ],
+ "/assets/images/portfolio/portfolio-style-14.png": [
+  400,
+  400
+ ],
+ "/assets/images/portfolio/portfolio-style-15.png": [
+  400,
+  500
+ ],
+ "/assets/images/portfolio/portfolio-style-16.png": [
+  400,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-style-17.png": [
+  400,
+  500
+ ],
+ "/assets/images/portfolio/portfolio-style-18.png": [
+  400,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-style-19.png": [
+  400,
+  400
+ ],
+ "/assets/images/portfolio/portfolio-style-2.png": [
+  255,
+  260
+ ],
+ "/assets/images/portfolio/portfolio-style-20.png": [
+  533,
+  600
+ ],
+ "/assets/images/portfolio/portfolio-style-21.png": [
+  533,
+  300
+ ],
+ "/assets/images/portfolio/portfolio-style-22.png": [
+  533,
+  600
+ ],
+ "/assets/images/portfolio/portfolio-style-23.png": [
+  533,
+  300
+ ],
+ "/assets/images/portfolio/portfolio-style-24.png": [
+  533,
+  300
+ ],
+ "/assets/images/portfolio/portfolio-style-25.png": [
+  533,
+  600
+ ],
+ "/assets/images/portfolio/portfolio-style-26.png": [
+  533,
+  300
+ ],
+ "/assets/images/portfolio/portfolio-style-27.png": [
+  533,
+  300
+ ],
+ "/assets/images/portfolio/portfolio-style-28.png": [
+  533,
+  300
+ ],
+ "/assets/images/portfolio/portfolio-style-3.png": [
+  255,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-style-4.png": [
+  255,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-style-5.png": [
+  255,
+  260
+ ],
+ "/assets/images/portfolio/portfolio-style-6.png": [
+  255,
+  260
+ ],
+ "/assets/images/portfolio/portfolio-style-7.png": [
+  255,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-style-8.png": [
+  255,
+  550
+ ],
+ "/assets/images/portfolio/portfolio-style-9.png": [
+  255,
+  260
+ ],
+ "/assets/images/post-arrow.png": [
+  30,
+  18
+ ],
+ "/assets/images/post-news-1.png": [
+  50,
+  50
+ ],
+ "/assets/images/post-news-2.png": [
+  50,
+  50
+ ],
+ "/assets/images/post-news-3.png": [
+  50,
+  50
+ ],
+ "/assets/images/post-news-4.png": [
+  50,
+  50
+ ],
+ "/assets/images/post-thumb-1.png": [
+  710,
+  450
+ ],
+ "/assets/images/post-thumb-2.png": [
+  710,
+  416
+ ],
+ "/assets/images/pricing-arrow-2.png": [
+  24,
+  15
+ ],
+ "/assets/images/pricing-arrow-3.png": [
+  24,
+  15
+ ],
+ "/assets/images/pricing-arrow-4.png": [
+  24,
+  15
+ ],
+ "/assets/images/pricing-arrow.png": [
+  24,
+  15
+ ],
+ "/assets/images/pricing-dot.png": [
+  512,
+  785
+ ],
+ "/assets/images/project-1.png": [
+  255,
+  255
+ ],
+ "/assets/images/project-2.png": [
+  255,
+  255
+ ],
+ "/assets/images/project-3.png": [
+  540,
+  540
+ ],
+ "/assets/images/project-4.png": [
+  540,
+  540
+ ],
+ "/assets/images/project-5.png": [
+  255,
+  255
+ ],
+ "/assets/images/project-6.png": [
+  255,
+  255
+ ],
+ "/assets/images/project-7.png": [
+  255,
+  255
+ ],
+ "/assets/images/project-8.png": [
+  540,
+  255
+ ],
+ "/assets/images/project-9.png": [
+  255,
+  255
+ ],
+ "/assets/images/project-line.png": [
+  60,
+  6
+ ],
+ "/assets/images/project/project-1.png": [
+  540,
+  540
+ ],
+ "/assets/images/project/project-2.png": [
+  255,
+  540
+ ],
+ "/assets/images/project/project-3.png": [
+  255,
+  255
+ ],
+ "/assets/images/project/project-4.png": [
+  255,
+  255
+ ],
+ "/assets/images/project/project-5.png": [
+  540,
+  255
+ ],
+ "/assets/images/project/project-6.png": [
+  255,
+  255
+ ],
+ "/assets/images/project/project-7.png": [
+  255,
+  255
+ ],
+ "/assets/images/project/project-8.png": [
+  540,
+  540
+ ],
+ "/assets/images/related-product-1.png": [
+  350,
+  350
+ ],
+ "/assets/images/related-product-2.png": [
+  350,
+  350
+ ],
+ "/assets/images/related-product-3.png": [
+  350,
+  350
+ ],
+ "/assets/images/screenshot-1.png": [
+  208,
+  449
+ ],
+ "/assets/images/screenshot-2.png": [
+  208,
+  450
+ ],
+ "/assets/images/screenshot-3.png": [
+  208,
+  449
+ ],
+ "/assets/images/screenshot-4.png": [
+  208,
+  450
+ ],
+ "/assets/images/service-bg.jpg": [
+  1600,
+  1115
+ ],
+ "/assets/images/service-dot-2.png": [
+  350,
+  338
+ ],
+ "/assets/images/service-dot.png": [
+  350,
+  150
+ ],
+ "/assets/images/services-item-1.png": [
+  350,
+  381
+ ],
+ "/assets/images/services-item-2.png": [
+  350,
+  381
+ ],
+ "/assets/images/services-item-3.png": [
+  350,
+  381
+ ],
+ "/assets/images/team-1.jpg": [
+  308,
+  420
+ ],
+ "/assets/images/team-1.png": [
+  139,
+  139
+ ],
+ "/assets/images/team-2.jpg": [
+  308,
+  420
+ ],
+ "/assets/images/team-2.png": [
+  139,
+  139
+ ],
+ "/assets/images/team-3.jpg": [
+  308,
+  420
+ ],
+ "/assets/images/team-3.png": [
+  139,
+  139
+ ],
+ "/assets/images/team-4.jpg": [
+  308,
+  420
+ ],
+ "/assets/images/team-5.jpg": [
+  308,
+  420
+ ],
+ "/assets/images/team-member.png": [
+  255,
+  322
+ ],
+ "/assets/images/testimonial-bg.jpg": [
+  720,
+  724
+ ],
+ "/assets/images/testimonial-info.png": [
+  50,
+  50
+ ],
+ "/assets/images/testimonial-item-1.jpg": [
+  445,
+  600
+ ],
+ "/assets/images/testimonial-item-2.jpg": [
+  445,
+  600
+ ],
+ "/assets/images/testimonial-shape-1.png": [
+  384,
+  416
+ ],
+ "/assets/images/testimonial-shape-2.png": [
+  373,
+  280
+ ],
+ "/assets/images/testimonial-user.png": [
+  60,
+  60
+ ],
+ "/assets/images/update-news-1.jpg": [
+  600,
+  475
+ ],
+ "/assets/images/update-news-2.jpg": [
+  600,
+  475
+ ],
+ "/assets/images/update-news-3.jpg": [
+  600,
+  475
+ ],
+ "/assets/images/video-bg.jpg": [
+  1600,
+  700
+ ]
+}

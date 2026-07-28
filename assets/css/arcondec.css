@@ -10,7 +10,7 @@
 .header-top .header-top-item .info ul li a { color: inherit; }
 /* Escala tipográfica del template (100px demo): 80px es el máximo que admite el titular oficial sin cortarse */
 .hero-2-content.hero-11-content .title { font-size: 80px; line-height: 1.08; }
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200.98px) {
     .hero-2-content.hero-11-content .title { font-size: 62px; line-height: 1.1; }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -23,7 +23,7 @@
 /* Fondo del hero optimizado para web (mismo encuadre, 360 KB vs 2 MB del PNG) */
 .hero-area.hero-2-area .section__bg { background-image: url(../images/hero-bg-2-opt.jpg); }
 /* El topbar y el nav llevan textos más largos que el demo: se compactan en tablets para que no desborden */
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200.98px) {
     .header-top .header-top-item .info ul li { margin-right: 18px; font-size: 15px; }
     .header-top .header-top-item .info ul li:nth-child(2) { display: none; }
     .header-nav .navigation .navbar .navbar-nav > .nav-item > a { font-size: 15px; margin-right: 16px; white-space: nowrap; }
@@ -37,7 +37,7 @@
 /* Los logos de clientes varían de tamaño: se acotan para que las filas queden parejas */
 .brand-3-items .item img { max-height: 60px; width: auto; max-width: 170px; }
 /* Sello D-U-N-S (blanco) sobre la franja oscura del footer, como en arcondec.mx */
-.footer-2-top .footer-logo img.duns { height: 42px; width: auto; display: block; margin-top: 14px; }
+.footer-2-top .footer-logo img.duns { width: auto; display: block; }
 /* Las tarjetas Data Center usan foto en el overlay (el demo usa un avatar de 139px) */
 .team-12-item .team-overlay-2 img { width: 139px; height: 139px; object-fit: cover; border-radius: 10px; }
 /* Las fotos reales de Arcondec tienen proporciones variadas: se fuerzan las proporciones
@@ -583,7 +583,6 @@ footer.footer-area.footer-2-area { background: #132D67; }
 
 /* Las tarjetas del índice son enlaces: se comportan como bloque y no subrayan */
 a.service-2-item {
-    display: block;
     text-decoration: none;
     height: calc(100% - 30px);
 }
@@ -781,7 +780,7 @@ a.service-2-item.arc-spec .title { margin-bottom: 0; }
 /* Entre 992 y 1200px las cuatro columnas del pie quedan en su punto más
    estrecho y "Construcción llave en mano" no cabe en una línea. Se reduce
    ligeramente el cuerpo, igual que hace el template en otros bloques. */
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200.98px) {
     .footer-item .footer-list ul li a { font-size: 15px; }
     .footer-item .footer-list .title { font-size: 19px; }
 }
@@ -1032,3 +1031,40 @@ a.service-2-item:hover { color: #fff; }
     font-weight: 600;
     letter-spacing: 0;
 }
+
+/* ==========================================================================
+   Tablet y escritorio pequeño (576–1200px)
+   ========================================================================== */
+
+/* Los logos de clientes iban en flex sin envolver y con max-width fijo: 5×170px
+   más márgenes no caben en el contenedor de 690px y la portada ganaba 346px de
+   scroll horizontal entre 768 y 991. */
+@media (max-width: 1199px) {
+    .brand-3-items { flex-wrap: wrap; justify-content: center; }
+    .brand-3-items .item { margin: 15px 25px; }
+}
+
+/* La segunda foto de Nosotros salía estirada 3× en vertical: el height="1200"
+   del atributo fijaba la altura y la corrección de height:auto solo alcanzaba
+   a .thumb img, no a .thumb-2 img. */
+.about-2-thumb .thumb-2 img { width: 100%; height: auto; }
+
+/* Faltaba el tramo 768–991 en la escalera del titular del hero: al bajar de 992
+   a 991 la tipografía CRECÍA de 62px a 80px y el hero pasaba de 1214 a 1355px,
+   más alto que la pantalla de un iPad. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .hero-2-content.hero-11-content .title { font-size: 56px; line-height: 1.1; }
+}
+
+/* Los rótulos en español ocupan más líneas que los del demo: las tarjetas del
+   carrusel quedaban desiguales sobre el fondo azul. */
+@media (min-width: 768px) and (max-width: 991px) {
+    .service-2-item.service-11-item { min-height: 400px; }
+}
+@media (min-width: 992px) and (max-width: 1200.98px) {
+    .service-2-item.service-11-item { min-height: 385px; }
+}
+
+/* Igual que en .about-2-area: la animación fadeInRight desplaza la tarjeta y
+   provoca un destello de scroll horizontal mientras dura. */
+.article-2-area { overflow-x: hidden; }

@@ -12,6 +12,7 @@ corregir un texto, se corrige en content.py / pages.py y se vuelve a ejecutar,
 no editando el HTML a mano.
 """
 
+import json
 import pathlib
 import re
 import sys
@@ -43,7 +44,22 @@ from layout import (  # noqa: E402
 )
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+
+# Dimensiones reales de cada imagen, precalculadas con tools/measure_images.py.
+# Se leen de disco para no exigir Pillow en cada build.
+_TAMANOS = json.loads((ROOT / "tools/image_sizes.json").read_text(encoding="utf-8"))
 IMG = "/assets/images/arcondec"
+
+
+def dims(src):
+    """Devuelve width/height reales de la imagen para evitar saltos de maquetación.
+
+    Declarar 1600x1200 en una foto que mide 1600x838 hace que el navegador
+    reserve el hueco con la proporción equivocada y lo corrija al cargar: el
+    atributo empeora el CLS en lugar de evitarlo.
+    """
+    par = _TAMANOS.get(src)
+    return 'width="%d" height="%d"' % tuple(par) if par else ""
 
 
 def write(path, content):
@@ -71,7 +87,7 @@ def render_service(svc, lang):
         "fal fa-project-diagram",
     ]
     items = "\n".join(
-        """                <div class="col-lg-4 col-md-6 col-sm-11">
+        """                <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="service-2-item arc-spec text-center mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="%dms">
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
@@ -88,7 +104,7 @@ def render_service(svc, lang):
     )
 
     benefits = "\n".join(
-        """                <div class="col-lg-4 col-md-6 col-sm-11">
+        """                <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="service-2-item text-center mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="%dms">
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
@@ -110,16 +126,16 @@ def render_service(svc, lang):
     gallery = "\n".join(
         """                <div class="col-lg-4 col-md-6">
                     <div class="portfolio-style-2-item portfolio-style-3-item mt-30">
-                        <img src="%s" alt="%s" loading="lazy" width="1600" height="1200">
+                        <img src="%s" alt="%s" loading="lazy" %s>
                     </div>
                 </div>"""
-        % (src, e("%s — Grupo Arcondec" % c["h1"]))
+        % (src, e("%s — Grupo Arcondec" % c["h1"]), dims(src))
         for src in photos
     )
 
     # Enlaces al resto de servicios, para que ninguna pagina sea un callejon sin salida
     others = "\n".join(
-        """                <div class="col-lg-4 col-md-6 col-sm-11">
+        """                <div class="col-lg-4 col-md-6 col-sm-6">
                     <a class="service-2-item arc-spec text-center mt-30" href="%s">
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
@@ -172,7 +188,7 @@ def render_service(svc, lang):
                 <div class="col-lg-6">
                     <div class="about-2-thumb about-11-thumb mt-30">
                         <div class="thumb text-right">
-                            <img src="{photo1}" alt="{alt}" width="1600" height="1200">
+                            <img src="{photo1}" alt="{alt}" %s>
                         </div>
                     </div>
                 </div>
@@ -312,13 +328,13 @@ def render_services_index(lang):
     c = P.SERVICES_INDEX[lang]
     key = "services"
 
-    # Rejilla de tarjetas idéntica a la del template: col-lg-4 col-md-6 col-sm-11
+    # Rejilla de tarjetas idéntica a la del template: col-lg-4 col-md-6 col-sm-6
     # con .service-2-item, icono en círculo, título, texto y el punteado .service-dot.
     cards = []
     for n, svc in enumerate(SERVICES):
         sc = svc[lang]
         cards.append(
-            """                <div class="col-lg-4 col-md-6 col-sm-11">
+            """                <div class="col-lg-4 col-md-6 col-sm-6">
                     <a class="service-2-item text-center mt-30 animated wow fadeInUp" href="%s" data-wow-duration="1000ms" data-wow-delay="%dms">
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
@@ -425,7 +441,7 @@ def render_about(lang):
 
     history = "\n".join("                        <p>%s</p>" % e(p) for p in c["history"])
     values = "\n".join(
-        """                <div class="col-lg-4 col-md-6 col-sm-11">
+        """                <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="service-2-item text-center mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="%dms">
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
@@ -461,10 +477,10 @@ def render_about(lang):
                 <div class="col-lg-6">
                     <div class="about-2-thumb about-11-thumb mt-30">
                         <div class="thumb text-right">
-                            <img src="{img}/rh/historia.jpg" alt="{alt_historia}" width="1600" height="1200">
+                            <img src="{img}/rh/historia.jpg" alt="{alt_historia}" %s>
                         </div>
                         <div class="thumb-2 ml-80">
-                            <img src="{img}/rh/img-1.jpg" alt="{alt_equipo}" width="1600" height="1200">
+                            <img src="{img}/rh/img-1.jpg" alt="{alt_equipo}" %s>
                             <div class="box">
                                 <h3 class="title"><span>30</span>+</h3>
                                 <span>{years}</span>
@@ -603,7 +619,7 @@ def render_projects(lang):
         """                <div class="col-lg-4 col-md-6">
                     <div class="arc-project mt-30">
                         <div class="arc-project-thumb">
-                            <img src="%s/proyectos/%s" alt="%s, %s" loading="lazy" width="1600" height="1200">
+                            <img src="%s/proyectos/%s" alt="%s, %s" loading="lazy" %s>
                         </div>
                         <div class="arc-project-caption">
                             <h3 class="title h5">%s</h3>
@@ -611,7 +627,7 @@ def render_projects(lang):
                         </div>
                     </div>
                 </div>"""
-        % (IMG, img, e(name), e(loc), e(name), e(loc))
+        % (IMG, img, e(name), e(loc), dims("%s/proyectos/%s" % (IMG, img)), e(name), e(loc))
         for name, loc, img in P.HUBS
     )
 
@@ -925,7 +941,7 @@ def render_careers(lang):
     key = "careers"
 
     why = "\n".join(
-        """                <div class="col-lg-4 col-md-6 col-sm-11">
+        """                <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="service-2-item text-center mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="%dms">
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
@@ -964,7 +980,7 @@ def render_careers(lang):
                 <div class="col-lg-6">
                     <div class="about-2-thumb about-11-thumb mt-30">
                         <div class="thumb text-right">
-                            <img src="{img}/rh/empledado.jpg" alt="{why_title}" width="1600" height="1200">
+                            <img src="{img}/rh/empledado.jpg" alt="{why_title}" %s>
                         </div>
                     </div>
                 </div>
@@ -1062,7 +1078,7 @@ def render_blog(lang):
         """                <div class="col-lg-4 col-md-6">
                     <div class="article-2-item article-11-item mt-30">
                         <div class="article-thumb">
-                            <img src="%s/blog/%s" alt="%s" loading="lazy" width="1600" height="1200">
+                            <img src="%s/blog/%s" alt="%s" loading="lazy" %s>
                         </div>
                         <div class="article-content">
                             <h3 class="title">%s</h3>
@@ -1071,7 +1087,7 @@ def render_blog(lang):
                         </div>
                     </div>
                 </div>"""
-        % (IMG, a["img"], e(a[lang][0]), e(a[lang][0]), e(a[lang][1]), e(c["soon"]))
+        % (IMG, a["img"], e(a[lang][0]), dims("%s/blog/%s" % (IMG, a["img"])), e(a[lang][0]), e(a[lang][1]), e(c["soon"]))
         for a in P.ARTICLES
     )
 
