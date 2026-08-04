@@ -6,7 +6,7 @@
 
 **Documento de entrega técnica y guía del editor**
 
-Versión 2.0 · Agosto 2026 · Elaborado por JectCode
+Versión 2.1 · Agosto 2026 · Elaborado por JectCode
 
 [grupo-arcondec.vercel.app](https://grupo-arcondec.vercel.app) · [github.com/Juanescanar23/Grupo-Arcondec](https://github.com/Juanescanar23/Grupo-Arcondec)
 
@@ -175,11 +175,20 @@ Para el resto, estas cuatro ideas bastan para operar el sitio con seguridad.
 
 ### 4.1 La terminal
 
-La **terminal** (en macOS: aplicación *Terminal*, dentro de *Aplicaciones →
-Utilidades*) es una ventana donde se escriben órdenes para la computadora. En este
+La **terminal** es una ventana donde se escriben órdenes para la computadora. En este
 proyecto solo se usan cuatro o cinco órdenes, siempre las mismas, y todas están
 escritas en este manual listas para copiar y pegar. Se pega la orden, se pulsa
-Enter, y se lee la respuesta.
+Enter, y se lee la respuesta. Dónde encontrarla:
+
+- **En Windows:** aplicación **PowerShell** (menú Inicio → escribir «PowerShell»).
+- **En macOS:** aplicación **Terminal** (*Aplicaciones → Utilidades*, o buscarla con
+  Spotlight).
+
+> **Nota importante para Windows.** Los comandos de este manual están escritos como
+> se usan en macOS. En Windows solo cambia una cosa: donde el manual diga `python3`,
+> se escribe **`python`**, y donde diga `pip3`, se escribe **`pip`**. Todo lo demás
+> (git, los nombres de archivo, el orden de los pasos) es idéntico en ambos
+> sistemas.
 
 Una orden que se usará siempre al empezar es «situarse» en la carpeta del proyecto:
 
@@ -187,9 +196,10 @@ Una orden que se usará siempre al empezar es «situarse» en la carpeta del pro
 cd ruta/a/la/carpeta/del/proyecto
 ```
 
-(`cd` significa *change directory*, cambiar de carpeta. Un atajo práctico en macOS:
-escribir `cd `, con el espacio, y arrastrar la carpeta del proyecto desde el Finder
-hasta la ventana de la terminal — la ruta se escribe sola.)
+(`cd` significa *change directory*, cambiar de carpeta. Un atajo práctico que
+funciona en ambos sistemas: escribir `cd `, con el espacio, y arrastrar la carpeta
+del proyecto desde el Explorador de archivos o el Finder hasta la ventana de la
+terminal — la ruta se escribe sola.)
 
 ### 4.2 Los archivos de contenido
 
@@ -237,10 +247,21 @@ Son los dos programas de la carpeta `tools/` que se ejecutan siempre en pareja:
 
 ## 5. Preparar el entorno de trabajo
 
-**Requisitos:** una Mac con Python 3 (macOS ya lo incluye) y git (se instala solo la
-primera vez que se usa). No hay nada más que instalar — ni paquetes, ni base de
-datos, ni licencias. Únicamente, si se van a cambiar imágenes, hará falta una
-biblioteca gratuita llamada Pillow: `pip3 install Pillow`, una sola vez.
+**Requisitos:** Python 3 y git. Nada más — ni paquetes, ni base de datos, ni
+licencias. Únicamente, si se van a cambiar imágenes, hará falta una biblioteca
+gratuita llamada Pillow: `pip3 install Pillow` (en Windows: `pip install Pillow`),
+una sola vez.
+
+Cómo cubrir los requisitos según el sistema:
+
+- **En macOS:** Python 3 ya viene incluido, y git se ofrece a instalarse solo la
+  primera vez que se escribe `git` en la terminal. No hay que hacer nada por
+  adelantado.
+- **En Windows:** descargar Python desde [python.org/downloads](https://www.python.org/downloads)
+  y, durante la instalación, **marcar la casilla «Add python.exe to PATH»** — es un
+  clic que evita el error «python no se reconoce como comando». Después, instalar
+  git desde [git-scm.com/download/win](https://git-scm.com/download/win) aceptando
+  las opciones por defecto. Ambas instalaciones se hacen una sola vez.
 
 ```bash
 # 1. Descargar el proyecto (solo la primera vez)
@@ -295,7 +316,7 @@ y `"en"` (los mismos textos en inglés). Dentro de cada sección, los campos son
 **Ejemplo completo.** Para cambiar el titular de la página de Proyectos eléctricos:
 
 1. Abrir `tools/content.py` en el editor.
-2. Buscar (Cmd+F) el texto actual: `Proyectos eléctricos integrales`.
+2. Buscar (Ctrl+F; en Mac, Cmd+F) el texto actual: `Proyectos eléctricos integrales`.
 3. En la sección `"es"` del bloque, editar solo lo que está entre comillas:
 
    ```python
@@ -325,8 +346,8 @@ bloques con la misma lógica de secciones ES/EN:
 | `CAREERS` | Trabaja con nosotros / Careers |
 | `BLOG` y `ARTICLES` | El índice del blog y su inventario de artículos |
 
-El método es el mismo del punto anterior: buscar la frase actual con Cmd+F, editarla
-entre comillas en español y en inglés, guardar y regenerar.
+El método es el mismo del punto anterior: buscar la frase actual con Ctrl+F (en
+Mac, Cmd+F), editarla entre comillas en español y en inglés, guardar y regenerar.
 
 ### 6.3 Cambiar la página de inicio
 
@@ -668,7 +689,7 @@ serios:
 
 | Síntoma | Causa probable y solución |
 |---|---|
-| Cambié un texto y no se ve en el navegador | Falta regenerar: `python3 tools/build.py`. Después, recargar el navegador forzando la caché: Cmd+Shift+R |
+| Cambié un texto y no se ve en el navegador | Falta regenerar: `python3 tools/build.py`. Después, recargar el navegador forzando la caché: Ctrl+Shift+R (en Mac, Cmd+Shift+R) |
 | Mi cambio desapareció solo | Se había editado el HTML generado y alguien regeneró el sitio. Rehacer el cambio, esta vez en el archivo de `tools/` que corresponda (capítulo 6) |
 | `build.py` termina con `SyntaxError` | Al editar un archivo `.py` quedó una comilla sin cerrar o se borró una coma. El mensaje de error indica la línea exacta. Si el texto nuevo lleva comillas por dentro, usar comillas tipográficas (« » o “ ”) |
 | `check.py` reporta «… roto» | Un enlace o una imagen apunta a un archivo que no existe (habitualmente, un nombre mal escrito). Corregir la ruta o colocar el archivo que falta |
@@ -715,7 +736,7 @@ git add -A && git commit -m "descripción del cambio" && git push    # 3. public
 | Término | Significado |
 |---|---|
 | **Build / generar** | Ejecutar `tools/build.py` para que el generador reconstruya las 28 páginas a partir de los archivos de contenido |
-| **Caché** | Memoria del navegador que guarda archivos ya descargados para no volver a pedirlos. Acelera el sitio; explica por qué a veces un cambio «no se ve» hasta forzar la recarga (Cmd+Shift+R) |
+| **Caché** | Memoria del navegador que guarda archivos ya descargados para no volver a pedirlos. Acelera el sitio; explica por qué a veces un cambio «no se ve» hasta forzar la recarga (Ctrl+Shift+R; en Mac, Cmd+Shift+R) |
 | **Canonical** | Etiqueta invisible que declara la dirección oficial de una página, para que Google no la confunda con un duplicado |
 | **CLS** | *Cumulative Layout Shift*: el «brinco» de una página mientras carga. Google lo mide y lo penaliza; las dimensiones de imagen declaradas lo evitan |
 | **CMS** | Sistema de gestión de contenidos (p. ej. WordPress): un panel web para editar un sitio. Este proyecto no usa uno, por las razones del capítulo 2.2 |
@@ -732,7 +753,7 @@ git add -A && git commit -m "descripción del cambio" && git push    # 3. public
 | **Repositorio** | La carpeta del proyecto bajo control de git: el código, el contenido y todo su historial |
 | **SEO** | Optimización para motores de búsqueda: todo lo que hace que el sitio aparezca bien posicionado en Google (capítulo 7) |
 | **Template / plantilla** | El diseño base comercial (*aball*) sobre el que se construyó el sitio. Sus archivos no se modifican (regla de oro n.º 2) |
-| **Terminal** | La aplicación donde se escriben las órdenes (`Terminal` en macOS). Aquí solo se usan los comandos listados en este manual |
+| **Terminal** | La aplicación donde se escriben las órdenes (*PowerShell* en Windows, *Terminal* en macOS). Aquí solo se usan los comandos listados en este manual; en Windows, `python3` se escribe `python` |
 | **Vercel** | El servicio que aloja y sirve el sitio publicado, conectado al repositorio de GitHub |
 | **Verificador** | `tools/check.py`: el control de calidad que revisa enlaces, SEO y estructura antes de publicar |
 | **WCAG AA** | Norma internacional de accesibilidad web. El contraste de colores del sitio está auditado bajo ella |
