@@ -17,7 +17,7 @@
 
 Construido sobre el template **aball (index-12)** con la marca, contenido y colores oficiales de Arcondec. Cada idioma tiene **una URL real por página** (nada de conmutadores de JavaScript) y el despliegue no tiene build: Vercel sirve el repositorio tal cual.
 
-> 📖 **Documentación completa de operación y edición:** [MANUAL.md](MANUAL.md) — cómo cambiar textos, imágenes y datos de contacto, cómo publicar, y cómo encargar cambios a una IA sin romper la estructura del proyecto. Reglas para asistentes de IA: [CLAUDE.md](CLAUDE.md).
+> 📖 **Documentación completa de operación y edición:** [MANUAL.md](MANUAL.md) — cómo cambiar textos, imágenes y datos de contacto, cómo publicar, y cómo encargar cambios a una IA sin romper la estructura del proyecto. Reglas para asistentes de IA (Claude, Codex, Cursor, Gemini…): [AGENTS.md](AGENTS.md).
 
 ## Inicio rápido
 

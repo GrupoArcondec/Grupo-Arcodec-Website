@@ -585,16 +585,20 @@ los archivos a mano, se le describe el cambio a un asistente de IA que trabaja s
 el proyecto — como **Claude Code** o **Cursor** — y se supervisa el resultado. El
 proyecto está preparado para ello.
 
-### 9.1 El guardarraíl automático: CLAUDE.md
+### 9.1 El guardarraíl automático: AGENTS.md
 
-En la raíz del proyecto hay un archivo llamado **`CLAUDE.md`** que contiene las
-reglas del proyecto en el formato que estos asistentes leen automáticamente al
-empezar a trabajar: qué archivo controla cada cosa, qué está prohibido tocar, y que
-todo cambio termina en generar + verificar. Es la versión condensada de este manual,
-dirigida a las máquinas. Gracias a él, incluso un encargo mal formulado tiene red:
-el asistente sabrá por su cuenta que no debe editar el HTML generado.
+En la raíz del proyecto hay un archivo llamado **`AGENTS.md`** que contiene el
+concepto del proyecto y sus reglas en el formato estándar que los asistentes de IA
+leen automáticamente al empezar a trabajar — lo reconocen OpenAI Codex, Cursor,
+Gemini CLI, Kimi y las demás herramientas del ecosistema. Explica qué es el sitio,
+qué archivo controla cada cosa, qué está prohibido tocar, los invariantes de SEO y
+que todo cambio termina en generar + verificar. Es la versión condensada de este
+manual, dirigida a las máquinas. Lo acompaña **`CLAUDE.md`**, el nombre equivalente
+que lee Claude Code, que simplemente remite al anterior.
 
-Ese archivo **se entrega junto con el proyecto y no debe borrarse**.
+Gracias a estos archivos, incluso un encargo mal formulado tiene red: el asistente
+sabrá por su cuenta que no debe editar el HTML generado. **Ambos se entregan junto
+con el proyecto y no deben borrarse.**
 
 ### 9.2 Las cuatro instrucciones de un buen encargo
 
@@ -603,7 +607,7 @@ Ese archivo **se entrega junto con el proyecto y no debe borrarse**.
    titular» obliga a la IA a inventar contenido que nadie aprobó.
 2. **Dar el cambio en ambos idiomas** — o pedir explícitamente que la IA proponga la
    traducción al inglés y mostrarla antes de aplicar.
-3. **Recordarle el flujo del proyecto:** que lea `CLAUDE.md`, que edite solo en
+3. **Recordarle el flujo del proyecto:** que lea `AGENTS.md`, que edite solo en
    `tools/`, y que regenere con el generador.
 4. **Pedirle la prueba:** que ejecute el verificador y muestre que terminó en
    «Sin problemas.» antes de dar el cambio por hecho.
@@ -611,21 +615,21 @@ Ese archivo **se entrega junto con el proyecto y no debe borrarse**.
 ### 9.3 Encargos de ejemplo, listos para adaptar
 
 > «En este proyecto los cambios se hacen en `tools/` y se regenera con
-> `python3 tools/build.py` — lee `CLAUDE.md`. Cambia el titular del servicio de
+> `python3 tools/build.py` — lee `AGENTS.md`. Cambia el titular del servicio de
 > estudios eléctricos: donde dice “Estudios eléctricos especializados” debe decir
 > “Estudios eléctricos certificados”, y en la versión en inglés, “Certified
 > electrical studies”. Regenera, ejecuta `tools/check.py` y muéstrame que terminó
 > sin problemas.»
 
-> «Lee `CLAUDE.md`. Cambia el teléfono móvil de contacto de (55) 3032 6595 a
+> «Lee `AGENTS.md`. Cambia el teléfono móvil de contacto de (55) 3032 6595 a
 > (55) 1234 5678 en `tools/content.py`. Recuerda que el número tiene dos entradas:
 > la visible y la de marcación con lada +52. Regenera y verifica.»
 
-> «Lee `CLAUDE.md`. Reemplacé la foto
+> «Lee `AGENTS.md`. Reemplacé la foto
 > `assets/images/arcondec/servicios/estel-3.jpg` por una nueva con el mismo nombre.
 > Ejecuta `tools/measure_images.py`, regenera el sitio y verifica.»
 
-> «Lee `CLAUDE.md`. Redacta una nueva meta descripción para la página de
+> «Lee `AGENTS.md`. Redacta una nueva meta descripción para la página de
 > construcción de data centers: máximo 160 caracteres, debe mencionar “llave en
 > mano” y “México”. Propónme primero la versión en español y en inglés, y espera mi
 > visto bueno antes de aplicarla.»
@@ -680,8 +684,8 @@ serios:
 - ✗ **Borrar o renombrar páginas por fuera del generador** — las etiquetas de idioma
   y el mapa del sitio quedarían apuntando a páginas inexistentes. (Si ocurre, el
   verificador lo detecta.)
-- ✗ **Borrar `CLAUDE.md`**, el archivo de reglas que protege el proyecto cuando se
-  trabaja con asistentes de IA.
+- ✗ **Borrar `AGENTS.md` o `CLAUDE.md`**, los archivos de reglas que protegen el
+  proyecto cuando se trabaja con asistentes de IA.
 
 ---
 
