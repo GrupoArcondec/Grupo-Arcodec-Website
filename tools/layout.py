@@ -10,6 +10,7 @@ no dependen de la profundidad del archivo que las escribe.
 
 import html
 import json
+import pathlib
 
 from content import (
     COMMIT_TEXT,
@@ -53,12 +54,15 @@ for _s in SERVICES:
 UI = {
     "es": {
         "login": "Iniciar sesión",
-        "nav_about": "Sobre nosotros",
+        # Rótulos del menú: cortos, de una palabra. El botón amarillo y el de la
+        # franja CTA usan "cta_contact", que sí va en imperativo.
+        "nav_about": "Nosotros",
         "nav_projects": "Proyectos",
         "nav_services": "Servicios",
         "nav_careers": "Trabaja con nosotros",
-        "nav_blog": "Blogs",
-        "nav_contact": "Contáctanos",
+        "nav_blog": "Blog",
+        "nav_contact": "Contacto",
+        "cta_contact": "Contáctanos",
         "home": "Inicio",
         "advisor": "Habla con un asesor",
         "foot_company": "Compañía",
@@ -69,7 +73,7 @@ UI = {
         "news_btn": "Únete",
         "privacy": "Aviso de privacidad",
         "copy": "Grupo Arcondec S.A. de C.V. Copyright © 2026 | Todos los derechos Reservados",
-        "duns": "Certificación D-U-N-S",
+        "duns": "Certificación Dun & Bradstreet",
         "back_top": "Volver arriba",
         "skip": "Saltar al contenido",
         "nav_label": "Navegación principal",
@@ -77,12 +81,13 @@ UI = {
     },
     "en": {
         "login": "Login",
-        "nav_about": "About Us",
+        "nav_about": "About",
         "nav_projects": "Projects",
         "nav_services": "Services",
         "nav_careers": "Work With Us",
-        "nav_blog": "Blogs",
-        "nav_contact": "Contact Us",
+        "nav_blog": "Blog",
+        "nav_contact": "Contact",
+        "cta_contact": "Contact Us",
         "home": "Home",
         "advisor": "Speak with an advisor",
         "foot_company": "Company",
@@ -93,7 +98,7 @@ UI = {
         "news_btn": "Join us",
         "privacy": "Privacy Notice",
         "copy": "Grupo Arcondec S.A. de C.V. Copyright © 2026 | All rights reserved",
-        "duns": "D-U-N-S Certification",
+        "duns": "Dun & Bradstreet Certification",
         "back_top": "Back to top",
         "skip": "Skip to content",
         "nav_label": "Main navigation",
@@ -118,6 +123,13 @@ def sales_mail(lang):
 # --------------------------------------------------------------------------
 # <head>
 # --------------------------------------------------------------------------
+# Dimensiones reales de cada imagen (tools/measure_images.py) — aqui solo para
+# declarar el tamano del og:image, que acelera el primer compartido del enlace.
+_OG_SIZES = json.loads(
+    (pathlib.Path(__file__).parent / "image_sizes.json").read_text(encoding="utf-8")
+)
+
+
 def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=None):
     """Cabecera con SEO completo: canonical, hreflang, Open Graph y JSON-LD."""
     other = "en" if lang == "es" else "es"
@@ -125,6 +137,14 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
     alt_url = BASE_URL + url(key, other)
     og_image = og_image or "/assets/images/arcondec/secciones/servicios-bg.jpg"
     full_title = "%s | Grupo Arcondec" % title
+
+    og_w, og_h = _OG_SIZES.get(og_image, (None, None))
+    og_dims = (
+        '    <meta property="og:image:width" content="%d">\n'
+        '    <meta property="og:image:height" content="%d">\n' % (og_w, og_h)
+        if og_w
+        else ""
+    )
 
     ld = {
         "@context": "https://schema.org",
@@ -161,6 +181,30 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
         return json.dumps(obj, ensure_ascii=False, indent=2).replace("<", "\\u003c")
 
     blocks = [_ld(ld)]
+    if key == "home":
+        # WebSite: es lo que Google usa para mostrar el nombre del sitio en los
+        # resultados en lugar del dominio.
+        blocks.append(_ld({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Grupo Arcondec",
+            "alternateName": "Grupo Arcondec S.A. de C.V.",
+            "url": BASE_URL + "/",
+            "inLanguage": ["es-MX", "en"],
+        }))
+    else:
+        # BreadcrumbList: la miga Inicio > Pagina que Google muestra bajo el
+        # titulo del resultado, espejo de la miga visible del banner.
+        blocks.append(_ld({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1,
+                 "name": UI[lang]["home"], "item": BASE_URL + url("home", lang)},
+                {"@type": "ListItem", "position": 2,
+                 "name": title, "item": canonical},
+            ],
+        }))
     if extra_ld:
         blocks.append(_ld(extra_ld))
     ld_tags = "\n".join(
@@ -180,6 +224,7 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
     <meta name="keywords" content="{kw}">
     <meta name="author" content="Grupo Arcondec S.A. de C.V.">
     <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#1F439B">
 
     <title>{title}</title>
 
@@ -193,11 +238,13 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Grupo Arcondec">
     <meta property="og:locale" content="{locale}">
+    <meta property="og:locale:alternate" content="{locale_alt}">
     <meta property="og:title" content="{title}">
     <meta property="og:description" content="{desc}">
     <meta property="og:url" content="{canonical}">
     <meta property="og:image" content="{og_image}">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image:alt" content="{title}">
+{og_dims}    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{title}">
     <meta name="twitter:description" content="{desc}">
     <meta name="twitter:image" content="{og_image}">
@@ -229,7 +276,9 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
         es_url=BASE_URL + url(key, "es"),
         en_url=BASE_URL + url(key, "en"),
         locale="es_MX" if lang == "es" else "en_US",
+        locale_alt="en_US" if lang == "es" else "es_MX",
         og_image=BASE_URL + og_image,
+        og_dims=og_dims,
         ld=ld_tags,
     )
 
@@ -316,7 +365,6 @@ def header(*, lang, key):
 {sub}
                                             </ul>
                                         </li>
-{nav_careers}
 {nav_blog}
 {nav_contact}
                                         <li class="nav-item d-lg-none">
@@ -367,11 +415,10 @@ def header(*, lang, key):
         services_url=url("services", lang),
         services_active=services_active,
         sub=sub,
-        nav_careers=nav("careers", t["nav_careers"]),
         nav_blog=nav("blog", t["nav_blog"]),
         nav_contact=nav("contact", t["nav_contact"]),
         contact=url("contact", lang),
-        contact_label=e(t["nav_contact"]),
+        contact_label=e(t["cta_contact"]),
     )
 
 
@@ -570,6 +617,12 @@ def footer(*, lang, key, extra_scripts=()):
     <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
     <script src="/assets/js/main.js"></script>
+
+    <!--====== Movimiento Arcondec (GSAP) ======-->
+    <script src="/assets/js/vendor/gsap.min.js"></script>
+    <script src="/assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/assets/js/vendor/SplitText.min.js"></script>
+    <script src="/assets/js/arcondec-motion.js"></script>
 {extra_scripts}
 
 </body>
@@ -662,7 +715,7 @@ def commitment_band(lang):
         ),
         text=e(COMMIT_TEXT[lang]),
         contact=url("contact", lang),
-        contact_label=e(t["nav_contact"]),
+        contact_label=e(t["cta_contact"]),
         wa=WHATSAPP,
         btn=e(t["advisor"]),
     )

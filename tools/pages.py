@@ -9,7 +9,7 @@ contacto, reclutamiento y el indice de blog. Textos literales de arcondec.mx.
 ABOUT = {
     "es": {
         "title": "Sobre nosotros",
-        "meta": "Grupo Arcondec, empresa mexicana fundada en 1991, especializada en ingeniería eléctrica, infraestructura y construcción de centros de datos. Más de 30 años de experiencia.",
+        "meta": "Empresa mexicana fundada en 1991, especializada en ingeniería eléctrica, infraestructura y construcción de centros de datos. Más de 30 años de experiencia.",
         "keywords": "Grupo Arcondec, empresa mexicana, ingeniería eléctrica, data centers, 1991, proyectos llave en mano",
         "eyebrow": "Sobre nosotros",
         "h1": "Empresa mexicana fundada en 1991, especializada en ofrecer soluciones integrales",
@@ -24,6 +24,7 @@ ABOUT = {
         "distinct_title": "¿Qué nos distingue en Grupo Arcondec?",
         "distinct": "El talento de nuestro equipo, conformado por profesionales apasionados por desarrollar soluciones que impulsan la operación de nuestros clientes, es el motor de cada proyecto. Abordamos cada desafío con compromiso, precisión y visión estratégica para garantizar resultados medibles y sostenibles, permitiendo que nuestros clientes se enfoquen plenamente en su negocio con la confianza de contar con una infraestructura eléctrica y crítica diseñada para respaldar su presente y potenciar su futuro.",
         "values_title": "Nuestros valores",
+        "services_title": "Nuestros servicios",
         "values": [
             ("Calidad", "Desarrollamos toda la ingeniería con base en normas y estándares vigentes, asegurando cumplimiento técnico y regulatorio en cada etapa.", "fal fa-award"),
             ("Tiempo", "Ejecutamos proyectos eléctricos garantizando entregas puntuales, alineadas a los plazos y requerimientos específicos del cliente.", "fal fa-clock"),
@@ -50,6 +51,7 @@ ABOUT = {
         "distinct_title": "What sets Grupo Arcondec apart?",
         "distinct": "Our team's talent, made up of professionals passionate about developing solutions that power our clients' operations, is the driving force behind every project. We approach each challenge with commitment, precision, and strategic vision to deliver measurable, sustainable results — enabling our clients to focus on their business with the confidence of having critical and electrical infrastructure designed to support their present and empower their future.",
         "values_title": "Our values",
+        "services_title": "Our services",
         "values": [
             ("Quality", "We develop all engineering in accordance with current standards and regulations, ensuring technical and legal compliance at every stage.", "fal fa-award"),
             ("Timing", "We execute electrical projects with guaranteed on-time delivery, aligned with our clients’ specific timelines and requirements.", "fal fa-clock"),
@@ -128,7 +130,7 @@ PROJECTS = {
 SERVICES_INDEX = {
     "es": {
         "title": "Servicios",
-        "meta": "Servicios de Grupo Arcondec: proyectos eléctricos integrales, estudios eléctricos, corriente directa, gestión de proyectos, construcción de data center, ingeniería civil e ingeniería integral.",
+        "meta": "Servicios de Grupo Arcondec: proyectos y estudios eléctricos, corriente directa, gestión de proyectos, construcción de data centers e ingeniería civil.",
         "keywords": "servicios ingeniería eléctrica, data center, corriente directa, estudios eléctricos, gestión de proyectos, Grupo Arcondec",
         "eyebrow": "Conoce nuestros servicios",
         "h1": "Servicios especializados",
@@ -140,7 +142,7 @@ SERVICES_INDEX = {
     },
     "en": {
         "title": "Services",
-        "meta": "Grupo Arcondec services: comprehensive electrical projects, electrical studies, direct current, project management, data center construction, civil engineering and integral engineering.",
+        "meta": "Grupo Arcondec services: electrical projects and studies, direct current, project management, data center construction and civil engineering.",
         "keywords": "electrical engineering services, data center, direct current, electrical studies, project management, Grupo Arcondec",
         "eyebrow": "Explore our services",
         "h1": "Specialized services",
@@ -174,7 +176,6 @@ CONTACT_PAGE = {
         "lead": "Haz que tu operación sea más segura y eficiente",
         "form_title": "Escríbenos",
         "form_text": "En Grupo Arcondec trabajamos cada día para estar más cerca de nuestros clientes, brindando soluciones personalizadas con eficiencia y compromiso. Si necesitas una consultoría, resolver alguna duda o solicitar una cotización, completa el formulario y nos pondremos en contacto contigo a la brevedad.",
-        "addr_title": "Información de la dirección",
         "addr_text": "Calle del Gran Parque 419, Cumbres 2o, 64610 Monterrey, Nuevo León.",
         "phone_title": "Números telefónicos",
         "phone_office": "Oficina: (81) 1934-1192 y (55) 3032-6595",
@@ -208,6 +209,25 @@ CONTACT_PAGE = {
         "legal_privacy": "aviso de privacidad",
         "legal_post": ", términos y condiciones.",
         "phone_hint": "10 dígitos, sin espacios ni guiones",
+        # --- Reorganización de la página: vías directas antes del formulario ---
+        # Los datos duros (teléfonos, correos, horario) NO se escriben aquí: salen
+        # de content.py y del mismo horario que ya declara el JSON-LD, para que no
+        # se puedan desincronizar.
+        "direct_title": "Cómo prefieres que hablemos",
+        "direct_text": "Elige la que te venga mejor. Todas llegan al mismo equipo.",
+        "hours_text": "Lunes a viernes, 9:00 a 18:00 h",
+        "call_title": "Por teléfono",
+        "call_note": "Si prefieres explicarlo hablando, llámanos a la oficina de Monterrey.",
+        "wa_title": "Por WhatsApp",
+        "wa_note": "La vía más rápida si ya sabes lo que necesitas.",
+        "wa_btn": "Abrir WhatsApp",
+        "mail_note": "Cada buzón llega al área que corresponde.",
+        "form_note": "¿Prefieres dejarlo por escrito con detalle? Cuéntanos tu proyecto y te contactamos.",
+        "required_note": "Los campos marcados con * son obligatorios.",
+        "f_state_label": "Estado",
+        "f_reason_label": "Motivo de contacto",
+        "f_sector_label": "Giro",
+        "directions_btn": "Cómo llegar",
     },
     "en": {
         "title": "Contact Us",
@@ -218,7 +238,6 @@ CONTACT_PAGE = {
         "lead": "Make your operation safer and more efficient",
         "form_title": "Write to us",
         "form_text": "At Grupo Arcondec, we work every day to be closer to our clients, providing personalized solutions with efficiency and commitment. If you need consulting, have any questions, or want to request a quote, please fill out the form and we’ll get in touch with you shortly.",
-        "addr_title": "Address information",
         "addr_text": "Calle del Gran Parque 419, Cumbres 2nd Sector, 64610 Monterrey, Nuevo León, Mexico.",
         "phone_title": "Phone numbers",
         "phone_office": "Office: (81) 1934-1192 and (55) 3032-6595",
@@ -252,6 +271,21 @@ CONTACT_PAGE = {
         "legal_privacy": "privacy notice",
         "legal_post": ", terms and conditions.",
         "phone_hint": "10 digits, no spaces or dashes",
+        "direct_title": "How would you like to talk?",
+        "direct_text": "Pick whichever suits you. They all reach the same team.",
+        "hours_text": "Monday to Friday, 9:00 to 18:00",
+        "call_title": "By phone",
+        "call_note": "If you would rather talk it through, call our Monterrey office.",
+        "wa_title": "On WhatsApp",
+        "wa_note": "The fastest route if you already know what you need.",
+        "wa_btn": "Open WhatsApp",
+        "mail_note": "Each mailbox reaches the right team.",
+        "form_note": "Rather put it in writing, with detail? Tell us about your project and we will get back to you.",
+        "required_note": "Fields marked with * are required.",
+        "f_state_label": "State",
+        "f_reason_label": "Reason for contact",
+        "f_sector_label": "Industry",
+        "directions_btn": "Get directions",
     },
 }
 

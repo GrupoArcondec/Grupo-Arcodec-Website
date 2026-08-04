@@ -53,6 +53,10 @@
         .lang-switch.active { font-weight: 700; text-decoration: underline; }
         /* Fondo del hero optimizado para web (mismo encuadre, 360 KB vs 2 MB del PNG) */
         .hero-area.hero-2-area .section__bg { background-image: url(assets/images/hero-bg-2-opt.jpg); }
+        /* Las dos diapositivas del hero medían distinto y la segunda dejaba una banda
+           blanca bajo su foto: superpuestas en una celda de grid se igualan al track. */
+        .hero-slider.hero-11-slider .slick-track { display: grid; width: 100% !important; }
+        .hero-slider.hero-11-slider .slick-track > .slick-slide { grid-area: 1 / 1; left: 0 !important; width: 100% !important; }
         /* El topbar y el nav llevan textos más largos que el demo: se compactan en tablets para que no desborden */
         @media only screen and (min-width: 992px) and (max-width: 1200px) {
             .header-top .header-top-item .info ul li { margin-right: 18px; font-size: 15px; }
@@ -121,7 +125,8 @@
         .case-tab-btn.case-tab-btn-11 .nav .nav-link span::before { background: #FFBB00; }
         .case-tab-btn.case-tab-btn-11 .nav .nav-link.active { background: #1F439B; }
         /* Franja CTA */
-        .subscribe-area.subscribe-11-area { background: #1F439B; }
+        .subscribe-area.subscribe-11-area { background: #132D67; position: relative; }
+        .subscribe-area.subscribe-11-area::before { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #FFBB00 0%, #F7931E 100%); }
         .subscribe-form.subscribe-11-form ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
         /* Bloque del testimonial */
         .testimonial-9-active .testimonial-11-thumb::before { background: #1F439B; }
@@ -157,7 +162,10 @@
         .article-11-item .article-content .date .item { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
         .article-11-item .article-content > a .icon::before { background: #1F439B; }
         .footer-item .footer-list.footer-list-11 ul li a:hover { color: #FFBB00; }
+        /* Botones de redes del pie: el template los pinta en gris #383833 */
+        .footer-2-area .footer-copyright ul li a { background: #1F439B; border: 1px solid rgba(255, 255, 255, .2); line-height: 46px; transition: color .3s ease-out 0s; }
         .footer-2-area .footer-copyright.footer-copyright-11 ul li a::before { background: #FFBB00; }
+        .footer-2-area .footer-copyright.footer-copyright-11 ul li a:hover { color: #132D67; }
     </style>
 
 </head>
@@ -192,9 +200,9 @@
                             </div>
                             <div class="sicial">
                                 <ul>
-                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.facebook.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupoarcondec/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                                     <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
@@ -365,7 +373,7 @@
                         <h3 class="title" data-i18n="aboutTitle">Somos una empresa mexicana con más de 30 años de experiencia creando proyectos de alta calidad</h3>
                         <p data-i18n="aboutText">Estamos conformados por un equipo multidisciplinario altamente capacitado lo que nos convierte en especialistas en proyectos llave en mano comerciales e industriales de gran alcance, complejidad y tiempo ajustado desde etapa conceptual hasta entrega final.</p>
                         <div class="item mt-30">
-                            <h4 class="title" data-i18n="dunsLabel">Certificación D-U-N-S</h4>
+                            <h4 class="title" data-i18n="dunsLabel">Certificación Dun &amp; Bradstreet</h4>
                             <p data-i18n="aboutDunsText">Contamos con una certificación financiera.</p>
                         </div>
                         <a class="main-btn main-btn-3 mt-45" href="https://arcondec.mx/Nosotros.aspx" data-href-en="https://arcondec.mx/EN/About.aspx" data-i18n="navAbout2">Sobre nosotros</a>
@@ -630,7 +638,7 @@
                                 <p data-i18n="commitText">Fortalecemos cada día nuestro compromiso contigo, brindando un servicio excepcional como tu aliado estratégico en ingeniería eléctrica y centros de datos.</p>
                                 <div class="info">
                                     <h5 class="title">Grupo Arcondec</h5>
-                                    <span data-i18n="dunsLabel">Certificación D-U-N-S</span>
+                                    <span data-i18n="dunsLabel">Certificación Dun &amp; Bradstreet</span>
                                 </div>
                             </div>
                         </div>
@@ -650,7 +658,7 @@
                                 <p data-i18n="commitText">Fortalecemos cada día nuestro compromiso contigo, brindando un servicio excepcional como tu aliado estratégico en ingeniería eléctrica y centros de datos.</p>
                                 <div class="info">
                                     <h5 class="title">Grupo Arcondec</h5>
-                                    <span data-i18n="dunsLabel">Certificación D-U-N-S</span>
+                                    <span data-i18n="dunsLabel">Certificación Dun &amp; Bradstreet</span>
                                 </div>
                             </div>
                         </div>
@@ -685,9 +693,9 @@
                                 <h4 class="title" data-i18n="sec2Card1">Comunicación eficiente</h4>
                                 <span data-i18n="catDC">Data Center</span>
                                 <ul>
-                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.facebook.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupoarcondec/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                                     <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
@@ -707,9 +715,9 @@
                                 <h4 class="title" data-i18n="sec2Card2">Infraestructura que conecta</h4>
                                 <span data-i18n="catDC2">Data Center</span>
                                 <ul>
-                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.facebook.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupoarcondec/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                                     <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
@@ -729,9 +737,9 @@
                                 <h4 class="title" data-i18n="sec2Card3">Infraestructura crítica que respalda tu operación 24/7</h4>
                                 <span data-i18n="catDC3">Data Center</span>
                                 <ul>
-                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.facebook.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupoarcondec/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                                     <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
@@ -751,9 +759,9 @@
                                 <h4 class="title" data-i18n="navSrvCosdc">Construcción llave en mano</h4>
                                 <span data-i18n="catDC">Data Center</span>
                                 <ul>
-                                    <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.facebook.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/company/grupoarcondec/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                                     <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
@@ -964,7 +972,7 @@
                     <div class="col-lg-3">
                         <div class="footer-logo">
                             <a href="index.html"><img src="assets/images/arcondec/brand/logo-arcondec-white.png" alt="Grupo Arcondec"></a>
-                            <img class="duns" src="assets/images/arcondec/brand/duns_v2.png" alt="Certificación D-U-N-S">
+                            <img class="duns" src="assets/images/arcondec/brand/duns_v2.png" alt="Certificación Dun &amp; Bradstreet">
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4">
@@ -1050,9 +1058,9 @@
                 <div class="col-lg-12">
                     <div class="footer-copyright footer-copyright-11 d-flex align-items-end">
                         <ul>
-                            <li><a href="https://www.facebook.com/VentasArcondec/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="https://www.instagram.com/grupo_arcondec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="https://www.linkedin.com/company/grupo-arcondec-s-a-de-c-v" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.facebook.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.instagram.com/grupoarcondec" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/grupoarcondec/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                             <li><a href="https://www.youtube.com/@GRUPO_ARCONDEC" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                         </ul>
                         <p><span data-i18n="footCopy">Grupo Arcondec S.A. de C.V. Copyright © 2026 | Todos los derechos Reservados</span> | <a href="https://www.arcondec.mx/AvisoPrivacidad.pdf" target="_blank" rel="noopener" data-i18n="footPrivacy2">Aviso de privacidad</a></p>
@@ -1108,6 +1116,12 @@
 
     <!--====== Main js ======-->
     <script src="assets/js/main.js"></script>
+
+    <!--====== Movimiento Arcondec (GSAP) ======-->
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/SplitText.min.js"></script>
+    <script src="assets/js/arcondec-motion.js"></script>
 
     <!--====== i18n ES/EN Arcondec ======-->
     <script src="assets/js/arcondec-i18n.js"></script>

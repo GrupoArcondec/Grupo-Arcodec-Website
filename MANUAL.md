@@ -6,7 +6,7 @@
 
 **Documento de entrega técnica y guía del editor**
 
-Versión 2.2 · Agosto 2026 · Elaborado por JectCode
+Versión 2.3 · Agosto 2026 · Elaborado por JectCode
 
 [grupo-arcondec.vercel.app](https://grupo-arcondec.vercel.app) · [github.com/Juanescanar23/Grupo-Arcondec](https://github.com/Juanescanar23/Grupo-Arcondec)
 
@@ -190,7 +190,7 @@ El comportamiento de Vercel está gobernado por un único archivo en la raíz:
   (por eso una imagen reemplazada con el mismo nombre tarda en refrescarse — ver
   6.5); los **estilos y scripts** se guardan una hora, y el generador les añade una
   huella de versión (`?v=a1b2c3`) para que cada novedad llegue al instante de todos
-  modos. Este equilibrio es parte del rendimiento que Google mide (ver 7.4): si se
+  modos. Este equilibrio es parte del rendimiento que Google mide (ver 7.5): si se
   cambia la política de caché hay que entender ese versionado primero.
 - **Las cabeceras de seguridad** que el sitio envía en cada respuesta: protección
   contra la interpretación maliciosa de archivos (`nosniff`), contra el secuestro de
@@ -475,7 +475,7 @@ carpetas (el resto de `assets/images/` pertenece a la plantilla y no se toca):
    dimensiones (`tools/image_sizes.json`) que el generador usa para reservar el
    espacio exacto de cada imagen en la página. Si se omite y la imagen nueva tiene
    otra proporción, la página «brinca» mientras carga — un defecto que además Google
-   penaliza (ver 7.4).
+   penaliza (ver 7.5).
 4. Regenerar y verificar como siempre (capítulo 8).
 
 **Para añadir una foto más a un servicio:** las fotos de servicio siguen la
@@ -581,7 +581,38 @@ información que Google indexa); y que ningún enlace interno apunte a una pági
 inexistente. Por eso la regla de oro n.º 3 es innegociable: el verificador en verde
 es la garantía de que una edición de textos no degradó el posicionamiento.
 
-### 7.4 La velocidad también es SEO
+### 7.4 Lo que queda por hacer fuera del sitio
+
+Todo el SEO que un sitio puede llevar **dentro** ya está integrado y automatizado.
+Lo que resta son altas y verificaciones en servicios externos — trámites de una sola
+vez que corresponden al propietario del dominio, en este orden de importancia:
+
+1. **Google Search Console** ([search.google.com/search-console](https://search.google.com/search-console)) —
+   **el paso imprescindible.** Es el panel gratuito de Google donde se comprueba la
+   propiedad del dominio y se envía el `sitemap.xml` que el sitio ya genera
+   (`https://<dominio>/sitemap.xml`). A partir de ahí muestra con qué búsquedas
+   aparece el sitio, en qué posición, qué páginas indexó y si encontró algún
+   problema. Sin esta alta, el posicionamiento ocurre igual, pero a ciegas: no hay
+   forma de medirlo.
+2. **Bing Webmaster Tools** ([bing.com/webmasters](https://www.bing.com/webmasters)) —
+   el equivalente de Microsoft; permite importar la configuración desde Search
+   Console en un clic. Menos tráfico, pero es lo que alimenta a Bing, a Copilot y a
+   parte de los buscadores con IA.
+3. **Perfil de Empresa de Google** ([google.com/business](https://www.google.com/business)) —
+   la ficha de Google Maps. El sitio ya emite los datos `LocalBusiness` (dirección,
+   horario, coordenadas); la ficha verificada es su complemento para las búsquedas
+   locales («ingeniería eléctrica Monterrey»).
+4. **Al mudar el dominio definitivo** (p. ej. a `arcondec.mx`): cambiar `BASE_URL`
+   (sección 6.6), dar de alta el dominio en Vercel, repetir el alta en Search
+   Console para el dominio nuevo, y configurar en el proveedor del dominio viejo
+   redirecciones permanentes (301) página a página hacia el nuevo, para conservar
+   el posicionamiento acumulado.
+5. **Herramientas de medición continua** (opcionales): Semrush, Ahrefs o su
+   alternativa de código abierto OpenSEO sirven para investigar palabras clave y
+   vigilar competidores. Son servicios externos de pago — decisión de presupuesto
+   de marketing, no un pendiente técnico del sitio.
+
+### 7.5 La velocidad también es SEO
 
 Google mide la experiencia de carga real de las páginas (los llamados *Core Web
 Vitals*) y la usa como factor de posicionamiento. Tres decisiones de este proyecto

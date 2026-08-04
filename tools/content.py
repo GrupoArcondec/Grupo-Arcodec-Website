@@ -42,9 +42,9 @@ WHATSAPP = (
 )
 
 SOCIAL = [
-    ("facebook-f", "Facebook", "https://www.facebook.com/VentasArcondec/"),
-    ("instagram", "Instagram", "https://www.instagram.com/grupo_arcondec/"),
-    ("linkedin-in", "LinkedIn", "https://www.linkedin.com/company/grupoarcondec"),
+    ("facebook-f", "Facebook", "https://www.facebook.com/grupoarcondec"),
+    ("instagram", "Instagram", "https://www.instagram.com/grupoarcondec"),
+    ("linkedin-in", "LinkedIn", "https://www.linkedin.com/company/grupoarcondec/"),
     ("youtube", "YouTube", "https://www.youtube.com/@GRUPO_ARCONDEC"),
 ]
 
@@ -65,7 +65,7 @@ SERVICES = [
         "es": {
             "nav": "Proyectos eléctricos",
             "title": "Proyectos eléctricos integrales",
-            "meta": "En Grupo Arcondec desarrollamos proyectos eléctricos integrales: diseño de redes de tierras, estudios eléctricos, y servicios AC/DC con más de 30 años de experiencia.",
+            "meta": "Desarrollamos proyectos eléctricos integrales: diseño de redes de tierras, estudios eléctricos y servicios AC/DC, con más de 30 años de experiencia.",
             "keywords": "proyectos eléctricos, redes de tierras, estudios eléctricos, servicios AC, servicios DC, ingeniería eléctrica, Grupo Arcondec, infraestructura crítica",
             "h1": "Proyectos eléctricos integrales",
             "lead": "Soluciones eléctricas de alto desempeño, listas para operar desde el primer día",
@@ -94,7 +94,7 @@ SERVICES = [
         "en": {
             "nav": "Electrical Projects",
             "title": "Comprehensive Electrical Projects",
-            "meta": "Grupo Arcondec develops comprehensive electrical projects: grounding network design, electrical studies and AC/DC services, backed by more than 30 years of experience.",
+            "meta": "We develop comprehensive electrical projects: grounding network design, electrical studies and AC/DC services, backed by over 30 years of experience.",
             "keywords": "electrical projects, grounding networks, electrical studies, AC services, DC services, electrical engineering, Grupo Arcondec, critical infrastructure",
             "h1": "Comprehensive electrical projects",
             "lead": "High-performance electrical solutions, ready to operate from day one",
@@ -130,7 +130,7 @@ SERVICES = [
         "es": {
             "nav": "Estudios eléctricos",
             "title": "Estudios eléctricos especializados",
-            "meta": "Realizamos estudios eléctricos especializados: sistemas de tierras, calidad de energía, arcos eléctricos y coordinación de protecciones. Garantizamos infraestructura segura y eficiente.",
+            "meta": "Estudios eléctricos especializados: sistemas de tierras, calidad de energía, Arc Flash y coordinación de protecciones para una infraestructura segura.",
             "keywords": "estudios eléctricos, sistema de tierras, calidad de energía, arco eléctrico, coordinación de protecciones, Grupo Arcondec, ingeniería eléctrica",
             "h1": "Estudios eléctricos especializados",
             "lead": "Asegura el cumplimiento normativo",
@@ -160,7 +160,7 @@ SERVICES = [
         "en": {
             "nav": "Electrical Studies",
             "title": "Specialized Electrical Studies",
-            "meta": "We carry out specialized electrical studies: grounding systems, power quality, arc flash and protection coordination. We guarantee safe and efficient infrastructure.",
+            "meta": "Specialized electrical studies: grounding systems, power quality, arc flash and protection coordination for safe, efficient infrastructure.",
             "keywords": "electrical studies, grounding system, power quality, arc flash, protection coordination, Grupo Arcondec, electrical engineering",
             "h1": "Specialized electrical studies",
             "lead": "Ensure regulatory compliance",
@@ -197,7 +197,7 @@ SERVICES = [
         "es": {
             "nav": "Corriente directa (DC)",
             "title": "Soluciones en corriente directa (DC)",
-            "meta": "Servicios especializados en sistemas de corriente directa (DC): diseño, instalación, banco de baterías, tableros DC y mantenimiento para infraestructura crítica, data centers e industria.",
+            "meta": "Sistemas de corriente directa (DC): diseño, instalación, bancos de baterías, tableros DC y mantenimiento para infraestructura crítica y data centers.",
             "keywords": "corriente directa, sistemas DC, baterías, tableros DC, UPS, mantenimiento eléctrico, infraestructura crítica, Grupo Arcondec",
             "h1": "Soluciones en corriente directa (DC)",
             "lead": "Energía sin interrupciones para entornos donde no se puede fallar",
@@ -225,7 +225,7 @@ SERVICES = [
         "en": {
             "nav": "Direct Current (DC)",
             "title": "Direct Current (DC) Solutions",
-            "meta": "Specialized services in direct current (DC) systems: design, installation, battery banks, DC panels and maintenance for critical infrastructure, data centers and industry.",
+            "meta": "Direct current (DC) systems: design, installation, battery banks, DC panels and maintenance for critical infrastructure and data centers.",
             "keywords": "direct current, DC systems, batteries, DC panels, UPS, electrical maintenance, critical infrastructure, Grupo Arcondec",
             "h1": "Direct current (DC) solutions",
             "lead": "Uninterrupted power for environments where failure is not an option",
@@ -260,7 +260,7 @@ SERVICES = [
         "es": {
             "nav": "Gestión de proyectos",
             "title": "Gestión integral de proyectos eléctricos",
-            "meta": "Gestión integral de proyectos eléctricos: coordinación de tiempos, documentación, supervisión técnica y cumplimiento normativo para data centers, industria y telecomunicaciones.",
+            "meta": "Gestión integral de proyectos eléctricos: tiempos, documentación, supervisión técnica y cumplimiento normativo para data centers e industria.",
             "keywords": "gestión de proyectos, project management, supervisión técnica, documentación técnica, infraestructura crítica, Grupo Arcondec",
             "h1": "Gestión integral de proyectos eléctricos",
             "lead": "Garantizamos control total en cada fase de tu obra",
@@ -287,7 +287,7 @@ SERVICES = [
         "en": {
             "nav": "Project Management",
             "title": "Comprehensive Electrical Project Management",
-            "meta": "Comprehensive electrical project management: schedule coordination, documentation, technical supervision and regulatory compliance for data centers, industry and telecommunications.",
+            "meta": "Comprehensive electrical project management: schedules, documentation, technical supervision and regulatory compliance for data centers and industry.",
             "keywords": "project management, electrical project coordination, technical supervision, technical documentation, critical infrastructure, Grupo Arcondec",
             "h1": "Comprehensive electrical project management",
             "lead": "We ensure total control at every stage of your project",
@@ -321,7 +321,7 @@ SERVICES = [
         "es": {
             "nav": "Construcción llave en mano",
             "title": "Construcción de data center llave en mano",
-            "meta": "Construcción de data centers llave en mano: UPS, plantas de emergencia, sistemas contra incendio, climatización de precisión y monitoreo BMS/DCIM para operación 24/7.",
+            "meta": "Construcción de data centers llave en mano: UPS, plantas de emergencia, sistemas contra incendio, climatización de precisión y monitoreo BMS/DCIM.",
             "keywords": "construcción data center, llave en mano, UPS, planta de emergencia, BMS, DCIM, infraestructura crítica, Grupo Arcondec",
             "h1": "Construcción de data center llave en mano",
             "lead": "Infraestructura crítica diseñada para máxima disponibilidad, eficiencia y control operativo",
@@ -394,7 +394,7 @@ SERVICES = [
         "es": {
             "nav": "Ingeniería civil",
             "title": "Ingeniería civil para centros de datos",
-            "meta": "Obra civil especializada para data centers: cimentación, piso falso en área blanca, confinamiento de pasillos y acabados industriales conforme a TIA-942, NEC y NFPA.",
+            "meta": "Obra civil para data centers: cimentación, piso falso en área blanca, confinamiento de pasillos y acabados conforme a TIA-942, NEC y NFPA.",
             "keywords": "ingeniería civil, data center, piso falso, área blanca, TIA-942, obra civil especializada, Grupo Arcondec",
             "h1": "Ingeniería civil para centros de datos",
             "lead": "Infraestructura física diseñada para soportar entornos de misión crítica con precisión estructural, funcional y operativa",
@@ -426,7 +426,7 @@ SERVICES = [
         "en": {
             "nav": "Civil Engineering",
             "title": "Civil Engineering for Data Centers",
-            "meta": "Specialized civil works for data centers: foundations, raised floors in white areas, aisle containment and industrial finishes compliant with TIA-942, NEC and NFPA.",
+            "meta": "Civil works for data centers: foundations, raised floors in white areas, aisle containment and industrial finishes per TIA-942, NEC and NFPA.",
             "keywords": "civil engineering, data center, raised floor, white area, TIA-942, specialized civil works, Grupo Arcondec",
             "h1": "Civil engineering for data centers",
             "lead": "Physical infrastructure designed to support mission-critical environments with structural, functional, and operational precision",
@@ -493,7 +493,7 @@ SERVICES = [
         "en": {
             "nav": "Engineering Services",
             "title": "Comprehensive Engineering Services",
-            "meta": "Electrical, mechanical and civil engineering for data centers in accordance with TIA-942, Uptime Institute, NEC and NFPA 70E, including full commissioning testing.",
+            "meta": "Electrical, mechanical and civil engineering for data centers per TIA-942, Uptime Institute, NEC and NFPA 70E, including commissioning testing.",
             "keywords": "engineering services, comprehensive engineering, TIA-942, Uptime Institute, commissioning, data center, Grupo Arcondec",
             "h1": "Comprehensive engineering services",
             "lead": "Our work goes beyond design",

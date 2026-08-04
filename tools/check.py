@@ -23,6 +23,10 @@ from layout import BASE_URL  # noqa: E402  (fuente única del dominio)
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SKIP_DIRS = {"tools", "assets"}
 
+# La 404 es noindex y no forma parte del sitio indexable: se le exigen enlaces
+# sanos y alt en las imagenes, pero no canonical, hreflang ni h1 unico.
+SEO_EXEMPT = {"404.html"}
+
 # <h2 class="title" data-delay="0.6s"Texto</h2>  ->  falta el '>' de cierre.
 # Ancla en un atributo entrecomillado completo seguido de letra (no de espacio ni '>').
 MALFORMED_TAG = re.compile(
@@ -107,6 +111,7 @@ def local_target(ref):
 
 def main():
     problems = []
+    advice = []  # avisos SEO no bloqueantes: se muestran pero no fallan el build
     checked = 0
 
     for path in html_files():
@@ -120,7 +125,8 @@ def main():
             if target is not None and not target.exists():
                 problems.append("%s -> %s roto (%s)" % (rel, ref, attr))
 
-        if page.h1 != 1:
+        seo = str(rel) not in SEO_EXEMPT
+        if seo and page.h1 != 1:
             problems.append("%s tiene %d <h1> (debe haber exactamente 1)" % (rel, page.h1))
 
         # Etiqueta de apertura mal cerrada: <h2 class="x"Texto</h2>. El navegador
@@ -140,11 +146,11 @@ def main():
                 problems.append("%s: <%s> vacío" % (rel, m.group(1)))
         if not (page.title or "").strip():
             problems.append("%s sin <title>" % rel)
-        if not (page.description or "").strip():
+        if seo and not (page.description or "").strip():
             problems.append("%s sin meta description" % rel)
-        if not page.canonical:
+        if seo and not page.canonical:
             problems.append("%s sin canonical" % rel)
-        if len(page.alternates) < 2:
+        if seo and len(page.alternates) < 2:
             problems.append("%s sin hreflang ES/EN" % rel)
         for alt in page.alternates:
             if alt.startswith(BASE_URL):
@@ -156,7 +162,23 @@ def main():
         if not page.lang:
             problems.append("%s sin atributo lang en <html>" % rel)
 
+        # Longitudes recomendadas en resultados de Google: title <=60 visibles,
+        # description 70-160. Son consejos de redaccion, no errores.
+        if seo:
+            t = (page.title or "").strip()
+            d = (page.description or "").strip()
+            if len(t) > 65:
+                advice.append("%s: title de %d caracteres (ideal <=60): %s…" % (rel, len(t), t[:50]))
+            if len(d) > 165:
+                advice.append("%s: description de %d caracteres (ideal <=160)" % (rel, len(d)))
+            elif d and len(d) < 70:
+                advice.append("%s: description de %d caracteres (ideal >=70)" % (rel, len(d)))
+
     print("Páginas revisadas: %d" % checked)
+    if advice:
+        print("\nAvisos SEO (no bloquean):")
+        for a in advice:
+            print("  ~ %s" % a)
     if problems:
         print("\nProblemas encontrados (%d):" % len(problems))
         for p in problems:

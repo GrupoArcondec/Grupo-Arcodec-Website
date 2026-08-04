@@ -1,142 +1,227 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://grupo-arcondec.vercel.app/blog.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/blog.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/contacto.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/contacto.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/contacto.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/nosotros.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/blog.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/blog.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/careers.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/careers.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/contacto.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/contacto.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/index.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/projects.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/proyectos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/projects.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/proyectos.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/services.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/services/civil-engineering-data-center.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/ingenieria-civil-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/civil-engineering-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/ingenieria-civil-data-center.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/services/data-center-construction.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/construccion-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/data-center-construction.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/construccion-data-center.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/services/direct-current-solutions.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/soluciones-corriente-directa-dc.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/direct-current-solutions.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/soluciones-corriente-directa-dc.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/services/electrical-projects.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/proyectos-electricos-integrales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/electrical-projects.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/proyectos-electricos-integrales.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/services/electrical-studies.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/estudios-electricos-especializados.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/electrical-studies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/estudios-electricos-especializados.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/services/engineering-services.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/servicios-ingenieria-integral.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/engineering-services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/servicios-ingenieria-integral.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/services/project-management.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/project-management.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/index.html"/>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/nosotros.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/nosotros.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/proyectos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/proyectos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/projects.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/proyectos.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/servicios.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/servicios/construccion-data-center.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/construccion-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/data-center-construction.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/construccion-data-center.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/servicios/estudios-electricos-especializados.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/estudios-electricos-especializados.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/electrical-studies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/estudios-electricos-especializados.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/project-management.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/servicios/ingenieria-civil-data-center.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/ingenieria-civil-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/civil-engineering-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/ingenieria-civil-data-center.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/servicios/proyectos-electricos-integrales.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/proyectos-electricos-integrales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/electrical-projects.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/proyectos-electricos-integrales.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/servicios/servicios-ingenieria-integral.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/servicios-ingenieria-integral.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/engineering-services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/servicios-ingenieria-integral.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/servicios/soluciones-corriente-directa-dc.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/servicios/soluciones-corriente-directa-dc.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/services/direct-current-solutions.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/servicios/soluciones-corriente-directa-dc.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/careers.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

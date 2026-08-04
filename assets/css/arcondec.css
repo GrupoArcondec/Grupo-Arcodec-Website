@@ -22,13 +22,35 @@
 .lang-switch.active { font-weight: 700; text-decoration: underline; }
 /* Fondo del hero optimizado para web (mismo encuadre, 360 KB vs 2 MB del PNG) */
 .hero-area.hero-2-area .section__bg { background-image: url(../images/hero-bg-2-opt.jpg); }
-/* El topbar y el nav llevan textos más largos que el demo: se compactan en tablets para que no desborden */
+
+/* Las dos diapositivas del hero medían distinto (1275px la primera, 1072px la
+   segunda: cinco líneas de titular contra tres). Slick en modo fade deja las dos
+   flotando en el track, así que el track conserva la altura de la más alta y la
+   segunda dejaba una banda blanca de 200px bajo su foto.
+   Superponiéndolas en una sola celda de grid las dos se estiran a la altura del
+   track: misma altura, misma foto de fondo y el contenido sigue centrado. El
+   `left` que slick escribe en línea sobra al estar ya superpuestas. */
+.hero-slider.hero-11-slider .slick-track { display: grid; width: 100% !important; }
+.hero-slider.hero-11-slider .slick-track > .slick-slide {
+    grid-area: 1 / 1;
+    left: 0 !important;
+    width: 100% !important;
+}
+/* El topbar lleva textos más largos que el demo: se compacta en tablets para que no desborde */
 @media only screen and (min-width: 992px) and (max-width: 1200.98px) {
     .header-top .header-top-item .info ul li { margin-right: 18px; font-size: 15px; }
     .header-top .header-top-item .info ul li:nth-child(2) { display: none; }
     .header-nav .navigation .navbar .navbar-nav > .nav-item > a { font-size: 15px; margin-right: 16px; white-space: nowrap; }
-    /* El nav de Arcondec tiene rótulos más largos que el demo: en este rango basta el ítem Contáctanos del menú */
-    .header-nav .navbar-btn { display: none !important; }
+}
+
+/* El desplegable de Servicios mide 290px y cuelga del borde izquierdo de su ítem.
+   El menú va alineado a la derecha, así que cuanto más cortos son los rótulos más
+   a la derecha queda «Servicios» y más se asoma el panel: con el menú actual se
+   salía 54px de la pantalla a 1200px de ancho. Anclado al borde derecho del ítem
+   crece hacia dentro y cabe en cualquier ancho, pase lo que pase con los rótulos.
+   Por debajo de 992px el menú es un acordeón y el template ya fuerza left:0. */
+@media (min-width: 992px) {
+    .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu { left: auto; right: 0; }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .header-top .header-top-item .info ul li:nth-child(2),
@@ -38,13 +60,59 @@
 .brand-3-items .item img { max-height: 60px; width: auto; max-width: 170px; }
 /* Sello D-U-N-S (blanco) sobre la franja oscura del footer, como en arcondec.mx */
 .footer-2-top .footer-logo img.duns { width: auto; display: block; }
-/* Las tarjetas Data Center usan foto en el overlay (el demo usa un avatar de 139px) */
-.team-12-item .team-overlay-2 img { width: 139px; height: 139px; object-fit: cover; border-radius: 10px; }
+/* ===== Tarjetas Data Center (portada) =====
+   El template las trae pensadas para un equipo humano: la cara visible es un
+   avatar redondo de 139px y la foto grande solo asoma al pasar el cursor. Con
+   fotos de obra eso no se lee —cuatro miniaturas donde no se distingue nada— y
+   además en un móvil no hay cursor con el que descubrirlas.
+
+   Se invierte el orden de las capas: la cara visible (.team-overlay-2) pasa a
+   ser la que manda en el alto de la tarjeta, con la foto a todo el ancho arriba
+   y el texto debajo, como en las tarjetas del blog. La foto grande y el overlay
+   del hover quedan por detrás en posición absoluta, cubriendo la tarjeta. */
+.team-2-item.team-12-item > img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+}
+.team-2-item.team-12-item .team-overlay-2 {
+    position: relative;
+    padding-top: 0;
+    padding-bottom: 28px;
+}
+.team-12-item .team-overlay-2 img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 27 / 19;
+    object-fit: cover;
+    border-radius: 0;
+    margin-bottom: 22px;
+}
+.team-12-item .team-overlay-2 .title,
+.team-12-item .team-overlay-2 span { padding-left: 20px; padding-right: 20px; }
+/* ===== Radio uniforme en las fotos de contenido =====
+   El template redondea unas sí y otras no: la primera foto de «Nosotros» lleva
+   15px y la segunda ninguno, justo al lado. Y las del blog van embutidas 16px
+   dentro de su tarjeta, así que el redondeo de la tarjeta no las alcanza y salen
+   en pico. Las que ya recorta un contenedor ceñido —tarjetas de proyecto, de
+   Data Center, portfolio— no necesitan nada: heredan el de su tarjeta.
+   Los iconos, el patrón de puntos y los logos quedan fuera a propósito. */
+.article-thumb img,
+.about-2-thumb .thumb-2 img,
+.case-thumb img,
+.testimonial-11-thumb img { border-radius: 15px; }
+
 /* Las fotos reales de Arcondec tienen proporciones variadas: se fuerzan las proporciones
    exactas del demo para que renglones y columnas queden alineados (responsive con aspect-ratio) */
 .article-11-item .article-thumb img { width: 100%; aspect-ratio: 320 / 260; object-fit: cover; }
 .article-11-item .article-content h3.title { min-height: 90px; }
-.team-12-item > img { width: 100%; aspect-ratio: 255 / 322; object-fit: cover; }
+/* La foto de fondo de las tarjetas Data Center ya no fija la proporción: ahora va
+   en absoluto cubriendo la tarjeta, y quien manda en el alto es el contenido
+   (ver el bloque de esas tarjetas más arriba). */
 .testimonial-11-thumb img { width: 100%; aspect-ratio: 445 / 600; object-fit: cover; }
 .service-2-item.service-11-item { min-height: 370px; }
 /* Botón flotante de WhatsApp (FAB verde oficial) */
@@ -69,12 +137,14 @@
 /* Header en el azul oficial del logo (#1F439B) */
 .header-2-area .header-top { background: #132D67; }
 .header-area.header-2-area .header-nav.sticky { background-color: #1F439B; }
-/* Logo oficial (wordmark blanco + ícono naranja) */
-.navbar-brand img { width: 170px; height: auto; }
+/* Logo oficial (wordmark blanco + ícono naranja). El del template es más
+   pequeño de lo que pide una marca con wordmark largo; 195px lo hace legible sin
+   comerse el nav —queda holgura de sobra hasta el primer ítem del menú—. */
+.navbar-brand img { width: 195px; height: auto; }
 @media (min-width: 1201px) {
     .header-nav .navigation .navbar .navbar-nav > .nav-item > a { margin-right: 22px; white-space: nowrap; }
 }
-.footer-2-top .footer-logo a img { width: 190px; height: auto; }
+.footer-2-top .footer-logo a img { width: 215px; height: auto; }
 /* Fondos del footer en el azul oficial */
 .footer-2-area .footer-2-top { background: #1F439B; }
 footer.footer-area.footer-2-area { background: #132D67; }
@@ -89,8 +159,20 @@ footer.footer-area.footer-2-area { background: #132D67; }
 /* Tabs de cobertura */
 .case-tab-btn.case-tab-btn-11 .nav .nav-link span::before { background: #FFBB00; }
 .case-tab-btn.case-tab-btn-11 .nav .nav-link.active { background: #1F439B; }
-/* Franja CTA */
-.subscribe-area.subscribe-11-area { background: #1F439B; }
+/* Franja CTA. Iba en el mismo #1F439B que la franja superior del pie, justo
+   debajo, y las dos se leían como un único bloque azul de 500px. En azul marino
+   el cierre de página queda escalonado: contenido claro → CTA oscuro → pie azul.
+   El filo superior en el degradado de marca marca dónde empieza el llamado. */
+.subscribe-area.subscribe-11-area { background: #132D67; position: relative; }
+.subscribe-area.subscribe-11-area::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #FFBB00 0%, #F7931E 100%);
+}
 .subscribe-form.subscribe-11-form ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
 /* Bloque del testimonial */
 .testimonial-9-active .testimonial-11-thumb::before { background: #1F439B; }
@@ -126,7 +208,19 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .article-11-item .article-content .date .item { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
 .article-11-item .article-content > a .icon::before { background: #1F439B; }
 .footer-item .footer-list.footer-list-11 ul li a:hover { color: #FFBB00; }
+/* Botones de redes del pie: el template los pinta en gris #383833, el único gris
+   de toda la página. Van en el azul de marca con un filo blanco tenue (ícono
+   blanco sobre #1F439B: 9.0:1). El relleno amarillo del hover ya existía, solo
+   faltaba bajar el ícono a azul marino para que se lea sobre el ámbar: #132D67
+   sobre #FFBB00 da 7.7:1, mientras que el blanco que había daba 1.7:1. */
+.footer-2-area .footer-copyright ul li a {
+    background: #1F439B;
+    border: 1px solid rgba(255, 255, 255, .2);
+    line-height: 46px;
+    transition: color .3s ease-out 0s;
+}
 .footer-2-area .footer-copyright.footer-copyright-11 ul li a::before { background: #FFBB00; }
+.footer-2-area .footer-copyright.footer-copyright-11 ul li a:hover { color: #132D67; }
 
 /* ==========================================================================
    Componentes de las páginas interiores (prefijo .arc-)
@@ -1044,6 +1138,57 @@ a.service-2-item:hover { color: #fff; }
     .brand-3-items .item { margin: 15px 25px; }
 }
 
+/* ===== Los logos de clientes, en móvil: cinta en vez de columna =====
+   Envolviendo, los diez logos caían de uno en uno y la sección medía 1078px —más
+   de una pantalla entera— para enseñar diez imágenes. En una sola línea que se
+   desliza ocupan ~200px y se leen mejor.
+
+   Van dos capas, a propósito:
+   1) Esto: una tira que se arrastra con el dedo. Funciona sin JavaScript y es lo
+      que ve quien pide movimiento reducido.
+   2) arcondec-motion.js la convierte en cinta continua cuando el movimiento está
+      permitido, añadiendo .arc-marquee. */
+@media (max-width: 767.98px) {
+    .brand-3-area .brand-3-items {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+        /* Los logos no se cortan en seco contra el borde de la pantalla */
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+    }
+    .brand-3-area .brand-3-items::-webkit-scrollbar { display: none; }
+
+    .brand-3-area .brand-3-items .item {
+        flex: 0 0 auto;
+        margin: 0 18px;
+        scroll-snap-align: center;
+    }
+
+    /* A 170px solo caben dos logos en una pantalla de 390 y la cinta se lee
+       hueca. A 118px entran tres y se entiende de un vistazo que hay más. */
+    .brand-3-area .brand-3-items .item img {
+        max-width: 118px;
+        max-height: 44px;
+    }
+
+    /* 85px entre las dos tiras eran para dos bloques altos, no para dos líneas */
+    .brand-3-area .brand-3-items.mt-85 { margin-top: 22px; }
+
+    /* Con la cinta en marcha manda el JS: ni scroll nativo ni imantado */
+    .brand-3-area .brand-3-items.arc-marquee {
+        overflow: hidden;
+        scroll-snap-type: none;
+    }
+    .brand-3-area .arc-marquee-track {
+        display: flex;
+        flex-wrap: nowrap;
+        width: max-content;
+    }
+}
+
 /* La segunda foto de Nosotros salía estirada 3× en vertical: el height="1200"
    del atributo fijaba la altura y la corrección de height:auto solo alcanzaba
    a .thumb img, no a .thumb-2 img. */
@@ -1068,3 +1213,170 @@ a.service-2-item:hover { color: #fff; }
 /* Igual que en .about-2-area: la animación fadeInRight desplaza la tarjeta y
    provoca un destello de scroll horizontal mientras dura. */
 .article-2-area { overflow-x: hidden; }
+
+/* ==========================================================================
+   Movimiento — acompaña a assets/js/arcondec-motion.js (GSAP + ScrollTrigger)
+   --------------------------------------------------------------------------
+   Aquí solo va lo que se resuelve mejor en CSS: el ajuste de las animaciones de
+   entrada del hero (las del propio slick) y los microgestos de hover. La
+   aparición por scroll la monta el JS, que además respeta prefers-reduced-motion.
+   ========================================================================== */
+
+/* Barra de progreso de lectura. La pinta y la mueve arcondec-motion.js; si GSAP
+   no carga, el elemento no llega a crearse. */
+.arc-progress {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    background: linear-gradient(90deg, #FFBB00 0%, #F7931E 100%);
+    pointer-events: none;
+}
+
+/* El aire que necesita la máscara de cada línea para no cortar los trazos que
+   bajan lo pone arcondec-motion.js en línea, compensado con un margen negativo:
+   partir un titular no puede cambiar el alto de la página o los puntos de disparo
+   de ScrollTrigger dejan de cuadrar con el recorrido real. */
+
+/* animate.css desplaza los bloques el 100% de su ancho o alto: en el titular del
+   hero eso son 700px de barrido en cada cambio de diapositiva, muy brusco al lado
+   del resto de la interfaz. Estas reglas solo actúan como respaldo: cuando GSAP
+   sí carga, arcondec-motion.js quita el data-animation y el hero lo mueve él.
+   Mismos nombres de clase que aplica main.js, recorrido corto. */
+.hero-2-content [data-animation].fadeInDown { animation-name: arcHeroInDown; }
+.hero-2-content [data-animation].fadeInLeft { animation-name: arcHeroInLeft; }
+.hero-2-content [data-animation].fadeInUp { animation-name: arcHeroInUp; }
+
+@keyframes arcHeroInDown {
+    from { opacity: 0; transform: translate3d(0, -24px, 0); }
+    to { opacity: 1; transform: none; }
+}
+@keyframes arcHeroInLeft {
+    from { opacity: 0; transform: translate3d(-48px, 0, 0); }
+    to { opacity: 1; transform: none; }
+}
+@keyframes arcHeroInUp {
+    from { opacity: 0; transform: translate3d(0, 32px, 0); }
+    to { opacity: 1; transform: none; }
+}
+
+/* Las tarjetas propias (.arc-project, .article-11-item) ya se levantaban al pasar
+   el cursor; las del template no. Mismo gesto en todas para que la página
+   responda igual en cualquier sección. */
+.service-2-item,
+.portfolio-style-2-item {
+    transition: transform .35s ease-out, box-shadow .35s ease-out;
+}
+.service-2-item:hover,
+.portfolio-style-2-item:hover {
+    transform: translateY(-6px);
+}
+.portfolio-style-2-item:hover {
+    box-shadow: 0 18px 40px rgba(19, 45, 103, .18);
+}
+
+/* Los botones cambiaban de color pero no se movían: 2px bastan para que el clic
+   se sienta. Los .main-btn son <a> y el template ya les anima `all`; el del boletín
+   es un <button>, al que esa regla global no llega, y su transición propia (más
+   arriba) solo cubría color y fondo: sin esto el desplazamiento sería un salto seco. */
+.footer-newsletter-item .input-box button {
+    transition: background .3s ease-out 0s, color .3s ease-out 0s, transform .3s ease-out 0s;
+}
+.main-btn:hover,
+.main-btn-2:hover,
+.main-btn-3:hover,
+.footer-newsletter-item .input-box button:hover,
+.contact-us-box .input-box button:hover {
+    transform: translateY(-2px);
+}
+
+/* Ni el hover ni la aparición deben moverse con animaciones reducidas. */
+@media (prefers-reduced-motion: reduce) {
+    .hero-2-content [data-animation].fadeInDown,
+    .hero-2-content [data-animation].fadeInLeft,
+    .hero-2-content [data-animation].fadeInUp { animation-name: none; }
+
+    .service-2-item,
+    .portfolio-style-2-item,
+    .arc-project,
+    .article-2-item.article-11-item,
+    .main-btn,
+    .main-btn-2,
+    .main-btn-3 { transition: none; }
+
+    .service-2-item:hover,
+    .portfolio-style-2-item:hover,
+    .arc-project:hover,
+    .article-2-item.article-11-item:hover,
+    .main-btn:hover,
+    .main-btn-2:hover,
+    .main-btn-3:hover,
+    .footer-newsletter-item .input-box button:hover,
+    .contact-us-box .input-box button:hover { transform: none; }
+}
+
+/* ==========================================================================
+   Página de Contacto reorganizada
+   --------------------------------------------------------------------------
+   La página abría con el formulario y dejaba los teléfonos en la columna de al
+   lado: en un móvil de 390px eso eran 2,8 pantallas de scroll —los nueve campos
+   enteros— antes de ver un número al que llamar. Ahora las tres vías que no
+   piden rellenar nada van primero, en tres tarjetas iguales.
+   ========================================================================== */
+
+/* Nota: aquí hubo un `position: sticky` para la columna de datos, pensando que
+   quedaría corta al lado del formulario. Medido, no hace falta: los tres paneles
+   suman 1129px frente a los 1133px del formulario (y a 992-1100px la columna de
+   datos es incluso 86px más alta), así que nunca llegaba a activarse. */
+
+/* El horario estaba solo en el JSON-LD: lo veía Google y no el visitante.
+   Va al fondo de la tarjeta; es el único elemento con margen automático, porque
+   dos repartirían el hueco entre ellos y dejarían el contenido flotando. */
+.arc-hours {
+    margin-bottom: 0;
+    padding-top: 18px;
+    color: #5C6784;
+    font-size: 15px;
+}
+
+/* Los teléfonos y correos son objetivos táctiles: 44px de alto en móvil, que es
+   el mínimo cómodo para el pulgar. */
+@media (max-width: 991px) {
+    .arc-contact-aside ul li a { padding-top: 11px; padding-bottom: 11px; }
+}
+
+/* Ningún campo obligatorio se señalaba: solo se descubrían al fallar el envío.
+   El asterisco lo marca a la vista y `aria-required` a los lectores de pantalla,
+   así que la información no viaja solo en el color (WCAG 1.4.1 y 3.3.2). */
+.contact-us-box .input-box label .req {
+    color: #B3541E;
+    font-weight: 700;
+    margin-left: 2px;
+}
+.form-required-note {
+    margin-top: 6px;
+    margin-bottom: 0;
+    color: #5C6784;
+    font-size: 15px;
+}
+
+/* Las etiquetas de la rejilla comparten línea base aunque una se parta en dos
+   al traducirse: si no, los dos campos de la fila arrancan a alturas distintas
+   y se lee como un error de maquetación. */
+@media (min-width: 768px) {
+    .contact-us-box .input-box label { min-height: 2.4em; }
+}
+
+/* El mapa cierra la página a todo el ancho y en grande: es lo que se mira para
+   decidir si la oficina queda a mano. En móvil se recorta a 340px, que ya deja
+   ver las calles sin comerse dos pantallas. */
+@media (min-width: 992px) {
+    .contact-map iframe { height: 520px; }
+}
+@media (max-width: 991px) {
+    .contact-map iframe { height: 340px; }
+}

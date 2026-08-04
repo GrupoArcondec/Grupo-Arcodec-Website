@@ -12,6 +12,7 @@ corregir un texto, se corrige en content.py / pages.py y se vuelve a ejecutar,
 no editando el HTML a mano.
 """
 
+import hashlib
 import json
 import pathlib
 import re
@@ -62,10 +63,47 @@ def dims(src):
     return 'width="%d" height="%d"' % tuple(par) if par else ""
 
 
+_HUELLAS = {}
+_ASSET_RE = re.compile(r'(src|href)="(/assets/(?:css|js)/[^"?#]+)"')
+
+
+def _huella(ruta):
+    """Ocho caracteres del hash del archivo, o None si no está en disco."""
+    if ruta not in _HUELLAS:
+        archivo = ROOT / ruta.lstrip("/")
+        try:
+            digest = hashlib.sha1(archivo.read_bytes()).hexdigest()[:8]
+        except OSError:
+            digest = None
+        _HUELLAS[ruta] = digest
+    return _HUELLAS[ruta]
+
+
+def versionar(html):
+    """Pone el hash del contenido en la URL de cada CSS y JS.
+
+    vercel.json sirve `assets/css` y `assets/js` con `max-age=3600`, así que tras
+    un despliegue un visitante recurrente podía pasarse hasta una hora con el HTML
+    nuevo y los estilos viejos —el sitio parecía no haber cambiado—. Con el hash
+    en la URL, cada versión estrena dirección y el navegador la pide en cuanto
+    llega; mientras el archivo no cambie, la caché larga sigue trabajando igual.
+    Las imágenes y las fuentes se quedan como están: no cambian nunca.
+    """
+
+    def sustituye(m):
+        atributo, ruta = m.group(1), m.group(2)
+        digest = _huella(ruta)
+        if not digest:
+            return m.group(0)
+        return '%s="%s?v=%s"' % (atributo, ruta, digest)
+
+    return _ASSET_RE.sub(sustituye, html)
+
+
 def write(path, content):
     dest = ROOT / path.lstrip("/")
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(content, encoding="utf-8")
+    dest.write_text(versionar(content), encoding="utf-8")
     return dest
 
 
@@ -507,7 +545,15 @@ def render_about(lang):
         </div>
     </section>
 
-    <!--====== VALORES ======-->
+    <!--====== VALORES Y QUÉ HACEMOS ======-->
+    <!--
+        Valores y servicios comparten el mismo fondo suave, así que iban en dos
+        <section> seguidas cada una con 90px de relleno arriba y abajo: 180px de
+        espacio muerto entre las tarjetas y los paneles, sin ninguna línea que
+        justificara el corte. Y los paneles salían huérfanos, sin título de
+        sección: se leía como si faltara algo. Van en una sola banda, cada bloque
+        con su título.
+    -->
 
     <section class="arc-soft-area pt-90 pb-90">
         <div class="container">
@@ -521,17 +567,17 @@ def render_about(lang):
             <div class="row justify-content-center arc-service-grid">
 {values}
             </div>
-        </div>
-    </section>
-
-    <!--====== QUÉ HACEMOS ======-->
-
-    <section class="arc-soft-area pt-90 pb-90">
-        <div class="container">
+            <div class="row justify-content-center pt-70">
+                <div class="col-lg-8">
+                    <div class="section-title-9 text-center">
+                        <h2 class="title">{services_title}</h2>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="arc-panel arc-links mt-30">
-                        <h2 class="title h4">{ie_title}</h2>
+                        <h3 class="title h4">{ie_title}</h3>
                         <ul>
 {ie_items}
                         </ul>
@@ -539,7 +585,7 @@ def render_about(lang):
                 </div>
                 <div class="col-lg-6">
                     <div class="arc-panel arc-links mt-30">
-                        <h2 class="title h4">{dc_title}</h2>
+                        <h3 class="title h4">{dc_title}</h3>
                         <ul>
 {dc_items}
                         </ul>
@@ -563,6 +609,7 @@ def render_about(lang):
         distinct_title=e(c["distinct_title"]),
         distinct=e(c["distinct"]),
         values_title=e(c["values_title"]),
+        services_title=e(c["services_title"]),
         values=values,
         ie_title=e(LIST_IE[lang]["title"]),
         ie_items="\n".join(
@@ -739,10 +786,27 @@ def render_contact(lang):
         out += ['<option value="%s">%s</option>' % (e(v), e(v)) for v in values]
         return "\n                                        ".join(out)
 
-    mails = "\n".join(
-        '                            <li><span>%s:</span> <a href="mailto:%s">%s</a></li>'
-        % (e(label), addr, addr)
-        for label, addr in c["mails"]
+    def mail_items(pares):
+        return "\n".join(
+            '                            <li><span>%s:</span> <a href="mailto:%s">%s</a></li>'
+            % (e(label), addr, addr)
+            for label, addr in pares
+        )
+
+    # Los cuatro buzones, en una sola tarjeta y etiquetados por área: repartirlos
+    # en dos paneles distintos obligaba a buscar en dos sitios.
+    mails = mail_items(c["mails"])
+
+    # Un número por línea, con su propio tel:. Antes «Oficina» anunciaba dos
+    # números y marcaba solo el primero, y el móvil salía repetido en «Oficina» y
+    # en «Celular». La fuente es content.py, la misma que la barra y el pie.
+    phones = "\n".join(
+        '                            <li><a href="tel:%s">%s</a></li>' % (tel, e(txt))
+        for tel, txt in (
+            (CONTACT["phone1_tel"], CONTACT["phone1"]),
+            (CONTACT["phone2_tel"], CONTACT["phone2"]),
+            (CONTACT["mobile_tel"], CONTACT["mobile"]),
+        )
     )
 
     ld = {
@@ -772,26 +836,79 @@ def render_contact(lang):
     body = """
     <main id="contenido">
 
-    <section class="pt-90 pb-90">
+    <!--====== DOS BLOQUES: FORMULARIO Y VÍAS DIRECTAS ======-->
+    <!--
+        Un solo bloque de contacto con dos mitades, y el mapa grande al cierre.
+
+        El orden del DOM pone las vías directas PRIMERO y `order-lg-*` las manda a
+        la derecha en escritorio. Así en el móvil, donde las columnas se apilan, se
+        llega a un teléfono en la primera pantalla en vez de detrás de los nueve
+        campos del formulario (antes: 2,8 pantallas de scroll), y en escritorio se
+        lee lo de siempre: formulario a la izquierda, datos a la derecha.
+
+        La columna de datos es más corta que el formulario —700px frente a 1100—,
+        así que se queda pegada al hacer scroll en vez de dejar 400px de blanco al
+        lado del botón de envío, que fue el problema del primer intento.
+    -->
+
+    <section class="arc-soft-area pt-90 pb-90">
         <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title-9 text-center">
+                        <h2 class="title h3">{direct_title}</h2>
+                        <div class="text"><p>{direct_text}</p></div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
 
-                <div class="col-lg-7">
+                <div class="col-lg-5 order-lg-2">
+                    <div class="arc-contact-aside">
+
+                        <div class="arc-panel arc-links mt-30">
+                            <h3 class="title h4">{call_title}</h3>
+                            <p>{call_note}</p>
+                            <ul>
+{phones}
+                            </ul>
+                            <p class="arc-hours">{hours_text}</p>
+                        </div>
+
+                        <div class="arc-panel arc-links mt-30">
+                            <h3 class="title h4">{wa_title}</h3>
+                            <p>{wa_note}</p>
+                            <a class="main-btn" href="{wa}" target="_blank" rel="noopener">{wa_btn}</a>
+                        </div>
+
+                        <div class="arc-panel arc-links mt-30">
+                            <h3 class="title h4">{mail_title}</h3>
+                            <p>{mail_note}</p>
+                            <ul>
+{mails}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-7 order-lg-1">
                     <div class="contact-us-box mt-30">
                         <h2 class="title h3">{form_title}</h2>
-                        <p>{form_text}</p>
-                        <form action="mailto:{sales}" method="post" enctype="text/plain" class="mt-30">
+                        <p>{form_note}</p>
+                        <p class="form-required-note">{required_note}</p>
+                        <form action="mailto:{sales}" method="post" enctype="text/plain" class="mt-30" aria-label="{form_title}">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-box mt-20">
-                                        <label for="f-name">{f_name}</label>
-                                        <input id="f-name" type="text" name="nombre" autocomplete="name" required>
+                                        <label for="f-name">{f_name} <span class="req">*</span></label>
+                                        <input id="f-name" type="text" name="nombre" autocomplete="name" required aria-required="true">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-box mt-20">
-                                        <label for="f-email">{f_email}</label>
-                                        <input id="f-email" type="email" name="correo" autocomplete="email" required>
+                                        <label for="f-email">{f_email} <span class="req">*</span></label>
+                                        <input id="f-email" type="email" name="correo" autocomplete="email" required aria-required="true">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -806,34 +923,38 @@ def render_contact(lang):
                                         <input id="f-company" type="text" name="empresa" autocomplete="organization">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- El motivo va a ancho completo: es la pregunta que
+                                     de verdad cualifica, y así las siete casillas
+                                     forman filas completas sin dejar ninguna huérfana
+                                     (antes «Giro» se quedaba solo con 269px de hueco). -->
+                                <div class="col-md-12">
                                     <div class="input-box mt-20">
-                                        <label for="f-state">{f_state_label}</label>
-                                        <select id="f-state" name="estado">
-                                        {states}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-box mt-20">
-                                        <label for="f-reason">{f_reason_label}</label>
-                                        <select id="f-reason" name="motivo" required>
+                                        <label for="f-reason">{f_reason_label} <span class="req">*</span></label>
+                                        <select id="f-reason" name="motivo" required aria-required="true">
                                         {reasons}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-box mt-20">
-                                        <label for="f-sector">{f_sector_label}</label>
-                                        <select id="f-sector" name="giro" required>
+                                        <label for="f-state">{f_state_label}</label>
+                                        <select id="f-state" name="estado" autocomplete="address-level1">
+                                        {states}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-box mt-20">
+                                        <label for="f-sector">{f_sector_label} <span class="req">*</span></label>
+                                        <select id="f-sector" name="giro" required aria-required="true">
                                         {sectors}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input-box mt-20">
-                                        <label for="f-message">{f_message}</label>
-                                        <textarea id="f-message" name="mensaje" rows="5" required></textarea>
+                                        <label for="f-message">{f_message} <span class="req">*</span></label>
+                                        <textarea id="f-message" name="mensaje" rows="5" required aria-required="true"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -847,32 +968,42 @@ def render_contact(lang):
                     </div>
                 </div>
 
-                <div class="col-lg-5">
-                    <div class="arc-panel mt-30">
-                        <h2 class="title h4">{addr_title}</h2>
-                        <p><a href="{maps}" target="_blank" rel="noopener">{addr_text}</a></p>
-                    </div>
-                    <div class="arc-panel mt-30">
-                        <h2 class="title h4">{phone_title}</h2>
-                        <ul>
-                            <li><a href="tel:{p1t}">{phone_office}</a></li>
-                            <li><a href="tel:{mt}">{phone_mobile}</a></li>
-                        </ul>
-                    </div>
-                    <div class="arc-panel mt-30">
-                        <h2 class="title h4">{mail_title}</h2>
-                        <ul>
-{mails}
-                        </ul>
-                    </div>
-                    <div class="arc-panel mt-30">
-                        <h2 class="title h4">{map_title}</h2>
-                        <div class="contact-map">
-                            <iframe title="{map_title}" src="https://www.google.com/maps?q=Grupo+Arcondec+Monterrey&amp;output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!--====== MAPA ======-->
+    <!--
+        El mapa vivía dentro de un panel de la columna lateral: 300px de alto en
+        una caja de 420px de ancho, donde no se distinguen ni las calles.
+        Fondo blanco, no arc-soft-area: va detrás de la banda del formulario, que
+        ya es suave, y dos bandas iguales seguidas suman sus rellenos y dejan un
+        hueco muerto en medio (el mismo fallo que había en Nosotros).
+    -->
+
+    <section class="pt-90 pb-90">
+        <div class="container">
+            <!-- La dirección y el botón van en el encabezado, no en un panel
+                 aparte: así el mapa se queda con todo el ancho y la sección es un
+                 solo bloque en vez de dos. -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title-9 text-center">
+                        <h2 class="title">{map_title}</h2>
+                        <div class="text">
+                            <p>{addr_text}</p>
+                            <p class="arc-hours">{hours_text}</p>
                         </div>
+                        <a class="main-btn mt-20" href="{maps}" target="_blank" rel="noopener">{directions_btn}</a>
                     </div>
                 </div>
-
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact-map mt-40">
+                        <iframe title="{map_iframe_title}" src="https://www.google.com/maps?q=Grupo+Arcondec+Monterrey&amp;output=embed" width="100%" height="520" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -880,18 +1011,32 @@ def render_contact(lang):
     </main>
 """.format(
         form_title=e(c["form_title"]),
-        form_text=e(c["form_text"]),
+        form_note=e(c["form_note"]),
+        required_note=e(c["required_note"]),
+        direct_title=e(c["direct_title"]),
+        direct_text=e(c["direct_text"]),
+        hours_text=e(c["hours_text"]),
+        call_title=e(c["call_title"]),
+        call_note=e(c["call_note"]),
+        phones=phones,
+        wa=WHATSAPP,
+        wa_title=e(c["wa_title"]),
+        wa_note=e(c["wa_note"]),
+        wa_btn=e(c["wa_btn"]),
+        mail_note=e(c["mail_note"]),
+        map_iframe_title=e("%s — %s" % (c["map_title"], c["addr_text"])),
+        directions_btn=e(c["directions_btn"]),
         sales=sales_mail(lang),
         f_name=e(c["f_name"]),
         f_email=e(c["f_email"]),
         f_phone=e(c["f_phone"]),
         phone_hint=e(c["phone_hint"]),
         f_company=e(c["f_company"]),
-        f_state_label=e(c["f_state"]),
+        f_state_label=e(c["f_state_label"]),
         states=options(c["f_state"], P.MX_STATES),
-        f_reason_label=e(c["f_reason"]),
+        f_reason_label=e(c["f_reason_label"]),
         reasons=options(c["f_reason"], c["reasons"]),
-        f_sector_label=e(c["f_sector"]),
+        f_sector_label=e(c["f_sector_label"]),
         sectors=options(c["f_sector"], c["sectors"]),
         f_message=e(c["f_message"]),
         legal_pre=e(c["legal_pre"]),
@@ -899,7 +1044,6 @@ def render_contact(lang):
         privacy_label=e(c["legal_privacy"]),
         legal_post=e(c["legal_post"]),
         f_submit=e(c["f_submit"]),
-        addr_title=e(c["addr_title"]),
         maps=CONTACT["maps"],
         addr_text=e(c["addr_text"]),
         phone_title=e(c["phone_title"]),
@@ -927,7 +1071,10 @@ def render_contact(lang):
             lang=lang, title=c["h1"], crumb=c["eyebrow"],
             bg="%s/secciones/centro-datos-arcondec.jpg" % IMG,
         )
-        + '\n    <p class="service-lead-strip">%s</p>\n' % e(c["lead"])
+        # Sin la franja de entradilla: en Contacto sobraba. El banner ya dice a
+        # qué se viene y justo debajo está el título del bloque de contacto, así
+        # que eran tres frases seguidas antes de la primera acción. En el resto de
+        # páginas (servicios, proyectos, blog…) se mantiene.
         + body
         + footer(lang=lang, key=key)
     )
@@ -1339,16 +1486,77 @@ def load_home_i18n():
 # ==========================================================================
 # SITEMAP + ROBOTS
 # ==========================================================================
-def render_sitemap(urls, base):
-    body = "\n".join(
-        "  <url>\n    <loc>%s%s</loc>\n    <changefreq>monthly</changefreq>\n"
-        "    <priority>%s</priority>\n  </url>" % (base, u, "1.0" if u == "/index.html" else "0.8")
-        for u in urls
-    )
+def render_sitemap(routes, base):
+    """Sitemap con los pares de idioma anunciados (xhtml:link), como recomienda
+    Google para sitios bilingues: cada URL declara su version ES y EN."""
+    entries = []
+    for pair in routes.values():
+        alts = (
+            '    <xhtml:link rel="alternate" hreflang="es-MX" href="%s%s"/>\n'
+            '    <xhtml:link rel="alternate" hreflang="en" href="%s%s"/>\n'
+            '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>\n'
+            % (base, pair["es"], base, pair["en"], base, pair["es"])
+        )
+        for u in (pair["es"], pair["en"]):
+            entries.append(
+                "  <url>\n    <loc>%s%s</loc>\n%s    <changefreq>monthly</changefreq>\n"
+                "    <priority>%s</priority>\n  </url>"
+                % (base, u, alts, "1.0" if u == "/index.html" else "0.8")
+            )
+    entries.sort()
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s\n</urlset>\n' % body
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+        '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n%s\n</urlset>\n'
+        % "\n".join(entries)
     )
+
+
+# ==========================================================================
+# 404 — Vercel sirve /404.html automaticamente para toda ruta inexistente.
+# Pagina unica bilingue, noindex: no lleva canonical ni hreflang porque no es
+# una pagina indexable (check.py la exime de esos requisitos).
+# ==========================================================================
+def render_404():
+    return """<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#1F439B">
+    <title>Página no encontrada | Grupo Arcondec</title>
+    <link rel="shortcut icon" href="/assets/images/arcondec/brand/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/css/default.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/arcondec.css">
+    <style>
+        .arc-404 { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; background: #1F439B; }
+        .arc-404 img { width: 150px; margin-bottom: 40px; }
+        .arc-404 h1 { color: #fff; font-size: 34px; margin-bottom: 12px; }
+        .arc-404 p { color: rgba(255, 255, 255, .82); font-size: 17px; max-width: 480px; margin: 0 auto 8px; }
+        .arc-404 .arc-404-en { margin-bottom: 32px; }
+        .arc-404 a.arc-404-btn { display: inline-block; margin: 6px 8px; padding: 14px 32px; border-radius: 30px; background: #FFBB00; color: #132D67; font-weight: 700; text-decoration: none; }
+        .arc-404 a.arc-404-btn.arc-404-alt { background: transparent; border: 2px solid rgba(255, 255, 255, .6); color: #fff; }
+    </style>
+</head>
+
+<body>
+    <main class="arc-404">
+        <img src="/assets/images/arcondec/brand/logo-light.png" alt="Grupo Arcondec">
+        <h1>Página no encontrada <span aria-hidden="true">(404)</span></h1>
+        <p>La dirección que buscas no existe o cambió de lugar.</p>
+        <p class="arc-404-en" lang="en">The page you are looking for does not exist or has moved.</p>
+        <div>
+            <a class="arc-404-btn" href="/index.html">Ir al inicio</a>
+            <a class="arc-404-btn arc-404-alt" href="/en/index.html" lang="en">Go to homepage</a>
+        </div>
+    </main>
+</body>
+
+</html>
+"""
 
 
 # ==========================================================================
@@ -1371,8 +1579,8 @@ def main():
                 write(url("srv-" + svc["key"], lang), render_service(svc, lang))
             )
 
-    all_urls = [r[l] for r in ROUTES.values() for l in ("es", "en")]
-    write("/sitemap.xml", render_sitemap(sorted(all_urls), BASE_URL))
+    write("/404.html", render_404())
+    write("/sitemap.xml", render_sitemap(ROUTES, BASE_URL))
     write(
         "/robots.txt",
         "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % BASE_URL,
@@ -1380,7 +1588,7 @@ def main():
 
     for p in written:
         print("  %s" % p.relative_to(ROOT))
-    print("\n%d páginas + sitemap.xml + robots.txt" % len(written))
+    print("\n%d páginas + 404 + sitemap.xml + robots.txt" % len(written))
 
 
 if __name__ == "__main__":

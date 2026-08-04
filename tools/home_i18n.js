@@ -9,8 +9,8 @@
 
     var I18N = {
         es: {
-            pageTitle: 'Grupo Arcondec — Infraestructura Eléctrica Industrial y Data Centers',
-            metaDesc: 'Grupo Arcondec — Infraestructura eléctrica industrial y data centers en México. Más de 30 años en proyectos llave en mano, desde la etapa conceptual hasta la entrega final.',
+            pageTitle: 'Grupo Arcondec — Infraestructura Eléctrica y Data Centers',
+            metaDesc: 'Infraestructura eléctrica industrial y data centers en México: más de 30 años en proyectos llave en mano, de la etapa conceptual a la entrega final.',
 
             topSalesMail: 'ventas@arcondec.mx',
             topLogin: 'Iniciar sesión',
@@ -50,7 +50,7 @@
             catDC: 'Data Center',
             catDC2: 'Data Center',
             catDC3: 'Data Center',
-            dunsLabel: 'Certificación D-U-N-S',
+            dunsLabel: 'Certificación Dun & Bradstreet',
             navServices2: 'Servicios',
             hero2Title: 'Implementación de centro de datos',
             hero2Text: 'Infraestructura crítica que respalda tu operación 24/7.',
@@ -128,7 +128,7 @@
         },
 
         en: {
-            pageTitle: 'Grupo Arcondec — Industrial Electrical Infrastructure and Data Centers',
+            pageTitle: 'Grupo Arcondec — Electrical Infrastructure and Data Centers',
             metaDesc: 'Grupo Arcondec — Industrial electrical infrastructure and data centers in Mexico. Over 30 years of turnkey projects, from conceptual stage to final delivery.',
 
             topSalesMail: 'sales@arcondec.mx',
@@ -169,7 +169,7 @@
             catDC: 'Data Center',
             catDC2: 'Data Center',
             catDC3: 'Data Center',
-            dunsLabel: 'D-U-N-S Certification',
+            dunsLabel: 'Dun & Bradstreet Certification',
             navServices2: 'Services',
             hero2Title: 'Data Center Implementation',
             hero2Text: 'Critical infrastructure that supports your 24/7 operation.',
