@@ -6,7 +6,7 @@
 
 **Documento de entrega técnica y guía del editor**
 
-Versión 2.1 · Agosto 2026 · Elaborado por JectCode
+Versión 2.2 · Agosto 2026 · Elaborado por JectCode
 
 [grupo-arcondec.vercel.app](https://grupo-arcondec.vercel.app) · [github.com/Juanescanar23/Grupo-Arcondec](https://github.com/Juanescanar23/Grupo-Arcondec)
 
@@ -138,6 +138,65 @@ desaparece en la siguiente impresión.
 - **El sitio publicado** lo sirve Vercel, un servicio de alojamiento conectado a ese
   repositorio: cada vez que se sube un cambio a GitHub, Vercel lo publica
   automáticamente en uno o dos minutos, sin ningún paso adicional.
+
+### 2.5 El sistema de animaciones (GSAP)
+
+Todo el movimiento del sitio — los titulares que entran línea a línea, las tarjetas
+que aparecen escalonadas al hacer scroll, el zoom suave de las fotos, la barra de
+progreso superior — lo produce un único sistema instalado en el proyecto:
+
+- **GSAP** (*GreenSock Animation Platform*), la biblioteca de animación estándar de
+  la industria, junto con sus dos complementos **ScrollTrigger** (dispara cada
+  animación cuando su bloque entra en pantalla) y **SplitText** (parte los titulares
+  en líneas para animarlas una a una).
+- Las tres están instaladas **localmente**, en `assets/js/vendor/`. No se cargan de
+  internet (sin CDN): el sitio no depende de servidores de terceros, no envía datos
+  del visitante a nadie, y funciona aunque un servicio externo se caiga. Esa carpeta
+  no se actualiza ni se borra.
+- Toda la coreografía está en un solo archivo propio:
+  **`assets/js/arcondec-motion.js`**. Funciona sin marcar nada en el HTML — detecta
+  solo qué animar — y sustituye por completo al sistema de animación que traía la
+  plantilla, de modo que no hay dos sistemas compitiendo.
+
+**Cómo debe estar configurado: exactamente como está.** El archivo lleva integradas
+cuatro salvaguardas que son la parte delicada, y que cualquier modificación futura
+debe conservar:
+
+1. Si GSAP no llegara a cargar, el archivo se retira sin hacer nada y el sitio se
+   muestra completo, sin animaciones. Nada depende de él para verse.
+2. Si el visitante tiene activada la preferencia de **movimiento reducido** en su
+   sistema (una opción de accesibilidad), no se registra ninguna animación y la
+   página se muestra quieta y completa desde el primer momento.
+3. Ningún elemento se oculta hasta que la página y sus tipografías terminan de
+   cargar, para que los titulares se partan en líneas donde corresponde.
+4. Como red final, al llegar al fondo de la página cualquier bloque que no haya
+   entrado aún se muestra de inmediato: es imposible que un contenido quede oculto.
+
+Para excluir un bloque concreto de las animaciones basta añadirle el atributo
+`data-arc-motion="off"` (siempre en los archivos de `tools/`, nunca en el HTML
+generado).
+
+### 2.6 La configuración del alojamiento (vercel.json)
+
+El comportamiento de Vercel está gobernado por un único archivo en la raíz:
+**`vercel.json`**. Declara tres cosas, y las tres deben permanecer como están:
+
+- **Que no hay build.** (`framework: null`, `buildCommand: null`): Vercel sirve los
+  archivos del repositorio tal cual, sin intentar «construir» nada. Si se borrara
+  esta configuración, Vercel podría intentar adivinar un framework y fallar el
+  despliegue.
+- **La política de caché**, escalonada según lo que cambia y lo que no:
+  las **imágenes y tipografías** se guardan en el navegador del visitante un año
+  (por eso una imagen reemplazada con el mismo nombre tarda en refrescarse — ver
+  6.5); los **estilos y scripts** se guardan una hora, y el generador les añade una
+  huella de versión (`?v=a1b2c3`) para que cada novedad llegue al instante de todos
+  modos. Este equilibrio es parte del rendimiento que Google mide (ver 7.4): si se
+  cambia la política de caché hay que entender ese versionado primero.
+- **Las cabeceras de seguridad** que el sitio envía en cada respuesta: protección
+  contra la interpretación maliciosa de archivos (`nosniff`), contra el secuestro de
+  la página dentro de un sitio ajeno (`X-Frame-Options`), la política de privacidad
+  del referente, HSTS (obliga a que toda conexión sea cifrada, https) y el bloqueo
+  explícito de cámara, micrófono y geolocalización, que el sitio no usa.
 
 ---
 
@@ -748,6 +807,7 @@ git add -A && git commit -m "descripción del cambio" && git push    # 3. public
 | **Despliegue (deploy)** | La publicación del sitio. Aquí es automática: Vercel publica cada push a GitHub en 1–2 minutos |
 | **Generador** | `tools/build.py`: el programa que construye las 28 páginas a partir del contenido. La pieza central del proyecto |
 | **Git** | El sistema de control de versiones: lleva el historial completo del proyecto y permite volver a cualquier estado anterior |
+| **GSAP** | La biblioteca de animación que mueve el sitio, instalada localmente en `assets/js/vendor/` junto a sus complementos ScrollTrigger y SplitText (sección 2.5) |
 | **GitHub** | El servicio en la nube donde vive la copia principal del repositorio |
 | **hreflang** | Etiquetas que informan a Google de que una página tiene versión en otro idioma, y dónde está |
 | **HTML** | El formato de las páginas web. En este proyecto, el HTML es *producto generado*: nunca se edita a mano |
@@ -758,7 +818,8 @@ git add -A && git commit -m "descripción del cambio" && git push    # 3. public
 | **SEO** | Optimización para motores de búsqueda: todo lo que hace que el sitio aparezca bien posicionado en Google (capítulo 7) |
 | **Template / plantilla** | El diseño base comercial (*aball*) sobre el que se construyó el sitio. Sus archivos no se modifican (regla de oro n.º 2) |
 | **Terminal** | La aplicación donde se escriben las órdenes (*PowerShell* en Windows, *Terminal* en macOS). Aquí solo se usan los comandos listados en este manual; en Windows, `python3` se escribe `python` |
-| **Vercel** | El servicio que aloja y sirve el sitio publicado, conectado al repositorio de GitHub |
+| **Vercel** | El servicio que aloja y sirve el sitio publicado, conectado al repositorio de GitHub. Su comportamiento lo gobierna `vercel.json` (sección 2.6) |
+| **vercel.json** | El archivo de configuración del alojamiento: declara que no hay build, la política de caché y las cabeceras de seguridad. No se modifica sin entender la sección 2.6 |
 | **Verificador** | `tools/check.py`: el control de calidad que revisa enlaces, SEO y estructura antes de publicar |
 | **WCAG AA** | Norma internacional de accesibilidad web. El contraste de colores del sitio está auditado bajo ella |
 

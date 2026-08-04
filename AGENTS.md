@@ -55,6 +55,10 @@ python3 tools/check.py    # debe terminar en "Sin problemas." antes de commitear
 - Contraste WCAG AA ya auditado: no aclarar colores de texto sin recalcular el ratio.
 - No borrar ni renombrar páginas por fuera del generador: `ROUTES` en
   `tools/layout.py` es la fuente de las rutas, hreflang y sitemap.
+- `vercel.json` no se modifica: declara que no hay build, la caché escalonada
+  (imágenes/fuentes 1 año inmutable; css/js 1 hora, compensada por el versionado
+  `?v=<hash>` que añade el generador) y las cabeceras de seguridad (nosniff,
+  X-Frame-Options, HSTS, Permissions-Policy).
 
 ## SEO — invariantes
 
