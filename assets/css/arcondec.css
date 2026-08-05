@@ -540,6 +540,47 @@ footer.footer-area.footer-2-area { background: #132D67; }
 }
 @keyframes arcHeroIn { from { opacity: 0; filter: blur(10px); transform: translateY(16px); } to { opacity: 1; filter: blur(0); transform: none; } }
 
+/* ==========================================================================
+   Nav en píldora de cristal (acompaña al hero-tarjeta)
+   --------------------------------------------------------------------------
+   La barra del template cruzaba de borde a borde por encima de la lámina
+   redondeada y rompía la ilusión de tarjeta flotante; su cristal (blanco 15%)
+   sobre foto oscura daba una banda gris lavada. La barra pasa a ser
+   transparente y el .container se convierte en la píldora flotante, como las
+   cápsulas de nor.ma. En las páginas interiores flota sobre el banner.
+   ========================================================================== */
+.header-area.header-2-area .header-nav {
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 12px 0; /* aire entre el topbar y la píldora */
+}
+.header-area.header-2-area .header-nav > .container {
+    background: rgba(15, 25, 50, .42);
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 28px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/* Pegajoso: misma píldora, pero opaca para leerse sobre secciones blancas */
+.header-area.header-2-area .header-nav.sticky {
+    background-color: transparent;
+    padding: 10px 0;
+}
+.header-area.header-2-area .header-nav.sticky > .container {
+    background: rgba(19, 45, 103, .94);
+}
+/* El botón del nav habla el mismo idioma de píldoras que el hero */
+.header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a { border-radius: 999px; }
+/* El menú desplegable (móvil/tablet) cae como tarjeta redondeada, no como panel seco */
+.header-area.header-2-area .header-nav .navbar-collapse {
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
 /* --- Sistema de botones: una sola geometría ---
    El template reparte entre .main-btn, el hero (index-11) y la franja de
    compromiso tres alturas (54/56/60px), tres radios (2/3/5px), mayúsculas y
