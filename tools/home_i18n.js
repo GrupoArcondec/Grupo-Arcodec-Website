@@ -31,8 +31,8 @@
             navContactBtn: 'Contáctanos',
 
             heroBrand: 'GRUPO ARCONDEC',
-            heroTitleA: 'Infraestructura eléctrica industrial y data centers.',
-            heroTitleB: 'Listos para operar.',
+            heroTitleA: 'Infraestructura eléctrica industrial y data centers',
+            heroTitleB: 'Listos para operar',
             heroText: 'Diseñamos, instalamos y supervisamos infraestructura crítica, integrando servicios de ingeniería eléctrica y la implementación de data centers con enfoque en calidad, confiabilidad y ejecución responsable.',
             heroBtn: 'Habla con un asesor',
 
@@ -64,7 +64,7 @@
             commitTitle: 'Fortalecemos cada día nuestro compromiso contigo',
             learnMore: 'Conoce más',
             yearsShort: 'AÑOS',
-            newsTitle: 'Suscríbete a nuestro boletín para recibir novedades.',
+            newsTitle: 'Suscríbete a nuestro boletín para recibir novedades',
             newsPlaceholder: 'Escribe tu correo…',
             newsBtn: 'Únete',
 
@@ -150,8 +150,8 @@
             navContactBtn: 'Contact Us',
 
             heroBrand: 'GRUPO ARCONDEC',
-            heroTitleA: 'Industrial electrical infrastructure and data centers.',
-            heroTitleB: 'Ready to operate.',
+            heroTitleA: 'Industrial electrical infrastructure and data centers',
+            heroTitleB: 'Ready to operate',
             heroText: 'We design, install, and supervise critical infrastructure, integrating electrical engineering services and data center implementation with a focus on quality, reliability, and responsible execution.',
             heroBtn: 'Speak with an Advisor',
 
@@ -183,7 +183,7 @@
             commitTitle: 'We strengthen our commitment to you every day',
             learnMore: 'Learn more',
             yearsShort: 'YEARS',
-            newsTitle: 'Subscribe to our newsletter to receive updates.',
+            newsTitle: 'Subscribe to our newsletter to receive updates',
             newsPlaceholder: 'Enter email…',
             newsBtn: 'Join us',
 

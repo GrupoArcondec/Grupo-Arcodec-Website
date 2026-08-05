@@ -453,14 +453,14 @@ def render_services_index(lang):
             title=c["title"],
             description=c["meta"],
             keywords=c["keywords"],
-            og_image="%s/servicios/proele-1.jpg" % IMG,
+            og_image="%s/servicios/proele-7.jpg" % IMG,
             extra_ld=ld,
         )
         + body_open()
         + header(lang=lang, key=key)
         + page_banner(
             lang=lang, title=c["h1"], crumb=c["title"],
-            bg="%s/servicios/proele-1.jpg" % IMG,
+            bg="%s/servicios/proele-7.jpg" % IMG,
         )
         + '\n    <p class="service-lead-strip">%s</p>\n' % e(c["lead"])
         + body
