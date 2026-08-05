@@ -36,6 +36,15 @@
             heroText: 'Diseñamos, instalamos y supervisamos infraestructura crítica, integrando servicios de ingeniería eléctrica y la implementación de data centers con enfoque en calidad, confiabilidad y ejecución responsable.',
             heroBtn: 'Habla con un asesor',
 
+            heroS2Tag: 'Data Centers',
+            heroS2TitleA: 'Construcción de data centers llave en mano',
+            heroS2TitleB: 'De la obra civil a la sala blanca',
+            heroS2Text: 'Obra civil, salas eléctricas, piso elevado y salas blancas listas para equipo de cómputo: ejecutamos el ciclo completo del proyecto para los principales operadores del país.',
+            heroS3Tag: 'Energía crítica',
+            heroS3TitleA: 'Subestaciones, UPS y plantas de emergencia',
+            heroS3TitleB: 'Respaldo total, operación 24/7',
+            heroS3Text: 'Más de 30 años de ingeniería eléctrica nos respaldan: proyectos desde 225 kVA hasta más de 2.5 MVA, con cobertura nacional y entrega llave en mano.',
+
             sec1Title: 'Soluciones en Ingeniería Eléctrica',
             sec1Card1: 'Diseñamos sistemas eléctricos listos para operar desde el primer día',
             sec1Card2: 'Potencia segura y eficiente',
@@ -154,6 +163,15 @@
             heroTitleB: 'Ready to operate',
             heroText: 'We design, install, and supervise critical infrastructure, integrating electrical engineering services and data center implementation with a focus on quality, reliability, and responsible execution.',
             heroBtn: 'Speak with an Advisor',
+
+            heroS2Tag: 'Data Centers',
+            heroS2TitleA: 'Turnkey data center construction',
+            heroS2TitleB: 'From civil works to the white room',
+            heroS2Text: 'Civil works, electrical rooms, raised floors and white rooms ready for IT equipment: we deliver the full project cycle for Mexico’s leading operators.',
+            heroS3Tag: 'Critical Power',
+            heroS3TitleA: 'Substations, UPS and emergency plants',
+            heroS3TitleB: 'Full backup, 24/7 operation',
+            heroS3Text: 'Over 30 years of electrical engineering behind us: projects from 225 kVA to over 2.5 MVA, with nationwide coverage and turnkey delivery.',
 
             sec1Title: 'Electrical Engineering Solutions',
             sec1Card1: 'We design electrical systems ready to operate from day one',

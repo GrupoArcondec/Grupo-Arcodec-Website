@@ -498,7 +498,14 @@ footer.footer-area.footer-2-area { background: #132D67; }
    (el <style> espejo de tools/home_source.html se elimina en el build).
    ========================================================================== */
 .arc-hero { background: #fff; padding: 63px 12px 0; } /* 51px de topbar + 12px de canal */
-.arc-hero-card { position: relative; overflow: hidden; border-radius: 28px; min-height: 84vh; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 24px 60px -12px rgba(9, 17, 40, .28), 0 8px 24px -8px rgba(9, 17, 40, .16); }
+.arc-hero-card { position: relative; overflow: hidden; border-radius: 28px; min-height: 84vh; box-shadow: 0 24px 60px -12px rgba(9, 17, 40, .28), 0 8px 24px -8px rgba(9, 17, 40, .16); }
+/* Slides en capas: la primera da altura y queda visible sin JavaScript; las
+   demás esperan apagadas a que arcondec-motion.js las rote con el scroll. */
+.arc-hero-slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; opacity: 0; visibility: hidden; }
+.arc-hero-slide:first-child { position: relative; min-height: inherit; opacity: 1; visibility: visible; }
+.arc-hero-dots { position: absolute; z-index: 2; right: clamp(18px, 3vw, 36px); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; }
+.arc-hero-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .35); transition: background .3s ease, transform .3s ease; }
+.arc-hero-dots span.is-active { background: #FFBB00; transform: scale(1.3); }
 .arc-hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .arc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9, 17, 40, .68) 0%, rgba(9, 17, 40, .38) 48%, rgba(9, 17, 40, .12) 100%); }
 .arc-hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1250px; margin: 0 auto; padding: 140px clamp(24px, 5vw, 72px) 96px; }
@@ -541,7 +548,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
 @keyframes arcHeroIn { from { opacity: 0; filter: blur(10px); transform: translateY(16px); } to { opacity: 1; filter: blur(0); transform: none; } }
 
 /* --- Banner interior: la misma lámina del hero, en formato corto --- */
-.arc-banner-card { min-height: clamp(300px, 42vh, 460px); background: linear-gradient(135deg, #132D67, #1F439B); }
+.arc-banner-card { min-height: clamp(300px, 42vh, 460px); background: linear-gradient(135deg, #132D67, #1F439B); display: flex; flex-direction: column; justify-content: center; }
 /* En el banner el velo cubre parejo: hay fondos claros (collage del blog) y
    el degradado a transparente del hero dejaba el título blanco sin contraste. */
 .arc-banner .arc-hero-scrim { background: linear-gradient(180deg, rgba(9, 17, 40, .68) 0%, rgba(9, 17, 40, .52) 55%, rgba(9, 17, 40, .44) 100%); }

@@ -581,6 +581,51 @@
        entra detrás, con la foto haciendo un zoom lento de fondo. El recorte del
        zoom lo hace el overflow del propio .slick-list.
        ========================================================================== */
+    /* ======================================================================
+       Hero-tarjeta de portada: tres láminas que rotan con el scroll
+       ----------------------------------------------------------------------
+       La sección se ancla (pin) mientras el usuario recorre dos pantallas y
+       las láminas se funden una en otra, con imán (snap) a cada slide. Sin
+       GSAP o con movimiento reducido este archivo ni siquiera se ejecuta y
+       el CSS deja la primera lámina fija y completa: nada queda oculto.
+       ====================================================================== */
+    function heroSlides() {
+        var section = document.querySelector('.arc-hero');
+        if (!section) { return; }
+        var slides = section.querySelectorAll('.arc-hero-slide');
+        if (slides.length < 2) { return; }
+        var dots = section.querySelectorAll('.arc-hero-dots span');
+        var steps = slides.length - 1;
+
+        var tl = gsap.timeline({
+            defaults: { ease: 'none' },
+            scrollTrigger: {
+                trigger: section,
+                start: 'top top',
+                end: '+=' + (steps * 100) + '%',
+                pin: true,
+                scrub: 0.6,
+                snap: { snapTo: 1 / steps, duration: 0.35, ease: 'power1.inOut' },
+                onUpdate: function (self) {
+                    var idx = Math.round(self.progress * steps);
+                    for (var d = 0; d < dots.length; d++) {
+                        dots[d].classList.toggle('is-active', d === idx);
+                    }
+                }
+            }
+        });
+
+        var i;
+        for (i = 1; i < slides.length; i++) {
+            tl.to(slides[i - 1].querySelector('.arc-hero-inner'), { autoAlpha: 0, y: -36, duration: 0.4 }, i - 0.9)
+              .to(slides[i - 1], { autoAlpha: 0, duration: 0.45 }, i - 0.65)
+              .to(slides[i], { autoAlpha: 1, duration: 0.45 }, i - 0.65)
+              .fromTo(slides[i].querySelector('.arc-hero-inner'),
+                  { autoAlpha: 0, y: 36 },
+                  { autoAlpha: 1, y: 0, duration: 0.4 }, i - 0.5);
+        }
+    }
+
     function heroMotion() {
         var jq = window.jQuery;
         var slider = document.querySelector('.hero-slider');
@@ -816,6 +861,7 @@
         safely('revealFeatureMedia', revealFeatureMedia);
         safely('revealBanner', revealBanner);
         safely('parallaxBackgrounds', parallaxBackgrounds);
+        safely('heroSlides', heroSlides);
         safely('heroMotion', heroMotion);
         safely('logoMarquee', logoMarquee);
         safely('progressBar', progressBar);
