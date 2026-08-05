@@ -12,7 +12,7 @@ inglés, cada una con URL propia — construidas sobre el template comercial *ab
 (index-12)*. No hay CMS, ni base de datos, ni build en el despliegue: los textos viven
 en `tools/`, el generador `tools/build.py` produce las páginas terminadas con todo el
 SEO incluido (canonical, hreflang ES/EN, Open Graph, JSON-LD, sitemap), y Vercel
-publica el repositorio tal cual en cada push a `main`.
+publica el repositorio tal cual (sin build) mediante la CLI: `npx vercel --prod`.
 
 ## Regla nº 1 — nunca editar el HTML generado
 
@@ -82,5 +82,8 @@ no publicar si reporta problemas.
 
 ## Al terminar cualquier cambio
 
-`build.py` → `check.py` en verde → commit con mensaje descriptivo. Vercel publica el
-repo tal cual al hacer push a `main`; no hay paso de build en el despliegue.
+`build.py` → `check.py` en verde → commit con mensaje descriptivo y push a `main`
+(respaldo en GitHub). OJO: el push NO publica — el proyecto NO tiene conectado el
+webhook de GitHub en Vercel. Para publicar en producción:
+`npx vercel --prod --yes` (la sesión de la CLI y el vínculo del proyecto ya viven
+en esta máquina y en `.vercel/`). No hay paso de build en el despliegue.
