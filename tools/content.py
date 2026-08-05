@@ -58,7 +58,7 @@ VIDEO_URL = "https://www.youtube.com/watch?v=Q9PNm51CVK8"
 SERVICES = [
     {
         "key": "proele",
-        "photos": [1, 2, 3, 4, 5, 6],
+        "photos": [1, 2, 3, 4, 5, 6, 7, 8, 9],
         "group": "ie",
         "icon": "fal fa-bolt",
         "slug": {"es": "proyectos-electricos-integrales", "en": "electrical-projects"},
@@ -123,7 +123,7 @@ SERVICES = [
     },
     {
         "key": "estel",
-        "photos": [3, 5, 6],
+        "photos": [3, 5, 6, 7],
         "group": "ie",
         "icon": "fal fa-chart-line",
         "slug": {"es": "estudios-electricos-especializados", "en": "electrical-studies"},
@@ -190,7 +190,7 @@ SERVICES = [
     },
     {
         "key": "corac",
-        "photos": [1, 2, 3, 4, 5, 6],
+        "photos": [1, 2, 3, 4, 5, 6, 7],
         "group": "ie",
         "icon": "fal fa-battery-bolt",
         "slug": {"es": "soluciones-corriente-directa-dc", "en": "direct-current-solutions"},
@@ -253,7 +253,7 @@ SERVICES = [
     },
     {
         "key": "gespr",
-        "photos": [1, 2, 3, 4, 5, 6],
+        "photos": [1, 2, 3, 4, 5, 6, 7, 8],
         "group": "ie",
         "icon": "fal fa-tasks",
         "slug": {"es": "gestion-integral-proyectos-electricos", "en": "project-management"},
@@ -314,7 +314,7 @@ SERVICES = [
     },
     {
         "key": "cosdc",
-        "photos": [1, 2, 3, 4, 5, 6],
+        "photos": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         "group": "dc",
         "icon": "fal fa-server",
         "slug": {"es": "construccion-data-center", "en": "data-center-construction"},
@@ -387,7 +387,7 @@ SERVICES = [
     },
     {
         "key": "civdc",
-        "photos": [1, 2, 3, 4, 5, 6],
+        "photos": [1, 2, 3, 4, 5, 6, 7, 8, 9],
         "group": "dc",
         "icon": "fal fa-drafting-compass",
         "slug": {"es": "ingenieria-civil-data-center", "en": "civil-engineering-data-center"},
@@ -458,7 +458,7 @@ SERVICES = [
     },
     {
         "key": "ingdc",
-        "photos": [1, 2, 3, 4, 5, 6],
+        "photos": [1, 2, 3, 4, 5, 6, 7, 8],
         "group": "dc",
         "icon": "fal fa-cogs",
         "slug": {"es": "servicios-ingenieria-integral", "en": "engineering-services"},
