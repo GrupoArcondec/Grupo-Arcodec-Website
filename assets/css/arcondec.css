@@ -591,13 +591,20 @@ footer.footer-area.footer-2-area { background: #132D67; }
     padding-top: 10px;
     padding-bottom: 10px;
 }
-/* Pegajoso: misma píldora, pero opaca para leerse sobre secciones blancas */
+/* Pegajoso: misma píldora, pero opaca para leerse sobre secciones blancas.
+   El margen superior va en el padding: la animación del template se come
+   cualquier top y la píldora aterrizaba pegada al borde. */
 .header-area.header-2-area .header-nav.sticky {
     background-color: transparent;
-    padding: 10px 0;
+    padding: 16px 0 10px;
 }
 .header-area.header-2-area .header-nav.sticky > .container {
     background: rgba(19, 45, 103, .94);
+}
+/* En pantallas anchas la píldora acompaña el ancho del contenido del hero
+   (1400px); por debajo manda el contenedor de Bootstrap, que ya escala. */
+@media (min-width: 1500px) {
+    .header-area.header-2-area .header-nav > .container { max-width: 1400px; }
 }
 /* El botón del nav habla el mismo idioma de píldoras que el hero */
 .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a { border-radius: 999px; }
