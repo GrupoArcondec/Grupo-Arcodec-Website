@@ -553,7 +553,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
     background-color: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    padding: 30px 0 12px; /* la píldora baja y flota DENTRO de la tarjeta, con foto visible encima */
+    padding: 40px 0 12px; /* la píldora flota 28px DENTRO de la tarjeta, como las cápsulas de nor.ma */
 }
 .header-area.header-2-area .header-nav > .container {
     background: rgba(15, 25, 50, .42);
@@ -574,6 +574,12 @@ footer.footer-area.footer-2-area { background: #132D67; }
 }
 /* El botón del nav habla el mismo idioma de píldoras que el hero */
 .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a { border-radius: 999px; }
+/* En <576px el .container de Bootstrap es fluido a todo el ancho y la píldora
+   salía a sangre, más ancha que la tarjeta: se le da aire lateral para que
+   flote 12px dentro de la lámina, como las cápsulas de nor.ma. */
+@media (max-width: 575px) {
+    .header-area.header-2-area .header-nav > .container { margin-left: 20px; margin-right: 20px; width: auto; }
+}
 /* El menú desplegable (móvil/tablet) cae como tarjeta redondeada, no como panel seco */
 .header-area.header-2-area .header-nav .navbar-collapse {
     border-radius: 20px;
