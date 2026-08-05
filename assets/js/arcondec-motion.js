@@ -615,14 +615,17 @@
             }
         });
 
+        // Pista horizontal: cada lámina arranca a la derecha de la anterior y
+        // el scroll desplaza el tren hacia la izquierda (lo nuevo entra por la
+        // derecha, como el slider del demo de referencia).
+        gsap.set(slides, {
+            autoAlpha: 1,
+            xPercent: function (index) { return index * 100; }
+        });
+
         var i;
         for (i = 1; i < slides.length; i++) {
-            tl.to(slides[i - 1].querySelector('.arc-hero-inner'), { autoAlpha: 0, y: -36, duration: 0.4 }, i - 0.9)
-              .to(slides[i - 1], { autoAlpha: 0, duration: 0.45 }, i - 0.65)
-              .to(slides[i], { autoAlpha: 1, duration: 0.45 }, i - 0.65)
-              .fromTo(slides[i].querySelector('.arc-hero-inner'),
-                  { autoAlpha: 0, y: 36 },
-                  { autoAlpha: 1, y: 0, duration: 0.4 }, i - 0.5);
+            tl.to(slides, { xPercent: '-=100', duration: 1 }, i - 1);
         }
     }
 

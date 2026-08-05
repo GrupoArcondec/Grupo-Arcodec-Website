@@ -503,7 +503,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
    demás esperan apagadas a que arcondec-motion.js las rote con el scroll. */
 .arc-hero-slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; opacity: 0; visibility: hidden; }
 .arc-hero-slide:first-child { position: relative; min-height: inherit; opacity: 1; visibility: visible; }
-.arc-hero-dots { position: absolute; z-index: 2; right: clamp(18px, 3vw, 36px); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; }
+.arc-hero-dots { position: absolute; z-index: 2; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; gap: 10px; }
 .arc-hero-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .35); transition: background .3s ease, transform .3s ease; }
 .arc-hero-dots span.is-active { background: #FFBB00; transform: scale(1.3); }
 .arc-hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
