@@ -598,11 +598,15 @@ footer.footer-area.footer-2-area { background: #132D67; }
 @media (max-width: 575px) {
     .header-area.header-2-area .header-nav > .container { margin-left: 20px; margin-right: 20px; width: auto; }
 }
-/* El menú desplegable (móvil/tablet) cae como tarjeta redondeada, no como panel seco */
-.header-area.header-2-area .header-nav .navbar-collapse {
-    border-radius: 20px;
-    overflow: hidden;
-    margin-top: 8px;
+/* El menú desplegable (móvil/tablet) cae como tarjeta redondeada, no como panel
+   seco. SOLO ≤991px: en escritorio .navbar-collapse aloja el submenú absoluto
+   de Servicios y un overflow:hidden aquí lo recortaría (pasó). */
+@media (max-width: 991px) {
+    .header-area.header-2-area .header-nav .navbar-collapse {
+        border-radius: 20px;
+        overflow: hidden;
+        margin-top: 8px;
+    }
 }
 
 /* --- Sistema de botones: una sola geometría ---
