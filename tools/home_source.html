@@ -39,24 +39,49 @@
     <!--====== Ajustes mínimos para contenido Arcondec (sin tocar style.css) ======-->
     <style>
         .header-top .header-top-item .info ul li a { color: inherit; }
-        /* Escala tipográfica del template (100px demo): 80px es el máximo que admite el titular oficial sin cortarse */
-        .hero-2-content.hero-11-content .title { font-size: 80px; line-height: 1.08; }
-        @media only screen and (min-width: 992px) and (max-width: 1200px) {
-            .hero-2-content.hero-11-content .title { font-size: 62px; line-height: 1.1; }
-        }
-        @media only screen and (min-width: 576px) and (max-width: 767px) {
-            .hero-2-content.hero-11-content .title { font-size: 46px; line-height: 1.15; }
-        }
-        @media (max-width: 575px) {
-            .hero-2-content.hero-11-content .title { font-size: 36px; line-height: 1.2; }
-        }
         .lang-switch.active { font-weight: 700; text-decoration: underline; }
         /* Fondo del hero optimizado para web (mismo encuadre, 360 KB vs 2 MB del PNG) */
-        .hero-area.hero-2-area .section__bg { background-image: url(assets/images/hero-bg-2-opt.jpg); }
-        /* Las dos diapositivas del hero medían distinto y la segunda dejaba una banda
-           blanca bajo su foto: superpuestas en una celda de grid se igualan al track. */
-        .hero-slider.hero-11-slider .slick-track { display: grid; width: 100% !important; }
-        .hero-slider.hero-11-slider .slick-track > .slick-slide { grid-area: 1 / 1; left: 0 !important; width: 100% !important; }
+        /* ===== Hero-tarjeta (adaptación de nor.ma) =====
+           Lámina redondeada e insetada sobre lienzo blanco, foto a sangre con
+           velo degradado, titular a dos tonos y CTAs en píldora. El header de
+           cristal del template flota encima, como las píldoras de nor.ma. */
+        .arc-hero { background: #fff; padding: 63px 12px 0; } /* 51px de topbar + 12px de canal */
+        .arc-hero-card { position: relative; overflow: hidden; border-radius: 28px; min-height: 84vh; display: flex; flex-direction: column; justify-content: center; }
+        .arc-hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .arc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9, 17, 40, .68) 0%, rgba(9, 17, 40, .38) 48%, rgba(9, 17, 40, .12) 100%); }
+        .arc-hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1250px; margin: 0 auto; padding: 140px clamp(24px, 5vw, 72px) 96px; }
+        .arc-hero-tag { display: inline-flex; align-items: center; padding: 9px 18px; border-radius: 999px; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+        .arc-hero-title { margin: 24px 0 0; color: #fff; font-weight: 600; font-size: clamp(34px, 6.2vw, 88px); line-height: 1.04; letter-spacing: -0.03em; }
+        .arc-hero-title span { display: block; }
+        .arc-hero-dim { color: rgba(255, 255, 255, .55); }
+        .arc-hero-text { margin: 26px 0 0; max-width: 620px; color: rgba(255, 255, 255, .85); font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; }
+        .arc-hero-ctas { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 12px; }
+        .arc-pill { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 13px 30px; border-radius: 999px; font-size: 16px; font-weight: 600; line-height: 1.3; transition: background .25s ease, color .25s ease, transform .25s ease; }
+        .arc-pill:hover { transform: translateY(-1px); }
+        .arc-pill-solid { background: #FFBB00; color: #132D67; }
+        .arc-pill-solid:hover { background: #E5A800; color: #132D67; }
+        .arc-pill-glass { background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .28); color: #fff; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .arc-pill-glass:hover { background: rgba(255, 255, 255, .26); color: #fff; }
+        .arc-hero-play { position: absolute; z-index: 1; right: clamp(20px, 4vw, 48px); bottom: clamp(20px, 4vw, 44px); width: 62px; height: 62px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: 16px; }
+        .arc-hero-play:hover { background: rgba(255, 255, 255, .26); color: #fff; }
+        @media (max-width: 767px) {
+            .arc-hero { padding: 12px 8px 0; } /* sin topbar */
+            .arc-hero-card { min-height: 86vh; border-radius: 22px; }
+            .arc-hero-inner { padding: 110px 22px 84px; }
+            .arc-hero-ctas { flex-direction: column; }
+            .arc-pill { width: 100%; }
+            .arc-hero-play { right: auto; left: 16px; bottom: 20px; width: 54px; height: 54px; }
+            .header-top { display: none; }
+            .header-area.header-2-area .header-nav { top: 0; }
+        }
+        /* Entrada: fundido con desenfoque, como nor.ma; sin movimiento si el usuario lo pide */
+        @media (prefers-reduced-motion: no-preference) {
+            .arc-hero-inner > * { animation: arcHeroIn .9s cubic-bezier(.22, .61, .21, 1) both; }
+            .arc-hero-inner > *:nth-child(2) { animation-delay: .12s; }
+            .arc-hero-inner > *:nth-child(3) { animation-delay: .24s; }
+            .arc-hero-inner > *:nth-child(4) { animation-delay: .36s; }
+        }
+        @keyframes arcHeroIn { from { opacity: 0; filter: blur(10px); transform: translateY(16px); } to { opacity: 1; filter: blur(0); transform: none; } }
         /* El topbar y el nav llevan textos más largos que el demo: se compactan en tablets para que no desborden */
         @media only screen and (min-width: 992px) and (max-width: 1200px) {
             .header-top .header-top-item .info ul li { margin-right: 18px; font-size: 15px; }
@@ -97,10 +122,6 @@
         .main-btn:hover { background-color: transparent; color: #D09021; border-color: #FFBB00; }
         .main-btn.main-btn-3 { background: #FFBB00; color: #132D67; }
         .main-btn.main-btn-3:hover { background: #D09021; color: #fff; }
-        .hero-2-content.hero-11-content ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
-        .hero-2-content.hero-11-content ul li a:hover { background: #D09021; border-color: #D09021; color: #fff; }
-        .hero-2-content.hero-11-content ul li a.main-btn-2 { background: #1F439B; border-color: #1F439B; color: #fff; }
-        .hero-2-content.hero-11-content ul li a.main-btn-2:hover { background: #132D67; border-color: #132D67; color: #fff; }
         /* Header en el azul oficial del logo (#1F439B) */
         .header-2-area .header-top { background: #132D67; }
         .header-area.header-2-area .header-nav.sticky { background-color: #1F439B; }
@@ -150,9 +171,6 @@
             .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-collapse { background: #1F439B; }
         }
         .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu > li:hover > a { color: #F7931E; }
-        .hero-play-11 a { color: #F7931E; }
-        .hero-play-11 a:hover { background: #FFBB00; color: #132D67; }
-        .hero-slider.hero-11-slider .slick-dots li.slick-active button { background: #FFBB00; }
         .about-2-content.about-11-content .item.active::before, .about-2-content.about-11-content .item:hover::before { background: #FFBB00; }
         .about-2-content.about-11-content a.main-btn-3 { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
         .about-2-content.about-11-content a.main-btn-3:hover { background: #D09021; color: #fff; }
@@ -274,56 +292,23 @@
 
     <!--====== HERO PART START ======-->
 
-    <section class="hero-slider hero-11-slider">
-        <div class="hero-area hero-2-area">
-            <div class="section__bg"></div>
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-7">
-                        <div class="hero-2-content hero-11-content">
-                            <span data-animation="fadeInDown" data-delay="0.5s" data-i18n="heroBrand">GRUPO ARCONDEC</span>
-                            <h1 class="title" data-animation="fadeInLeft" data-delay="0.6s" data-i18n="heroTitle">Infraestructura eléctrica industrial y data center listos para operar</h1>
-                            <div class="text" data-animation="fadeInLeft" data-delay="0.7s">
-                                <p data-i18n="heroText">Diseñamos, instalamos y supervisamos infraestructura crítica, integrando servicios de ingeniería eléctrica y la implementación de data centers con enfoque en calidad, confiabilidad y ejecución responsable.</p>
-                            </div>
-                            <ul data-animation="fadeInUp" data-delay="0.8s">
-                                <li><a class="main-btn" href="https://wa.me/525530326595?text=Hola,%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20que%20ofrece%20GRUPO%20ARCONDEC.%20%C2%BFPodr%C3%ADan%20proporcionarme%20informaci%C3%B3n%20adicional%3F%20Agradezco%20de%20antemano%20su%20atenci%C3%B3n." target="_blank" rel="noopener" data-i18n="heroBtn">Habla con un asesor</a></li>
-                                <li><a class="main-btn main-btn-2" href="https://arcondec.mx/Contactanos.aspx" data-href-en="https://arcondec.mx/EN/Contact.aspx" data-i18n="navContact">Contáctanos</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="hero-play-11 text-lg-right text-left">
-                            <a class="video-popup" href="https://www.youtube.com/watch?v=Q9PNm51CVK8" aria-label="Ver video"><i class="fas fa-play"></i></a>
-                        </div>
-                    </div>
+    <section class="arc-hero" data-arc-motion="off">
+        <div class="arc-hero-card">
+            <img class="arc-hero-media" src="assets/images/hero-bg-2-opt.jpg" width="1601" height="950" alt="" aria-hidden="true">
+            <span class="arc-hero-scrim" aria-hidden="true"></span>
+            <div class="arc-hero-inner">
+                <span class="arc-hero-tag" data-i18n="heroBrand">GRUPO ARCONDEC</span>
+                <h1 class="arc-hero-title">
+                    <span class="arc-hero-dim" data-i18n="heroTitleA">Infraestructura eléctrica industrial y data centers.</span>
+                    <span data-i18n="heroTitleB">Listos para operar.</span>
+                </h1>
+                <p class="arc-hero-text" data-i18n="heroText">Diseñamos, instalamos y supervisamos infraestructura crítica, integrando servicios de ingeniería eléctrica y la implementación de data centers con enfoque en calidad, confiabilidad y ejecución responsable.</p>
+                <div class="arc-hero-ctas">
+                    <a class="arc-pill arc-pill-solid" href="https://wa.me/525530326595?text=Hola,%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20que%20ofrece%20GRUPO%20ARCONDEC.%20%C2%BFPodr%C3%ADan%20proporcionarme%20informaci%C3%B3n%20adicional%3F%20Agradezco%20de%20antemano%20su%20atenci%C3%B3n." target="_blank" rel="noopener" data-i18n="heroBtn">Habla con un asesor</a>
+                    <a class="arc-pill arc-pill-glass" href="https://arcondec.mx/Contactanos.aspx" data-href-en="https://arcondec.mx/EN/Contact.aspx" data-i18n="navContact">Contáctanos</a>
                 </div>
             </div>
-        </div>
-        <div class="hero-area hero-2-area hero-11-area">
-            <div class="section__bg"></div>
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-7">
-                        <div class="hero-2-content hero-11-content">
-                            <span data-animation="fadeInDown" data-delay="0.5s" data-i18n="heroBrand">GRUPO ARCONDEC</span>
-                            <h1 class="title" data-animation="fadeInLeft" data-delay="0.6s" data-i18n="hero2Title">Implementación de centro de datos</h1>
-                            <div class="text" data-animation="fadeInLeft" data-delay="0.7s">
-                                <p data-i18n="hero2Text">Infraestructura crítica que respalda tu operación 24/7.</p>
-                            </div>
-                            <ul data-animation="fadeInUp" data-delay="0.8s">
-                                <li><a class="main-btn" href="https://arcondec.mx/Contactanos.aspx" data-href-en="https://arcondec.mx/EN/Contact.aspx" data-i18n="mapBtn">Agenda tu consulta</a></li>
-                                <li><a class="main-btn main-btn-2" href="https://wa.me/525530326595?text=Hola,%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20que%20ofrece%20GRUPO%20ARCONDEC.%20%C2%BFPodr%C3%ADan%20proporcionarme%20informaci%C3%B3n%20adicional%3F%20Agradezco%20de%20antemano%20su%20atenci%C3%B3n." target="_blank" rel="noopener" data-i18n="heroBtn">Habla con un asesor</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="hero-play-11 text-lg-right text-left">
-                            <a class="video-popup" href="https://www.youtube.com/watch?v=Q9PNm51CVK8" aria-label="Ver video"><i class="fas fa-play"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <a class="video-popup arc-hero-play" href="https://www.youtube.com/watch?v=Q9PNm51CVK8" aria-label="Ver video"><i class="fas fa-play"></i></a>
         </div>
     </section>
 

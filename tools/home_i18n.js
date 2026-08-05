@@ -31,7 +31,8 @@
             navContactBtn: 'Contáctanos',
 
             heroBrand: 'GRUPO ARCONDEC',
-            heroTitle: 'Infraestructura eléctrica industrial y data center listos para operar',
+            heroTitleA: 'Infraestructura eléctrica industrial y data centers.',
+            heroTitleB: 'Listos para operar.',
             heroText: 'Diseñamos, instalamos y supervisamos infraestructura crítica, integrando servicios de ingeniería eléctrica y la implementación de data centers con enfoque en calidad, confiabilidad y ejecución responsable.',
             heroBtn: 'Habla con un asesor',
 
@@ -52,7 +53,6 @@
             catDC3: 'Data Center',
             dunsLabel: 'Certificación Dun & Bradstreet',
             navServices2: 'Servicios',
-            hero2Title: 'Implementación de centro de datos',
             hero2Text: 'Infraestructura crítica que respalda tu operación 24/7.',
             aboutDunsText: 'Contamos con una certificación financiera.',
             svcIntro: 'Ingeniería eléctrica y centros de datos, desde etapa conceptual hasta entrega final.',
@@ -150,7 +150,8 @@
             navContactBtn: 'Contact Us',
 
             heroBrand: 'GRUPO ARCONDEC',
-            heroTitle: 'Electrical solutions and data centers ready to operate',
+            heroTitleA: 'Industrial electrical infrastructure and data centers.',
+            heroTitleB: 'Ready to operate.',
             heroText: 'We design, install, and supervise critical infrastructure, integrating electrical engineering services and data center implementation with a focus on quality, reliability, and responsible execution.',
             heroBtn: 'Speak with an Advisor',
 
@@ -171,7 +172,6 @@
             catDC3: 'Data Center',
             dunsLabel: 'Dun & Bradstreet Certification',
             navServices2: 'Services',
-            hero2Title: 'Data Center Implementation',
             hero2Text: 'Critical infrastructure that supports your 24/7 operation.',
             aboutDunsText: 'We hold a financial certification.',
             svcIntro: 'Electrical engineering and data centers, from conceptual stage to final delivery.',
