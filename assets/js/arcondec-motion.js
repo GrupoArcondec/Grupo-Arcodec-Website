@@ -604,8 +604,17 @@
                 start: 'top top',
                 end: '+=' + (steps * 100) + '%',
                 pin: true,
-                scrub: 0.6,
-                snap: { snapTo: 1 / steps, duration: 0.35, ease: 'power1.inOut' },
+                anticipatePin: 1,
+                scrub: 1,
+                /* El imán espera a que la inercia del trackpad muera (delay) y
+                   frena con suavidad; con duración fija y sin espera peleaba
+                   contra el usuario y daba saltos. */
+                snap: {
+                    snapTo: 1 / steps,
+                    duration: { min: 0.3, max: 0.8 },
+                    delay: 0.2,
+                    ease: 'power2.out'
+                },
                 onUpdate: function (self) {
                     var idx = Math.round(self.progress * steps);
                     for (var d = 0; d < dots.length; d++) {
