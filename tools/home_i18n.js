@@ -74,7 +74,7 @@
             aboutYears: 'Años de experiencia',
 
             mapTitle: 'Cobertura Nacional de Infraestructura',
-            mapBtn: 'Agenda tu consulta con nuestros especialistas',
+            mapBtn: 'Agenda tu consulta',
 
             clientsTitle: 'Nuestros clientes',
 
@@ -193,7 +193,7 @@
             aboutYears: 'Years of Experience',
 
             mapTitle: 'National Infrastructure Coverage',
-            mapBtn: 'Schedule your consultation with our specialists',
+            mapBtn: 'Schedule a consultation',
 
             clientsTitle: 'Our Clients',
 

@@ -489,24 +489,55 @@ footer.footer-area.footer-2-area { background: #132D67; }
    provocaban desbordamiento horizontal en móvil y tablet.
    ========================================================================== */
 
-/* .main-btn trae white-space:nowrap del template: con rótulos largos el botón
-   medía 473px dentro de una pantalla de 390px y empujaba toda la página. */
+/* --- Sistema de botones: una sola geometría ---
+   El template reparte entre .main-btn, el hero (index-11) y la franja de
+   compromiso tres alturas (54/56/60px), tres radios (2/3/5px), mayúsculas y
+   letter-spacing dispares, con selectores 0-2-3 que ganaban a los overrides.
+   Aquí se unifica todo el cuerpo del botón con la especificidad necesaria. */
+.hero-2-content.hero-11-content ul li a,
+.subscribe-form.subscribe-11-form ul li a {
+    text-transform: none;
+    letter-spacing: 0;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 54px;
+    padding: 0 36px;
+}
+
+/* Móvil: .main-btn trae white-space:nowrap y 54-60px de línea; con rótulos
+   largos el botón medía 473px de ancho o partía en líneas de 56px de alto. */
 @media (max-width: 767px) {
     .main-btn,
-    .main-btn-2,
-    .main-btn-3 {
+    .main-btn.main-btn-2,
+    .main-btn.main-btn-3,
+    .hero-2-content.hero-11-content ul li a,
+    .hero-2-content.hero-11-content ul li a.main-btn-2,
+    .subscribe-form.subscribe-11-form ul li a,
+    .subscribe-form.subscribe-11-form ul li a.main-btn-2 {
         white-space: normal;
         line-height: 1.4;
-        padding: 14px 24px;
+        padding: 13px 24px;
+        min-height: 48px;
         max-width: 100%;
     }
-    .hero-2-content.hero-11-content ul li {
+    /* CTAs por pares (hero y franja): columna a ancho completo con 12px de
+       aire; el primario ámbar arriba, el secundario azul/contorno debajo. */
+    .hero-2-content.hero-11-content ul li,
+    .subscribe-form.subscribe-11-form ul li {
         display: block;
         margin-right: 0;
     }
-    .hero-2-content.hero-11-content ul li a {
+    .hero-2-content.hero-11-content ul li a,
+    .subscribe-form.subscribe-11-form ul li a {
         display: block;
         width: 100%;
+    }
+    /* El template indenta 28px el secundario entre 576-767px aun a ancho
+       completo; se anula y se fija el ritmo vertical del par. */
+    .hero-2-content.hero-11-content ul li a.main-btn-2,
+    .subscribe-form.subscribe-11-form ul li a.main-btn-2 {
+        margin-left: 0;
+        margin-top: 12px;
     }
 }
 
@@ -1014,19 +1045,8 @@ button.back-to-top {
    Móvil: correcciones de uso real
    ========================================================================== */
 
-/* Los botones .main-btn-3 se aplastaban a 22px de alto: style.css los ataca
-   con .main-btn.main-btn-3 (0-2-0) y nuestra regla de .main-btn (0-1-0) perdía. */
-@media (max-width: 767px) {
-    .main-btn,
-    .main-btn.main-btn-2,
-    .main-btn.main-btn-3 {
-        white-space: normal;
-        line-height: 1.4;
-        padding: 14px 24px;
-        min-height: 48px;
-        max-width: 100%;
-    }
-}
+/* Los botones .main-btn-3 se aplastaban a 22px de alto: resuelto en el
+   "Sistema de botones" (arriba), que ya incluye .main-btn.main-btn-3. */
 
 /* Áreas táctiles: el mínimo recomendado es 44px y varias quedaban en 22-40px */
 @media (max-width: 991px) {
