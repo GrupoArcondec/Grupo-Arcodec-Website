@@ -430,36 +430,33 @@ def _active_attr(current, route):
 # Banner de pagina interior
 # --------------------------------------------------------------------------
 def page_banner(*, lang, title, crumb, bg=None):
-    # Misma lámina redondeada del hero de portada, en formato corto: la píldora
-    # del nav flota encima y la foto lleva el mismo velo azul.
-    if bg:
-        par = _OG_SIZES.get(bg)
-        dims = ' width="%d" height="%d"' % tuple(par) if par else ""
-        media = '<img class="arc-hero-media" src="%s"%s alt="" aria-hidden="true">' % (bg, dims)
-    else:
-        media = ""
+    # Diseño original del template: banner a sangre completa, sin tarjeta.
+    style = ' style="background-image: url(%s);"' % bg if bg else ""
     return """
     <!--====== TÍTULO DE PÁGINA ======-->
 
-    <div class="arc-hero arc-banner" data-arc-motion="off">
-        <div class="arc-hero-card arc-banner-card">
-            {media}
-            <span class="arc-hero-scrim" aria-hidden="true"></span>
-            <div class="arc-hero-inner text-center">
-                <h1 class="arc-hero-title">{title}</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{home}">{home_label}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{crumb}</li>
-                    </ol>
-                </nav>
+    <div class="page-title-area">
+        <div class="section__bg"{style}></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title-content text-center">
+                        <h1 class="title">{title}</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{home}">{home_label}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{crumb}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!--====== TÍTULO DE PÁGINA ENDS ======-->
 """.format(
-        media=media,
+        style=style,
         title=e(title),
         home=url("home", lang),
         home_label=e(UI[lang]["home"]),

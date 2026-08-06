@@ -30,6 +30,7 @@
             navContact: 'Contáctanos',
             navContactBtn: 'Contáctanos',
 
+            heroBrand: 'GRUPO ARCONDEC',
             heroBtn: 'Habla con un asesor',
             heroMore: 'Conoce más',
             heroS1Title: 'Diseño y Construcción de Data Centers',
@@ -152,6 +153,7 @@
             navContact: 'Contact Us',
             navContactBtn: 'Contact Us',
 
+            heroBrand: 'GRUPO ARCONDEC',
             heroBtn: 'Speak with an Advisor',
             heroMore: 'Learn more',
             heroS1Title: 'Data Center Design & Construction',

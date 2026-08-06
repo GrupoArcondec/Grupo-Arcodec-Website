@@ -497,22 +497,34 @@ footer.footer-area.footer-2-area { background: #132D67; }
    template flota encima, como las píldoras de nor.ma. Solo la usa index.html
    (el <style> espejo de tools/home_source.html se elimina en el build).
    ========================================================================== */
-.arc-hero { background: #fff; padding: 63px 8px 0; } /* 51px de topbar + 12px de canal */
+.arc-hero { background: #131737; padding: 0; } /* 51px de topbar + 12px de canal */
 /* Casi pantalla completa: viewport menos el colchón superior (63px) y un
    respiro de 12px; svh evita el baile de la barra del navegador en móvil. */
-.arc-hero-card { position: relative; overflow: hidden; border-radius: 28px; min-height: calc(100vh - 75px); min-height: calc(100svh - 75px); box-shadow: 0 24px 60px -12px rgba(9, 17, 40, .28), 0 8px 24px -8px rgba(9, 17, 40, .16); }
+.arc-hero-card { position: relative; overflow: hidden; min-height: 100vh; min-height: 100svh; }
+/* Tipografía del template original en el slider (misma escala que el hero
+   histórico de Arcondec: el título oficial no cabe a los 100px del demo). */
+.arc-hero .hero-2-content.hero-11-content .title { font-size: 72px; line-height: 1.08; text-transform: none; }
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .arc-hero .hero-2-content.hero-11-content .title { font-size: 56px; line-height: 1.1; }
+}
+@media only screen and (min-width: 576px) and (max-width: 991px) {
+    .arc-hero .hero-2-content.hero-11-content .title { font-size: 42px; line-height: 1.15; }
+}
+@media (max-width: 575px) {
+    .arc-hero .hero-2-content.hero-11-content .title { font-size: 32px; line-height: 1.2; }
+}
+.arc-hero .hero-2-content .text p { color: rgba(255, 255, 255, .88); max-width: 640px; }
+
 /* Slides en capas: la primera da altura y queda visible sin JavaScript; las
    demás esperan apagadas a que arcondec-motion.js las rote con el scroll. */
-.arc-hero-slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; opacity: 0; visibility: hidden; }
+.arc-hero-slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 150px 0 90px; opacity: 0; visibility: hidden; }
 .arc-hero-slide:first-child { position: relative; min-height: inherit; opacity: 1; visibility: visible; }
 .arc-hero-dots { position: absolute; z-index: 2; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; gap: 10px; }
 .arc-hero-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .35); transition: background .3s ease, transform .3s ease; }
 .arc-hero-dots span.is-active { background: #FFBB00; transform: scale(1.3); }
 .arc-hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.arc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(285deg, rgba(9, 17, 40, .32) 0%, rgba(9, 17, 40, .40) 45%, rgba(9, 17, 40, .64) 100%); }
-.arc-hero-slide--right .arc-hero-scrim { background: linear-gradient(75deg, rgba(9, 17, 40, .32) 0%, rgba(9, 17, 40, .40) 45%, rgba(9, 17, 40, .64) 100%); }
+.arc-hero-scrim { position: absolute; inset: 0; background: rgba(19, 23, 55, .62); }
 .arc-hero-inner { position: relative; z-index: 1; width: 100%; padding: 150px clamp(24px, 8vw, 200px) 120px; display: flex; justify-content: flex-start; align-items: center; }
-.arc-hero-slide--right .arc-hero-inner { justify-content: flex-end; }
 .arc-hero-tag { display: inline-flex; align-items: center; padding: 9px 18px; border-radius: 999px; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .arc-hero-title { margin: 0; color: #fff; font-weight: 600; font-size: clamp(26px, 2.6vw, 56px); line-height: 1.15; letter-spacing: -0.02em; }
 .arc-hero-title span { display: block; }
@@ -526,7 +538,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-pill-glass { background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .28); color: #fff; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .arc-pill-glass:hover { background: rgba(255, 255, 255, .26); color: #fff; }
 .arc-hero-play { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: 15px; flex: none; }
-.arc-hero-panel { width: min(clamp(480px, 36vw, 660px), 100%); padding: clamp(22px, 2vw, 34px) 0; border-top: 1px solid rgba(255, 255, 255, .4); border-bottom: 1px solid rgba(255, 255, 255, .4); }
+.arc-hero-panel { border: 0; }
 .arc-hero-more { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: #fff; font-weight: 600; font-size: clamp(14px, 1vw, 17px); padding-bottom: 4px; border-bottom: 1px solid rgba(255, 255, 255, .5); transition: color .25s ease, border-color .25s ease; }
 .arc-hero-more::after { content: '\2192'; }
 .arc-hero-more:hover { color: #FFBB00; border-color: #FFBB00; }
@@ -536,8 +548,8 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-hero-actions { position: absolute; z-index: 2; right: clamp(20px, 4vw, 48px); bottom: clamp(20px, 4vh, 40px); display: flex; align-items: center; gap: 12px; }
 .arc-hero-play:hover { background: rgba(255, 255, 255, .26); color: #fff; }
 @media (max-width: 767px) {
-    .arc-hero { padding: 12px 8px 0; } /* sin topbar */
-    .arc-hero-card { min-height: calc(100vh - 24px); min-height: calc(100svh - 24px); border-radius: 22px; }
+    .arc-hero { padding: 0; }
+    .arc-hero-card { min-height: 100vh; min-height: 100svh; }
     .arc-hero-inner { padding: 100px 22px 96px; justify-content: flex-start; align-items: flex-end; }
     .arc-hero-slide--right .arc-hero-inner { justify-content: flex-start; }
     .arc-hero-count { display: none; }
@@ -555,10 +567,10 @@ footer.footer-area.footer-2-area { background: #132D67; }
    pide. La opacidad inicial vive SOLO en el keyframe (fill "both"): si la
    animación no llega a ejecutarse, el contenido queda visible. */
 @media (prefers-reduced-motion: no-preference) {
-    .arc-hero-inner > * { animation: arcHeroIn .9s cubic-bezier(.22, .61, .21, 1) both; }
-    .arc-hero-inner > *:nth-child(2) { animation-delay: .12s; }
-    .arc-hero-inner > *:nth-child(3) { animation-delay: .24s; }
-    .arc-hero-inner > *:nth-child(4) { animation-delay: .36s; }
+    .arc-hero-panel > * { animation: arcHeroIn .9s cubic-bezier(.22, .61, .21, 1) both; }
+    .arc-hero-panel > *:nth-child(2) { animation-delay: .12s; }
+    .arc-hero-panel > *:nth-child(3) { animation-delay: .24s; }
+    .arc-hero-panel > *:nth-child(4) { animation-delay: .36s; }
 }
 @keyframes arcHeroIn { from { opacity: 0; filter: blur(10px); transform: translateY(16px); } to { opacity: 1; filter: blur(0); transform: none; } }
 
@@ -580,53 +592,6 @@ footer.footer-area.footer-2-area { background: #132D67; }
     .arc-banner .arc-hero-inner { padding: 120px 22px 32px; }
 }
 
-/* ==========================================================================
-   Nav en píldora de cristal (acompaña al hero-tarjeta)
-   --------------------------------------------------------------------------
-   La barra del template cruzaba de borde a borde por encima de la lámina
-   redondeada y rompía la ilusión de tarjeta flotante; su cristal (blanco 15%)
-   sobre foto oscura daba una banda gris lavada. La barra pasa a ser
-   transparente y el .container se convierte en la píldora flotante, como las
-   cápsulas de nor.ma. En las páginas interiores flota sobre el banner.
-   ========================================================================== */
-.header-area.header-2-area .header-nav {
-    background-color: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    padding: 40px 0 12px; /* la píldora flota 28px DENTRO de la tarjeta, como las cápsulas de nor.ma */
-}
-.header-area.header-2-area .header-nav > .container {
-    background: rgba(15, 25, 50, .42);
-    border: 1px solid rgba(255, 255, 255, .16);
-    border-radius: 28px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-/* Pegajoso: misma píldora, pero opaca para leerse sobre secciones blancas.
-   El margen superior va en el padding: la animación del template se come
-   cualquier top y la píldora aterrizaba pegada al borde. */
-.header-area.header-2-area .header-nav.sticky {
-    background-color: transparent;
-    padding: 16px 0 10px;
-}
-.header-area.header-2-area .header-nav.sticky > .container {
-    background: rgba(19, 45, 103, .94);
-}
-/* En pantallas anchas la píldora acompaña el ancho del contenido del hero
-   (1400px); por debajo manda el contenedor de Bootstrap, que ya escala. */
-@media (min-width: 1500px) {
-    .header-area.header-2-area .header-nav > .container { width: auto; max-width: none; margin-left: clamp(48px, 5vw, 128px); margin-right: clamp(48px, 5vw, 128px); }
-}
-/* El botón del nav habla el mismo idioma de píldoras que el hero */
-.header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a { border-radius: 999px; }
-/* En <576px el .container de Bootstrap es fluido a todo el ancho y la píldora
-   salía a sangre, más ancha que la tarjeta: se le da aire lateral para que
-   flote 12px dentro de la lámina, como las cápsulas de nor.ma. */
-@media (max-width: 575px) {
-    .header-area.header-2-area .header-nav > .container { margin-left: 20px; margin-right: 20px; width: auto; }
-}
 /* El menú desplegable (móvil/tablet) cae como tarjeta redondeada, no como panel
    seco. SOLO ≤991px: en escritorio .navbar-collapse aloja el submenú absoluto
    de Servicios y un overflow:hidden aquí lo recortaría (pasó). */
