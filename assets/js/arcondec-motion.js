@@ -582,60 +582,61 @@
        zoom lo hace el overflow del propio .slick-list.
        ========================================================================== */
     /* ======================================================================
-       Hero-tarjeta de portada: tres láminas que rotan con el scroll
+       Hero-tarjeta de portada: rotación automática estilo Graft
        ----------------------------------------------------------------------
-       La sección se ancla (pin) mientras el usuario recorre dos pantallas y
-       las láminas se funden una en otra, con imán (snap) a cada slide. Sin
-       GSAP o con movimiento reducido este archivo ni siquiera se ejecuta y
-       el CSS deja la primera lámina fija y completa: nada queda oculto.
+       Tres láminas que se funden solas cada 6.5s: la foto activa respira con
+       un zoom lento (Ken Burns), el panel de texto sale hacia arriba y el
+       entrante sube en cascada; el contador 01/03 acompaña. Sin GSAP o con
+       movimiento reducido este archivo no corre y el CSS deja la primera
+       lámina fija y completa: nada queda oculto.
        ====================================================================== */
     function heroSlides() {
         var section = document.querySelector('.arc-hero');
         if (!section) { return; }
         var slides = section.querySelectorAll('.arc-hero-slide');
         if (slides.length < 2) { return; }
-        var dots = section.querySelectorAll('.arc-hero-dots span');
-        var steps = slides.length - 1;
+        var countEl = section.querySelector('.arc-hero-count-n');
+        var INTERVAL = 6500;
+        var current = 0;
+        var busy = false;
 
-        var tl = gsap.timeline({
-            defaults: { ease: 'none' },
-            scrollTrigger: {
-                trigger: section,
-                start: 'top top',
-                end: '+=' + (steps * 100) + '%',
-                pin: true,
-                anticipatePin: 1,
-                scrub: 1,
-                /* El imán espera a que la inercia del trackpad muera (delay) y
-                   frena con suavidad; con duración fija y sin espera peleaba
-                   contra el usuario y daba saltos. */
-                snap: {
-                    snapTo: 1 / steps,
-                    duration: { min: 0.3, max: 0.8 },
-                    delay: 0.2,
-                    ease: 'power2.out'
-                },
-                onUpdate: function (self) {
-                    var idx = Math.round(self.progress * steps);
-                    for (var d = 0; d < dots.length; d++) {
-                        dots[d].classList.toggle('is-active', d === idx);
-                    }
-                }
-            }
-        });
-
-        // Pista horizontal: cada lámina arranca a la derecha de la anterior y
-        // el scroll desplaza el tren hacia la izquierda (lo nuevo entra por la
-        // derecha, como el slider del demo de referencia).
-        gsap.set(slides, {
-            autoAlpha: 1,
-            xPercent: function (index) { return index * 100; }
-        });
-
-        var i;
-        for (i = 1; i < slides.length; i++) {
-            tl.to(slides, { xPercent: '-=100', duration: 1 }, i - 1);
+        function kenBurns(slide) {
+            var img = slide.querySelector('.arc-hero-media');
+            if (!img) { return; }
+            gsap.fromTo(img,
+                { scale: 1 },
+                { scale: 1.07, duration: INTERVAL / 1000 + 1.6, ease: 'none',
+                  transformOrigin: '50% 50%', overwrite: true });
         }
+        kenBurns(slides[0]);
+
+        function goTo(next) {
+            if (busy || next === current) { return; }
+            busy = true;
+            var out = slides[current];
+            var inn = slides[next];
+            var outPanel = out.querySelector('.arc-hero-panel');
+            var inPanel = inn.querySelector('.arc-hero-panel');
+
+            gsap.timeline({ onComplete: function () { busy = false; } })
+                .to(outPanel, { autoAlpha: 0, y: -26, duration: 0.45, ease: 'power2.in' }, 0)
+                .to(out, { autoAlpha: 0, duration: 0.85, ease: 'power1.inOut' }, 0.2)
+                .fromTo(inn, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.85, ease: 'power1.inOut' }, 0.2)
+                .add(function () { kenBurns(inn); }, 0.2)
+                .fromTo(inPanel,
+                    { autoAlpha: 0, y: 30 },
+                    { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 0.6);
+
+            if (countEl) { countEl.textContent = '0' + (next + 1); }
+            current = next;
+        }
+
+        setInterval(function () {
+            // En pestañas ocultas el navegador congela las animaciones: no
+            // avanzar a ciegas para no saltarse láminas.
+            if (document.hidden) { return; }
+            goTo((current + 1) % slides.length);
+        }, INTERVAL);
     }
 
     function heroMotion() {

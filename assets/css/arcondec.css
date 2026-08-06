@@ -509,13 +509,13 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-hero-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .35); transition: background .3s ease, transform .3s ease; }
 .arc-hero-dots span.is-active { background: #FFBB00; transform: scale(1.3); }
 .arc-hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.arc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9, 17, 40, .68) 0%, rgba(9, 17, 40, .38) 48%, rgba(9, 17, 40, .12) 100%); }
-.arc-hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1400px; margin: 0 auto; padding: 140px clamp(24px, 5vw, 72px) 96px; }
+.arc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(75deg, rgba(9, 17, 40, .32) 0%, rgba(9, 17, 40, .40) 45%, rgba(9, 17, 40, .64) 100%); }
+.arc-hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1400px; margin: 0 auto; padding: 150px clamp(24px, 5vw, 72px) 120px; display: flex; justify-content: flex-end; align-items: center; }
 .arc-hero-tag { display: inline-flex; align-items: center; padding: 9px 18px; border-radius: 999px; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
-.arc-hero-title { margin: 24px 0 0; color: #fff; font-weight: 600; font-size: clamp(34px, 6.2vw, 88px); line-height: 1.04; letter-spacing: -0.03em; }
+.arc-hero-title { margin: 0; color: #fff; font-weight: 600; font-size: clamp(26px, 2.8vw, 44px); line-height: 1.15; letter-spacing: -0.02em; }
 .arc-hero-title span { display: block; }
 .arc-hero-dim { color: rgba(255, 255, 255, .55); }
-.arc-hero-text { margin: 26px 0 0; max-width: 620px; color: rgba(255, 255, 255, .85); font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; }
+.arc-hero-text { margin: 16px 0 0; color: rgba(255, 255, 255, .85); font-size: clamp(15px, 1.1vw, 17px); line-height: 1.6; }
 .arc-hero-ctas { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 12px; }
 .arc-pill { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 13px 30px; border-radius: 999px; font-size: 16px; font-weight: 600; line-height: 1.3; transition: background .25s ease, color .25s ease, transform .25s ease; }
 .arc-pill:hover { transform: translateY(-1px); }
@@ -523,16 +523,26 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-pill-solid:hover { background: #E5A800; color: #132D67; }
 .arc-pill-glass { background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .28); color: #fff; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .arc-pill-glass:hover { background: rgba(255, 255, 255, .26); color: #fff; }
-.arc-hero-play { position: absolute; z-index: 1; right: clamp(20px, 4vw, 48px); bottom: clamp(20px, 4vw, 44px); width: 62px; height: 62px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: 16px; }
+.arc-hero-play { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: 15px; flex: none; }
+.arc-hero-panel { width: min(560px, 100%); padding: 26px 0; border-top: 1px solid rgba(255, 255, 255, .4); border-bottom: 1px solid rgba(255, 255, 255, .4); }
+.arc-hero-more { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: #fff; font-weight: 600; font-size: 15px; padding-bottom: 4px; border-bottom: 1px solid rgba(255, 255, 255, .5); transition: color .25s ease, border-color .25s ease; }
+.arc-hero-more::after { content: '\2192'; }
+.arc-hero-more:hover { color: #FFBB00; border-color: #FFBB00; }
+.arc-hero-count { position: absolute; z-index: 2; left: clamp(24px, 4vw, 56px); bottom: clamp(24px, 4vh, 44px); color: #fff; display: flex; align-items: baseline; gap: 6px; font-weight: 600; letter-spacing: .04em; }
+.arc-hero-count-n { font-size: 26px; }
+.arc-hero-count-t { font-size: 14px; color: rgba(255, 255, 255, .6); }
+.arc-hero-actions { position: absolute; z-index: 2; right: clamp(20px, 4vw, 48px); bottom: clamp(20px, 4vh, 40px); display: flex; align-items: center; gap: 12px; }
 .arc-hero-play:hover { background: rgba(255, 255, 255, .26); color: #fff; }
 @media (max-width: 767px) {
     .arc-hero { padding: 12px 8px 0; } /* sin topbar */
     .arc-hero-card { min-height: calc(100vh - 24px); min-height: calc(100svh - 24px); border-radius: 22px; }
-    .arc-hero-inner { padding: 110px 22px 84px; }
-    .arc-hero-ctas { flex-direction: column; }
+    .arc-hero-inner { padding: 100px 22px 96px; justify-content: flex-start; align-items: flex-end; }
+    .arc-hero-count { display: none; }
     .arc-pill { width: 100%; }
-    /* A la izquierda para no amontonarse con el FAB de WhatsApp */
-    .arc-hero-play { right: auto; left: 16px; bottom: 20px; width: 54px; height: 54px; }
+    .arc-hero-play { width: 46px; height: 46px; }
+    /* La fila de acciones ocupa el pie de la tarjeta; el FAB de WhatsApp queda arriba */
+    .arc-hero-actions { left: 16px; right: 16px; bottom: 16px; }
+    .arc-hero-actions .arc-pill { width: auto; flex: 1; }
     /* El topbar (teléfonos + correos + login) no cabe entre 576 y 767px y se
        apilaba en columnas rotas: se oculta, como ya hace el template <576px. */
     .header-top { display: none; }
