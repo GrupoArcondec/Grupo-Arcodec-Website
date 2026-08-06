@@ -509,8 +509,10 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-hero-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .35); transition: background .3s ease, transform .3s ease; }
 .arc-hero-dots span.is-active { background: #FFBB00; transform: scale(1.3); }
 .arc-hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.arc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(75deg, rgba(9, 17, 40, .32) 0%, rgba(9, 17, 40, .40) 45%, rgba(9, 17, 40, .64) 100%); }
-.arc-hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1400px; margin: 0 auto; padding: 150px clamp(24px, 5vw, 72px) 120px; display: flex; justify-content: flex-end; align-items: center; }
+.arc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(285deg, rgba(9, 17, 40, .32) 0%, rgba(9, 17, 40, .40) 45%, rgba(9, 17, 40, .64) 100%); }
+.arc-hero-slide--right .arc-hero-scrim { background: linear-gradient(75deg, rgba(9, 17, 40, .32) 0%, rgba(9, 17, 40, .40) 45%, rgba(9, 17, 40, .64) 100%); }
+.arc-hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1400px; margin: 0 auto; padding: 150px clamp(24px, 5vw, 72px) 120px; display: flex; justify-content: flex-start; align-items: center; }
+.arc-hero-slide--right .arc-hero-inner { justify-content: flex-end; }
 .arc-hero-tag { display: inline-flex; align-items: center; padding: 9px 18px; border-radius: 999px; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .arc-hero-title { margin: 0; color: #fff; font-weight: 600; font-size: clamp(26px, 2.8vw, 44px); line-height: 1.15; letter-spacing: -0.02em; }
 .arc-hero-title span { display: block; }
@@ -537,6 +539,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
     .arc-hero { padding: 12px 8px 0; } /* sin topbar */
     .arc-hero-card { min-height: calc(100vh - 24px); min-height: calc(100svh - 24px); border-radius: 22px; }
     .arc-hero-inner { padding: 100px 22px 96px; justify-content: flex-start; align-items: flex-end; }
+    .arc-hero-slide--right .arc-hero-inner { justify-content: flex-start; }
     .arc-hero-count { display: none; }
     .arc-pill { width: 100%; }
     .arc-hero-play { width: 46px; height: 46px; }
