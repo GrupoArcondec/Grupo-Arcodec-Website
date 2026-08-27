@@ -1228,7 +1228,7 @@ def render_blog(lang):
                             <img src="%s/blog/%s" alt="%s" loading="lazy" %s>
                         </div>
                         <div class="article-content">
-                            <h3 class="title">%s</h3>
+                            <h2 class="title">%s</h2>
                             <p>%s</p>
                             <span class="article-soon">%s</span>
                         </div>
