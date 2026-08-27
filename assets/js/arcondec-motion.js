@@ -27,8 +27,12 @@
  * Reglas que respeta
  * ------------------
  * - Si GSAP no cargó, no toca nada y WOW sigue funcionando como antes.
- * - Con `prefers-reduced-motion: reduce` no registra ninguna animación —ni la
- *   suya ni la del template— y la página se queda quieta y completa.
+ * - Con `prefers-reduced-motion: reduce` no registra ninguna aparición por
+ *   scroll —ni la suya ni la del template— y la página se queda quieta. Única
+ *   excepción: los botones del hero siguen montados, sin avance automático y
+ *   sin transición, porque son el único camino a las láminas 2 y 3.
+ * - Todo movimiento automático de la portada (hero cada 11 s, cinta de logos
+ *   cada 3 s) se detiene con el botón de pausa del hero, como pide WCAG 2.2.2.
  * - Nada se oculta hasta que la página termina de cargar y las fuentes están
  *   listas, así que un fallo previo nunca deja contenido invisible.
  * - No entra en el header, los carruseles ni los botones flotantes: ahí manda el
@@ -51,11 +55,13 @@
     /* ==========================================================================
        1. El movimiento del template queda fuera
        --------------------------------------------------------------------------
-       main.js arranca WOW y las animaciones del hero dentro de su
-       `jQuery(document).on('ready')`, y este archivo se ejecuta antes (va al final
-       del <body>, DOMContentLoaded todavía no ha ocurrido). Al quitar aquí la
-       clase `wow` y el atributo `data-animation`, main.js no encuentra a quién
-       animar: un solo sistema en la página, sin nada moviéndose dos veces.
+       main.js arranca WOW dentro de su `jQuery(document).on('ready')`, y este
+       archivo se ejecuta antes (va al final del <body>, DOMContentLoaded todavía
+       no ha ocurrido). Al quitar aquí la clase `wow`, main.js no encuentra a
+       quién animar: un solo sistema en la página, sin nada moviéndose dos veces.
+
+       El hero de la portada ya no es el slider del template (.hero-slider), así
+       que no queda ningún [data-animation] que desenganchar: lo mueve heroSlides.
        ========================================================================== */
     var WOW_CLASSES = ['wow', 'animated', 'fadeInUp', 'fadeInLeft', 'fadeInRight', 'fadeInDown'];
 
@@ -69,22 +75,26 @@
             wowNodes[i].removeAttribute('data-wow-duration');
             wowNodes[i].removeAttribute('data-wow-delay');
         }
-
-        var heroNodes = document.querySelectorAll('.hero-slider [data-animation]');
-        for (i = 0; i < heroNodes.length; i++) {
-            for (j = 0; j < WOW_CLASSES.length; j++) {
-                heroNodes[i].classList.remove(WOW_CLASSES[j]);
-            }
-            heroNodes[i].removeAttribute('data-animation');
-            heroNodes[i].removeAttribute('data-delay');
-        }
     }
 
     unhookTemplateMotion();
 
-    // Con animaciones reducidas la página se queda quieta: el template ya no
-    // anima nada y aquí no se registra nada más.
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+    /* Con animaciones reducidas la página se queda quieta: el template ya no
+       anima nada y aquí no se registra ninguna aparición por scroll.
+
+       La única excepción es el hero. Sus tres láminas se apilan y el CSS solo
+       enseña la primera; si nadie las rota, las láminas 2 y 3 —con su titular,
+       su párrafo y sus CTAs— no hay forma de verlas. Eso ya no es renunciar a
+       una animación, es esconder contenido a quien pidió menos movimiento.
+       Se monta el hero sin avance automático y con cambios instantáneos: los
+       botones anterior/siguiente quedan como único mando, y nada se mueve
+       hasta que el visitante lo pide. */
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        safely('heroSlides (movimiento reducido)', function () {
+            heroSlides({ quieto: true, automatico: false });
+        });
+        return;
+    }
 
     /* ==========================================================================
        2. Ajustes
@@ -92,7 +102,6 @@
     var SKIP = [
         'header',                 // cabecera y menú: los mueve main.js
         '.preloader',
-        '.hero-slider',           // el hero tiene su propia línea de tiempo
         '.slick-list',            // dentro de un carrusel manda slick
         '.page-title-area',       // sobre la línea de flotación: entra al cargar
         '.back-to-top',
@@ -577,13 +586,22 @@
        orden de aparición de los logos, cosa que aquí da igual.
 
        Si slick o jQuery no cargan, la función se sale y el CSS deja los logos en
-       una fila con desplazamiento manual: la sección nunca queda vacía.
+       una fila con desplazamiento manual: la sección nunca queda vacía. Lo mismo
+       con movimiento reducido, donde esta función ni se llama.
+
+       El botón de pausa del hero también detiene esta cinta (ver heroSlides):
+       son los dos movimientos automáticos de la portada y WCAG 2.2.2 pide poder
+       parar todos, no uno. Por eso la pista se guarda en `logosPista`.
        ========================================================================== */
+    var logosPista = null;
+
     function logoCarousel() {
         var jq = window.jQuery;
         var pista = document.querySelector('.arc-logos');
         if (!jq || !pista || !jq.fn || !jq.fn.slick) { return; }
         if (pista.children.length < 2 || pista.classList.contains('slick-initialized')) { return; }
+
+        logosPista = pista;
 
         jq(pista).slick({
             slidesToShow: 5,
@@ -595,6 +613,9 @@
             arrows: false,
             dots: false,
             pauseOnHover: true,
+            // Al tabular hasta un logo la cinta se detiene: sin esto el enlace
+            // enfocado se va de la pantalla y el foco queda en un sitio invisible.
+            pauseOnFocus: true,
             rtl: true,
             cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
             responsive: [
@@ -718,8 +739,6 @@
 
         for (var i = 0; i < backgrounds.length; i++) {
             var bg = backgrounds[i];
-            if (bg.closest('.hero-slider')) { continue; }
-
             var image = window.getComputedStyle(bg).backgroundImage;
             if (image.indexOf('url(') !== 0 || image.split(/,(?![^(]*\))/).length !== 1) { continue; }
 
@@ -739,29 +758,40 @@
         }
     }
 
-    /* ==========================================================================
-       9. Hero: una línea de tiempo por diapositiva
-       --------------------------------------------------------------------------
-       Sustituye a las clases de animate.css que aplicaba main.js (barrían el
-       titular 700px de lado). Aquí el titular se arma línea a línea y el resto
-       entra detrás, con la foto haciendo un zoom lento de fondo. El recorte del
-       zoom lo hace el overflow del propio .slick-list.
-       ========================================================================== */
     /* ======================================================================
-       Hero-tarjeta de portada: rotación automática estilo Graft
+       9. Hero-tarjeta de portada: tres láminas con controles
        ----------------------------------------------------------------------
-       Tres láminas que se funden solas cada 6.5s: la foto activa respira con
-       un zoom lento (Ken Burns), el panel de texto sale hacia arriba y el
-       entrante sube en cascada; el contador 01/03 acompaña. Sin GSAP o con
-       movimiento reducido este archivo no corre y el CSS deja la primera
-       lámina fija y completa: nada queda oculto.
+       Las láminas se funden cada 11 s: la foto activa respira con un zoom
+       lento (Ken Burns), el panel de texto sale hacia arriba y el entrante
+       sube en cascada; el contador 01/03 acompaña.
+
+       Los botones anterior/pausa/siguiente no son decoración:
+
+       · WCAG 2.2.2 («Pausar, detener, ocultar») exige poder detener cualquier
+         movimiento automático que dure más de 5 segundos. Once no son cinco.
+       · Con `prefers-reduced-motion` no hay avance automático, y sin botones
+         las láminas 2 y 3 quedarían inalcanzables: el CSS solo enseña la
+         primera. Eso no es perder una animación, es perder contenido. Por eso
+         esta función SÍ corre en ese modo —es la única que lo hace—, con
+         `quieto`, que cambia de lámina sin transición.
+
+       Sin GSAP el archivo entero se sale antes y el CSS deja la primera lámina
+       fija y completa: nada queda oculto.
        ====================================================================== */
-    function heroSlides() {
+    function heroSlides(opciones) {
+        var conf = opciones || {};
+        var quieto = !!conf.quieto;          // sin transiciones ni Ken Burns
+        var automatico = conf.automatico !== false;
+
         var section = document.querySelector('.arc-hero');
         if (!section) { return; }
         var slides = section.querySelectorAll('.arc-hero-slide');
         if (slides.length < 2) { return; }
         var countEl = section.querySelector('.arc-hero-count-n');
+        var toggle = section.querySelector('[data-arc-hero="toggle"]');
+        var prev = section.querySelector('[data-arc-hero="prev"]');
+        var next = section.querySelector('[data-arc-hero="next"]');
+
         // Tiempo que cada lámina permanece en pantalla, en milisegundos.
         // De esos, ~1.15 s se van en la entrada del panel, así que el tiempo
         // real de lectura es INTERVAL - 1150. La lámina más larga son 47
@@ -770,8 +800,11 @@
         var INTERVAL = 11000;
         var current = 0;
         var busy = false;
+        var timer = null;
+        var pausado = !automatico;
 
         function kenBurns(slide) {
+            if (quieto) { return; }
             var img = slide.querySelector('.arc-hero-media');
             if (!img) { return; }
             gsap.fromTo(img,
@@ -781,213 +814,87 @@
         }
         kenBurns(slides[0]);
 
-        function goTo(next) {
-            if (busy || next === current) { return; }
+        function goTo(destino) {
+            var total = slides.length;
+            var siguiente = ((destino % total) + total) % total;   // envuelve en ambos sentidos
+            if (busy || siguiente === current) { return; }
             busy = true;
             var out = slides[current];
-            var inn = slides[next];
+            var inn = slides[siguiente];
             var outPanel = out.querySelector('.arc-hero-panel');
             var inPanel = inn.querySelector('.arc-hero-panel');
 
-            gsap.timeline({ onComplete: function () { busy = false; } })
-                .to(outPanel, { autoAlpha: 0, y: -26, duration: 0.45, ease: 'power2.in' }, 0)
-                .to(out, { autoAlpha: 0, duration: 0.85, ease: 'power1.inOut' }, 0.2)
-                .fromTo(inn, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.85, ease: 'power1.inOut' }, 0.2)
-                .add(function () { kenBurns(inn); }, 0.2)
-                .fromTo(inPanel,
-                    { autoAlpha: 0, y: 30 },
-                    { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 0.6);
+            if (quieto) {
+                // Cambio seco: quien pide movimiento reducido no quiere fundidos,
+                // pero sí tiene derecho a leer las tres láminas.
+                gsap.set(out, { autoAlpha: 0 });
+                gsap.set(inn, { autoAlpha: 1 });
+                gsap.set([outPanel, inPanel], { clearProps: 'all' });
+                busy = false;
+            } else {
+                gsap.timeline({ onComplete: function () { busy = false; } })
+                    .to(outPanel, { autoAlpha: 0, y: -26, duration: 0.45, ease: 'power2.in' }, 0)
+                    .to(out, { autoAlpha: 0, duration: 0.85, ease: 'power1.inOut' }, 0.2)
+                    .fromTo(inn, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.85, ease: 'power1.inOut' }, 0.2)
+                    .add(function () { kenBurns(inn); }, 0.2)
+                    .fromTo(inPanel,
+                        { autoAlpha: 0, y: 30 },
+                        { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 0.6);
+            }
 
-            if (countEl) { countEl.textContent = '0' + (next + 1); }
-            current = next;
+            if (countEl) { countEl.textContent = '0' + (siguiente + 1); }
+            current = siguiente;
         }
 
-        setInterval(function () {
-            // En pestañas ocultas el navegador congela las animaciones: no
-            // avanzar a ciegas para no saltarse láminas.
-            if (document.hidden) { return; }
-            goTo((current + 1) % slides.length);
-        }, INTERVAL);
+        /* --- Avance automático -------------------------------------------
+           setInterval con un intervalo largo se desfasa si la pestaña queda
+           en segundo plano: el navegador acumula disparos y al volver saltan
+           varias láminas de golpe. Con setTimeout encadenado cada espera
+           empieza cuando termina la anterior, y se puede cancelar de verdad
+           al pausar —cosa que el setInterval anterior no hacía nunca—. */
+        function arranca() {
+            if (pausado || timer) { return; }
+            timer = window.setTimeout(function () {
+                timer = null;
+                if (!document.hidden) { goTo(current + 1); }
+                arranca();
+            }, INTERVAL);
+        }
+
+        function detiene() {
+            if (timer) { window.clearTimeout(timer); timer = null; }
+        }
+
+        // La cinta de logos es el otro movimiento automático de la portada y el
+        // mismo botón la manda. Si slick no llegó a montarse no pasa nada: ahí
+        // los logos son una fila que se arrastra a mano y no hay qué pausar.
+        function logos(orden) {
+            if (!window.jQuery || !logosPista) { return; }
+            if (!logosPista.classList.contains('slick-initialized')) { return; }
+            window.jQuery(logosPista).slick(orden);
+        }
+
+        function pausa(valor) {
+            pausado = valor;
+            if (toggle) { toggle.setAttribute('aria-pressed', valor ? 'true' : 'false'); }
+            logos(valor ? 'slickPause' : 'slickPlay');
+            if (valor) { detiene(); } else { arranca(); }
+        }
+
+        if (toggle) {
+            toggle.addEventListener('click', function () { pausa(!pausado); });
+            // Con movimiento reducido no hay nada que pausar: el conmutador
+            // sobra y se retira del orden de tabulación en vez de mentir.
+            if (!automatico) { toggle.hidden = true; }
+        }
+        // Mover a mano implica tomar el control: se detiene el avance solo, que
+        // es lo que espera quien está leyendo una lámina concreta.
+        if (prev) { prev.addEventListener('click', function () { pausa(true); goTo(current - 1); }); }
+        if (next) { next.addEventListener('click', function () { pausa(true); goTo(current + 1); }); }
+
+        arranca();
     }
 
-    function heroMotion() {
-        var jq = window.jQuery;
-        var slider = document.querySelector('.hero-slider');
-        if (!jq || !slider || !slider.classList.contains('slick-initialized')) { return; }
-
-        var slides = slider.querySelectorAll('.hero-area');
-        if (!slides.length) { return; }
-
-        var current = null;
-
-        function play(index) {
-            var slide = slides[index];
-            if (!slide) { return; }
-
-            var content = slide.querySelector('.hero-2-content');
-            var background = slide.querySelector('.section__bg');
-
-            if (background) {
-                gsap.fromTo(background, { scale: 1 }, { scale: 1.075, duration: 11, ease: 'none', overwrite: true });
-            }
-            if (!content) { return; }
-
-            if (current) { revertSplit(current.split); current.tl.kill(); }
-
-            var badge = content.querySelector('span');
-            var heading = content.querySelector('.title');
-            var text = content.querySelector('.text');
-            var buttons = content.querySelectorAll('ul li');
-            var playButton = slide.querySelector('.hero-play-11 a');
-
-            var split = heading ? splitLines(heading) : null;
-            var tl = gsap.timeline({
-                defaults: { ease: EASE },
-                onComplete: function () { revertSplit(split); }
-            });
-
-            if (badge) { tl.from(badge, { y: -18, opacity: 0, duration: 0.6, clearProps: 'transform,opacity' }, 0); }
-
-            if (split && split.lines.length) {
-                tl.from(split.lines, { yPercent: 115, duration: 0.95, stagger: 0.09 }, 0.15);
-            } else if (heading) {
-                tl.from(heading, { y: 40, opacity: 0, duration: 0.9, clearProps: 'transform,opacity' }, 0.15);
-            }
-
-            if (text) { tl.from(text, { y: 24, opacity: 0, duration: 0.7, clearProps: 'transform,opacity' }, 0.5); }
-            if (buttons.length) {
-                tl.from(buttons, { y: 22, opacity: 0, duration: 0.6, stagger: 0.1, clearProps: 'transform,opacity' }, 0.62);
-            }
-            if (playButton) {
-                tl.from(playButton, { scale: 0.7, opacity: 0, duration: 0.7, ease: 'back.out(1.7)', clearProps: 'transform,opacity' }, 0.5);
-            }
-
-            current = { tl: tl, split: split };
-        }
-
-        play(jq(slider).slick('slickCurrentSlide') || 0);
-        jq(slider).on('beforeChange', function (event, slick, from, to) { play(to); });
-    }
-
-    /* ==========================================================================
-       10. Logos de clientes: cinta continua, solo en móvil
-       --------------------------------------------------------------------------
-       En escritorio los diez logos caben en dos líneas de cinco y no se toca nada.
-       Al envolverse, en el móvil caían de uno en uno y la sección medía 1078px.
-       arcondec.css ya los deja en una tira que se arrastra con el dedo —eso
-       funciona sin JavaScript y es lo que ve quien pide movimiento reducido—; aquí
-       esa tira pasa a moverse sola, cada línea hacia un lado.
-
-       gsap.matchMedia() se encarga de montar y desmontar según el ancho: al pasar
-       a escritorio revierte la animación y la función de limpieza deshace los
-       clones, así que el marcado vuelve a quedar como estaba.
-       ========================================================================== */
-    var MARQUEE_QUERY = '(max-width: 767.98px)';
-    var MARQUEE_SPEED = 34;   // píxeles por segundo
-
-    function logoMarquee() {
-        var strips = document.querySelectorAll('.brand-3-area .brand-3-items');
-        if (!strips.length || !window.matchMedia) { return; }
-
-        var consulta = window.matchMedia(MARQUEE_QUERY);
-        var tweens = [];
-        var montada = false;
-
-        function montar() {
-            Array.prototype.forEach.call(strips, function (strip, index) {
-                var originals = Array.prototype.slice.call(strip.children);
-                if (originals.length < 2) { return; }
-
-                var track = document.createElement('div');
-                track.className = 'arc-marquee-track';
-
-                originals.forEach(function (item) { track.appendChild(item); });
-
-                // Se duplica el juego entero: al desplazar la cinta justo la mitad
-                // de su ancho, la copia cae exactamente donde estaba el original y
-                // el ciclo no tiene costura. La copia se oculta a los lectores de
-                // pantalla y sus enlaces salen del orden de tabulación: es un
-                // duplicado visual, no contenido nuevo.
-                originals.forEach(function (item) {
-                    var copy = item.cloneNode(true);
-                    copy.setAttribute('aria-hidden', 'true');
-                    Array.prototype.forEach.call(copy.querySelectorAll('a'), function (link) {
-                        link.setAttribute('tabindex', '-1');
-                    });
-                    track.appendChild(copy);
-                });
-
-                strip.appendChild(track);
-                strip.classList.add('arc-marquee');
-
-                var recorrido = track.scrollWidth / 2;
-                if (recorrido < 1) { return; }
-
-                // Misma velocidad en las dos líneas aunque midan distinto, y en
-                // sentidos opuestos: se lee como una sola pieza en movimiento.
-                var haciaAtras = index % 2 === 1;
-                var tween = gsap.fromTo(track,
-                    { xPercent: haciaAtras ? -50 : 0 },
-                    {
-                        xPercent: haciaAtras ? 0 : -50,
-                        duration: recorrido / MARQUEE_SPEED,
-                        ease: 'none',
-                        repeat: -1
-                    }
-                );
-                tweens.push(tween);
-
-                // Al posar el dedo se detiene, para poder mirar un logo concreto.
-                strip.addEventListener('pointerenter', function () { tween.pause(); });
-                strip.addEventListener('pointerleave', function () { tween.resume(); });
-            });
-
-            // La tira cambia de alto al montarse: los puntos de disparo del resto
-            // de la página se recalculan.
-            scheduleRefresh();
-        }
-
-        function desmontar() {
-            tweens.forEach(function (t) { t.kill(); });
-            tweens = [];
-
-            Array.prototype.forEach.call(strips, function (strip) {
-                var track = strip.querySelector('.arc-marquee-track');
-                if (!track) { return; }
-                Array.prototype.slice.call(track.children).forEach(function (node) {
-                    if (node.getAttribute('aria-hidden') === 'true') {
-                        node.parentNode.removeChild(node);
-                    } else {
-                        strip.appendChild(node);
-                    }
-                });
-                track.parentNode.removeChild(track);
-                strip.classList.remove('arc-marquee');
-            });
-
-            scheduleRefresh();
-        }
-
-        // El montaje y el desmontaje van con listener propio en vez de delegarlos
-        // a gsap.matchMedia(): dejar un juego de clones colgado al pasar a
-        // escritorio deja la sección en 1271px —peor que el problema que
-        // resolvemos—, así que conviene que sea explícito y comprobable. El
-        // `resize` es la red por si el evento `change` no llega.
-        function sincroniza() {
-            if (consulta.matches === montada) { return; }
-            montada = consulta.matches;
-            if (montada) { montar(); } else { desmontar(); }
-        }
-
-        sincroniza();
-
-        if (consulta.addEventListener) {
-            consulta.addEventListener('change', sincroniza);
-        } else if (consulta.addListener) {
-            consulta.addListener(sincroniza);
-        }
-        window.addEventListener('resize', sincroniza);
-    }
 
     /* ==========================================================================
        11. Barra de progreso de lectura
@@ -1050,7 +957,6 @@
         safely('revealBanner', revealBanner);
         safely('parallaxBackgrounds', parallaxBackgrounds);
         safely('heroSlides', heroSlides);
-        safely('heroMotion', heroMotion);
         safely('logoCarousel', logoCarousel);
         safely('progressBar', progressBar);
 

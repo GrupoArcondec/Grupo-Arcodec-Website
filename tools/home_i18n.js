@@ -40,6 +40,13 @@
             heroS3Title: 'Operación y Mantenimiento de Infraestructura Crítica',
             heroS3Text: 'Acompañamos a nuestros clientes durante todo el ciclo de vida de su infraestructura mediante servicios especializados de operación, mantenimiento preventivo y correctivo, optimización y atención de emergencias para garantizar la máxima disponibilidad de sus instalaciones.',
 
+            // Controles del hero. Van dentro de cada botón en un <span class="sr-only">:
+            // no se ven, pero son el nombre accesible del botón. El estado
+            // pausado/en marcha lo comunica aria-pressed, así que el rótulo no cambia.
+            heroPrev: 'Lámina anterior',
+            heroNext: 'Lámina siguiente',
+            heroPause: 'Pausar la rotación automática',
+
             // Franja de certificaciones ISO bajo el hero. Claves propias: las de
             // sec1/sec2/map se reutilizan más abajo en la página y no se pueden tocar.
             isoQTitle: 'ISO 9001: Calidad',
@@ -161,6 +168,10 @@
             heroS2Text: 'We design and implement electrical infrastructure, UPS systems, emergency plants and backup solutions that ensure the availability and reliability of critical operations.',
             heroS3Title: 'Critical Infrastructure Operation & Maintenance',
             heroS3Text: 'We support our clients throughout the entire lifecycle of their infrastructure with specialized operation, preventive and corrective maintenance, optimization and emergency response services to guarantee maximum availability of their facilities.',
+
+            heroPrev: 'Previous slide',
+            heroNext: 'Next slide',
+            heroPause: 'Pause the automatic rotation',
 
             // Franja de certificaciones ISO bajo el hero (ver nota en el bloque ES).
             isoQTitle: 'ISO 9001: Quality',
