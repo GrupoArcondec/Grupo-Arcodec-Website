@@ -296,7 +296,15 @@
             for (k = 0; k < row.children.length; k++) {
                 // Oculto (pestaña inactiva, columna solo-móvil): no se le aplica
                 // estado inicial, para no dejarlo invisible.
-                if (isColumn(row.children[k]) && isVisible(row.children[k])) {
+                //
+                // El SKIP se comprueba también columna por columna, no solo en la
+                // fila: si no, marcar una columna con data-arc-motion="off" no
+                // sirve de nada —queda dentro de una fila sin marcar y se anima
+                // igual—, y el bloque termina con dos animaciones peleándose por
+                // las mismas propiedades. Es lo que pasaba con las tarjetas de
+                // artículo, que traen la suya propia.
+                if (isColumn(row.children[k]) && isVisible(row.children[k]) &&
+                    !row.children[k].closest(SKIP)) {
                     cols.push(row.children[k]);
                 }
             }
@@ -512,6 +520,164 @@
     }
 
     /* ==========================================================================
+       6b. Mapa de cobertura: fundido con zoom, nunca cortina
+       --------------------------------------------------------------------------
+       El mapa no es una foto: es un gráfico con cajas de etiquetas flotando
+       alrededor del contorno. Una cortina las va cercenando mientras avanza y
+       durante ese segundo la sección se ve rota, justo donde el mensaje es
+       cobertura y solidez. Con opacidad y escala entra completo, sin recortes.
+       Su bloque lleva data-arc-motion="off" para que ni revealRows ni
+       revealFeatureMedia lo toquen: aquí se anima la <img> a mano y por eso
+       esta función no consulta SKIP.
+       ========================================================================== */
+    // El mapa se dispara más tarde que el resto. Con el START general
+    // —clamp(top 90%)— la animación arranca cuando la imagen apenas asoma por
+    // el borde inferior: para cuando el usuario la tiene enfrente, ya terminó,
+    // y el movimiento se percibe como si no existiera. A 75% el mapa ya entró
+    // un cuarto de pantalla y la entrada se ve completa.
+    var START_MAPA = 'clamp(top 75%)';
+
+    function revealMap() {
+        var nodes = document.querySelectorAll('.arc-map img');
+
+        for (var i = 0; i < nodes.length; i++) {
+            var img = nodes[i];
+            if (!isVisible(img)) { continue; }
+
+            var destino = {
+                autoAlpha: 1,
+                scale: 1,
+                y: 0,
+                duration: 1.2,
+                ease: EASE,
+                clearProps: 'transform,opacity,visibility'
+            };
+            if (yaEnPantalla(img)) {
+                destino.delay = 0.1 * Math.min(introContador++, 6);
+            } else {
+                destino.scrollTrigger = { trigger: img, start: START_MAPA, once: true };
+            }
+
+            gsap.fromTo(img, { autoAlpha: 0, scale: 0.90, y: 64 }, destino);
+        }
+    }
+
+    /* ==========================================================================
+       6c. Carrusel de logos de clientes
+       --------------------------------------------------------------------------
+       Avanza de un logo a la vez cada 3s, no en cinta continua: un logo quieto
+       durante unos segundos se lee, uno en movimiento perpetuo no. Va con slick
+       —que el sitio ya carga— en lugar de con GSAP, porque slick resuelve solo
+       el bucle infinito, el número de visibles por tamaño de pantalla y la
+       pausa al pasar el cursor.
+
+       rtl: true es lo que hace que la tira viaje hacia la derecha. Slick no
+       tiene autoplay inverso; en modo rtl el "siguiente" empuja el contenido en
+       sentido contrario, que es justo lo pedido. Como efecto lateral invierte el
+       orden de aparición de los logos, cosa que aquí da igual.
+
+       Si slick o jQuery no cargan, la función se sale y el CSS deja los logos en
+       una fila con desplazamiento manual: la sección nunca queda vacía.
+       ========================================================================== */
+    function logoCarousel() {
+        var jq = window.jQuery;
+        var pista = document.querySelector('.arc-logos');
+        if (!jq || !pista || !jq.fn || !jq.fn.slick) { return; }
+        if (pista.children.length < 2 || pista.classList.contains('slick-initialized')) { return; }
+
+        jq(pista).slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            speed: 700,
+            infinite: true,
+            arrows: false,
+            dots: false,
+            pauseOnHover: true,
+            rtl: true,
+            cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            responsive: [
+                { breakpoint: 1200, settings: { slidesToShow: 5 } },
+                { breakpoint: 992, settings: { slidesToShow: 4 } },
+                { breakpoint: 768, settings: { slidesToShow: 3 } },
+                { breakpoint: 576, settings: { slidesToShow: 2 } }
+            ]
+        });
+
+        scheduleRefresh();
+    }
+
+    /* ==========================================================================
+       6d. Tarjetas de artículo: entrada en dos capas
+       --------------------------------------------------------------------------
+       Estas tarjetas ya entraban con el escalonado genérico de columnas, pero no
+       se percibía: el disparo general —clamp(top 90%)— arranca cuando la fila
+       apenas asoma por el borde inferior, así que la animación termina antes de
+       que el usuario la tenga enfrente. Aquí se dispara al 80%.
+
+       Las tarjetas de cada renglón se deslizan 48px hacia arriba con fundido, y
+       lo hacen a la vez, sin escalonar. El escalonado insinúa un orden de lectura
+       —primero esta, luego esta— y aquí los tres artículos valen igual.
+
+       Las columnas se marcan con data-arc-motion="off" ANTES de que corra
+       revealRows, que es quien las animaría por su cuenta: sin eso las tarjetas
+       llevarían dos animaciones encima peleándose por la misma propiedad.
+       Por eso esta función va primero en start().
+       ========================================================================== */
+    var START_TARJETAS = 'clamp(top 80%)';
+
+    function revealArticleCards() {
+        var cards = document.querySelectorAll('.article-11-item');
+        if (!cards.length) { return; }
+
+        var filas = [];
+        for (var i = 0; i < cards.length; i++) {
+            var card = cards[i];
+            if (card.closest(SKIP) || !isVisible(card)) { continue; }
+            var col = card.closest('[class*="col-"]');
+            var fila = col && col.parentElement;
+            if (!col || !fila) { continue; }
+            if (filas.indexOf(fila) === -1) { filas.push(fila); }
+        }
+
+        filas.forEach(function (fila) {
+            var cols = [];
+            for (var j = 0; j < fila.children.length; j++) {
+                var col = fila.children[j];
+                if (!col.querySelector('.article-11-item') || !isVisible(col)) { continue; }
+                col.setAttribute('data-arc-motion', 'off');
+                cols.push(col);
+            }
+            if (!cols.length) { return; }
+
+            // Misma razón que en revealRows: en la página de Blog las 12 tarjetas
+            // cuelgan de UNA sola fila del código, pero en pantalla son cuatro
+            // renglones. Disparando por fila, las ocho de abajo terminarían su
+            // animación muy por debajo del borde inferior y al llegar a ellas ya
+            // estarían puestas. Se agrupan por la altura real a la que están.
+            visualBands(cols).forEach(function (band) {
+                var opciones = {};
+                if (yaEnPantalla(band[0])) {
+                    opciones.delay = 0.1 * Math.min(introContador++, 6);
+                } else {
+                    opciones.scrollTrigger = { trigger: band[0], start: START_TARJETAS, once: true };
+                }
+
+                // Sin escalonado: las tarjetas del renglón entran a la vez. Se leen
+                // como un bloque —tres artículos del mismo nivel— en vez de como
+                // una lista con jerarquía, que es lo que sugiere el escalonado.
+                gsap.timeline(opciones).fromTo(band,
+                    { autoAlpha: 0, y: 48 },
+                    {
+                        autoAlpha: 1, y: 0, duration: 0.9, ease: EASE,
+                        clearProps: 'transform,opacity,visibility'
+                    }, 0);
+            });
+        });
+    }
+
+    /* ==========================================================================
        7. Banner de las páginas interiores: entra al cargar, no al hacer scroll
        ========================================================================== */
     function revealBanner() {
@@ -596,7 +762,12 @@
         var slides = section.querySelectorAll('.arc-hero-slide');
         if (slides.length < 2) { return; }
         var countEl = section.querySelector('.arc-hero-count-n');
-        var INTERVAL = 6500;
+        // Tiempo que cada lámina permanece en pantalla, en milisegundos.
+        // De esos, ~1.15 s se van en la entrada del panel, así que el tiempo
+        // real de lectura es INTERVAL - 1150. La lámina más larga son 47
+        // palabras: a 11 s quedan ~9.8 s de lectura. Si se alarga el copy,
+        // subir este número. El zoom Ken Burns se ajusta solo.
+        var INTERVAL = 11000;
         var current = 0;
         var busy = false;
 
@@ -870,13 +1041,17 @@
     }
 
     function start() {
+        // Va antes que revealRows: marca sus columnas con data-arc-motion="off"
+        // para que el sistema genérico no las anime también.
+        safely('revealArticleCards', revealArticleCards);
         safely('revealRows', revealRows);
         safely('revealFeatureMedia', revealFeatureMedia);
+        safely('revealMap', revealMap);
         safely('revealBanner', revealBanner);
         safely('parallaxBackgrounds', parallaxBackgrounds);
         safely('heroSlides', heroSlides);
         safely('heroMotion', heroMotion);
-        safely('logoMarquee', logoMarquee);
+        safely('logoCarousel', logoCarousel);
         safely('progressBar', progressBar);
 
         // Las fotos que terminan de cargar cambian el alto de la página y

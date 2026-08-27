@@ -1513,3 +1513,126 @@ a.service-2-item:hover { color: #fff; }
 @media (max-width: 991px) {
     .contact-map iframe { height: 340px; }
 }
+
+/* --------------------------------------------------------------------------
+   Franja de certificaciones ISO (bajo el hero)
+   --------------------------------------------------------------------------
+   Los tres PNG del template se sustituyeron por iconos Font Awesome —ya
+   cargados en el sitio— para que cada norma lleve su símbolo propio y se vea
+   nítido en pantallas Retina, sin sumar peso ni archivos nuevos. Ocupan la
+   misma caja de 45px que las imágenes, así que el padding-left: 65px del
+   template sigue alineando igual. */
+.sub-2-item .arc-sub-icon {
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 45px;
+    text-align: center;
+    font-size: 34px;
+    line-height: 1;
+    color: #1F439B;
+}
+
+/* El template esconde la tercera tarjeta entre 768 y 991px para no dejar un
+   huérfano en la rejilla de dos columnas. Con certificaciones eso no aplica:
+   una lista de normas incompleta se lee como si faltara la certificación. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .sub-2-item.item-3 { display: block; }
+}
+
+/* ==========================================================================
+   Ritmo vertical entre secciones
+   --------------------------------------------------------------------------
+   El template deja 100px arriba y abajo de cada sección (75-84px en algunas).
+   Con el contenido de Arcondec —bloques más cortos que los del demo— eso abre
+   huecos que obligan a hacer scroll a ciegas entre una sección y la siguiente.
+   Se recortan ~25% de forma pareja: se conserva la jerarquía relativa del
+   template (las secciones que respiraban más siguen respirando más) y no se
+   toca ningún padding lateral ni la rejilla.
+   Los valores son fijos en el template, sin variantes por breakpoint, así que
+   estas reglas aplican igual en escritorio y en móvil. */
+.sub-2-area { padding-top: 56px; }
+.sub-2-area .sub-box { padding-bottom: 56px; }
+.about-2-area { padding-top: 52px; padding-bottom: 75px; }
+.service-2-area { padding-top: 75px; padding-bottom: 75px; }
+.article-2-area { padding-top: 75px; padding-bottom: 75px; }
+.testimonial-3-area { padding-top: 60px; padding-bottom: 60px; }
+/* Doblemente clasificado a propósito: pt-90/pb-90 son utilidades del template
+   que se usan en más sitios, así que el recorte se limita a esta sección. */
+.our-case-area { padding-top: 63px; }
+.our-case-area.pt-90 { padding-top: 68px; }
+.our-case-area.pb-90 { padding-bottom: 68px; }
+
+/* --------------------------------------------------------------------------
+   Bloque Dun & Bradstreet (inicio)
+   --------------------------------------------------------------------------
+   El h4 arrastraba el margen inferior por defecto de los encabezados y abría
+   un hueco entre el título de la certificación y su descripción: se leían como
+   dos ideas sueltas en vez de una sola. Van juntos.
+   La barra vertical del template es de 100px fijos y centrada: al juntar las
+   dos líneas sobresalía por arriba y por abajo del texto, así que pasa a
+   medir lo que mida el bloque. Solo aplica al inicio — es la única página con
+   un `.item` dentro de `.about-11-content`. */
+.about-2-content.about-11-content .item .title { margin-bottom: 4px; }
+.about-2-content.about-11-content .item p { margin-bottom: 0; }
+.about-2-content.about-11-content .item::before { height: 100%; }
+
+/* --------------------------------------------------------------------------
+   Mapa de cobertura nacional (inicio)
+   --------------------------------------------------------------------------
+   El template declara `width: 100%` en .case-thumb > img pero no `height: auto`,
+   y no hay una regla global para <img>. Con los atributos width/height puestos
+   —que sí queremos, evitan el salto de maquetación al cargar— el navegador
+   toma el height del atributo como altura real y estira el mapa. Esta línea
+   devuelve la proporción. Es el mismo patrón que ya usa .about-2-thumb. */
+.our-case-area .case-thumb > img { height: auto; }
+
+/* ==========================================================================
+   Carrusel de logos de clientes
+   --------------------------------------------------------------------------
+   Sustituye la rejilla de dos renglones por una sola fila que avanza de un
+   logo a la vez. Los logos vienen en lienzos de proporción distinta, así que
+   se limitan por alto —no por ancho— y se centran: es lo que los deja
+   ópticamente parejos sin recortar ninguno.
+
+   Antes de que slick monte, .arc-logos es una fila normal con desplazamiento
+   horizontal manual. Si el JS fallara, la sección se queda usable en vez de
+   apilar diez logos en una columna de mil pixeles de alto. */
+.brand-3-area .arc-logos {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.brand-3-area .arc-logos::-webkit-scrollbar { display: none; }
+
+/* Ya montado, slick maneja el ancho y el desbordamiento.
+
+   direction: rtl es obligatorio, no cosmético: con rtl:true slick calcula el
+   desplazamiento contando desde la derecha, y si la pista se maqueta de
+   izquierda a derecha el resultado sale invertido —la tira se va +2574px fuera
+   de cuadro y la sección se ve vacía—. El contenido de cada logo vuelve a ltr
+   para que el texto alternativo y cualquier enlace se comporten normal. */
+.brand-3-area .arc-logos.slick-initialized { display: block; overflow: visible; direction: rtl; }
+.brand-3-area .arc-logos .slick-track { display: flex; align-items: center; }
+.brand-3-area .arc-logos .slick-slide { height: auto; direction: ltr; }
+
+.brand-3-area .arc-logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+.brand-3-area .arc-logo img {
+    /* Todos los archivos comparten lienzo de 300x150 con el logo centrado y
+       normalizado por área, así que basta un ancho único: el equilibrio óptico
+       ya viene resuelto en la imagen y no hace falta afinar logo por logo. */
+    width: 214px;
+    height: auto;
+}
+
+@media (max-width: 767px) {
+    .brand-3-area .arc-logo { padding: 0 8px; }
+    .brand-3-area .arc-logo img { width: 140px; }
+}

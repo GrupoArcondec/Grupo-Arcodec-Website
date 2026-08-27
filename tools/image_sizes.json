@@ -272,44 +272,64 @@
   54
  ],
  "/assets/images/arcondec/clients/bestel.png": [
-  200,
-  58
+  300,
+  150
  ],
  "/assets/images/arcondec/clients/cablemas.png": [
-  200,
-  58
+  300,
+  150
+ ],
+ "/assets/images/arcondec/clients/centro.png": [
+  300,
+  150
+ ],
+ "/assets/images/arcondec/clients/chufani.png": [
+  300,
+  150
  ],
  "/assets/images/arcondec/clients/delta.png": [
-  200,
-  58
+  300,
+  150
+ ],
+ "/assets/images/arcondec/clients/dimas.png": [
+  300,
+  150
  ],
  "/assets/images/arcondec/clients/femsa.png": [
-  200,
-  58
+  300,
+  150
  ],
  "/assets/images/arcondec/clients/gtac.png": [
-  200,
-  58
+  300,
+  150
  ],
  "/assets/images/arcondec/clients/izzi.png": [
-  200,
-  58
+  300,
+  150
  ],
  "/assets/images/arcondec/clients/logrand.png": [
-  200,
-  58
+  300,
+  150
  ],
  "/assets/images/arcondec/clients/mabe.png": [
-  200,
-  58
+  300,
+  150
+ ],
+ "/assets/images/arcondec/clients/masive.png": [
+  300,
+  150
+ ],
+ "/assets/images/arcondec/clients/sky.png": [
+  300,
+  150
+ ],
+ "/assets/images/arcondec/clients/teacorp.png": [
+  300,
+  150
  ],
  "/assets/images/arcondec/clients/totalplay.png": [
-  200,
-  58
- ],
- "/assets/images/arcondec/clients/vant.png": [
-  200,
-  58
+  300,
+  150
  ],
  "/assets/images/arcondec/proyectos/arcondec-apodaca-01.jpg": [
   1600,
@@ -530,6 +550,10 @@
  "/assets/images/arcondec/secciones/instalaciones-normadas.jpg": [
   760,
   714
+ ],
+ "/assets/images/arcondec/secciones/mapa-cobertura-nacional.png": [
+  1920,
+  1080
  ],
  "/assets/images/arcondec/secciones/mapa-proyectos.gif": [
   1920,
