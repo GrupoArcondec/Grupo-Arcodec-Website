@@ -1107,11 +1107,10 @@
     /* ==========================================================================
        12. Arranque
        --------------------------------------------------------------------------
-       Se espera al `load`, al precargador (main.js lo desvanece a los 500ms) y a
-       que las fuentes estén listas —si se parten las líneas de un titular antes
-       de que cargue la tipografía, los cortes salen donde no son—. Hasta ese
-       momento no se oculta nada: si algo fallara antes, la página se queda
-       visible y completa.
+       Se espera a que el DOM esté listo y a que las fuentes hayan cargado —si se
+       parten las líneas de un titular antes de que llegue la tipografía, los
+       cortes salen donde no son—. Hasta ese momento no se oculta nada: si algo
+       fallara antes, la página se queda visible y completa.
        ========================================================================== */
     // Cada módulo va aislado. Si uno fallara —un elemento que desaparece a media
     // construcción, una versión distinta de una librería—, los demás se montan
@@ -1160,10 +1159,24 @@
         }
     }
 
-    if (document.readyState === 'complete') {
-        window.setTimeout(boot, 100);
+    /* Arranca en cuanto el DOM está listo, no en `load`.
+
+       Esperar a `load` significaba esperar a que terminaran de descargar TODAS
+       las imágenes y los videos del hero. Mientras tanto la página ya estaba
+       pintada y visible, así que al llegar el momento GSAP ocultaba los bloques
+       para revelarlos: el visitante veía el contenido, lo veía desaparecer y
+       luego entrar animado. Antes eso quedaba tapado por el precargador; desde
+       que se adelantó su desaparición, el parpadeo se veía.
+
+       Se sigue esperando a `document.fonts.ready` —sin límite de tiempo— porque
+       los titulares se parten en líneas y hacerlo con la tipografía de respaldo
+       deja los cortes donde no son. Esa espera es segura: hasta que start() no
+       corre no se oculta nada, así que si las fuentes no llegaran nunca la
+       página se queda visible y completa, solo que sin animación. */
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
     } else {
-        window.addEventListener('load', function () { window.setTimeout(boot, 500); });
+        boot();
     }
 
 })(window, document);
