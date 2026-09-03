@@ -885,11 +885,16 @@ footer.footer-area.footer-2-area { background: #132D67; }
    de fondo se lee distinto en cada lámina. Se cambia por un rectángulo naranja
    sólido: color de marca, legible siempre y con esquinas apenas redondeadas.
    Se anula el desenfoque porque con fondo opaco solo cuesta rendimiento.
-   Contraste #132D67 sobre #F7931E = 5.6:1, por encima del 4.5:1 que pide
-   WCAG AA para texto normal. Si se cambia el naranja, recalcular. */
+   Usa el mismo #FFBB00 del botón «Habla con un asesor» que está debajo.
+
+   OJO CON EL CONTRASTE: blanco sobre #FFBB00 da 1.7:1, muy por debajo del
+   4.5:1 que pide WCAG AA para texto normal. Es una decisión de diseño
+   tomada a sabiendas. Si se quiere cumplir AA manteniendo este naranja, el
+   texto debe ir en #132D67 (7.5:1), que además es el color de la letra del
+   botón de abajo. */
 .arc-hero-panel > span {
-    background-color: #F7931E;
-    color: #132D67;
+    background-color: #FFBB00;
+    color: #fff;
     border-radius: 8px;
     font-weight: 600;
     letter-spacing: .06em;
