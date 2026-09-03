@@ -45,7 +45,7 @@ SOCIAL = [
     ("facebook-f", "Facebook", "https://www.facebook.com/grupoarcondec"),
     ("instagram", "Instagram", "https://www.instagram.com/grupoarcondec"),
     ("linkedin-in", "LinkedIn", "https://www.linkedin.com/company/grupoarcondec/"),
-    ("youtube", "YouTube", "https://www.youtube.com/@GRUPO_ARCONDEC"),
+    ("youtube", "YouTube", "https://www.youtube.com/@grupoarcondec"),
 ]
 
 PRIVACY_PDF = "https://www.arcondec.mx/AvisoPrivacidad.pdf"
