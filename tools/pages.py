@@ -167,9 +167,7 @@ PROJECTS = {
         ],
         "hubs_eyebrow": "Proyectos destacados",
         "hubs_title": "Proyectos",
-        "hubs_intro": "Conoce los hubs donde hemos construido infraestructura eléctrica y data centers a lo largo del país.",
-        "results_title": "Resultados comprobados",
-        "results": "En Grupo Arcondec hemos desarrollado proyectos de infraestructura crítica en todo México, integrando soluciones eléctricas, civiles y tecnológicas con un enfoque en confiabilidad, eficiencia y continuidad operativa. Cada obra representa nuestro compromiso con la precisión técnica, la calidad garantizada y la entrega en tiempo y forma.",
+        "hubs_intro": "En Grupo Arcondec hemos desarrollado proyectos de infraestructura crítica en todo México, integrando soluciones eléctricas, civiles y tecnológicas con un enfoque en confiabilidad, eficiencia y continuidad operativa. Cada obra representa nuestro compromiso con la precisión técnica, la calidad garantizada y la entrega en tiempo y forma.",
     },
     "en": {
         "title": "Projects",
@@ -187,9 +185,7 @@ PROJECTS = {
         ],
         "hubs_eyebrow": "Featured projects",
         "hubs_title": "Projects",
-        "hubs_intro": "Explore the hubs where we have built electrical infrastructure and data centers across the country.",
-        "results_title": "Proven results",
-        "results": "At Grupo Arcondec, we have developed critical infrastructure projects throughout Mexico, integrating electrical, civil, and technological solutions with a focus on reliability, efficiency, and operational continuity. Each project reflects our commitment to technical precision, guaranteed quality, and on-time delivery.",
+        "hubs_intro": "At Grupo Arcondec, we have developed critical infrastructure projects throughout Mexico, integrating electrical, civil, and technological solutions with a focus on reliability, efficiency, and operational continuity. Each project reflects our commitment to technical precision, guaranteed quality, and on-time delivery.",
     },
 }
 
