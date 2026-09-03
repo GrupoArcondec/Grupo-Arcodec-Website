@@ -526,7 +526,8 @@
         '.about-2-thumb .thumb img',
         '.about-2-thumb .thumb-2 img',
         '.testimonial-11-thumb img',
-        '.case-thumb img'
+        '.case-thumb img',
+        '.arc-story-frame img'    // Nosotros · Nuestra Historia
     ].join(', ');
 
     function revealFeatureMedia() {
@@ -781,23 +782,35 @@
        con la foto en vez de quedarse flotando fuera de su borde.
        ========================================================================== */
     function aboutPhotoGrow() {
-        // Solo la portada usa este bloque: Nosotros dejó .arc-about-single por
-        // su propio marco (arc-story-frame), que no lleva este zoom por scroll.
-        var thumb = document.querySelector('.arc-about-single .thumb');
-        if (!thumb || !isVisible(thumb)) { return; }
+        /* Dos fotos con el mismo tratamiento: la de la portada y la de
+           «Nuestra Historia» en Nosotros. Ambas son la única imagen de su
+           bloque y ocupan media pantalla, así que aguantan un gesto propio.
 
-        gsap.fromTo(thumb,
-            { scale: 0.86 },
-            {
-                scale: 1,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: thumb,
-                    start: 'top bottom',
-                    end: 'center center',
-                    scrub: 0.6
-                }
-            });
+           El zoom va atado al scroll (scrub), no a una duración: la foto
+           termina de crecer justo cuando queda centrada en pantalla. Encima
+           corre la cortina de revealFeatureMedia, que toca clip-path y no
+           transform, así que las dos animaciones conviven sin pisarse. */
+        var objetivos = document.querySelectorAll(
+            '.arc-about-single .thumb, .arc-story-frame'
+        );
+
+        for (var i = 0; i < objetivos.length; i++) {
+            var thumb = objetivos[i];
+            if (!isVisible(thumb)) { continue; }
+
+            gsap.fromTo(thumb,
+                { scale: 0.86 },
+                {
+                    scale: 1,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: thumb,
+                        start: 'top bottom',
+                        end: 'center center',
+                        scrub: 0.6
+                    }
+                });
+        }
     }
 
     /* ==========================================================================
