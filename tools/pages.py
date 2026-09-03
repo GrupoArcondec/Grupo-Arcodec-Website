@@ -164,12 +164,19 @@ HUBS = [
         "nombre": "HUB APODACA",
         "ubicacion": "Ciudad Apodaca - Nuevo León",
         "foto": "arcondec-apodaca-01.jpg",
-        # ─────────────────────────────────────────────────────────────────
-        # DATOS SIMULADOS — no son reales. Sirven solo para ver la
-        # maquetación. Reemplazar por información verificada antes de
-        # poner `publicado` en True.
-        # ─────────────────────────────────────────────────────────────────
-        "publicado": False,
+        # ═════════════════════════════════════════════════════════════════
+        # ATENCIÓN — DATOS SIMULADOS, PUBLICADOS EN VIVO
+        #
+        # Las cifras de abajo (2,500 kW, 1,850 m², Tier III, 8 meses, 99.98%)
+        # NO son reales: se inventaron para revisar la maquetación. Esta
+        # página está publicada, indexable y enlazada desde proyectos.html,
+        # así que cualquier visitante las lee como si fueran datos de obra.
+        #
+        # Reemplazar por información verificada en cuanto se tenga. Si el
+        # proyecto real se retrasa, volver `publicado` a False para sacarla
+        # de circulación.
+        # ═════════════════════════════════════════════════════════════════
+        "publicado": True,
         "titulo": "HUB Apodaca",
         "imagen": "sala-electrica-de-distribucion-en-media-tension.jpg",
         "imagen_alt": "Sala eléctrica de distribución en media tensión del HUB Apodaca",

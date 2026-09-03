@@ -410,7 +410,24 @@ footer.footer-area.footer-2-area { background: #132D67; }
     box-shadow: 0 18px 40px rgba(19, 45, 103, .12);
     transform: translateY(-4px);
 }
-.arc-project-thumb { overflow: hidden; }
+/* El velo azul se pinta con un pseudo-elemento sobre la foto, no con un filter
+   CSS: `filter` teñiría también el logo ARC incrustado en la esquina, mientras
+   que una capa con `mix-blend-mode: multiply` respeta los tonos de la imagen y
+   solo la vuelca hacia el azul de marca. Solo aparece en las tarjetas que
+   enlazan a algún lado: sobre una tarjeta sin página, el velo prometería un
+   clic que no existe. */
+.arc-project-thumb { overflow: hidden; position: relative; }
+.arc-project.is-link .arc-project-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #1F439B;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+}
+.arc-project.is-link:hover .arc-project-thumb::after { opacity: .55; }
 .arc-project-thumb img {
     width: 100%;
     aspect-ratio: 4 / 3;
