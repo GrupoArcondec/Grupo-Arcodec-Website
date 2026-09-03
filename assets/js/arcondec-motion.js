@@ -136,7 +136,7 @@
        hay que tocar: cada duración y cada escalonado del archivo se calcula a
        partir de aquí con dur(). Por encima de ~1.6 la página empieza a sentirse
        lenta al hacer scroll rápido. */
-    var TEMPO = 1.4;
+    var TEMPO = 1.6;
     function dur(s) { return s * TEMPO; }
 
     var STAGGER = dur(0.09);
