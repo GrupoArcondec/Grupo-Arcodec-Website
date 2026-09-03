@@ -31,7 +31,7 @@
  *   scroll —ni la suya ni la del template— y la página se queda quieta. Única
  *   excepción: los botones del hero siguen montados, sin avance automático y
  *   sin transición, porque son el único camino a las láminas 2 y 3.
- * - Todo movimiento automático de la portada (hero cada 11 s, cinta de logos
+ * - Todo movimiento automático de la portada (hero cada 8 s, cinta de logos
  *   cada 3 s) se detiene con el botón de pausa del hero, como pide WCAG 2.2.2.
  * - Nada se oculta hasta que la página termina de cargar y las fuentes están
  *   listas, así que un fallo previo nunca deja contenido invisible.
@@ -699,6 +699,80 @@
     }
 
     /* ==========================================================================
+       6e. Tira del eslogan: se desplaza con el scroll, no con un temporizador
+       --------------------------------------------------------------------------
+       El recorrido de la tira se ata a la posición de la sección en pantalla:
+       cuando la sección entra por abajo la tira está en su inicio, y cuando
+       termina de salir por arriba ha llegado al final. Al bajar viaja hacia la
+       izquierda; al subir, regresa. El usuario controla el ritmo.
+
+       `scrub: 0.6` deja medio segundo de inercia: sin él la tira se pega
+       literalmente a la rueda y se siente mecánica.
+
+       El recorrido va como función y con invalidateOnRefresh porque depende del
+       ancho de la ventana: al girar el teléfono o cambiar el tamaño hay que
+       recalcularlo, y una constante se quedaría con el valor viejo. Si la tira
+       cabe entera —pantallas muy anchas— el recorrido es 0 y no se mueve nada,
+       que es lo correcto: no hay nada oculto que descubrir.
+       ========================================================================== */
+    function sloganStrip() {
+        var seccion = document.querySelector('.arc-slogan');
+        if (!seccion) { return; }
+        var pista = seccion.querySelector('.arc-slogan-track');
+        if (!pista || !isVisible(pista)) { return; }
+
+        gsap.fromTo(pista,
+            { x: 0 },
+            {
+                x: function () {
+                    return -Math.max(0, pista.scrollWidth - seccion.clientWidth);
+                },
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: seccion,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 0.6,
+                    invalidateOnRefresh: true
+                }
+            });
+    }
+
+    /* ==========================================================================
+       6f. Foto de «empresa 100% mexicana»: crece con el scroll
+       --------------------------------------------------------------------------
+       Entra al 86% y llega a su tamaño normal conforme la sección sube. Va
+       ligada al scroll, no a un temporizador: el visitante controla el ritmo,
+       igual que la tira del eslogan.
+
+       Termina en `center center` —cuando el bloque queda a media pantalla— y no
+       al salir por arriba: si acabara más tarde, la foto seguiría creciendo
+       mientras el usuario ya está leyendo lo de abajo, y el gesto se pierde.
+
+       Escala el contenedor .thumb, no la <img>, para que la caja «30+» viaje
+       con la foto en vez de quedarse flotando fuera de su borde.
+       ========================================================================== */
+    function aboutPhotoGrow() {
+        // Solo la portada usa este bloque: Nosotros dejó .arc-about-single por
+        // su propio marco (arc-story-frame), que no lleva este zoom por scroll.
+        var thumb = document.querySelector('.arc-about-single .thumb');
+        if (!thumb || !isVisible(thumb)) { return; }
+
+        gsap.fromTo(thumb,
+            { scale: 0.86 },
+            {
+                scale: 1,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: thumb,
+                    start: 'top bottom',
+                    end: 'center center',
+                    scrub: 0.6
+                }
+            });
+    }
+
+    /* ==========================================================================
        7. Banner de las páginas interiores: entra al cargar, no al hacer scroll
        ========================================================================== */
     function revealBanner() {
@@ -797,22 +871,60 @@
         // real de lectura es INTERVAL - 1150. La lámina más larga son 47
         // palabras: a 11 s quedan ~9.8 s de lectura. Si se alarga el copy,
         // subir este número. El zoom Ken Burns se ajusta solo.
-        var INTERVAL = 11000;
+        var INTERVAL = 8000;
         var current = 0;
         var busy = false;
         var timer = null;
         var pausado = !automatico;
 
-        function kenBurns(slide) {
+        /* El medio de cada lámina puede ser <img> o <video>.
+
+           Sobre una foto se aplica un zoom lento (Ken Burns) que le da vida a
+           una imagen fija. Sobre un video NO: el clip ya trae su propio
+           movimiento y encimarle un zoom produce dos velocidades peleándose,
+           además de forzar al navegador a recomponer cada cuadro.
+
+           Al entrar, el video se rebobina y arranca. Sin esto, a partir de la
+           segunda vuelta las láminas entrarían con el clip a medias. */
+        function medioDe(slide) {
+            return slide.querySelector('.arc-hero-media');
+        }
+
+        function activarMedio(slide) {
+            var m = medioDe(slide);
+            if (!m) { return; }
+
+            if (m.tagName === 'VIDEO') {
+                try {
+                    m.currentTime = 0;
+                    if (!quieto && !pausado) {
+                        var p = m.play();
+                        if (p && p.catch) { p.catch(function () {}); }
+                    }
+                } catch (e) {}
+                return;
+            }
+
             if (quieto) { return; }
-            var img = slide.querySelector('.arc-hero-media');
-            if (!img) { return; }
-            gsap.fromTo(img,
+            gsap.fromTo(m,
                 { scale: 1 },
                 { scale: 1.07, duration: INTERVAL / 1000 + 1.6, ease: 'none',
                   transformOrigin: '50% 50%', overwrite: true });
         }
-        kenBurns(slides[0]);
+
+        // Los videos de las láminas que no se ven se detienen: tres clips
+        // corriendo a la vez gastan batería sin que nadie los mire.
+        function pararMedios(salvo) {
+            for (var i = 0; i < slides.length; i++) {
+                var m = medioDe(slides[i]);
+                if (m && m.tagName === 'VIDEO' && slides[i] !== salvo) {
+                    try { m.pause(); } catch (e) {}
+                }
+            }
+        }
+
+        activarMedio(slides[0]);
+        pararMedios(slides[0]);
 
         function goTo(destino) {
             var total = slides.length;
@@ -830,13 +942,15 @@
                 gsap.set(out, { autoAlpha: 0 });
                 gsap.set(inn, { autoAlpha: 1 });
                 gsap.set([outPanel, inPanel], { clearProps: 'all' });
+                activarMedio(inn);
+                pararMedios(inn);
                 busy = false;
             } else {
                 gsap.timeline({ onComplete: function () { busy = false; } })
                     .to(outPanel, { autoAlpha: 0, y: -26, duration: 0.45, ease: 'power2.in' }, 0)
                     .to(out, { autoAlpha: 0, duration: 0.85, ease: 'power1.inOut' }, 0.2)
                     .fromTo(inn, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.85, ease: 'power1.inOut' }, 0.2)
-                    .add(function () { kenBurns(inn); }, 0.2)
+                    .add(function () { activarMedio(inn); pararMedios(inn); }, 0.2)
                     .fromTo(inPanel,
                         { autoAlpha: 0, y: 30 },
                         { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 0.6);
@@ -878,6 +992,19 @@
             pausado = valor;
             if (toggle) { toggle.setAttribute('aria-pressed', valor ? 'true' : 'false'); }
             logos(valor ? 'slickPause' : 'slickPlay');
+
+            // El botón detiene TODO el movimiento del hero, no solo la rotación:
+            // con video de fondo, dejar el clip corriendo mientras la lámina se
+            // queda fija incumple igual el criterio 2.2.2 de WCAG, que habla de
+            // movimiento automático, no de cambios de diapositiva.
+            var m = medioDe(slides[current]);
+            if (m && m.tagName === 'VIDEO') {
+                try {
+                    if (valor) { m.pause(); }
+                    else { var pr = m.play(); if (pr && pr.catch) { pr.catch(function () {}); } }
+                } catch (e) {}
+            }
+
             if (valor) { detiene(); } else { arranca(); }
         }
 
@@ -954,6 +1081,8 @@
         safely('revealRows', revealRows);
         safely('revealFeatureMedia', revealFeatureMedia);
         safely('revealMap', revealMap);
+        safely('sloganStrip', sloganStrip);
+        safely('aboutPhotoGrow', aboutPhotoGrow);
         safely('revealBanner', revealBanner);
         safely('parallaxBackgrounds', parallaxBackgrounds);
         safely('heroSlides', heroSlides);

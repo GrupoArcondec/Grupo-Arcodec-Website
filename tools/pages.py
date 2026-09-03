@@ -14,7 +14,38 @@ ABOUT = {
         "eyebrow": "Sobre nosotros",
         "h1": "Empresa mexicana fundada en 1991, especializada en ofrecer soluciones integrales",
         "lead": "Soluciones en ingeniería eléctrica y centros de datos para operaciones de alta disponibilidad",
+        # Contenido de marca 2025: reemplaza a la misión y a los cuatro valores
+        # sueltos (Integridad/Compromiso/Pasión/Responsabilidad) que traía la
+        # página antes. "Meta 2035" es el BHAG del documento interno, traducido
+        # a lenguaje de sitio público. Los valores deletrean IDEAS con la
+        # primera letra de cada renglón — es un recurso intencional del cliente,
+        # no decorativo: no se puede traducir letra por letra al inglés, así
+        # que la versión "en" lleva los mismos cinco valores sin el acróstico.
+        "meta_title": "Meta 2035",
+        # OJO: existía un choque de nombre con la "meta" de SEO (misma clave,
+        # dos valores, el segundo pisaba al primero y el <meta description>
+        # de la página salía con este texto en vez de con el real). Se
+        # renombra a "meta_text" para no repetir el error.
+        "meta_text": "Una de las principales empresas en LATAM en la construcción de proyectos de gran impacto, habiendo implementado 500 MW.",
+        "purpose_title": "Propósito",
+        "purpose": "Habilitamos la infraestructura que hace posible el mundo digital.",
+        "vision_title": "Visión",
+        "vision": "Consolidarnos como una empresa líder, competitiva y confiable en la implementación de tecnologías aplicadas en los sectores eléctrico y de construcción de Data Center. Nos comprometemos a cumplir con los más altos estándares y normas que rigen el mercado, garantizando así la excelencia en cada proyecto que emprendemos.",
+        "certs_title": "Certificaciones",
+        "certs_lead": "Sistemas de gestión auditados y certificación financiera vigente.",
+        # Quinto valor de la tupla: el sello tipográfico de la insignia (no el
+        # icono fa, que sigue sin usarse en el render).
+        "certs": [
+            ("ISO 9001", "Calidad", "Procesos eficientes y mejora continua.", "fal fa-award", "9001"),
+            ("ISO 14001", "Medio Ambiente", "Operaciones responsables con el entorno.", "fal fa-leaf", "14001"),
+            ("ISO 45001", "Seguridad y Salud", "Prevención de riesgos laborales.", "fal fa-user-shield", "45001"),
+            ("Dun & Bradstreet", "Certificación financiera", "Respaldo crediticio verificado.", "fal fa-certificate", "D&B"),
+        ],
         "history_title": "Nuestra Historia",
+        # Antetítulo en píldora, el mismo componente que usan las páginas de
+        # servicio (.service-eyebrow) — restatement literal de la primera
+        # frase del párrafo, no contenido nuevo.
+        "history_eyebrow": "Empresa mexicana fundada en 1991",
         "history": [
             "En Grupo Arcondec somos una empresa mexicana fundada en 1991, especializada en brindar servicios integrales, oportunos y de alta calidad en tres áreas clave: ingeniería eléctrica, infraestructura y construcción de centros de datos (data centers).",
             "Nuestra filosofía se basa en el compromiso con la calidad, el cumplimiento en tiempo y forma, y la atención al detalle en cada proyecto.",
@@ -22,13 +53,23 @@ ABOUT = {
             "Con más de 30 años de experiencia, nos hemos consolidado como especialistas en proyectos llave en mano de gran escala, tanto comerciales como industriales, destacando por nuestra capacidad de abordar cada fase con precisión: desde la etapa conceptual hasta la implementación total.",
         ],
         "distinct_title": "¿Qué nos distingue en Grupo Arcondec?",
-        "distinct": "El talento de nuestro equipo, conformado por profesionales apasionados por desarrollar soluciones que impulsan la operación de nuestros clientes, es el motor de cada proyecto. Abordamos cada desafío con compromiso, precisión y visión estratégica para garantizar resultados medibles y sostenibles, permitiendo que nuestros clientes se enfoquen plenamente en su negocio con la confianza de contar con una infraestructura eléctrica y crítica diseñada para respaldar su presente y potenciar su futuro.",
-        "values_title": "Nuestros valores",
+        # Mismo texto de siempre, partido en (frase-cita, resto) para el
+        # tratamiento editorial — no se reescribió ni una palabra.
+        "distinct_quote": "El talento de nuestro equipo, conformado por profesionales apasionados por desarrollar soluciones que impulsan la operación de nuestros clientes, es el motor de cada proyecto.",
+        "distinct_rest": "Abordamos cada desafío con compromiso, precisión y visión estratégica para garantizar resultados medibles y sostenibles, permitiendo que nuestros clientes se enfoquen plenamente en su negocio con la confianza de contar con una infraestructura eléctrica y crítica diseñada para respaldar su presente y potenciar su futuro.",
+        # Las mismas tres palabras del propio texto, como remate escaneable.
+        "distinct_keywords": ["Compromiso", "Precisión", "Visión estratégica"],
+        "areas_label": "Áreas clave",
+        "values_title": "Valores",
         "services_title": "Nuestros servicios",
+        # (letra, resto de la palabra) — la letra inicial es la que arma el
+        # acróstico IDEAS.
         "values": [
-            ("Calidad", "Desarrollamos toda la ingeniería con base en normas y estándares vigentes, asegurando cumplimiento técnico y regulatorio en cada etapa.", "fal fa-award"),
-            ("Tiempo", "Ejecutamos proyectos eléctricos garantizando entregas puntuales, alineadas a los plazos y requerimientos específicos del cliente.", "fal fa-clock"),
-            ("Ejecución", "Aplicamos metodologías eficientes, herramientas digitales y prácticas orientadas a la eficiencia energética, sin comprometer la confiabilidad operativa.", "fal fa-cogs"),
+            ("I", "nspirar, guiar y transformar"),
+            ("D", "isponibilidad sin interrupciones"),
+            ("E", "l éxito se construye en equipo"),
+            ("A", "ctuamos para hacer que las cosas sucedan"),
+            ("S", "er honestos nos hace rentables a todos"),
         ],
         "alt_historia": "Trabajos de ingeniería eléctrica de Grupo Arcondec",
         "alt_equipo": "Sala eléctrica de distribución ejecutada por Grupo Arcondec",
@@ -41,7 +82,22 @@ ABOUT = {
         "eyebrow": "About us",
         "h1": "Mexican company founded in 1991, specialized in providing integrated solutions",
         "lead": "Electrical engineering and data center solutions for high-availability operations",
+        "meta_title": "2035 goal",
+        "meta_text": "One of the leading companies in Latin America in the construction of high-impact projects, having deployed 500 MW.",
+        "purpose_title": "Purpose",
+        "purpose": "We enable the infrastructure that makes the digital world possible.",
+        "vision_title": "Vision",
+        "vision": "To become a leading, competitive and reliable company in the implementation of technologies applied to the electrical and Data Center construction sectors. We are committed to meeting the highest standards and regulations that govern the market, ensuring excellence in every project we undertake.",
+        "certs_title": "Certifications",
+        "certs_lead": "Audited management systems and current financial certification.",
+        "certs": [
+            ("ISO 9001", "Quality", "Efficient processes and continuous improvement.", "fal fa-award", "9001"),
+            ("ISO 14001", "Environment", "Environmentally responsible operations.", "fal fa-leaf", "14001"),
+            ("ISO 45001", "Health and Safety", "Occupational risk prevention.", "fal fa-user-shield", "45001"),
+            ("Dun & Bradstreet", "Financial certification", "Verified credit standing.", "fal fa-certificate", "D&B"),
+        ],
         "history_title": "Our History",
+        "history_eyebrow": "Mexican company founded in 1991",
         "history": [
             "At Grupo Arcondec we are a Mexican company founded in 1991, specialized in delivering comprehensive, timely, and high-quality services in three key areas: electrical engineering, infrastructure, and data center construction.",
             "Our philosophy is based on a strong commitment to quality, timely and accurate execution, and attention to detail in every project.",
@@ -49,13 +105,21 @@ ABOUT = {
             "With over 30 years of experience, we have become specialists in large-scale turnkey projects, both commercial and industrial, standing out for our ability to tackle every phase with precision — from concept to full implementation.",
         ],
         "distinct_title": "What sets Grupo Arcondec apart?",
-        "distinct": "Our team's talent, made up of professionals passionate about developing solutions that power our clients' operations, is the driving force behind every project. We approach each challenge with commitment, precision, and strategic vision to deliver measurable, sustainable results — enabling our clients to focus on their business with the confidence of having critical and electrical infrastructure designed to support their present and empower their future.",
-        "values_title": "Our values",
+        "distinct_quote": "Our team's talent, made up of professionals passionate about developing solutions that power our clients' operations, is the driving force behind every project.",
+        "distinct_rest": "We approach each challenge with commitment, precision, and strategic vision to deliver measurable, sustainable results — enabling our clients to focus on their business with the confidence of having critical and electrical infrastructure designed to support their present and empower their future.",
+        "distinct_keywords": ["Commitment", "Precision", "Strategic vision"],
+        "areas_label": "Key areas",
+        "values_title": "Values",
         "services_title": "Our services",
+        # Same five values as the ES block; the IDEAS acrostic only works in
+        # Spanish (ver nota arriba), so this list carries the meaning without
+        # a lettered first column.
         "values": [
-            ("Quality", "We develop all engineering in accordance with current standards and regulations, ensuring technical and legal compliance at every stage.", "fal fa-award"),
-            ("Timing", "We execute electrical projects with guaranteed on-time delivery, aligned with our clients’ specific timelines and requirements.", "fal fa-clock"),
-            ("Execution", "We apply efficient methodologies, digital tools, and practices focused on energy efficiency — without compromising operational reliability.", "fal fa-cogs"),
+            "Inspire, guide and transform",
+            "Uninterrupted availability",
+            "Success is built as a team",
+            "We act to make things happen",
+            "Honesty makes us all more profitable",
         ],
         "alt_historia": "Electrical engineering work by Grupo Arcondec",
         "alt_equipo": "Electrical distribution room delivered by Grupo Arcondec",
@@ -294,7 +358,7 @@ CONTACT_PAGE = {
 # --------------------------------------------------------------------------
 CAREERS = {
     "es": {
-        "title": "Trabaja con nosotros",
+        "title": "Vacantes",
         "meta": "Únete a Grupo Arcondec. Proyectos eléctricos y de data centers de alto nivel técnico, ambiente colaborativo e igualdad de oportunidades.",
         "keywords": "reclutamiento, talento técnico, ingenieros eléctricos, técnicos data center, inclusión laboral, Grupo Arcondec",
         "eyebrow": "Únete a nuestro equipo",
@@ -315,12 +379,22 @@ CAREERS = {
             "No se permite ningún tipo de soborno, recomendación indebida o presión para favorecer a candidatos.",
             "Rechazamos cualquier práctica discriminatoria directa o indirecta.",
         ],
+        "vacancies_eyebrow": "Vacantes disponibles",
+        "vacancies_title": "Súmate a Grupo Arcondec",
+        "vacancies_intro": "Estas son nuestras posiciones abiertas en Monterrey. Da clic en una vacante para ver el detalle y postularte.",
+        "req_label": "Requisitos",
+        "func_label": "Funciones",
+        "name_placeholder": "Tu nombre",
+        "email_placeholder": "Tu email",
+        "cv_label": "Adjuntar CV (PDF)",
+        "apply_btn": "Postularme",
+        "apply_note": "Protegido con verificación anti-spam de Formspree.",
         "cta_title": "¡Queremos conocerte!",
         "cta_text": "Indica en el asunto el nombre de la vacante que te interesa.",
         "cta_btn": "Enviar mi CV",
     },
     "en": {
-        "title": "Work With Us",
+        "title": "Careers",
         "meta": "Join Grupo Arcondec. High-level technical electrical and data center projects, a collaborative environment and equal opportunities.",
         "keywords": "careers, technical talent, electrical engineers, data center technicians, workplace inclusion, Grupo Arcondec",
         "eyebrow": "Join our team",
@@ -341,11 +415,87 @@ CAREERS = {
             "No form of bribery, undue recommendation, or pressure to favor candidates is allowed.",
             "We reject any direct or indirect discriminatory practices.",
         ],
+        "vacancies_eyebrow": "Open positions",
+        "vacancies_title": "Join Grupo Arcondec",
+        "vacancies_intro": "These are our current openings in Monterrey. Click a position to see details and apply.",
+        "req_label": "Requirements",
+        "func_label": "Responsibilities",
+        "name_placeholder": "Your name",
+        "email_placeholder": "Your email",
+        "cv_label": "Attach CV (PDF)",
+        "apply_btn": "Apply now",
+        "apply_note": "Protected by Formspree anti-spam verification.",
         "cta_title": "We want to get to know you!",
         "cta_text": "Please indicate the name of the position you're interested in in the subject line.",
         "cta_btn": "Send my CV",
     },
 }
+
+# Vacantes activas. El contenido (título, requisitos, funciones) se comparte
+# entre es/en porque son puestos presenciales en Monterrey publicados en
+# español; solo el texto de interfaz alrededor (arriba, en CAREERS) se traduce.
+VACANCIES = [
+    {
+        "title": "Analista de Precios Unitarios",
+        "req": "+3 años de experiencia · Ingeniería Civil, Ingeniería Eléctrica o afín · Excel avanzado · Neodata indispensable · Experiencia cuantificando desde planos.",
+        "func": "Elaboración de presupuestos de instalaciones eléctricas y obra civil. Análisis de precios unitarios y cuantificación de volúmenes de obra. Cotización con proveedores y subcontratistas e integración de costos.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales",
+    },
+    {
+        "title": "Arquitecto Proyectista",
+        "req": "3 a 5 años de experiencia · Licenciatura en Arquitectura, Ingeniería Civil o afín · AutoCAD 2D/3D, Revit/BIM, SketchUp, Lumion, Photoshop, Illustrator, Excel.",
+        "func": "Desarrollo de proyectos arquitectónicos y ejecutivos. Elaboración de planos, renders, memorias descriptivas y documentación técnica. Coordinación e integración de disciplinas de ingeniería.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales",
+    },
+    {
+        "title": "Ingeniero de Control y Planeación Eléctrica",
+        "req": "Experiencia en obra e instalaciones eléctricas · Ingeniería Eléctrica, Electromecánica, Civil o afín · Excel · Deseable MS Project y AutoCAD · Conocimiento de baja y media tensión.",
+        "func": "Seguimiento a cronogramas y programas de obra. Control de avances físicos, financieros, generadores y estimaciones. Seguimiento a costos, presupuestos, materiales y documentación de proyecto.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $25k–30k libres mensuales",
+    },
+    {
+        "title": "Coordinador Eléctrico de Diseño",
+        "req": "4 a 6 años de experiencia en proyectos de misión crítica y Data Centers · Ingeniería Eléctrica o afín · Revit MEP, AutoCAD Electrical · NOM-001-SEDE · Media y baja tensión.",
+        "func": "Diseño y validación de instalaciones eléctricas y sistemas de respaldo. Coordinación y supervisión de proyectistas eléctricos. Catálogos de conceptos e integración con otras especialidades.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales",
+    },
+    {
+        "title": "Coordinador HVAC",
+        "req": "3 a 5 años de experiencia · Ingeniería Mecánica, Electromecánica o afín · Manejo fluido de Revit y AutoCAD · Cálculo de cargas térmicas y selección de equipos HVAC · Experiencia en proyectos de misión crítica o data center.",
+        "func": "Diseño y memorias de cálculo de sistemas HVAC y climatización de precisión. Selección de CRAC/CRAH, chillers, inrow y unidades condensadoras. Coordinación de ductos, cargas térmicas y espacios técnicos con otras especialidades.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales",
+    },
+    {
+        "title": "Coordinador PCI Detección y Pre-Acción",
+        "req": "3 a 5 años de experiencia · Ingeniería Mecánica, Electromecánica o afín · Manejo fluido de Revit y AutoCAD · Indispensable conocimiento de normativa NFPA.",
+        "func": "Diseño de sistemas PCI, rociadores, pre-acción y agentes limpios. Diseño de detección temprana de humo y sistemas convencionales/direccionables. Elaboración de catálogos de conceptos, coordinación con otras especialidades.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales",
+    },
+    {
+        "title": "Coordinador de Sistemas Especiales de Seguridad",
+        "req": "3 a 5 años de experiencia · Ingeniería Electrónica, Telecomunicaciones, Sistemas o afín · CCTV, control de acceso, voz y datos, fibra óptica · Manejo fluido de AutoCAD y Revit.",
+        "func": "Diseño y especificación de sistemas de CCTV y control de acceso. Diseño de cableado estructurado y redes de fibra óptica. Coordinación de planos e integración con otras especialidades.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales",
+    },
+    {
+        "title": "Ingeniero Proyectista Eléctrico",
+        "req": "+3 años de experiencia · Ingeniería Eléctrica, Electromecánica o afín · AutoCAD, Revit, Microsoft Office · Deseable ETAP y conocimiento de normativa vigente · Experiencia en proyectos de misión crítica o data center.",
+        "func": "Diseño de proyectos eléctricos industriales en baja y media tensión. Elaboración de planos, diagramas unifilares y documentación técnica. Cuantificaciones, levantamientos y planos As-Built.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales",
+    },
+    {
+        "title": "Project Manager",
+        "req": "5 a 8 años de experiencia en construcción · 3 años como Project Manager o líder de proyectos · Ingeniería Civil, Arquitectura, Ingeniería Eléctrica o afín · MS Project, AutoCAD, Excel avanzado · Neodata / OPUS.",
+        "func": "Administración integral de proyectos, desde inicio hasta cierre. Coordinación de equipos, contratistas y múltiples frentes de obra. Control de cronogramas, costos, riesgos, calidad y seguridad.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · Disponibilidad para viajar · $30k–40k libres mensuales",
+    },
+    {
+        "title": "Project Manager – SPOC de Operaciones",
+        "req": "3 a 5 años de experiencia · Ingeniería Civil, Eléctrica, Mecánica o afín · Gestión y coordinación de proyectos · Microsoft Project, Smartsheet, lectura de planos · Deseable PMP, CAPM o equivalente.",
+        "func": "Seguimiento de proyectos de ingeniería activos, riesgos, retrasos y desviaciones. Coordinación con Operaciones, Ingeniería y proveedores. Control de acuerdos, compromisos, fechas límite y solicitudes técnicas.",
+        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–40k libres mensuales",
+    },
+]
 
 # --------------------------------------------------------------------------
 # BLOG (indice). Los articulos completos son la segunda tanda de trabajo.

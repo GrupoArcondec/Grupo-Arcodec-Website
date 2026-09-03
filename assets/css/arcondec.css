@@ -116,7 +116,12 @@
 .service-2-item.service-11-item { min-height: 370px; }
 /* Botón flotante de WhatsApp (FAB verde oficial) */
 .whatsapp-float { position: fixed; right: 25px; bottom: 95px; z-index: 99; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%; background: #25D366; box-shadow: 0 6px 18px rgba(0, 0, 0, .35); transition: transform .2s ease, background .2s ease; }
-.whatsapp-float:hover { transform: scale(1.1); background: #1EBE5D; }
+/* El hover-scale solo si el dispositivo puede "hover" de verdad: en touch, un
+   tap deja el estado :hover pegado y el botón se queda agrandado sin razón. */
+@media (hover: hover) {
+    .whatsapp-float:hover { transform: scale(1.1); background: #1EBE5D; }
+}
+.whatsapp-float:active { transform: scale(0.94); background: #1EBE5D; }
 .whatsapp-float svg { width: 34px; height: 34px; display: block; }
 @media (max-width: 767px) {
     .whatsapp-float { width: 52px; height: 52px; right: 16px; bottom: 88px; }
@@ -125,8 +130,9 @@
 
 /* ===== Piel de marca Arcondec — colores oficiales de arcondec.mx ===== */
 /* Naranja #FFBB00 / #F7931E (acento y botones) · Azul marino #1F439B / #132D67 (fondos) */
-.main-btn { background-color: #FFBB00; border-color: #FFBB00; color: #132D67; }
+.main-btn { background-color: #FFBB00; border-color: #FFBB00; color: #132D67; transition: background-color .2s ease, border-color .2s ease, transform .15s ease; }
 .main-btn:hover { background-color: #E5A800; border-color: #E5A800; color: #132D67; }
+.main-btn:active { transform: scale(0.97); }
 .main-btn.main-btn-3 { background: #FFBB00; color: #132D67; }
 .main-btn.main-btn-3:hover { background: #E5A800; color: #132D67; }
 .hero-2-content.hero-11-content ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
@@ -154,7 +160,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .service-2-item.service-11-item .icon { background: rgba(255, 187, 0, 0.14); }
 .service-2-item.service-11-item .icon i { font-size: 38px; line-height: 90px; color: #1F439B; }
 /* Fondo de la sección de servicios: foto industrial oficial con overlay azul de marca */
-.service-2-area.service-11-area .section__bg { background-image: linear-gradient(rgba(19, 45, 103, 0.88), rgba(19, 45, 103, 0.88)), url(../images/arcondec/secciones/servicios-bg.jpg); }
+.service-2-area.service-11-area .section__bg { background-image: linear-gradient(rgba(19, 45, 103, 0.88), rgba(19, 45, 103, 0.88)), url(../images/arcondec/secciones/servicios-bg-2.jpg); }
 /* Tabs de cobertura */
 .case-tab-btn.case-tab-btn-11 .nav .nav-link span::before { background: #FFBB00; }
 .case-tab-btn.case-tab-btn-11 .nav .nav-link.active { background: #1F439B; }
@@ -162,7 +168,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
    debajo, y las dos se leían como un único bloque azul de 500px. En azul marino
    el cierre de página queda escalonado: contenido claro → CTA oscuro → pie azul.
    El filo superior en el degradado de marca marca dónde empieza el llamado. */
-.subscribe-area.subscribe-11-area { background: #132D67; position: relative; }
+.subscribe-area.subscribe-11-area { background: #1b1f2e; position: relative; }
 .subscribe-area.subscribe-11-area::before {
     content: '';
     position: absolute;
@@ -311,13 +317,14 @@ footer.footer-area.footer-2-area { background: #132D67; }
     padding: 9px 20px;
     border: 1px solid #E7EBF3;
     border-radius: 30px;
-    transition: all .3s ease;
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .15s ease;
 }
 .arc-links ul li a:hover {
     background: #1F439B;
     border-color: #1F439B;
     color: #fff;
 }
+.arc-links ul li a:active { transform: scale(0.97); }
 /* Cuando la lista es informativa (no enlaces), se muestra apilada */
 .arc-panel.arc-links ul li {
     display: flex;
@@ -527,8 +534,9 @@ footer.footer-area.footer-2-area { background: #132D67; }
    estos botones son el único camino a las láminas 2 y 3. Van a 44x44 para
    cumplir el tamaño mínimo de destino táctil. */
 .arc-hero-controls { position: absolute; z-index: 3; left: clamp(24px, 4vw, 56px); bottom: clamp(24px, 4vh, 44px); display: flex; align-items: center; gap: 10px; }
-.arc-hero-ctrl { width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; padding: 0; border-radius: 50%; background: rgba(9, 17, 40, .45); border: 1px solid rgba(255, 255, 255, .45); color: #fff; font-size: 14px; line-height: 1; cursor: pointer; transition: background .25s ease, border-color .25s ease; }
+.arc-hero-ctrl { width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; padding: 0; border-radius: 50%; background: rgba(9, 17, 40, .45); border: 1px solid rgba(255, 255, 255, .45); color: #fff; font-size: 14px; line-height: 1; cursor: pointer; transition: background .25s ease, border-color .25s ease, transform .15s ease; }
 .arc-hero-ctrl:hover { background: rgba(9, 17, 40, .72); border-color: #FFBB00; color: #FFBB00; }
+.arc-hero-ctrl:active { transform: scale(0.92); }
 /* El foco tiene que verse sobre foto: anillo ámbar con halo oscuro detrás. */
 .arc-hero-ctrl:focus-visible { outline: 3px solid #FFBB00; outline-offset: 3px; box-shadow: 0 0 0 3px rgba(9, 17, 40, .75); }
 /* Un solo botón, dos iconos: se enseña el que corresponde al estado. */
@@ -673,6 +681,76 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-panel ul li span { color: #132D67; font-weight: 500; }
 .arc-panel a { color: #1F439B; }
 .arc-panel a:hover { color: #8A6400; text-decoration: underline; }
+
+/* --- Acordeón de vacantes (Vacantes) ---------------------------------------
+   <details>/<summary> nativos: sin JS, con soporte de teclado y lector de
+   pantalla de fábrica. Cada fila expande requisitos, funciones y un
+   formulario propio hacia Formspree (con verificación anti-spam incluida). */
+.arc-vacancies { display: flex; flex-direction: column; gap: 14px; margin-top: 34px; }
+.arc-vacancy {
+    background: #fff;
+    border: 1px solid #E7EBF3;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.arc-vacancy[open] { border-color: #C7D2E5; }
+.arc-vacancy-head {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    padding: 22px 26px;
+}
+.arc-vacancy-head::-webkit-details-marker { display: none; }
+.arc-vacancy-title { color: #132D67; font-weight: 600; font-size: 18px; }
+.arc-vacancy-meta { color: #5B6B85; font-size: 15px; margin-left: auto; }
+.arc-vacancy-icon { position: relative; width: 20px; height: 20px; flex: none; }
+.arc-vacancy-icon::before,
+.arc-vacancy-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #1F439B;
+    transform: translate(-50%, -50%);
+    transition: transform .2s ease;
+}
+.arc-vacancy-icon::before { width: 14px; height: 2px; }
+.arc-vacancy-icon::after { width: 2px; height: 14px; }
+.arc-vacancy[open] .arc-vacancy-icon::after { transform: translate(-50%, -50%) scale(0); }
+.arc-vacancy-body { padding: 0 26px 26px; border-top: 1px solid #E7EBF3; }
+.arc-vacancy-body p { color: #33415C; font-size: 17px; line-height: 28px; margin: 18px 0 0; }
+.arc-vacancy-body p strong { color: #132D67; }
+.arc-vacancy-form { border-top: 1px dashed #E7EBF3; margin-top: 20px; padding-top: 20px; }
+.arc-vacancy-fields { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; }
+.arc-vacancy-fields input[type="text"],
+.arc-vacancy-fields input[type="email"] {
+    flex: 1 1 180px;
+    border: 1px solid #E7EBF3;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 15px;
+    color: #33415C;
+    height: 48px;
+}
+.arc-vacancy-file { flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5B6B85; }
+.arc-vacancy-file input[type="file"] {
+    border: 1px dashed #C7D2E5;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #33415C;
+    background: #fff;
+}
+.arc-vacancy-form .main-btn { padding: 0 28px; line-height: 48px; }
+.arc-vacancy-note { color: #8A94A8; font-size: 13px; margin-top: 12px; }
+@media (max-width: 767px) {
+    .arc-vacancy-head { padding: 18px 20px; }
+    .arc-vacancy-meta { margin-left: 0; }
+    .arc-vacancy-body { padding: 0 20px 20px; }
+}
 
 /* --- Campos del formulario, al estilo del template --- */
 .contact-us-box .input-box select,
@@ -1105,12 +1183,17 @@ button.back-to-top {
 
 /* line-height (48px) menor que font-size (56px): a dos líneas, las tildes de
    la segunda invadían la primera. Muy visible en español. */
-.section-title-9 .title {
+.section-title-9 .title,
+.arc-h2 {
+    font-family: "space_grotesk";
+    font-weight: 700;
     font-size: 48px;
     line-height: 1.18;
+    letter-spacing: normal;
 }
 @media (max-width: 767px) {
-    .section-title-9 .title { font-size: 32px; line-height: 1.22; }
+    .section-title-9 .title,
+    .arc-h2 { font-size: 32px; line-height: 1.22; }
 }
 
 /* Bootstrap define .h3/.h4/.h5 con font-weight:500 y gana a los h1..h6 de
@@ -1340,7 +1423,10 @@ a.service-2-item:hover { color: #fff; }
     .article-2-item.article-11-item,
     .main-btn,
     .main-btn-2,
-    .main-btn-3 { transition: none; }
+    .main-btn-3,
+    .arc-hero-ctrl,
+    .whatsapp-float,
+    .arc-links ul li a { transition: none; }
 
     .service-2-item:hover,
     .portfolio-style-2-item:hover,
@@ -1350,7 +1436,12 @@ a.service-2-item:hover { color: #fff; }
     .main-btn-2:hover,
     .main-btn-3:hover,
     .footer-newsletter-item .input-box button:hover,
-    .contact-us-box .input-box button:hover { transform: none; }
+    .contact-us-box .input-box button:hover,
+    .main-btn:active,
+    .arc-hero-ctrl:active,
+    .whatsapp-float:active,
+    .whatsapp-float:hover,
+    .arc-links ul li a:active { transform: none; }
 }
 
 /* ==========================================================================
@@ -1453,8 +1544,8 @@ a.service-2-item:hover { color: #fff; }
    Los valores son fijos en el template, sin variantes por breakpoint, así que
    estas reglas aplican igual en escritorio y en móvil. */
 .sub-2-area { padding-top: 56px; }
-.sub-2-area .sub-box { padding-bottom: 56px; }
-.about-2-area { padding-top: 52px; padding-bottom: 75px; }
+.sub-2-area .sub-box { padding-bottom: 38px; }
+.about-2-area { padding-top: 34px; padding-bottom: 75px; }
 .service-2-area { padding-top: 75px; padding-bottom: 75px; }
 .article-2-area { padding-top: 75px; padding-bottom: 75px; }
 .testimonial-3-area { padding-top: 60px; padding-bottom: 60px; }
@@ -1529,11 +1620,273 @@ a.service-2-item:hover { color: #fff; }
     /* Todos los archivos comparten lienzo de 300x150 con el logo centrado y
        normalizado por área, así que basta un ancho único: el equilibrio óptico
        ya viene resuelto en la imagen y no hace falta afinar logo por logo. */
-    width: 214px;
+    width: 250px;
     height: auto;
 }
 
 @media (max-width: 767px) {
     .brand-3-area .arc-logo { padding: 0 8px; }
-    .brand-3-area .arc-logo img { width: 140px; }
+    .brand-3-area .arc-logo img { width: 168px; }
+}
+
+/* ==========================================================================
+   Eslogan de marca + tira de obra
+   --------------------------------------------------------------------------
+   Sustituye al bloque de testimoniales. La tira sale del contenedor a
+   propósito: al sangrar por la derecha se lee que hay más fotos fuera de
+   cuadro, que es lo que invita a seguir bajando.
+
+   El desplazamiento lo lleva el scroll (ver arcondec-motion.js), no un
+   temporizador. Con `prefers-reduced-motion` ese JS no corre, así que la tira
+   se quedaría fija y las fotos de la derecha quedarían inalcanzables: por eso
+   ahí se cambia a desplazamiento manual. */
+.arc-slogan {
+    background: #1b1f2e;
+    padding: 84px 0 90px;
+    overflow: hidden;
+}
+.arc-slogan-text {
+    margin: 0 0 46px;
+    color: #fff;
+    font-family: "space_grotesk";
+    font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 52px);
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    max-width: 20ch;
+}
+.arc-slogan-accent { color: #FFBB00; }
+
+.arc-slogan-strip { overflow: hidden; }
+.arc-slogan-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 14px;
+    width: max-content;
+    padding-left: calc((100vw - 1140px) / 2);
+    will-change: transform;
+}
+@media (max-width: 1199.98px) {
+    .arc-slogan-track { padding-left: 24px; }
+}
+.arc-slogan-item {
+    flex: 0 0 auto;
+    margin: 0;
+    width: clamp(290px, 34vw, 500px);
+}
+.arc-slogan-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arc-slogan-strip {
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    .arc-slogan-strip::-webkit-scrollbar { display: none; }
+}
+
+/* ==========================================================================
+   Bloque «empresa 100% mexicana»: una sola foto
+   --------------------------------------------------------------------------
+   Antes eran dos imágenes encimadas. Se queda una y la caja «30+» se ancla a
+   su esquina inferior derecha, sobre el piso libre de la foto, donde no tapa
+   equipo. La caja va DENTRO de .thumb —no de .thumb-2, que ya no existe— así
+   que las reglas del template dejan de alcanzarla y su aspecto se define aquí
+   completo: degradado de marca, tamaño y tipografía.
+
+   Escalar el contenedor y no la <img> mantiene foto y caja solidarias: si solo
+   creciera la imagen, la caja quedaría flotando fuera de su borde mientras
+   dura la animación. */
+.arc-about-single .thumb {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 15px;
+    will-change: transform;
+}
+.arc-about-single .thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.arc-about-single .box {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    width: 132px;
+    height: 132px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    text-align: center;
+    background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%);
+}
+.arc-about-single .box .title {
+    margin: 0;
+    font-size: 38px;
+    line-height: 1;
+    font-weight: 500;
+    color: #132D67;
+}
+.arc-about-single .box > span {
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 1.25;
+    font-weight: 500;
+    color: #132D67;
+    max-width: 92px;
+}
+@media (max-width: 575.98px) {
+    .arc-about-single .box { right: 14px; bottom: 14px; width: 100px; height: 100px; }
+    .arc-about-single .box .title { font-size: 28px; }
+    .arc-about-single .box > span { font-size: 12px; max-width: 74px; }
+}
+
+/* Tarjetas de servicio: el template las deja en 5px, un redondeo tan corto que
+   a este tamaño se lee casi como esquina viva. Se suben a 18px, en línea con
+   las tarjetas de artículo (15px) y con la tira del eslogan (10px), para que
+   todo el inicio comparta el mismo lenguaje de esquina. */
+.service-2-item.service-11-item { border-radius: 18px; }
+
+/* El mapa respeta el contenedor del sitio, como el resto de las secciones.
+   Llegó a salirse a 1560px para ganar legibilidad en las etiquetas, pero la
+   excepción rompía la alineación con todo lo demás y ni así resolvía el
+   problema de fondo: en móvil las etiquetas quedan en 4px pase lo que pase.
+   El recorte del lienzo del SVG (viewBox ajustado al contenido real) ya
+   recuperó buena parte del tamaño perdido sin romper la caja. */
+.our-case-area .arc-map {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* El hero pasó de fotos a video. .arc-hero-media ya trae inset:0 y object-fit:
+   cover del bloque original, pero <video> no hereda el ajuste automático de
+   proporción que sí tenía <img>: sin esto se estira. El poster usa el mismo
+   recorte para que el relevo entre imagen y video sea invisible. */
+video.arc-hero-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background: #0d1428;
+}
+
+/* La franja de clientes sale del contenedor de 1140px. Con cinco logos a la
+   vista, ese ancho dejaba 214px por celda y el logo topaba ahí por más que se
+   subiera su tamaño. Ensanchando la franja cada celda pasa a ~292px y el logo
+   cabe de verdad. Solo afecta a esta sección: el resto de la página conserva
+   su contenedor. */
+.brand-3-area > .container {
+    max-width: min(calc(100vw - 40px), 1560px);
+}
+
+/* La página en curso se marca en amarillo de marca con un subrayado corto.
+   El generador ya ponía la clase .active y el aria-current, pero nada lo hacía
+   visible: la única señal de en qué página estabas era la URL.
+
+   Va sobre el <a> y no sobre el <li> para que el subrayado mida lo que mide la
+   palabra. Y el color no es la única señal —lleva también el trazo— porque
+   distinguir solo por color deja fuera a quien no lo percibe. */
+.header-nav .navbar-nav > .nav-item.active > .nav-link {
+    color: #FFBB00;
+    position: relative;
+}
+.header-nav .navbar-nav > .nav-item.active > .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 2px;
+    border-radius: 2px;
+    background: #FFBB00;
+}
+
+}
+
+/* ==========================================================================
+   Página Nosotros — maquetación editorial
+   --------------------------------------------------------------------------
+   La versión anterior metía cada bloque en una tarjeta y coronaba cada título
+   con un círculo de icono. Son los dos recursos más repetidos en interfaces
+   generadas automáticamente, y aquí no aportaban: los valores son cuatro
+   palabras y las certificaciones cuatro nombres de norma. El peso lo llevan
+   ahora la tipografía, el filete y el aire.
+
+   El interletrado va por tamaño, no fijo: los cuerpos grandes necesitan
+   tracking negativo —al crecer, las letras se leen demasiado separadas— y el
+   texto pequeño lo necesita positivo. Un solo valor está mal en algún lado.
+   ========================================================================== */
+
+.arc-h2 {
+    color: #000;
+    margin-bottom: 22px;
+}
+
+/* --- 1 · Historia -------------------------------------------------------
+   El "1991" de fondo es puramente tipográfico (no hay foto de más), y el
+   marco offset detrás de la imagen es un rectángulo con borde, no una
+   segunda foto: ambos recursos suman peso editorial sin salirse de la
+   restricción de "nada de fotos de proyecto en esta sección". Las cifras
+   que antes vivían en la caja flotante ("30+ Años") ahora son dos chips
+   junto a la foto, y se les suma "3 áreas clave" —dato que ya está en el
+   primer párrafo, no es contenido nuevo. */
+.arc-about-story { padding: 86px 0 78px; }
+.arc-story-copy { position: relative; }
+.arc-story-copy > * { position: relative; z-index: 1; }
+.arc-story-year {
+    position: absolute;
+    top: -30px;
+    left: -4px;
+    z-index: 0;
+    font-family: "space_grotesk";
+    font-size: 132px;
+    font-weight: 700;
+    line-height: 1;
+    color: #EEF2F8;
+    pointer-events: none;
+    user-select: none;
+}
+.arc-story-copy p {
+    font-size: 17px;
+    line-height: 28px;
+    color: #33415C;
+    margin-bottom: 16px;
+}
+.arc-story-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+@media (max-width: 767px) {
+    .arc-story-year { font-size: 84px; top: -18px; }
+}
+
+/* --- 2, 2b, 5 y 6 · Propósito/Meta/Visión, Valores, Qué nos distingue,
+   Certificaciones ----------------------------------------------------------
+   Las cuatro dejaron su tratamiento propio (banda oscura de manifiesto /
+   monograma / cita editorial / insignia con sello) por el mismo lenguaje de
+   tarjeta que usan las páginas de Servicios (.service-2-item dentro de
+   .arc-service-grid, dentro de .section-title-9): así Nosotros se lee como
+   parte de la misma familia visual del sitio, no como una página aparte.
+   Solo la letra del acróstico de Valores necesita una regla propia: vive en
+   el mismo círculo que llevaría un ícono fa, pero es texto, no un glifo, así
+   que no hereda su tamaño. */
+.service-2-item .icon .arc-mv-letter {
+    font-family: "space_grotesk";
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: #1F439B;
+}
+@media (max-width: 767px) {
+    .arc-about-story { padding: 58px 0 52px; }
 }

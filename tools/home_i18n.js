@@ -25,7 +25,6 @@
             navSrvCosdc: 'Construcción llave en mano',
             navSrvCivdc: 'Ingeniería civil',
             navSrvIngdc: 'Servicios de Ingeniería',
-            navWork: 'Trabaja con nosotros',
             navBlogs: 'Blogs',
             navContact: 'Contáctanos',
             navContactBtn: 'Contáctanos',
@@ -34,11 +33,11 @@
             heroBtn: 'Habla con un asesor',
             heroMore: 'Conoce más',
             heroS1Title: 'Diseño y Construcción de Data Centers',
-            heroS1Text: 'Desarrollamos Data Centers de misión crítica, integrando ingeniería, construcción y equipamiento especializado para garantizar seguridad, eficiencia y continuidad operativa en cada proyecto.',
+            heroS1Text: 'Integramos ingeniería, construcción y equipamiento especializado en data centers de misión crítica, listos para operar sin interrupciones.',
             heroS2Title: 'Infraestructura Crítica y Energía Ininterrumpida',
-            heroS2Text: 'Diseñamos e implementamos infraestructura eléctrica, sistemas UPS, plantas de emergencia y soluciones de respaldo que aseguran la disponibilidad y confiabilidad de operaciones críticas.',
+            heroS2Text: 'Sistemas UPS, plantas de emergencia y respaldo eléctrico que mantienen en pie las operaciones que no pueden parar.',
             heroS3Title: 'Operación y Mantenimiento de Infraestructura Crítica',
-            heroS3Text: 'Acompañamos a nuestros clientes durante todo el ciclo de vida de su infraestructura mediante servicios especializados de operación, mantenimiento preventivo y correctivo, optimización y atención de emergencias para garantizar la máxima disponibilidad de sus instalaciones.',
+            heroS3Text: 'Operación, mantenimiento y atención de emergencias durante todo el ciclo de vida de tu infraestructura.',
 
             // Controles del hero. Van dentro de cada botón en un <span class="sr-only">:
             // no se ven, pero son el nombre accesible del botón. El estado
@@ -66,12 +65,11 @@
             hub3Name: 'Hub Delicias',
             hub4Name: 'Hub Isla Mujeres',
             hubsLine: 'Hubs en Mexicali, Querétaro, Monterrey, Apodaca, Valle Oriente, Delicias, Toluca, Isla Mujeres y Ciudad de México.',
-            commitTitle: 'Fortalecemos cada día nuestro compromiso contigo',
             newsTitle: 'Suscríbete a nuestro boletín para recibir novedades',
             newsPlaceholder: 'Escribe tu correo…',
             newsBtn: 'Únete',
 
-            aboutTitle: 'Grupo Arcondec: Empresa 100% mexicana con más de 30 años de experiencia.',
+            aboutTitle: '30 años construyendo la infraestructura crítica de México.',
             aboutText: 'Estamos conformados por un equipo multidisciplinario altamente capacitado lo que nos convierte en especialistas en proyectos de misión crítica y data centers.',
             navAbout2: 'Sobre nosotros',
             aboutYears: 'Años de experiencia',
@@ -80,6 +78,14 @@
             mapBtn: 'Agenda tu consulta',
 
             clientsTitle: 'Nuestros clientes',
+            commitText: 'Fortalecemos cada día nuestro compromiso contigo, brindando un servicio excepcional como tu aliado estratégico en ingeniería eléctrica y centros de datos.',
+
+            // Eslogan de marca. Va partido en dos porque el generador escapa el
+            // HTML al sustituir: una etiqueta con data-i18n no puede llevar
+            // <span> dentro, se perdería. La segunda mitad es la resaltada.
+            sloganA: 'Habilitamos la infraestructura que hace posible el',
+            sloganB: 'mundo digital.',
+
 
             // Sección de blog del inicio: 3 artículos destacados de tools/pages.py
             // (ARTICLES). Si allá se cambian los textos, hay que reflejarlos aquí
@@ -95,7 +101,6 @@
             blogP3D: 'La mayoría de los equipos ya operan internamente en DC: mantener la energía en ese formato reduce pérdidas, conversiones y puntos de falla.',
 
 
-            commitText: 'Fortalecemos cada día nuestro compromiso contigo, brindando un servicio excepcional como tu aliado estratégico en ingeniería eléctrica y centros de datos.',
 
             // Carrusel de servicios del inicio: dos servicios, con sus componentes
             // como tarjetas. Reemplaza las claves ie1-ie7 / dc1-dc6 anteriores.
@@ -118,7 +123,6 @@
             footCompany: 'Compañía',
             footAbout: 'Sobre nosotros',
             footProjects: 'Proyectos',
-            footWork: 'Trabaja con nosotros',
             footBlogs: 'Blogs',
             footContact: 'Contáctanos',
             footIETitle: 'Ingeniería eléctrica',
@@ -154,7 +158,6 @@
             navSrvCosdc: 'Turnkey Construction',
             navSrvCivdc: 'Civil Engineering',
             navSrvIngdc: 'Engineering Services',
-            navWork: 'Work With Us',
             navBlogs: 'Blogs',
             navContact: 'Contact Us',
             navContactBtn: 'Contact Us',
@@ -163,11 +166,11 @@
             heroBtn: 'Speak with an Advisor',
             heroMore: 'Learn more',
             heroS1Title: 'Data Center Design & Construction',
-            heroS1Text: 'We develop mission-critical data centers, integrating engineering, construction and specialized equipment to ensure security, efficiency and operational continuity in every project.',
+            heroS1Text: 'We integrate engineering, construction and specialized equipment into mission-critical data centers, ready to run without interruption.',
             heroS2Title: 'Critical Infrastructure & Uninterrupted Power',
-            heroS2Text: 'We design and implement electrical infrastructure, UPS systems, emergency plants and backup solutions that ensure the availability and reliability of critical operations.',
+            heroS2Text: 'UPS systems, emergency generators and electrical backup that keep operations running when they cannot stop.',
             heroS3Title: 'Critical Infrastructure Operation & Maintenance',
-            heroS3Text: 'We support our clients throughout the entire lifecycle of their infrastructure with specialized operation, preventive and corrective maintenance, optimization and emergency response services to guarantee maximum availability of their facilities.',
+            heroS3Text: 'Operation, maintenance and emergency response across the entire life cycle of your infrastructure.',
 
             heroPrev: 'Previous slide',
             heroNext: 'Next slide',
@@ -191,12 +194,15 @@
             hub3Name: 'Delicias Hub',
             hub4Name: 'Isla Mujeres Hub',
             hubsLine: 'Hubs in Mexicali, Querétaro, Monterrey, Apodaca, Valle Oriente, Delicias, Toluca, Isla Mujeres, and Mexico City.',
-            commitTitle: 'We strengthen our commitment to you every day',
             newsTitle: 'Subscribe to our newsletter to receive updates',
             newsPlaceholder: 'Enter email…',
             newsBtn: 'Join us',
 
-            aboutTitle: 'Grupo Arcondec: A 100% Mexican company with over 30 years of experience.',
+            // OJO: el generador lee este diccionario con una expresión regular que
+            // solo reconoce comillas SIMPLES (build.py → load_home_i18n). Una
+            // cadena entre comillas dobles se ignora en silencio y la página sale
+            // con el texto del otro idioma. Los apóstrofos van escapados.
+            aboutTitle: '30 years building Mexico\'s critical infrastructure.',
             aboutText: 'We are made up of a highly skilled multidisciplinary team, making us specialists in mission-critical projects and data centers.',
             navAbout2: 'About Us',
             aboutYears: 'Years of Experience',
@@ -205,6 +211,12 @@
             mapBtn: 'Schedule a consultation',
 
             clientsTitle: 'Our Clients',
+            commitText: 'Every day we strengthen our commitment to you, delivering exceptional service as your strategic ally in electrical engineering and data centers.',
+
+            // Eslogan de marca (ver nota en el bloque ES).
+            sloganA: 'We enable the infrastructure that makes the',
+            sloganB: 'digital world possible.',
+
 
             // Sección de blog del inicio (ver nota en el bloque ES).
             blogTitle: 'Insights on critical infrastructure',
@@ -218,7 +230,6 @@
             blogP3D: 'Most equipment already runs internally on DC: keeping power in that format reduces losses, conversions and points of failure.',
 
 
-            commitText: 'We strengthen our commitment to you every day by delivering exceptional service as your strategic partner in electrical engineering and data centers.',
 
             // Carrusel de servicios del inicio (ver nota en el bloque ES).
             svcCatDC: 'Data Center Design and Construction',
@@ -240,7 +251,6 @@
             footCompany: 'Company',
             footAbout: 'About Us',
             footProjects: 'Projects',
-            footWork: 'Work With Us',
             footBlogs: 'Blogs',
             footContact: 'Contact Us',
             footIETitle: 'Electrical Engineering',

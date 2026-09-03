@@ -478,9 +478,37 @@ def render_about(lang):
     t = UI[lang]
 
     history = "\n".join("                        <p>%s</p>" % e(p) for p in c["history"])
-    values = "\n".join(
+
+    # "Qué nos distingue" adopta el lenguaje de tarjeta de las páginas de
+    # servicio (.service-2-item): mismo componente, para que Nosotros se lea
+    # como parte de la misma familia visual que Servicios. Sin párrafo por
+    # tarjeta —no hay una frase propia por palabra clave en el contenido
+    # original—, así que usa la variante "arc-spec" (icono + título).
+    DISTINCT_ICONS = ["fal fa-handshake", "fal fa-bullseye-arrow", "fal fa-binoculars"]
+    distinct_cards = "\n".join(
         """                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="service-2-item text-center mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="%dms">
+                    <div class="service-2-item arc-spec text-center mt-30">
+                        <div class="icon"><i class="%s"></i></div>
+                        <h3 class="title">%s</h3>
+                        <div class="service-dot">
+                            <img src="/assets/images/service-dot-2.png" alt="">
+                            <div class="item">
+                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>"""
+        % (DISTINCT_ICONS[n % len(DISTINCT_ICONS)], e(k), (n % 6) + 1)
+        for n, k in enumerate(c["distinct_keywords"])
+    )
+
+    # Propósito/Meta/Visión dejan la banda oscura de manifiesto por el mismo
+    # lenguaje de tarjeta .service-2-item: icono en círculo + título + texto.
+    MV_ICONS = {"meta": "fal fa-bullseye-arrow", "vision": "fal fa-eye"}
+    def _mv_card(n, key, title, text):
+        return (
+            """                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="service-2-item text-center mt-30">
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
                         <p>%s</p>
@@ -492,37 +520,90 @@ def render_about(lang):
                         </div>
                     </div>
                 </div>"""
-        % (n * 150, icon, e(title), e(text), n + 1)
-        for n, (title, text, icon) in enumerate(c["values"])
+            % (MV_ICONS[key], e(title), e(text), (n % 6) + 1)
+        )
+
+    mv_cards = "\n".join([
+        _mv_card(0, "meta", c["meta_title"], c["meta_text"]),
+        _mv_card(1, "vision", c["vision_title"], c["vision"]),
+    ])
+
+    # Valores: en es, cada renglón es (letra, resto de la palabra) y la letra
+    # arma el acróstico IDEAS. En en no hay acróstico que traducir, así que el
+    # marcador es solo la primera letra de la palabra completa. La letra vive
+    # en el mismo círculo que llevaría un ícono fa en cualquier otra tarjeta
+    # .service-2-item — incluye el mismo lenguaje visual, cambia el contenido
+    # del círculo. La palabra completa es el título; no es texto duplicado
+    # para quien usa lector de pantalla porque la letra va aria-hidden.
+    def _value_card(n, v):
+        if isinstance(v, tuple):
+            letter, rest = v
+            mark = e(letter)
+            full = e(letter + rest)
+        else:
+            mark = e(v[0])
+            full = e(v)
+        return (
+            """                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="service-2-item arc-spec text-center mt-30">
+                        <div class="icon"><span class="arc-mv-letter" aria-hidden="true">%s</span></div>
+                        <h3 class="title">%s</h3>
+                        <div class="service-dot">
+                            <img src="/assets/images/service-dot-2.png" alt="">
+                            <div class="item">
+                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>"""
+            % (mark, full, (n % 6) + 1)
+        )
+
+    values = "\n".join(_value_card(n, v) for n, v in enumerate(c["values"]))
+
+    # Certificaciones: la misma tarjeta .service-2-item de Servicios
+    # (icono en círculo + título + párrafo), no ya la insignia con sello
+    # propia. El campo `icon` llevaba definido desde antes sin usarse; el
+    # quinto valor (sello tipográfico) ya no hace falta con este lenguaje.
+    certs = "\n".join(
+        """                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="service-2-item text-center mt-30">
+                        <div class="icon"><i class="%s"></i></div>
+                        <h3 class="title">%s</h3>
+                        <p><strong>%s.</strong> %s</p>
+                        <div class="service-dot">
+                            <img src="/assets/images/service-dot-2.png" alt="">
+                            <div class="item">
+                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>"""
+        % (icon, e(name), e(scope), e(text), (n % 6) + 1)
+        for n, (name, scope, text, icon, _seal) in enumerate(c["certs"])
     )
 
     body = """
     <main id="contenido">
 
-    <!--====== HISTORIA ======-->
+    <!--====== 1 · HISTORIA ======-->
 
-    <section class="about-2-area about-11-area pt-90 pb-60">
+    <section class="arc-about-story">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="about-2-content about-11-content mt-30">
-                        <span class="service-eyebrow">{lead}</span>
-                        <h2 class="title">{history_title}</h2>
+                    <div class="arc-story-copy">
+                        <span class="arc-story-year" aria-hidden="true">1991</span>
+                        <span class="service-eyebrow">{history_eyebrow}</span>
+                        <h2 class="arc-h2">{history_title}</h2>
 {history}
                         <a class="main-btn main-btn-3 mt-30" href="{projects}">{projects_label}</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="about-2-thumb about-11-thumb mt-30">
-                        <div class="thumb text-right">
-                            <img src="{img}/rh/historia.jpg" alt="{alt_historia}" %s>
-                        </div>
-                        <div class="thumb-2 ml-80">
-                            <img src="{img}/rh/img-1.jpg" alt="{alt_equipo}" %s>
-                            <div class="box">
-                                <h3 class="title"><span>30</span>+</h3>
-                                <span>{years}</span>
-                            </div>
+                    <div class="arc-story-media mt-30">
+                        <div class="arc-story-frame">
+                            <img src="{img}/rh/historia-3.jpg" alt="{alt_historia}" {dims_historia}>
                         </div>
                     </div>
                 </div>
@@ -530,32 +611,30 @@ def render_about(lang):
         </div>
     </section>
 
-    <!--====== QUÉ NOS DISTINGUE ======-->
+    <!--====== 2 · PROPÓSITO, META Y VISIÓN ======-->
+    <!-- Mismo lenguaje que Servicios: título+intro centrados y grid de
+         tarjetas .service-2-item. La banda oscura de manifiesto se dejó por
+         consistencia con el resto del sitio. -->
 
-    <section class="pb-90">
+    <section class="service-area service-page-area arc-soft-area pt-90 pb-100">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="arc-panel text-center">
-                        <h2 class="title h3">{distinct_title}</h2>
-                        <p>{distinct}</p>
+                <div class="col-lg-8">
+                    <div class="section-title-9 text-center">
+                        <span class="service-eyebrow">{purpose_title}</span>
+                        <h2 class="title">{purpose}</h2>
                     </div>
                 </div>
+            </div>
+            <div class="row justify-content-center arc-service-grid">
+{mv_cards}
             </div>
         </div>
     </section>
 
-    <!--====== VALORES Y QUÉ HACEMOS ======-->
-    <!--
-        Valores y servicios comparten el mismo fondo suave, así que iban en dos
-        <section> seguidas cada una con 90px de relleno arriba y abajo: 180px de
-        espacio muerto entre las tarjetas y los paneles, sin ninguna línea que
-        justificara el corte. Y los paneles salían huérfanos, sin título de
-        sección: se leía como si faltara algo. Van en una sola banda, cada bloque
-        con su título.
-    -->
+    <!--====== 2b · VALORES ======-->
 
-    <section class="arc-soft-area pt-90 pb-90">
+    <section class="service-area service-page-area pt-90 pb-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -567,60 +646,73 @@ def render_about(lang):
             <div class="row justify-content-center arc-service-grid">
 {values}
             </div>
-            <div class="row justify-content-center pt-70">
+        </div>
+    </section>
+
+    <!--====== 3 · QUÉ NOS DISTINGUE ======-->
+    <!-- Mismo lenguaje que las páginas de Servicios: título+intro centrados
+         (.section-title-9) y grid de tarjetas .service-2-item, para que
+         Nosotros se lea como parte de la misma familia visual del sitio. -->
+
+    <section class="service-area service-page-area arc-soft-area pt-90 pb-100">
+        <div class="container">
+            <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title-9 text-center">
-                        <h2 class="title">{services_title}</h2>
+                        <h2 class="title">{distinct_title}</h2>
+                        <div class="text">
+                            <p>{distinct_intro}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="arc-panel arc-links mt-30">
-                        <h3 class="title h4">{ie_title}</h3>
-                        <ul>
-{ie_items}
-                        </ul>
+            <div class="row justify-content-center arc-service-grid">
+{distinct_cards}
+            </div>
+        </div>
+    </section>
+
+    <!--====== 4 · CERTIFICACIONES ======-->
+
+    <section class="service-area service-page-area pt-90 pb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title-9 text-center">
+                        <h2 class="title">{certs_title}</h2>
+                        <div class="text">
+                            <p>{certs_lead}</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="arc-panel arc-links mt-30">
-                        <h3 class="title h4">{dc_title}</h3>
-                        <ul>
-{dc_items}
-                        </ul>
-                    </div>
-                </div>
+            </div>
+            <div class="row justify-content-center arc-service-grid">
+{certs}
             </div>
         </div>
     </section>
 
     </main>
 """.format(
-        lead=e(c["lead"]),
         history_title=e(c["history_title"]),
+        history_eyebrow=e(c["history_eyebrow"]),
         history=history,
         projects=url("projects", lang),
         projects_label=e(t["nav_projects"]),
         img=IMG,
         alt_historia=e(c["alt_historia"]),
-        alt_equipo=e(c["alt_equipo"]),
-        years=e(c["years_label"]),
+        dims_historia=dims("%s/rh/historia-3.jpg" % IMG),
+        mv_cards=mv_cards,
+        purpose_title=e(c["purpose_title"]),
+        purpose=e(c["purpose"]),
         distinct_title=e(c["distinct_title"]),
-        distinct=e(c["distinct"]),
+        distinct_intro=e(c["distinct_quote"] + " " + c["distinct_rest"]),
+        distinct_cards=distinct_cards,
         values_title=e(c["values_title"]),
-        services_title=e(c["services_title"]),
         values=values,
-        ie_title=e(LIST_IE[lang]["title"]),
-        ie_items="\n".join(
-            '                            <li><i class="fal fa-check"></i> %s</li>' % e(x)
-            for x in LIST_IE[lang]["items"]
-        ),
-        dc_title=e(LIST_DC[lang]["title"]),
-        dc_items="\n".join(
-            '                            <li><i class="fal fa-check"></i> %s</li>' % e(x)
-            for x in LIST_DC[lang]["items"]
-        ),
+        certs_title=e(c["certs_title"]),
+        certs_lead=e(c["certs_lead"]),
+        certs=certs,
     )
 
     return (
@@ -630,20 +722,16 @@ def render_about(lang):
             title=c["title"],
             description=c["meta"],
             keywords=c["keywords"],
-            og_image="%s/rh/historia.jpg" % IMG,
+            og_image="%s/rh/historia-2.jpg" % IMG,
         )
         + body_open()
         + header(lang=lang, key=key)
-        + page_banner(lang=lang, title=c["h1"], crumb=c["eyebrow"], bg="%s/rh/historia.jpg" % IMG)
+        + page_banner(lang=lang, title=c["h1"], crumb=c["eyebrow"], bg="%s/rh/historia-2.jpg" % IMG)
         + body
         + commitment_band(lang)
         + footer(lang=lang, key=key)
     )
 
-
-# ==========================================================================
-# PROYECTOS
-# ==========================================================================
 def render_projects(lang):
     c = P.PROJECTS[lang]
     key = "projects"
@@ -754,7 +842,7 @@ def render_projects(lang):
             title=c["title"],
             description=c["meta"],
             keywords=c["keywords"],
-            og_image="%s/proyectos/arcondec-monterrey-01.jpg" % IMG,
+            og_image="%s/proyectos/arcondec-propyectos-banner.jpg" % IMG,
             extra_ld=ld,
         )
         + body_open()
@@ -763,7 +851,7 @@ def render_projects(lang):
             lang=lang,
             title=c["h1"],
             crumb=c["eyebrow"],
-            bg="%s/proyectos/arcondec-monterrey-01.jpg" % IMG,
+            bg="%s/proyectos/arcondec-propyectos-banner.jpg" % IMG,
         )
         + '\n    <p class="service-lead-strip">%s</p>\n' % e(c["lead"])
         + body
@@ -1069,7 +1157,7 @@ def render_contact(lang):
         + header(lang=lang, key=key)
         + page_banner(
             lang=lang, title=c["h1"], crumb=c["eyebrow"],
-            bg="%s/secciones/centro-datos-arcondec.jpg" % IMG,
+            bg="%s/secciones/arcondec-banner-contacto.jpg" % IMG,
         )
         # Sin la franja de entradilla: en Contacto sobraba. El banner ya dice a
         # qué se viene y justo debajo está el título del bloque de contacto, así
@@ -1110,6 +1198,50 @@ def render_careers(lang):
         for x in c["policy_list"]
     )
 
+    vacancies = "\n".join(
+        """                <details class="arc-vacancy">
+                    <summary class="arc-vacancy-head">
+                        <span class="arc-vacancy-title">%s</span>
+                        <span class="arc-vacancy-meta">%s</span>
+                        <span class="arc-vacancy-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="arc-vacancy-body">
+                        <p><strong>%s:</strong> %s</p>
+                        <p><strong>%s:</strong> %s</p>
+                        <form class="arc-vacancy-form" action="https://formspree.io/f/meaqkkoo" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="vacante" value="%s">
+                            <input type="hidden" name="_subject" value="Postulación: %s">
+                            <div class="arc-vacancy-fields">
+                                <input type="text" name="nombre" placeholder="%s" required>
+                                <input type="email" name="email" placeholder="%s" required>
+                                <label class="arc-vacancy-file">
+                                    <span>%s</span>
+                                    <input type="file" name="cv" accept=".pdf,.doc,.docx" required>
+                                </label>
+                                <button type="submit" class="main-btn">%s</button>
+                            </div>
+                            <p class="arc-vacancy-note">%s</p>
+                        </form>
+                    </div>
+                </details>"""
+        % (
+            e(v["title"]),
+            e(v["meta"]),
+            e(c["req_label"]),
+            e(v["req"]),
+            e(c["func_label"]),
+            e(v["func"]),
+            e(v["title"]),
+            e(v["title"]),
+            e(c["name_placeholder"]),
+            e(c["email_placeholder"]),
+            e(c["cv_label"]),
+            e(c["apply_btn"]),
+            e(c["apply_note"]),
+        )
+        for v in P.VACANCIES
+    )
+
     subject = "Vacante" if lang == "es" else "Job application"
 
     body = """
@@ -1127,7 +1259,7 @@ def render_careers(lang):
                 <div class="col-lg-6">
                     <div class="about-2-thumb about-11-thumb mt-30">
                         <div class="thumb text-right">
-                            <img src="{img}/rh/empledado.jpg" alt="{why_title}" %s>
+                            <img src="{img}/rh/arcondec_vacantes_equipo.jpg" alt="{why_title}" {dims_equipo}>
                         </div>
                     </div>
                 </div>
@@ -1135,7 +1267,30 @@ def render_careers(lang):
         </div>
     </section>
 
-    <section class="arc-soft-area pt-90 pb-90">
+    <section class="arc-soft-area pt-100 pb-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title-9 text-center">
+                        <span class="service-eyebrow">{vacancies_eyebrow}</span>
+                        <h2 class="title">{vacancies_title}</h2>
+                        <div class="text">
+                            <p>{vacancies_intro}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-11">
+                    <div class="arc-vacancies">
+{vacancies}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-90 pb-90">
         <div class="container">
             <div class="row justify-content-center arc-service-grid">
 {why}
@@ -1143,7 +1298,7 @@ def render_careers(lang):
         </div>
     </section>
 
-    <section class="pb-90">
+    <section class="pt-40 pb-130">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
@@ -1181,6 +1336,11 @@ def render_careers(lang):
         why_title=e(c["why_title"]),
         why_text=e(c["why_text"]),
         img=IMG,
+        dims_equipo=dims("%s/rh/arcondec_vacantes_equipo.jpg" % IMG),
+        vacancies_eyebrow=e(c["vacancies_eyebrow"]),
+        vacancies_title=e(c["vacancies_title"]),
+        vacancies_intro=e(c["vacancies_intro"]),
+        vacancies=vacancies,
         why=why,
         policy_eyebrow=e(c["policy_eyebrow"]),
         policy_title=e(c["policy_title"]),
@@ -1200,12 +1360,15 @@ def render_careers(lang):
             title=c["title"],
             description=c["meta"],
             keywords=c["keywords"],
-            og_image="%s/rh/empledado.jpg" % IMG,
+            og_image="%s/rh/arcondec_vacantes_banner.jpg" % IMG,
         )
         + body_open()
         + header(lang=lang, key=key)
         + page_banner(
-            lang=lang, title=c["h1"], crumb=c["eyebrow"], bg="%s/rh/empledado.jpg" % IMG
+            lang=lang,
+            title=c["h1"],
+            crumb=c["eyebrow"],
+            bg="%s/rh/arcondec_vacantes_banner.jpg" % IMG,
         )
         + '\n    <p class="service-lead-strip">%s</p>\n' % e(c["lead"])
         + body

@@ -35,9 +35,9 @@
   </url>
   <url>
     <loc>https://grupo-arcondec.vercel.app/en/careers.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/vacantes.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/careers.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/vacantes.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -218,10 +218,10 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html"/>
+    <loc>https://grupo-arcondec.vercel.app/vacantes.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://grupo-arcondec.vercel.app/vacantes.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://grupo-arcondec.vercel.app/en/careers.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/trabaja-con-nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grupo-arcondec.vercel.app/vacantes.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -40,7 +40,7 @@ ROUTES = {
     "home": {"es": "/index.html", "en": "/en/index.html"},
     "about": {"es": "/nosotros.html", "en": "/en/about.html"},
     "projects": {"es": "/proyectos.html", "en": "/en/projects.html"},
-    "careers": {"es": "/trabaja-con-nosotros.html", "en": "/en/careers.html"},
+    "careers": {"es": "/vacantes.html", "en": "/en/careers.html"},
     "services": {"es": "/servicios.html", "en": "/en/services.html"},
     "blog": {"es": "/blog.html", "en": "/en/blog.html"},
     "contact": {"es": "/contacto.html", "en": "/en/contact.html"},
@@ -59,7 +59,7 @@ UI = {
         "nav_about": "Nosotros",
         "nav_projects": "Proyectos",
         "nav_services": "Servicios",
-        "nav_careers": "Trabaja con nosotros",
+        "nav_careers": "Vacantes",
         "nav_blog": "Blog",
         "nav_contact": "Contacto",
         "cta_contact": "Contáctanos",
@@ -84,7 +84,7 @@ UI = {
         "nav_about": "About",
         "nav_projects": "Projects",
         "nav_services": "Services",
-        "nav_careers": "Work With Us",
+        "nav_careers": "Careers",
         "nav_blog": "Blog",
         "nav_contact": "Contact",
         "cta_contact": "Contact Us",
@@ -357,6 +357,7 @@ def header(*, lang, key):
 
                                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                     <ul class="navbar-nav ml-auto">
+{nav_home}
 {nav_about}
 {nav_projects}
                                         <li class="nav-item arc-has-sub{services_active}">
@@ -366,6 +367,7 @@ def header(*, lang, key):
                                             </ul>
                                         </li>
 {nav_blog}
+{nav_careers}
 {nav_contact}
                                         <li class="nav-item d-lg-none">
                                             <a class="nav-link" href="{login_url}" target="_blank" rel="noopener">{login}</a>
@@ -379,9 +381,6 @@ def header(*, lang, key):
                                     </ul>
                                 </div>
 
-                                <div class="navbar-btn d-none d-sm-block">
-                                    <a class="main-btn main-btn-3" href="{contact}">{contact_label}</a>
-                                </div>
 
                             </nav>
                         </div>
@@ -409,6 +408,7 @@ def header(*, lang, key):
         en_active=" active" if lang == "en" else "",
         social=social,
         home=url("home", lang),
+        nav_home=nav("home", t["home"]),
         nav_about=nav("about", t["nav_about"]),
         nav_projects=nav("projects", t["nav_projects"]),
         services=e(t["nav_services"]),
@@ -416,9 +416,8 @@ def header(*, lang, key):
         services_active=services_active,
         sub=sub,
         nav_blog=nav("blog", t["nav_blog"]),
+        nav_careers=nav("careers", t["nav_careers"]),
         nav_contact=nav("contact", t["nav_contact"]),
-        contact=url("contact", lang),
-        contact_label=e(t["cta_contact"]),
     )
 
 
