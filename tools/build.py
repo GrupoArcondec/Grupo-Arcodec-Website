@@ -740,7 +740,7 @@ def render_projects(lang):
         """                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="overview-counter-item text-center mt-30">
                         <span class="arc-counter-pre">%s</span>
-                        <h3 class="title"><span class="arc-count" data-count="%s">0</span>+</h3>
+                        <h3 class="title">+<span class="arc-count" data-count="%s">0</span></h3>
                         <p>%s</p>
                     </div>
                 </div>"""
@@ -818,8 +818,19 @@ def render_projects(lang):
 
     <!--====== HUBS ======-->
 
-    <section class="portfolio-style-3-area pb-90">
+    <section class="portfolio-style-3-area pt-100 pb-90">
         <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title-9 text-center mb-50">
+                        <span class="service-eyebrow">{hubs_eyebrow}</span>
+                        <h2 class="title">{hubs_title}</h2>
+                        <div class="text">
+                            <p>{hubs_intro}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
 {hubs}
             </div>
@@ -832,6 +843,9 @@ def render_projects(lang):
         stats=stats,
         results_title=e(c["results_title"]),
         results=e(c["results"]),
+        hubs_eyebrow=e(c["hubs_eyebrow"]),
+        hubs_title=e(c["hubs_title"]),
+        hubs_intro=e(c["hubs_intro"]),
         hubs=hubs,
     )
 
