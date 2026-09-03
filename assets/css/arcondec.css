@@ -746,6 +746,25 @@ footer.footer-area.footer-2-area { background: #132D67; }
     padding: 22px 26px;
 }
 .arc-vacancy-head::-webkit-details-marker { display: none; }
+/* El resalte azul es solo una señal de "esto se puede abrir": en cuanto la
+   vacante está desplegada deja de aplicarse, porque ahí el foco es el
+   contenido y el formulario, no la fila. De ahí el :not([open]). */
+.arc-vacancy-head,
+.arc-vacancy-title,
+.arc-vacancy-meta {
+    transition: background-color .25s ease, color .25s ease;
+}
+.arc-vacancy:not([open]) .arc-vacancy-head:hover {
+    background: #1E429B;
+}
+.arc-vacancy:not([open]) .arc-vacancy-head:hover .arc-vacancy-title,
+.arc-vacancy:not([open]) .arc-vacancy-head:hover .arc-vacancy-meta {
+    color: #fff;
+}
+.arc-vacancy:not([open]) .arc-vacancy-head:hover .arc-vacancy-icon::before,
+.arc-vacancy:not([open]) .arc-vacancy-head:hover .arc-vacancy-icon::after {
+    background: #fff;
+}
 .arc-vacancy-title { color: #132D67; font-weight: 600; font-size: 18px; }
 .arc-vacancy-meta { color: #5B6B85; font-size: 15px; margin-left: auto; }
 .arc-vacancy-icon { position: relative; width: 20px; height: 20px; flex: none; }
