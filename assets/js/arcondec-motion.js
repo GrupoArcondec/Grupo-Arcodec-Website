@@ -130,7 +130,16 @@
 
     var EASE = 'power3.out';
     var RISE = 32;
-    var STAGGER = 0.09;
+
+    /* Ritmo global de las animaciones. 1 = velocidad original; por encima de 1
+       todo dura más y el movimiento se aprecia mejor. Es el único número que
+       hay que tocar: cada duración y cada escalonado del archivo se calcula a
+       partir de aquí con dur(). Por encima de ~1.6 la página empieza a sentirse
+       lenta al hacer scroll rápido. */
+    var TEMPO = 1.4;
+    function dur(s) { return s * TEMPO; }
+
+    var STAGGER = dur(0.09);
 
     // clamp() ata el punto de disparo al recorrido real de la página. Sin él, en
     // una página corta un bloque que se quede en el último 10% de la pantalla no
@@ -380,7 +389,7 @@
                 tl.from(band, {
                     y: RISE,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: dur(0.8),
                     ease: EASE,
                     stagger: band.length > 1 ? STAGGER : 0,
                     clearProps: 'transform,opacity'
@@ -424,23 +433,23 @@
         if (split && split.lines.length) {
             tl.from(split.lines, {
                 yPercent: 115,
-                duration: 0.9,
+                duration: dur(0.9),
                 ease: EASE,
-                stagger: 0.08
+                stagger: dur(0.08)
             }, 0);
         } else {
-            tl.from(heading, { y: RISE, opacity: 0, duration: 0.8, ease: EASE, clearProps: 'transform,opacity' }, 0);
+            tl.from(heading, { y: RISE, opacity: 0, duration: dur(0.8), ease: EASE, clearProps: 'transform,opacity' }, 0);
         }
 
         if (companions.length) {
             tl.from(companions, {
                 y: 24,
                 opacity: 0,
-                duration: 0.7,
+                duration: dur(0.7),
                 ease: EASE,
-                stagger: 0.08,
+                stagger: dur(0.08),
                 clearProps: 'transform,opacity'
-            }, 0.18);
+            }, dur(0.18));
         }
 
         decorate(tl, [column]);
@@ -486,9 +495,9 @@
         if (photos.length) {
             timeline.from(photos, {
                 scale: 1.08,
-                duration: 1.2,
+                duration: dur(1.2),
                 ease: EASE,
-                stagger: photos.length > 1 ? 0.06 : 0,
+                stagger: photos.length > 1 ? dur(0.06) : 0,
                 clearProps: 'transform'
             }, 0);
         }
@@ -497,11 +506,11 @@
             timeline.from(icons, {
                 scale: 0.55,
                 opacity: 0,
-                duration: 0.6,
+                duration: dur(0.6),
                 ease: 'back.out(1.8)',
-                stagger: icons.length > 1 ? 0.06 : 0,
+                stagger: icons.length > 1 ? dur(0.06) : 0,
                 clearProps: 'transform,opacity'
-            }, 0.2);
+            }, dur(0.2));
         }
     }
 
@@ -533,7 +542,7 @@
             // Misma regla que el resto: si ya se ve al cargar, se descubre sola.
             var destino = {
                 clipPath: 'inset(0% 0% 0% 0%' + round + ')',
-                duration: 1.1,
+                duration: dur(1.1),
                 ease: EASE,
                 clearProps: 'clipPath'
             };
@@ -576,7 +585,7 @@
                 autoAlpha: 1,
                 scale: 1,
                 y: 0,
-                duration: 1.2,
+                duration: dur(1.2),
                 ease: EASE,
                 clearProps: 'transform,opacity,visibility'
             };
@@ -710,7 +719,7 @@
                 gsap.timeline(opciones).fromTo(band,
                     { autoAlpha: 0, y: 48 },
                     {
-                        autoAlpha: 1, y: 0, duration: 0.9, ease: EASE,
+                        autoAlpha: 1, y: 0, duration: dur(0.9), ease: EASE,
                         clearProps: 'transform,opacity,visibility'
                     }, 0);
             });
@@ -810,13 +819,13 @@
         });
 
         if (split && split.lines.length) {
-            tl.from(split.lines, { yPercent: 115, duration: 0.9, ease: EASE, stagger: 0.08 }, 0);
+            tl.from(split.lines, { yPercent: 115, duration: dur(0.9), ease: EASE, stagger: dur(0.08) }, 0);
         } else if (heading) {
-            tl.from(heading, { y: 24, opacity: 0, duration: 0.8, ease: EASE, clearProps: 'transform,opacity' }, 0);
+            tl.from(heading, { y: 24, opacity: 0, duration: dur(0.8), ease: EASE, clearProps: 'transform,opacity' }, 0);
         }
 
         if (rest.length) {
-            tl.from(rest, { y: 18, opacity: 0, duration: 0.7, ease: EASE, stagger: 0.1, clearProps: 'transform,opacity' }, 0.2);
+            tl.from(rest, { y: 18, opacity: 0, duration: dur(0.7), ease: EASE, stagger: dur(0.1), clearProps: 'transform,opacity' }, dur(0.2));
         }
     }
 
@@ -979,13 +988,13 @@
                 busy = false;
             } else {
                 gsap.timeline({ onComplete: function () { busy = false; } })
-                    .to(outPanel, { autoAlpha: 0, y: -26, duration: 0.45, ease: 'power2.in' }, 0)
-                    .to(out, { autoAlpha: 0, duration: 0.85, ease: 'power1.inOut' }, 0.2)
-                    .fromTo(inn, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.85, ease: 'power1.inOut' }, 0.2)
-                    .add(function () { activarMedio(inn); pararMedios(inn); }, 0.2)
+                    .to(outPanel, { autoAlpha: 0, y: -26, duration: dur(0.45), ease: 'power2.in' }, 0)
+                    .to(out, { autoAlpha: 0, duration: dur(0.85), ease: 'power1.inOut' }, dur(0.2))
+                    .fromTo(inn, { autoAlpha: 0 }, { autoAlpha: 1, duration: dur(0.85), ease: 'power1.inOut' }, dur(0.2))
+                    .add(function () { activarMedio(inn); pararMedios(inn); }, dur(0.2))
                     .fromTo(inPanel,
                         { autoAlpha: 0, y: 30 },
-                        { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 0.6);
+                        { autoAlpha: 1, y: 0, duration: dur(0.55), ease: 'power2.out' }, dur(0.6));
             }
 
             if (countEl) { countEl.textContent = '0' + (siguiente + 1); }
