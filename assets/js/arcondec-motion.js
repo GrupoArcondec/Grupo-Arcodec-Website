@@ -42,6 +42,25 @@
 (function (window, document) {
     'use strict';
 
+    /* --- El preloader ya no espera a que cargue todo -----------------------
+       main.js (intocable, ver AGENTS.md) lo quita en su `jQuery(window).on
+       ('load')`: eso es esperar a que absolutamente todo —imágenes, los
+       videos del hero, fuentes— termine de descargar, más 500ms de espera y
+       500ms de fundido. Este script va al final del <body>, así que cuando
+       llega aquí el HTML ya está listo para mostrarse: se adelanta el
+       fundido a este punto. Si main.js intenta ocultarlo otra vez más tarde,
+       el elemento ya no está en el DOM y su jQuery simplemente no encuentra
+       nada que animar. */
+    (function ocultarPreloaderTemprano() {
+        var preloader = document.querySelector('.preloader');
+        if (!preloader) { return; }
+        preloader.style.transition = 'opacity .3s ease';
+        preloader.style.opacity = '0';
+        window.setTimeout(function () {
+            if (preloader.parentNode) { preloader.parentNode.removeChild(preloader); }
+        }, 320);
+    })();
+
     var gsap = window.gsap;
     var ScrollTrigger = window.ScrollTrigger;
     var SplitText = window.SplitText;
@@ -890,12 +909,25 @@
             return slide.querySelector('.arc-hero-media');
         }
 
+        // Las láminas 2 y 3 no traen `src` de fábrica (ver home_source.html):
+        // así el navegador no descarga sus ~950 KB hasta que van a mostrarse,
+        // en vez de los tres videos a la vez al entrar a la portada. Aquí se
+        // activa el <source data-src> la primera vez que a la lámina le toca.
+        function cargarMedioDiferido(m) {
+            var fuente = m.querySelector('source[data-src]');
+            if (!fuente) { return; }
+            fuente.src = fuente.getAttribute('data-src');
+            fuente.removeAttribute('data-src');
+            m.load();
+        }
+
         function activarMedio(slide) {
             var m = medioDe(slide);
             if (!m) { return; }
 
             if (m.tagName === 'VIDEO') {
                 try {
+                    cargarMedioDiferido(m);
                     m.currentTime = 0;
                     if (!quieto && !pausado) {
                         var p = m.play();

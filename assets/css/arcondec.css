@@ -7,6 +7,48 @@
  * Paleta oficial: naranja #FFBB00 / #F7931E · azul marino #1F439B / #132D67
  */
 
+/* --- Texto visible mientras carga la tipografía -------------------------
+   style.css (intocable) declara space_grotesk sin font-display: el
+   navegador puede dejar títulos y texto invisibles unos instantes mientras
+   descarga la fuente. Se redeclara aquí (misma familia/peso/origen, mismos
+   archivos) solo para sumar font-display: swap — como carga después de
+   style.css en el <head>, esta versión gana. */
+@font-face {
+    font-family: 'space_grotesk';
+    src: url("../fonts/spacegrotesk-light-webfont.woff2") format("woff2"), url("../fonts/spacegrotesk-light-webfont.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'space_grotesk';
+    src: url("../fonts/spacegrotesk-regular-webfont.woff2") format("woff2"), url("../fonts/spacegrotesk-regular-webfont.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'space_grotesk';
+    src: url("../fonts/spacegrotesk-medium-webfont.woff2") format("woff2"), url("../fonts/spacegrotesk-medium-webfont.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'space_grotesk';
+    src: url("../fonts/spacegrotesk-semibold-webfont.woff2") format("woff2"), url("../fonts/spacegrotesk-semibold-webfont.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'space_grotesk';
+    src: url("../fonts/spacegrotesk-bold-webfont.woff2") format("woff2"), url("../fonts/spacegrotesk-bold-webfont.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 .header-top .header-top-item .info ul li a { color: inherit; }
 /* Escala tipográfica del template (100px demo): 80px es el máximo que admite el titular oficial sin cortarse */
 .hero-2-content.hero-11-content .title { font-size: 80px; line-height: 1.08; }
