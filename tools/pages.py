@@ -130,25 +130,284 @@ ABOUT = {
 # --------------------------------------------------------------------------
 # PROYECTOS / PROJECTS
 # --------------------------------------------------------------------------
-# (nombre, ubicacion, archivo de imagen en assets/images/arcondec/proyectos/)
+# Cada hub es un diccionario. Solo tres claves son obligatorias —`slug`,
+# `nombre` y `foto`—; todo lo demás es opcional y la plantilla omite la sección
+# entera cuando falta, así que un proyecto sin datos no deja huecos ni bloques
+# vacíos en la página.
+#
+# `publicado` es el interruptor: mientras sea False la tarjeta de proyectos.html
+# no enlaza a ningún lado y la página queda fuera del sitemap. Se pone en True
+# solo cuando el proyecto tiene información real y revisada.
+#
+# CONFIDENCIALIDAD: algunos clientes están bajo NDA y otros no. Si `cliente`
+# trae un nombre, se muestra; si va vacío, la ficha dice "Cliente confidencial"
+# y solo enseña el `sector`. Nunca poner el nombre de un cliente con NDA aquí:
+# este archivo termina publicado como HTML estático.
+#
+# La página se maqueta como un artículo a dos columnas:
+#
+#   COLUMNA IZQUIERDA (el relato)  ── titulo, subtitulo, descripcion,
+#                                     reto, solucion, galeria
+#   COLUMNA DERECHA (los datos)    ── ficha técnica, alcances, resultados
+#
+# Campos de la ficha (todos opcionales): cliente, sector, ubicacion_exacta,
+# tipo_obra, superficie, capacidad, duracion, entrega, certificacion.
+#
+# Bloques opcionales: titulo (encabezado del caso), subtitulo (una línea),
+# descripcion (lista de párrafos), reto (texto), solucion (lista de
+# (disciplina, detalle)), alcances (lista de textos), galeria (lista de
+# archivos en assets/images/arcondec/proyectos/), resultados (lista de
+# (cifra, etiqueta)).
 HUBS = [
-    ("HUB APODACA", "Ciudad Apodaca - Nuevo León", "arcondec-apodaca-01.jpg"),
-    ("HUB SANTA FE", "Santa Fe - Ciudad de México", "arcondec-santa-fe-01.jpg"),
-    ("HUB QUERÉTARO", "Cerca de Querétaro", "arcondec-queretaro-01.jpg"),
-    ("HUB DURANGO", "Durango", "arcondec-durango-01.jpg"),
-    ("HUB GARCÍA", "García - Nuevo León", "arcondec-garcia-01.jpg"),
-    ("HUB ISLAS MUJERES", "Islas Mujeres - Yucatán", "arcondec-islas-mujeres-01.jpg"),
-    ("HUB MAZATLÁN", "Mazatlán - Sinaloa", "arcondec-mazatlan-01.jpg"),
-    ("HUB MONTERREY", "Monterrey - Nuevo León", "arcondec-monterrey-01.jpg"),
-    ("HUB SEVILLA", "Sevilla - CDMX", "arcondec-sevilla-01.jpg"),
-    ("HUB RÍO COLORADO", "San Luis Río Colorado", "arcondec-slrc-01.jpg"),
-    ("HUB TEPIC", "Tepic - Nayarit", "arcondec-tepic-01.jpg"),
-    ("HUB TEZIUTLÁN", "Teziutlán - Puebla", "arcondec-teziutlan-01.jpg"),
-    ("HUB TIJUANA", "Tijuana - Baja California", "arcondec-tijuana-01.jpg"),
-    ("HUB TOLUCA", "Toluca - Estado de México", "arcondec-toluca-01.jpg"),
-    ("HUB TUXPAN", "Tuxpan", "arcondec-tuxpan-01.jpg"),
-    ("HUB VALLE ORIENTE", "Valle Oriente - Monterrey", "arcondec-valle-oriente-01.jpg"),
+    {
+        "slug": {"es": "hub-apodaca", "en": "apodaca-hub"},
+        "nombre": "HUB APODACA",
+        "ubicacion": "Ciudad Apodaca - Nuevo León",
+        "foto": "arcondec-apodaca-01.jpg",
+        # ─────────────────────────────────────────────────────────────────
+        # DATOS SIMULADOS — no son reales. Sirven solo para ver la
+        # maquetación. Reemplazar por información verificada antes de
+        # poner `publicado` en True.
+        # ─────────────────────────────────────────────────────────────────
+        "publicado": False,
+        "titulo": "HUB Apodaca",
+        "imagen": "sala-electrica-de-distribucion-en-media-tension.jpg",
+        "imagen_alt": "Sala eléctrica de distribución en media tensión del HUB Apodaca",
+        "subtitulo": (
+            "Obra nueva de infraestructura crítica para una planta de manufactura "
+            "en operación continua, en Apodaca, Nuevo León."
+        ),
+        "descripcion": [
+            "El proyecto nació de una restricción de calendario: la expansión "
+            "productiva del cliente ya tenía fecha, y el centro de datos que la "
+            "soportaría tenía que estar operando antes de esa fecha, no después.",
+            "Arcondec asumió el alcance completo —eléctrico, mecánico, civil y de "
+            "sistemas especiales— bajo una sola coordinación, de modo que el "
+            "cliente tuviera un único interlocutor para las cinco disciplinas que "
+            "convergían en el mismo espacio y el mismo calendario.",
+        ],
+        "cliente": "",
+        "sector": "Manufactura avanzada",
+        "ubicacion_exacta": "Parque industrial, Apodaca, N.L.",
+        "tipo_obra": "Obra nueva",
+        "superficie": "1,850 m²",
+        "capacidad": "2,500 kW",
+        "duracion": "8 meses",
+        "entrega": "2024",
+        "certificacion": "Tier III",
+        "reto": (
+            "El cliente necesitaba un centro de datos operativo en ocho meses "
+            "para soportar la expansión de su planta, sin detener la producción "
+            "existente. El terreno disponible quedaba a doscientos metros de la "
+            "subestación general, lo que obligaba a resolver la acometida en "
+            "media tensión antes de poder avanzar con cualquier otra disciplina."
+        ),
+        "solucion": [
+            ("Media tensión",
+             "Subestación propia con acometida en 13.8 kV y respaldo redundante "
+             "para garantizar continuidad durante maniobras de mantenimiento."),
+            ("Corriente directa y UPS",
+             "Sistema de respaldo dimensionado para sostener la carga crítica "
+             "el tiempo necesario para el arranque de la planta de emergencia."),
+            ("HVAC",
+             "Climatización de precisión con contención de pasillo frío y "
+             "control de humedad independiente por sala."),
+            ("PCI",
+             "Detección temprana por aspiración y supresión por agente limpio "
+             "en las áreas con equipo electrónico."),
+            ("Área blanca",
+             "Piso técnico, canalización aérea y cerramientos, entregados "
+             "listos para el montaje de racks del cliente."),
+        ],
+        "alcances": [
+            "Subestación 13.8 kV con dos transformadores de 1,500 kVA",
+            "Planta de emergencia con transferencia automática",
+            "Sistema UPS redundante con banco de baterías monitoreado",
+            "Piso técnico en 900 m² de área blanca",
+            "Detección por aspiración y supresión por agente limpio",
+            "Sistema de control de acceso y CCTV perimetral",
+        ],
+        # (archivo, texto alternativo). El alt describe lo que se ve en cada
+        # foto; si solo se pone el nombre del archivo, se usa el del proyecto.
+        "galeria": [
+            ("instalacion-de-piso-elevado-en-data-center-queretaro.jpg",
+             "Instalación de piso elevado en el área blanca"),
+            ("instalacion-y-pruebas-de-banco-de-baterias-en-monterrey.jpg",
+             "Pruebas del banco de baterías del sistema de respaldo"),
+            ("infraestructura-de-charolas-y-tuberia-electrica-en-toluca.jpg",
+             "Charolas y tubería eléctrica sobre el área de racks"),
+            ("sistema-de-transferencia-y-tableros-electricos-en-tuxpan.jpg",
+             "Tableros eléctricos y sistema de transferencia automática"),
+        ],
+        "resultados": [
+            ("8", "meses de ejecución"),
+            ("0", "incidentes registrados"),
+            ("99.98%", "disponibilidad desde la entrega"),
+        ],
+    },
+    {
+        "slug": {"es": "hub-santa-fe", "en": "santa-fe-hub"},
+        "nombre": "HUB SANTA FE",
+        "ubicacion": "Santa Fe - Ciudad de México",
+        "foto": "arcondec-santa-fe-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-queretaro", "en": "queretaro-hub"},
+        "nombre": "HUB QUERÉTARO",
+        "ubicacion": "Cerca de Querétaro",
+        "foto": "arcondec-queretaro-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-durango", "en": "durango-hub"},
+        "nombre": "HUB DURANGO",
+        "ubicacion": "Durango",
+        "foto": "arcondec-durango-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-garcia", "en": "garcia-hub"},
+        "nombre": "HUB GARCÍA",
+        "ubicacion": "García - Nuevo León",
+        "foto": "arcondec-garcia-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-islas-mujeres", "en": "islas-mujeres-hub"},
+        "nombre": "HUB ISLAS MUJERES",
+        "ubicacion": "Islas Mujeres - Yucatán",
+        "foto": "arcondec-islas-mujeres-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-mazatlan", "en": "mazatlan-hub"},
+        "nombre": "HUB MAZATLÁN",
+        "ubicacion": "Mazatlán - Sinaloa",
+        "foto": "arcondec-mazatlan-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-monterrey", "en": "monterrey-hub"},
+        "nombre": "HUB MONTERREY",
+        "ubicacion": "Monterrey - Nuevo León",
+        "foto": "arcondec-monterrey-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-sevilla", "en": "sevilla-hub"},
+        "nombre": "HUB SEVILLA",
+        "ubicacion": "Sevilla - CDMX",
+        "foto": "arcondec-sevilla-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-rio-colorado", "en": "rio-colorado-hub"},
+        "nombre": "HUB RÍO COLORADO",
+        "ubicacion": "San Luis Río Colorado",
+        "foto": "arcondec-slrc-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-tepic", "en": "tepic-hub"},
+        "nombre": "HUB TEPIC",
+        "ubicacion": "Tepic - Nayarit",
+        "foto": "arcondec-tepic-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-teziutlan", "en": "teziutlan-hub"},
+        "nombre": "HUB TEZIUTLÁN",
+        "ubicacion": "Teziutlán - Puebla",
+        "foto": "arcondec-teziutlan-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-tijuana", "en": "tijuana-hub"},
+        "nombre": "HUB TIJUANA",
+        "ubicacion": "Tijuana - Baja California",
+        "foto": "arcondec-tijuana-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-toluca", "en": "toluca-hub"},
+        "nombre": "HUB TOLUCA",
+        "ubicacion": "Toluca - Estado de México",
+        "foto": "arcondec-toluca-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-tuxpan", "en": "tuxpan-hub"},
+        "nombre": "HUB TUXPAN",
+        "ubicacion": "Tuxpan",
+        "foto": "arcondec-tuxpan-01.jpg",
+        "publicado": False,
+    },
+    {
+        "slug": {"es": "hub-valle-oriente", "en": "valle-oriente-hub"},
+        "nombre": "HUB VALLE ORIENTE",
+        "ubicacion": "Valle Oriente - Monterrey",
+        "foto": "arcondec-valle-oriente-01.jpg",
+        "publicado": False,
+    },
 ]
+
+# Rótulos de la página de detalle. Van aquí y no en cada hub porque son los
+# mismos para los 16 proyectos: cambiar "Superficie" una vez lo cambia en todos.
+PROJECT_UI = {
+    "es": {
+        "crumb": "Proyectos",
+        "eyebrow": "Caso de proyecto",
+        "sheet_title": "Ficha técnica",
+        "cliente": "Cliente",
+        "cliente_nda": "Cliente confidencial",
+        "sector": "Sector",
+        "ubicacion_exacta": "Ubicación",
+        "tipo_obra": "Tipo de obra",
+        "superficie": "Superficie intervenida",
+        "capacidad": "Capacidad instalada",
+        "duracion": "Duración",
+        "entrega": "Año de entrega",
+        "certificacion": "Certificación",
+        "reto_title": "El reto",
+        "solucion_title": "La solución Arcondec",
+        "alcances_title": "Alcances entregados",
+        "galeria_title": "Galería",
+        "resultados_title": "Resultados",
+        "prev": "Proyecto anterior",
+        "next": "Proyecto siguiente",
+        "back": "Ver todos los proyectos",
+        "cta_title": "¿Tienes un proyecto similar?",
+        "cta_text": "Cuéntanos qué necesitas y te acompañamos desde la etapa conceptual hasta la entrega final.",
+        "meta_tpl": "%s: proyecto de infraestructura eléctrica y data center ejecutado por Grupo Arcondec en %s.",
+    },
+    "en": {
+        "crumb": "Projects",
+        "eyebrow": "Project case",
+        "sheet_title": "Technical sheet",
+        "cliente": "Client",
+        "cliente_nda": "Confidential client",
+        "sector": "Sector",
+        "ubicacion_exacta": "Location",
+        "tipo_obra": "Type of work",
+        "superficie": "Area covered",
+        "capacidad": "Installed capacity",
+        "duracion": "Duration",
+        "entrega": "Delivery year",
+        "certificacion": "Certification",
+        "reto_title": "The challenge",
+        "solucion_title": "The Arcondec solution",
+        "alcances_title": "Delivered scope",
+        "galeria_title": "Gallery",
+        "resultados_title": "Results",
+        "prev": "Previous project",
+        "next": "Next project",
+        "back": "View all projects",
+        "cta_title": "Have a similar project?",
+        "cta_text": "Tell us what you need and we will support you from the concept stage through final delivery.",
+        "meta_tpl": "%s: electrical infrastructure and data center project delivered by Grupo Arcondec in %s.",
+    },
+}
 
 PROJECTS = {
     "es": {

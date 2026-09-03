@@ -423,6 +423,298 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-project-caption .title { color: #132D67; margin-bottom: 4px; }
 .arc-project-caption span { color: #33415C; font-size: 15px; }
 
+/* La tarjeta enlazada es un <a>: hay que devolverle la caja y el color, que
+   el navegador le quita por ser enlace. Solo la llevan los proyectos con
+   página publicada, así que el cursor de mano distingue por sí solo cuáles
+   se pueden abrir y cuáles todavía no. */
+.arc-project.is-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.arc-project.is-link:hover .arc-project-caption .title { color: #1F439B; }
+
+/* ==========================================================================
+   PÁGINA DE DETALLE DE PROYECTO
+   --------------------------------------------------------------------------
+   Los bloques reutilizan piezas que ya existen (.arc-panel, .service-2-item,
+   .arc-service-grid). Aquí solo van las tres cosas que no tenían forma
+   propia: la ficha técnica, la lista de alcances y las cifras de resultados.
+   ========================================================================== */
+/* --- El artículo ---------------------------------------------------------- */
+/* El título arranca a la misma altura que el de la tarjeta de al lado. Los
+   34px salen de sumar el margen superior del aside (10px) y el relleno de la
+   tarjeta (26px), menos los 2px que el texto de un titular de 36px cae dentro
+   de su caja de línea frente a uno de 20px. Si cambia el relleno de
+   .arc-aside-card, hay que recalcular este número. */
+@media (min-width: 992px) {
+    .arc-case { margin-top: 34px; }
+}
+.arc-case-title {
+    color: #132D67;
+    margin-top: 0;
+    font-size: 36px;
+    line-height: 1.22;
+    margin-bottom: 18px;
+}
+.arc-case-lead {
+    font-size: 20px;
+    line-height: 32px;
+    color: #33415C;
+    margin-bottom: 26px;
+}
+.arc-case p {
+    font-size: 17px;
+    line-height: 29px;
+    color: #33415C;
+    margin-bottom: 18px;
+}
+/* Imagen destacada bajo el título. `aspect-ratio` fija la altura desde el
+   primer píxel pintado, así que la foto no empuja el texto al terminar de
+   cargar (eso es lo que castiga el CLS). El formato panorámico 21:9 la deja
+   baja para que el texto empiece pronto, sin que la foto se coma la pantalla.
+   Por debajo de ~3:1 la foto empieza a leerse como una franja decorativa y
+   deja de mostrar el proyecto, así que este es el límite razonable. */
+.arc-case-figure {
+    margin: 0 0 30px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.arc-case-figure img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 6 / 1;
+    object-fit: cover;
+}
+/* Una proporción fija no sirve para todos los anchos: 6:1 se ve bien en una
+   columna de 750px (125px de alto) pero en un celular de 340px queda en 57px
+   —una rendija donde no se distingue nada—. La foto se va haciendo más alta
+   conforme la pantalla se angosta, para que siga mostrando el proyecto. */
+@media (max-width: 991px) {
+    .arc-case-figure img { aspect-ratio: 3 / 1; }
+}
+@media (max-width: 575px) {
+    .arc-case-figure img { aspect-ratio: 16 / 9; }
+}
+/* Los encabezados intermedios necesitan más aire arriba que abajo: así se
+   leen como el inicio de un bloque y no como un rótulo suelto entre párrafos. */
+.arc-case-h {
+    color: #132D67;
+    margin-top: 40px;
+    margin-bottom: 14px;
+}
+.arc-case-discipline strong { color: #132D67; }
+
+/* --- Columna derecha: los datos ------------------------------------------ */
+/* La barra sigue al lector mientras baja por el artículo, pero solo desde
+   992px: por debajo las columnas se apilan y fijarla no tendría sentido. */
+.arc-case-aside { margin-top: 10px; }
+@media (min-width: 992px) {
+    .arc-case-aside {
+        position: sticky;
+        top: 110px;
+    }
+}
+.arc-aside-card {
+    background: #F5F7FB;
+    border: 1px solid #E7EBF3;
+    border-radius: 15px;
+    padding: 26px 26px 28px;
+    margin-bottom: 24px;
+}
+.arc-aside-title {
+    color: #132D67;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #E0E6F0;
+}
+
+/* Ficha técnica: filas apiladas, etiqueta encima del dato. En una columna
+   estrecha esto se escanea mejor que dos columnas apretadas. */
+.arc-fact + .arc-fact {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #E7EBF3;
+}
+.arc-fact-label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #8A6D2F;
+    margin-bottom: 4px;
+}
+.arc-fact-value {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    color: #132D67;
+    line-height: 1.35;
+}
+
+/* Viñeta propia en vez del disco por defecto: un cuadro pequeño en azul de
+   marca lee como especificación técnica, no como lista de supermercado. */
+.arc-scope {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.arc-scope li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+    color: #33415C;
+    font-size: 15px;
+    line-height: 24px;
+}
+.arc-scope li:last-child { margin-bottom: 0; }
+.arc-scope li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: #1F439B;
+    border-radius: 2px;
+}
+
+.arc-result + .arc-result {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid #E7EBF3;
+}
+.arc-result-figure {
+    display: block;
+    font-family: "space_grotesk";
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #1F439B;
+}
+.arc-result-label {
+    display: block;
+    margin-top: 4px;
+    color: #5B6B85;
+    font-size: 15px;
+}
+
+/* Anterior / todos / siguiente. Los dos vecinos son pestañas a los lados y
+   el enlace al índice queda al centro. Con `margin-left: auto` en la pestaña
+   "siguiente", el bloque se mantiene equilibrado aunque falte uno de los dos
+   vecinos —que es lo normal en el primer y el último proyecto—. */
+/* Rejilla de tres columnas «1fr auto 1fr»: las dos laterales miden siempre lo
+   mismo, así que la del centro queda centrada respecto al contenedor sin
+   depender de lo largo que sea el nombre de cada proyecto. Con flex y márgenes
+   automáticos el centro se corría según el ancho de las pestañas vecinas. */
+.arc-prevnext {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+}
+.arc-prevnext-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 30px 28px;
+    background: #fff;
+    border: 1px solid #E7EBF3;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #132D67;
+    transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.arc-prevnext-link:hover {
+    border-color: #C7D2E5;
+    box-shadow: 0 12px 28px rgba(19, 45, 103, .10);
+    transform: translateY(-2px);
+}
+/* La pestaña "siguiente" invierte el orden para que la flecha quede del lado
+   hacia el que apunta, no pegada al texto por dentro. */
+.arc-prevnext-link.is-prev { grid-column: 1; justify-self: start; }
+/* La pestaña "siguiente" invierte el orden para que la flecha quede del lado
+   hacia el que apunta, no pegada al texto por dentro. */
+.arc-prevnext-link.is-next {
+    grid-column: 3;
+    justify-self: end;
+    flex-direction: row-reverse;
+    text-align: right;
+}
+.arc-prevnext-arrow {
+    font-size: 22px;
+    line-height: 1;
+    color: #1F439B;
+    flex: none;
+}
+.arc-prevnext-label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: #8A94A8;
+    margin-bottom: 2px;
+}
+.arc-prevnext-name {
+    display: block;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.3;
+}
+.arc-prevnext-link:hover .arc-prevnext-name { color: #1F439B; }
+/* El enlace al índice es la tercera pestaña, no un texto suelto: con las tres
+   con la misma caja, la fila se lee como un solo control de navegación. Va en
+   azul de marca porque es la salida del recorrido, no un paso más dentro de él. */
+.arc-prevnext-all {
+    display: flex;
+    align-items: center;
+    grid-column: 2;
+    justify-self: center;
+    padding: 30px 34px;
+    background: #1F439B;
+    border: 1px solid #1F439B;
+    border-radius: 15px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.arc-prevnext-all:hover {
+    background: #132D67;
+    border-color: #132D67;
+    color: #fff;
+    box-shadow: 0 12px 28px rgba(19, 45, 103, .18);
+    transform: translateY(-2px);
+}
+
+/* Tres pestañas de 30px de relleno no caben en una fila de 768px: se apilan
+   desde que desaparece la retícula de escritorio, no hasta el móvil. */
+@media (max-width: 991px) {
+    .arc-prevnext { grid-template-columns: 1fr; }
+    .arc-prevnext-link.is-prev,
+    .arc-prevnext-all,
+    .arc-prevnext-link.is-next {
+        grid-column: 1;
+        justify-self: stretch;
+    }
+    .arc-prevnext-link.is-next { flex-direction: row; text-align: left; }
+    .arc-prevnext-all { justify-content: center; }
+}
+@media (max-width: 767px) {
+    .arc-case-title { font-size: 28px; }
+    .arc-case-lead { font-size: 18px; line-height: 29px; }
+    .arc-result-figure { font-size: 34px; }
+    .arc-prevnext { flex-direction: column; align-items: flex-start; }
+    .arc-prevnext-link,
+    .arc-prevnext-link.is-next {
+        max-width: 100%;
+        margin-left: 0;
+        text-align: left;
+    }
+    .arc-prevnext-all { margin: 0; }
+}
+
 /* --- Formulario de contacto (usa .contact-us-box del template) --- */
 .contact-us-box .input-box label {
     display: block;

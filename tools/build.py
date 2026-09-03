@@ -32,6 +32,8 @@ from content import (  # noqa: E402
 )
 from layout import (  # noqa: E402
     BASE_URL,
+    ROUTES,
+    SITEMAP_ROUTES,
     UI,
     body_open,
     commitment_band,
@@ -750,20 +752,33 @@ def render_projects(lang):
 
     # La leyenda va siempre visible (no solo en :hover): en movil no hay hover
     # y el nombre del hub es informacion, no decoracion.
-    hubs = "\n".join(
-        """                <div class="col-lg-4 col-md-6">
-                    <div class="arc-project mt-30">
-                        <div class="arc-project-thumb">
+    # La tarjeta se envuelve en <a> solo cuando el proyecto está publicado.
+    # Mientras no tenga información real sigue siendo una tarjeta informativa
+    # sin enlace: nadie llega a una página vacía.
+    def _tarjeta(h):
+        name, loc, img = h["nombre"], h.get("ubicacion", ""), h["foto"]
+        interior = """                        <div class="arc-project-thumb">
                             <img src="%s/proyectos/%s" alt="%s, %s" loading="lazy" %s>
                         </div>
                         <div class="arc-project-caption">
                             <h3 class="title h5">%s</h3>
                             <span>%s</span>
-                        </div>
-                    </div>
-                </div>"""
-        % (IMG, img, e(name), e(loc), dims("%s/proyectos/%s" % (IMG, img)), e(name), e(loc))
-        for name, loc, img in P.HUBS
+                        </div>""" % (
+            IMG, img, e(name), e(loc),
+            dims("%s/proyectos/%s" % (IMG, img)), e(name), e(loc),
+        )
+        if h.get("publicado"):
+            cuerpo = ('<a class="arc-project is-link mt-30" href="%s">\n%s\n'
+                      '                    </a>'
+                      % (url("prj-" + h["slug"]["es"], lang), interior))
+        else:
+            cuerpo = ('<div class="arc-project mt-30">\n%s\n'
+                      '                    </div>' % interior)
+        return ('                <div class="col-lg-4 col-md-6">\n'
+                '                    %s\n                </div>' % cuerpo)
+
+    hubs = "\n".join(
+        _tarjeta(h) for h in P.HUBS
     )
 
     ld = {
@@ -775,9 +790,10 @@ def render_projects(lang):
             {
                 "@type": "ListItem",
                 "position": i + 1,
-                "item": {"@type": "Place", "name": name, "address": loc},
+                "item": {"@type": "Place", "name": h["nombre"],
+                         "address": h.get("ubicacion", "")},
             }
-            for i, (name, loc, _) in enumerate(P.HUBS)
+            for i, h in enumerate(P.HUBS)
         ],
     }
 
@@ -857,6 +873,274 @@ def render_projects(lang):
             lang=lang, key=key, extra_scripts=("/assets/js/arcondec-counters.js",)
         )
     )
+
+
+# ==========================================================================
+# DETALLE DE PROYECTO
+# --------------------------------------------------------------------------
+# Una sola plantilla para los 16 hubs. Todo cambio de maquetación se hace aquí
+# y se propaga a las 32 páginas (16 ES + 16 EN) al correr build.py.
+#
+# Regla de oro: cada bloque se dibuja solo si trae datos. Un proyecto del que
+# solo se sabe el nombre y la ubicación produce una página corta pero completa,
+# sin huecos ni encabezados sueltos sobre secciones vacías. Así se pueden ir
+# llenando los proyectos de uno en uno sin tocar código.
+# ==========================================================================
+def render_project(hub, lang, anterior, siguiente):
+    c = P.PROJECT_UI[lang]
+    key = "prj-" + hub["slug"]["es"]
+    nombre = hub["nombre"]
+    ubicacion = hub.get("ubicacion", "")
+    foto = "%s/proyectos/%s" % (IMG, hub["foto"])
+
+    # ======================================================================
+    # COLUMNA IZQUIERDA — el relato
+    # ======================================================================
+    relato = []
+
+    if hub.get("titulo"):
+        relato.append('                        <h2 class="title arc-case-title">%s</h2>'
+                      % e(hub["titulo"]))
+    # Imagen destacada, justo debajo del título y antes de cualquier texto.
+    # Va en su propio campo y no reutiliza `foto` —que es el fondo del banner—
+    # para poder cambiar una sin tocar la otra, como ya se hace en el resto
+    # del sitio.
+    if hub.get("imagen"):
+        relato.append(
+            '                        <figure class="arc-case-figure">\n'
+            '                            <img src="%s/proyectos/%s" alt="%s" %s>\n'
+            "                        </figure>"
+            % (IMG, hub["imagen"], e(hub.get("imagen_alt") or nombre),
+               dims("%s/proyectos/%s" % (IMG, hub["imagen"])))
+        )
+
+    if hub.get("subtitulo"):
+        relato.append('                        <p class="arc-case-lead">%s</p>'
+                      % e(hub["subtitulo"]))
+
+    for parrafo in hub.get("descripcion", []):
+        relato.append("                        <p>%s</p>" % e(parrafo))
+
+    if hub.get("reto"):
+        relato.append('                        <h3 class="title h4 arc-case-h">%s</h3>'
+                      % e(c["reto_title"]))
+        relato.append("                        <p>%s</p>" % e(hub["reto"]))
+
+    # Cada disciplina es un párrafo con su nombre en negritas: dentro de un
+    # artículo se lee mejor así que como rejilla de tarjetas, que competiría
+    # visualmente con la columna de datos de la derecha.
+    if hub.get("solucion"):
+        relato.append('                        <h3 class="title h4 arc-case-h">%s</h3>'
+                      % e(c["solucion_title"]))
+        for disciplina, detalle in hub["solucion"]:
+            relato.append(
+                '                        <p class="arc-case-discipline">'
+                "<strong>%s.</strong> %s</p>" % (e(disciplina), e(detalle))
+            )
+
+    if hub.get("galeria"):
+        # Cada entrada puede ser el nombre del archivo a secas o una pareja
+        # (archivo, texto alternativo). Con cuatro fotos repitiendo el mismo
+        # alt, un lector de pantalla oye "HUB Apodaca" cuatro veces y no
+        # aprende nada; describir cada una es lo que hace útil la galería.
+        def _foto(entrada):
+            if isinstance(entrada, (tuple, list)):
+                archivo, alt = entrada
+            else:
+                archivo, alt = entrada, nombre
+            return """                            <div class="col-md-6">
+                                <div class="arc-project-thumb mt-30">
+                                    <img src="%s/proyectos/%s" alt="%s" loading="lazy" %s>
+                                </div>
+                            </div>""" % (IMG, archivo, e(alt),
+                                         dims("%s/proyectos/%s" % (IMG, archivo)))
+
+        fotos = "\n".join(_foto(entrada) for entrada in hub["galeria"])
+        relato.append(
+            '                        <h3 class="title h4 arc-case-h">%s</h3>\n'
+            '                        <div class="row">\n%s\n                        </div>'
+            % (e(c["galeria_title"]), fotos)
+        )
+
+    # Sin nada que contar, la columna izquierda no se queda muda: se dice lo
+    # único que se sabe con certeza —dónde está la obra— en vez de dejar un
+    # bloque en blanco al lado de la columna de datos.
+    if not relato:
+        relato.append('                        <p class="arc-case-lead">%s</p>'
+                      % e(ubicacion or nombre))
+
+    # ======================================================================
+    # COLUMNA DERECHA — los datos
+    # ======================================================================
+    aside = []
+
+    # --- Ficha técnica ---
+    # El cliente es el único campo con lógica propia: bajo NDA no se nombra,
+    # se muestra "Cliente confidencial" y el sector queda como única pista.
+    filas = []
+    if hub.get("cliente"):
+        filas.append((c["cliente"], hub["cliente"]))
+    elif hub.get("sector"):
+        filas.append((c["cliente"], c["cliente_nda"]))
+    for campo in ("sector", "ubicacion_exacta", "tipo_obra", "superficie",
+                  "capacidad", "duracion", "entrega", "certificacion"):
+        if hub.get(campo):
+            filas.append((c[campo], hub[campo]))
+
+    if filas:
+        celdas = "\n".join(
+            """                            <div class="arc-fact">
+                                <span class="arc-fact-label">%s</span>
+                                <span class="arc-fact-value">%s</span>
+                            </div>""" % (e(etiqueta), e(valor))
+            for etiqueta, valor in filas
+        )
+        aside.append(
+            """                    <div class="arc-aside-card">
+                        <h3 class="title h5 arc-aside-title">%s</h3>
+                        <div class="arc-facts">
+%s
+                        </div>
+                    </div>""" % (e(c["sheet_title"]), celdas)
+        )
+
+    # --- Alcances ---
+    if hub.get("alcances"):
+        items = "\n".join(
+            "                            <li>%s</li>" % e(a)
+            for a in hub["alcances"]
+        )
+        aside.append(
+            """                    <div class="arc-aside-card">
+                        <h3 class="title h5 arc-aside-title">%s</h3>
+                        <ul class="arc-scope">
+%s
+                        </ul>
+                    </div>""" % (e(c["alcances_title"]), items)
+        )
+
+    # --- Resultados ---
+    if hub.get("resultados"):
+        cifras = "\n".join(
+            """                            <div class="arc-result">
+                                <span class="arc-result-figure">%s</span>
+                                <span class="arc-result-label">%s</span>
+                            </div>""" % (e(cifra), e(etiqueta))
+            for cifra, etiqueta in hub["resultados"]
+        )
+        aside.append(
+            """                    <div class="arc-aside-card">
+                        <h3 class="title h5 arc-aside-title">%s</h3>
+                        <div class="arc-results">
+%s
+                        </div>
+                    </div>""" % (e(c["resultados_title"]), cifras)
+        )
+
+    # Sin datos no hay barra lateral, y entonces el artículo ocupa el ancho
+    # completo en vez de dejar media pantalla vacía a la derecha.
+    if aside:
+        ancho_relato = "col-lg-8"
+        columna_datos = """                <div class="col-lg-4">
+                    <aside class="arc-case-aside">
+%s
+                    </aside>
+                </div>
+""" % "\n".join(aside)
+    else:
+        ancho_relato = "col-lg-10"
+        columna_datos = ""
+
+    # La columna de datos va PRIMERO en el HTML, así que queda a la izquierda
+    # y el artículo a la derecha. Al apilarse en móvil el orden se conserva:
+    # ficha técnica arriba, relato debajo.
+    articulo = """
+    <section class="pt-90 pb-90">
+        <div class="container">
+            <div class="row justify-content-center">
+%s                <div class="%s">
+                    <article class="arc-case">
+%s
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+""" % (columna_datos, ancho_relato, "\n".join(relato))
+
+    # ======================================================================
+    # Navegación entre proyectos, en su propia sección al pie
+    # ======================================================================
+    # Una página publicada nunca enlaza a una que no lo está: mandar a un
+    # visitante a un proyecto vacío es peor que no ofrecerle el enlace. Pero
+    # entre páginas sin publicar sí se enlaza, para poder recorrer y revisar
+    # la maquetación completa antes de que haya contenido real.
+    en_revision = not hub.get("publicado")
+
+    def enlace(vecino, etiqueta, clase, flecha):
+        if not vecino:
+            return ""
+        if not vecino.get("publicado") and not en_revision:
+            return ""
+        return """                <a class="arc-prevnext-link %s" href="%s">
+                    <span class="arc-prevnext-arrow" aria-hidden="true">%s</span>
+                    <span class="arc-prevnext-text">
+                        <span class="arc-prevnext-label">%s</span>
+                        <span class="arc-prevnext-name">%s</span>
+                    </span>
+                </a>""" % (clase, url("prj-" + vecino["slug"]["es"], lang),
+                           flecha, e(etiqueta), e(vecino["nombre"]))
+
+    navegacion = """
+    <section class="arc-soft-area pt-60 pb-60">
+        <div class="container">
+            <div class="arc-prevnext">
+%s
+                <a class="arc-prevnext-all" href="%s">%s</a>
+%s
+            </div>
+        </div>
+    </section>
+""" % (enlace(anterior, c["prev"], "is-prev", "←"), url("projects", lang),
+       e(c["back"]), enlace(siguiente, c["next"], "is-next", "→"))
+
+    body = '\n    <main id="main">\n' + articulo + navegacion + "\n    </main>\n"
+
+    # JSON-LD: el proyecto se declara como obra realizada por Arcondec, que es
+    # lo que un buscador puede entender de un caso de obra.
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": nombre,
+        "about": ubicacion,
+        "creator": {"@type": "Organization", "name": "Grupo Arcondec S.A. de C.V."},
+    }
+
+    return (
+        head(
+            lang=lang,
+            key=key,
+            title=nombre.title(),
+            description=hub.get("subtitulo")
+            or c["meta_tpl"] % (nombre.title(), ubicacion or "México"),
+            og_image=foto,
+            extra_ld=ld,
+            noindex=not hub.get("publicado"),
+        )
+        + body_open()
+        + header(lang=lang, key="projects")
+        + page_banner(
+            lang=lang,
+            title=nombre,
+            crumb=nombre.title(),
+            parent=(c["crumb"], url("projects", lang)),
+            bg=foto,
+        )
+        + body
+        + commitment_band(lang)
+        + footer(lang=lang, key=key)
+    )
+
 
 
 # ==========================================================================
@@ -1738,9 +2022,24 @@ def main():
             written.append(
                 write(url("srv-" + svc["key"], lang), render_service(svc, lang))
             )
+        # Los vecinos se calculan aquí y no dentro de la plantilla para que
+        # render_project no tenga que conocer la lista completa: recibe solo
+        # el proyecto anterior y el siguiente, ya resueltos.
+        # El recorrido es circular: del primero se va al último y del último al
+        # primero, para que ninguna página del bucle quede con una pestaña sola.
+        # El índice negativo de Python ya envuelve hacia atrás por sí solo.
+        for i, hub in enumerate(P.HUBS):
+            anterior = P.HUBS[i - 1]
+            siguiente = P.HUBS[(i + 1) % len(P.HUBS)]
+            written.append(
+                write(
+                    url("prj-" + hub["slug"]["es"], lang),
+                    render_project(hub, lang, anterior, siguiente),
+                )
+            )
 
     write("/404.html", render_404())
-    write("/sitemap.xml", render_sitemap(ROUTES, BASE_URL))
+    write("/sitemap.xml", render_sitemap(SITEMAP_ROUTES, BASE_URL))
     write(
         "/robots.txt",
         "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % BASE_URL,

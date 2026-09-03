@@ -12,6 +12,8 @@ import html
 import json
 import pathlib
 
+import pages as _P
+
 from content import (
     COMMIT_TEXT,
     CONTACT,
@@ -50,6 +52,27 @@ for _s in SERVICES:
         "es": "/servicios/%s.html" % _s["slug"]["es"],
         "en": "/en/services/%s.html" % _s["slug"]["en"],
     }
+
+# Una ruta por proyecto, generada desde su `slug`. Agregar un proyecto a
+# pages.HUBS le da URL, canonical y hreflang sin tocar nada más aquí.
+#
+# SITEMAP_ROUTES es el subconjunto que sí se anuncia a los buscadores: excluye
+# los proyectos con `publicado: False`. Las rutas siguen existiendo en ROUTES
+# —si no, head() no podría construir el canonical de esas páginas— pero no se
+# listan. Es la contraparte del `noindex` que head() les pone.
+_PROJECT_KEYS = []
+for _h in _P.HUBS:
+    _key = "prj-" + _h["slug"]["es"]
+    _PROJECT_KEYS.append(_key)
+    ROUTES[_key] = {
+        "es": "/proyectos/%s.html" % _h["slug"]["es"],
+        "en": "/en/projects/%s.html" % _h["slug"]["en"],
+    }
+
+_UNLISTED = {
+    "prj-" + _h["slug"]["es"] for _h in _P.HUBS if not _h.get("publicado")
+}
+SITEMAP_ROUTES = {k: v for k, v in ROUTES.items() if k not in _UNLISTED}
 
 UI = {
     "es": {
@@ -130,8 +153,15 @@ _OG_SIZES = json.loads(
 )
 
 
-def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=None):
-    """Cabecera con SEO completo: canonical, hreflang, Open Graph y JSON-LD."""
+def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=None,
+         noindex=False):
+    """Cabecera con SEO completo: canonical, hreflang, Open Graph y JSON-LD.
+
+    `noindex=True` marca la página como no indexable. Se usa en las páginas de
+    proyecto que todavía no están publicadas: existen en disco para poder
+    revisarlas, pero nadie las enlaza, no entran al sitemap y le dicen a Google
+    que no las liste. Sin esto, una página con datos de relleno podría acabar
+    indexada y compitiendo con el contenido real."""
     other = "en" if lang == "es" else "es"
     canonical = BASE_URL + url(key, lang)
     alt_url = BASE_URL + url(key, other)
@@ -223,7 +253,7 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
     <meta name="description" content="{desc}">
     <meta name="keywords" content="{kw}">
     <meta name="author" content="Grupo Arcondec S.A. de C.V.">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="robots" content="{robots}">
     <meta name="theme-color" content="#1F439B">
 
     <title>{title}</title>
@@ -271,6 +301,8 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
         lang=lang,
         desc=e(description),
         kw=e(keywords),
+        robots=("noindex, nofollow" if noindex
+                else "index, follow, max-image-preview:large"),
         title=e(full_title),
         canonical=canonical,
         es_url=BASE_URL + url(key, "es"),
@@ -428,9 +460,21 @@ def _active_attr(current, route):
 # --------------------------------------------------------------------------
 # Banner de pagina interior
 # --------------------------------------------------------------------------
-def page_banner(*, lang, title, crumb, bg=None):
+def page_banner(*, lang, title, crumb, bg=None, parent=None):
+    """Banner a sangre completa con migas de pan.
+
+    `parent` inserta un nivel intermedio y recibe (rótulo, URL). Sirve para las
+    páginas que cuelgan de otra —un proyecto dentro de Proyectos— y hace que la
+    ruta se lea completa: Inicio / Proyectos / HUB Apodaca. Sin él, las migas
+    son de dos niveles, como en el resto del sitio.
+    """
     # Diseño original del template: banner a sangre completa, sin tarjeta.
     style = ' style="background-image: url(%s);"' % bg if bg else ""
+    intermedio = (
+        '\n                                <li class="breadcrumb-item">'
+        '<a href="%s">%s</a></li>' % (parent[1], e(parent[0]))
+        if parent else ""
+    )
     return """
     <!--====== TÍTULO DE PÁGINA ======-->
 
@@ -443,7 +487,7 @@ def page_banner(*, lang, title, crumb, bg=None):
                         <h1 class="title">{title}</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{home}">{home_label}</a></li>
+                                <li class="breadcrumb-item"><a href="{home}">{home_label}</a></li>{intermedio}
                                 <li class="breadcrumb-item active" aria-current="page">{crumb}</li>
                             </ol>
                         </nav>
@@ -459,6 +503,7 @@ def page_banner(*, lang, title, crumb, bg=None):
         title=e(title),
         home=url("home", lang),
         home_label=e(UI[lang]["home"]),
+        intermedio=intermedio,
         crumb=e(crumb),
     )
 
