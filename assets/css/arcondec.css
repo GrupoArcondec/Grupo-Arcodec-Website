@@ -879,6 +879,23 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .arc-hero-scrim { position: absolute; inset: 0; background: rgba(19, 23, 55, .62); }
 .arc-hero-panel { border: 0; }
+
+/* El rótulo «GRUPO ARCONDEC» del hero. El template lo trae como píldora de
+   cristal esmerilado (blanco al 25% con `backdrop-filter`), que sobre un video
+   de fondo se lee distinto en cada lámina. Se cambia por un rectángulo naranja
+   sólido: color de marca, legible siempre y con esquinas apenas redondeadas.
+   Se anula el desenfoque porque con fondo opaco solo cuesta rendimiento.
+   Contraste #132D67 sobre #F7931E = 5.6:1, por encima del 4.5:1 que pide
+   WCAG AA para texto normal. Si se cambia el naranja, recalcular. */
+.arc-hero-panel > span {
+    background-color: #F7931E;
+    color: #132D67;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
 /* Controles del hero: anterior · pausa · siguiente · contador.
    La rotación es automática y pasa de 5 s, así que WCAG 2.2.2 exige un modo de
    detenerla; y con movimiento reducido no hay avance automático, de modo que
