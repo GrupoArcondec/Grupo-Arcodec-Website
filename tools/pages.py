@@ -519,6 +519,361 @@ HUBS = [
         ],
     },
     {
+        "slug": {"es": "hub-santa-catarina", "en": "santa-catarina-hub"},
+        "nombre": "HUB SANTA CATARINA",
+        "ubicacion": "Santa Catarina - Nuevo León",
+        "foto": "arcondec-catarina-banner.jpg",
+        # ─────────────────────────────────────────────────────────────────
+        # Datos reales, de HUB_Santa_Catarina_Informacion_Web_Arcondec.pdf
+        # (presupuesto + presentación de kickoff de Fase 1). La capacidad de
+        # 2.5 MVA fue confirmada por Grupo Arcondec.
+        #
+        # UBICACIÓN: la ficha trae la dirección exacta con número. Aquí se
+        # publica solo la ciudad y el estado: es un centro de datos de un
+        # cliente y su domicilio no tiene por qué estar en una web abierta.
+        #
+        # PROYECTO EN CURSO: el kickoff programa la Fase 1 del 12-may-2025 al
+        # 30-mar-2026. La redacción evita afirmar que ya cerró; en cuanto se
+        # confirme el cierre real conviene revisarla y agregar "entrega".
+        #
+        # OMITIDOS A PROPÓSITO (la ficha los marca por confirmar):
+        #   · "entrega"       — año formal de entrega
+        #   · "certificacion" — la documentación referencia TIA-942, Uptime,
+        #     NOM y NFPA, pero eso NO acredita una certificación. No publicar
+        #     ninguna como obtenida sin el certificado en mano.
+        #   · Indicadores de cierre: incidentes, disponibilidad, cumplimiento
+        #     de plazo, resultados de puesta en marcha.
+        #   · Configuración final de redundancia entregada.
+        # ─────────────────────────────────────────────────────────────────
+        "publicado": True,
+        "titulo": "HUB Santa Catarina",
+        "subtitulo": (
+            "Construcción y ampliación de infraestructura crítica para el data "
+            "center de IZZI en Santa Catarina, con 2.5 MVA y arquitectura "
+            "escalable."
+        ),
+        "descripcion": [
+            "Grupo Arcondec participa en el desarrollo del data center Santa "
+            "Catarina de IZZI, en Nuevo León. La Fase 1 se planteó para la "
+            "instalación de los POD 1 y 2 con el 50% de racks, dentro de un "
+            "concepto arquitectónico escalable con crecimiento previsto hasta "
+            "cinco POD.",
+            "El proyecto integra obra civil y arquitectura con infraestructura "
+            "de potencia, respaldo y climatización crítica. El núcleo "
+            "energético contempla subestación, transformación, UPS, baterías, "
+            "distribución y plantas de emergencia, y el diseño deja espacios "
+            "preparados para futuras ampliaciones.",
+        ],
+        "imagen": "arcondec-catarina-sm6.jpg",
+        "imagen_alt": (
+            "Conexión de terminaciones en las celdas de media tensión de la "
+            "subestación"
+        ),
+        "cliente": "IZZI",
+        "sector": "Telecomunicaciones / infraestructura crítica",
+        "ubicacion_exacta": "Ciudad Santa Catarina, Nuevo León",
+        "tipo_obra": (
+            "Construcción y ampliación de infraestructura crítica para centro "
+            "de datos"
+        ),
+        "superficie": "2,050.25 m² documentados en plantas de intervención",
+        "capacidad": "2.5 MVA",
+        "duracion": "Fase 1: mayo 2025 - marzo 2026 (programa de kickoff)",
+        "reto": (
+            "El reto principal consiste en construir y ampliar infraestructura "
+            "crítica dentro de un HUB en operación, integrando potencia, "
+            "respaldo, climatización y protección contra incendio sin "
+            "comprometer la continuidad del servicio. El kickoff establece "
+            "expresamente la necesidad de asegurar las instalaciones actuales "
+            "de IZZI durante el desarrollo y, al mismo tiempo, dejar una "
+            "arquitectura escalable para el crecimiento futuro."
+        ),
+        "solucion": [
+            ("Media tensión / subestación",
+             "Subestación SM6, acometida, transformador K20 de 2,500/3,333 "
+             "kVA, terminales XLP, pruebas VLF y gestiones ante CFE y UVIE."),
+            ("Corriente alterna / respaldo",
+             "Tableros de 480/277 V de hasta 4,000 A, tableros UPS, "
+             "alimentadores, transformadores reductores, plantas de emergencia "
+             "y alimentaciones provisionales."),
+            ("UPS y baterías",
+             "Cuartos dedicados para UPS y baterías de litio, con UPS de 1,200 "
+             "kVA en configuración redundante, bypass estático y de "
+             "mantenimiento."),
+            ("HVAC",
+             "Climatización de precisión para áreas críticas, unidades In-Row "
+             "en POD, refrigeración, drenaje, control, ventilación y "
+             "extracción."),
+            ("PCI - detección y supresión",
+             "Agente limpio Fluoro-K para UPS y POD, detección convencional y "
+             "por aspiración, rociadores y bombeo contra incendio."),
+            ("Obra civil y arquitectura",
+             "Intervención documentada de 2,050.25 m², incluyendo POD, cuartos "
+             "técnicos, plantas de emergencia, oficinas, terraza y áreas "
+             "exteriores."),
+            ("Puesta a tierra y protección",
+             "Malla y electrodos de tierra, conexión de equipos, soldadura "
+             "exotérmica, supresores de transitorios y puesta a tierra de "
+             "subestación y tableros."),
+        ],
+        "alcances": [
+            "Integración de subestación y transformación para una capacidad de 2.5 MVA, con acometida, pruebas y accesorios asociados",
+            "Tableros principales, alimentadores, sistemas de transferencia y plantas de emergencia, con una capacidad de generación de 2,500 kW",
+            "Cuartos dedicados de UPS de 1,200 kVA en configuración redundante y sistema de baterías de litio",
+            "Área de POD de 368.61 m²: concepto preparado para cinco POD de 24 racks cada uno; la Fase 1 contempla POD 1 y 2 con 50% de racks",
+            "Climatización crítica con pasillos fríos y calientes confinados, unidades In-Row y equipos de precisión",
+            "Obra civil y PCI: cuartos técnicos, plantas de emergencia, oficinas, terraza y exteriores, con detección y supresión de incendio",
+        ],
+        # De lo general a lo particular: primero el conjunto desde el aire,
+        # luego las maniobras mayores y de ahí al detalle de cada sistema.
+        "galeria": [
+            ("arcondec-catarina-aerea.jpg",
+             "Vista aérea del conjunto del data center en construcción"),
+            ("arcondec-catarina-izaje.jpg",
+             "Izaje nocturno de una de las plantas de emergencia"),
+            ("arcondec-catarina-terminaciones.jpg",
+             "Terminaciones de media tensión en las celdas de la subestación"),
+            ("arcondec-catarina-tableros.jpg",
+             "Montaje de tableros y canalización en el cuarto eléctrico"),
+            ("arcondec-catarina-condensadores.jpg",
+             "Condensadores de la climatización de precisión en fachada"),
+        ],
+        "resultados": [
+            ("2.5 MVA", "capacidad instalada"),
+            ("2,500 kW", "capacidad de generación"),
+            ("2,050 m²", "superficie de intervención"),
+        ],
+    },
+    {
+        "slug": {"es": "hub-satelite", "en": "satelite-hub"},
+        "nombre": "HUB SATÉLITE",
+        "ubicacion": "Naucalpan - Estado de México",
+        "foto": "arcondec-satelite-banner.jpg",
+        # ─────────────────────────────────────────────────────────────────
+        # Datos reales, de HUB_Satelite_Informacion_Web_Arcondec.pdf
+        # (catálogo de conceptos y manual de operación).
+        #
+        # UBICACIÓN: la documentación trae calle y número. Se publica solo
+        # Ciudad Satélite, Naucalpan.
+        #
+        # LA FICHA ADVIERTE EXPRESAMENTE: no atribuir UPS/corriente directa,
+        # HVAC ni PCI a este proyecto — los documentos no permiten afirmar que
+        # formaran parte del alcance. Por eso no aparecen en "solucion".
+        #
+        # OMITIDOS A PROPÓSITO (la ficha los marca por confirmar):
+        #   · "superficie", "capacidad", "duracion"
+        #   · Incidentes durante la ejecución — sin evidencia para afirmar cero
+        #   · Disponibilidad / KPI de cierre
+        # El año 2025 aparece en el manual de operación; conviene confirmar que
+        # corresponde al cierre formal antes de darlo por definitivo.
+        # ─────────────────────────────────────────────────────────────────
+        "publicado": True,
+        "titulo": "HUB Satélite",
+        "subtitulo": (
+            "Adecuación de infraestructura eléctrica crítica y obra civil para "
+            "modernizar el sistema de respaldo del HUB Satélite de IZZI, en "
+            "Naucalpan."
+        ),
+        "descripcion": [
+            "Grupo Arcondec participó en la adecuación de infraestructura del "
+            "HUB Satélite de IZZI, en Ciudad Satélite, Naucalpan de Juárez. El "
+            "proyecto contempló trabajos eléctricos, civiles y estructurales "
+            "asociados a la integración y reconfiguración del sistema de "
+            "respaldo de energía.",
+            "El alcance incluyó adecuaciones de alimentadores generales, "
+            "integración de tableros de transferencia, conexiones con la planta "
+            "de emergencia, sistema de puesta a tierra, iluminación de "
+            "emergencia, canalizaciones, estructura metálica, adecuaciones "
+            "arquitectónicas y elementos de seguridad.",
+        ],
+        "imagen": "arcondec-satelite-tablero.jpg",
+        "imagen_alt": (
+            "Técnico trabajando en la migración de alimentadores dentro del "
+            "tablero"
+        ),
+        "cliente": "IZZI",
+        "sector": "Telecomunicaciones",
+        "ubicacion_exacta": "Ciudad Satélite, Naucalpan de Juárez, Estado de México",
+        "tipo_obra": "Adecuación y modernización de infraestructura existente",
+        "entrega": "2025",
+        "reto": (
+            "El principal reto consistió en migrar e integrar nueva "
+            "infraestructura eléctrica dentro de un HUB en operación, "
+            "reduciendo al mínimo la afectación al servicio. Las maniobras "
+            "requirieron transferencias controladas de carga, uso de la planta "
+            "de emergencia, conexiones provisionales, migración individual de "
+            "conductores y verificación de secuencia de fases y voltajes antes "
+            "de restablecer la configuración definitiva. La primera ventana "
+            "contempló transferir la carga a la planta de emergencia, abrir la "
+            "subestación, desconectar alimentadores e instalar uno provisional; "
+            "en otra se planteó migrar los neutros cable por cable para no "
+            "dejar sin referencia a los equipos."
+        ),
+        "solucion": [
+            ("Media tensión / subestación",
+             "Maniobras de coordinación con la subestación existente para "
+             "aislamiento, transferencia y restablecimiento del suministro "
+             "durante las ventanas de intervención."),
+            ("Corriente alterna / respaldo",
+             "Adecuación de alimentadores, integración de tableros de "
+             "transferencia, conexiones al tablero general normal y a la planta "
+             "de emergencia, canalizaciones, pruebas y puesta en marcha."),
+            ("Sistema de tierras",
+             "Adecuación de la malla de tierra física e integración de la "
+             "planta de emergencia y los equipos eléctricos al sistema de "
+             "puesta a tierra."),
+            ("Iluminación y servicios de emergencia",
+             "Adecuación de circuitos de alumbrado, contactos y luminarias "
+             "asociados a servicios de emergencia."),
+            ("Obra civil",
+             "Demoliciones, pasos para instalaciones, adecuación de muros, "
+             "acabados, pintura, reubicación de accesos y trabajos "
+             "complementarios de integración."),
+            ("Estructura metálica",
+             "Fabricación e instalación de bastidores, elementos IPR y PTR, "
+             "rejilla tipo Irving, barandales, escalera y elementos "
+             "estructurales auxiliares."),
+            ("Seguridad",
+             "Instalación de señalización de evacuación y emergencia, "
+             "elementos de protección física y extintores."),
+        ],
+        "alcances": [
+            "Integración y reconfiguración de tableros de transferencia y alimentadores principales, con conexiones al tablero general normal y a la generación de emergencia",
+            "Alimentadores de potencia con conductores de hasta 500 kcmil y 4/0 AWG, incluyendo identificación, peinado, terminales y pruebas eléctricas",
+            "Charola de aluminio tipo escalerilla de 20 pulgadas, con accesorios, soportes y conexiones de puesta a tierra",
+            "Sistema de tierra física, incluyendo malla de tierra y conexión de la planta de emergencia",
+            "Adecuaciones civiles y arquitectónicas: demoliciones, pasos de instalaciones, muros de Durock, acabados, pintura, puertas y fachada con louver",
+            "Infraestructura metálica auxiliar con PTR, perfiles IPR, rejilla tipo Irving, barandales y escalera de acceso",
+        ],
+        "galeria": [
+            ("arcondec-satelite-barras.jpg",
+             "Trabajos sobre las barras del tablero general"),
+            ("arcondec-satelite-conductores.jpg",
+             "Conductores y terminaciones peinados dentro del tablero"),
+            ("arcondec-satelite-alimentadores.jpg",
+             "Alimentadores de potencia conectados al tablero de transferencia"),
+            ("arcondec-satelite-maniobra.jpg",
+             "Maniobra de conexión durante una ventana nocturna"),
+            ("arcondec-satelite-transferencia.jpg",
+             "Integración del tablero de transferencia con la planta de emergencia"),
+        ],
+        "resultados": [
+            ("3", "ventanas nocturnas de intervención eléctrica"),
+        ],
+    },
+    {
+        "slug": {"es": "montes-urales", "en": "montes-urales"},
+        "nombre": "MONTES URALES",
+        "ubicacion": "Montes Urales - CDMX",
+        "foto": "arcondec-urales-banner.jpg",
+        # ─────────────────────────────────────────────────────────────────
+        # Datos reales, de Montes_Urales_Bancos_Baterias_Informacion_Web_
+        # Arcondec.pdf (cotización + reporte de actividades). La capacidad de
+        # cuatro bancos de 1,000 Ah fue confirmada por Grupo Arcondec.
+        #
+        # SIN CLIENTE NI SECTOR A PROPÓSITO. La ficha marca los dos como
+        # "pendiente de confirmar" y pide validar si aplica NDA. Con ambos
+        # ausentes la plantilla no dibuja la fila de cliente, que es lo
+        # correcto: es preferible no decir nada a arriesgar un dato bajo NDA.
+        # OJO: las fotos originales traían el nombre del cliente en la marca de
+        # agua. Se recortó, pero eso NO equivale a autorización para
+        # publicarlo. Confirmar antes de agregarlo.
+        #
+        # OMITIDOS: superficie (no documentada), certificación (no
+        # identificada) e indicadores de cierre (incidentes, disponibilidad).
+        # ─────────────────────────────────────────────────────────────────
+        "publicado": True,
+        "titulo": "Bancos de baterías, Montes Urales",
+        "subtitulo": (
+            "Modernización del respaldo en corriente directa con cuatro bancos "
+            "de baterías de litio de 1,000 Ah a 48 VCD en Montes Urales, CDMX."
+        ),
+        "descripcion": [
+            "Grupo Arcondec ejecutó la modernización del sistema de respaldo en "
+            "corriente directa del sitio Montes Urales mediante el suministro, "
+            "montaje, conexión y puesta en marcha de cuatro bancos de baterías "
+            "de litio Polarium de 1,000 Ah a 48 VCD. Cada banco está integrado "
+            "por diez módulos de 100 Ah, montados en rack antisísmico Zona 4 "
+            "con barras de conexión.",
+            "La intervención incluyó la reubicación de un banco existente "
+            "dentro de la misma área, la fabricación de bases metálicas de PTR "
+            "para los equipos nuevos y maniobras de cableado y adecuación de "
+            "trayectorias. Para la precarga de los bancos nuevos se utilizó una "
+            "planta de corriente directa externa de 600 A alimentada desde el "
+            "tablero de corriente alterna existente.",
+        ],
+        "imagen": "arcondec-urales-barras.jpg",
+        "imagen_alt": (
+            "Conexión de los conductores positivo y negativo a las barras "
+            "colectoras del banco"
+        ),
+        "ubicacion_exacta": "Montes Urales, Ciudad de México",
+        "tipo_obra": "Modernización del sistema de respaldo en corriente directa",
+        "capacidad": "4 bancos × 1,000 Ah a 48 VCD (4,000 Ah · 192 kWh)",
+        "tecnologia": "Baterías de litio Polarium en rack antisísmico Zona 4",
+        "duracion": "2 días de intervención (26 y 27 de abril de 2024)",
+        "entrega": "2024",
+        "reto": (
+            "El reto principal consistió en sustituir e integrar bancos de "
+            "baterías dentro de infraestructura eléctrica existente, con "
+            "maniobras de desconexión, reubicación y conexión sin comprometer "
+            "la continuidad del sistema. Parte de los trabajos se ejecutó con "
+            "equipos energizados y en ventanas nocturnas de mantenimiento, así "
+            "que hubo que controlar la secuencia de maniobras, aislar "
+            "terminales, conservar las trayectorias existentes y preparar cada "
+            "banco antes de su conexión definitiva. Los bancos de litio "
+            "requirieron además una precarga previa mediante una PDC externa de "
+            "600 A."
+        ),
+        "solucion": [
+            ("Corriente directa / baterías",
+             "Suministro, instalación, conexión, precarga, configuración y "
+             "puesta en marcha de cuatro bancos de baterías de litio de 1,000 "
+             "Ah a 48 VCD."),
+            ("Instalaciones eléctricas",
+             "Conexión a barras colectoras y alimentadores principales, "
+             "adecuación y reubicación de cableado, terminales, zapatas, "
+             "ponchado y aislamiento."),
+            ("Infraestructura metálica",
+             "Fabricación e instalación de cuatro bases de PTR de 3 × 3 "
+             "pulgadas calibre 14 para los bancos nuevos."),
+            ("Maniobras especializadas",
+             "Desconexión de los bancos existentes, reubicación de un banco "
+             "dentro de la misma área y maniobras en ventanas nocturnas con "
+             "equipos energizados."),
+            ("Puesta en marcha",
+             "Precarga mediante PDC externa de 600 A, configuración final y "
+             "capacitación al personal local."),
+        ],
+        "alcances": [
+            "Cuatro bancos nuevos Polarium de 1,000 Ah a 48 VCD, cada uno con diez módulos de 100 Ah en rack antisísmico Zona 4",
+            "Fabricación e instalación de cuatro bases metálicas de PTR de 3 × 3 pulgadas calibre 14",
+            "Precarga controlada con una PDC externa de 600 A energizada desde el tablero de corriente alterna existente",
+            "Migración y conexión: desconexión de bancos existentes, aislamiento de terminales y reubicación de conductores por charolas existentes",
+            "Reubicación de un banco existente a una nueva posición dentro de la misma área",
+            "Configuración, puesta en servicio de los equipos y capacitación al personal local",
+        ],
+        # La secuencia cuenta el reemplazo: lo que había, lo que se instaló y
+        # cómo quedó conectado.
+        "galeria": [
+            ("arcondec-urales-banco-existente.jpg",
+             "Banco de baterías existente antes de la sustitución"),
+            ("arcondec-urales-banco-nuevo.jpg",
+             "Banco nuevo montado en rack antisísmico Zona 4"),
+            ("arcondec-urales-modulos.jpg",
+             "Módulos de litio de 100 Ah instalados en el rack"),
+            ("arcondec-urales-modulo-detalle.jpg",
+             "Indicadores de estado de carga de un módulo Polarium"),
+            ("arcondec-urales-conexion.jpg",
+             "Conexión y peinado de conductores entre bancos"),
+        ],
+        "resultados": [
+            ("4", "bancos nuevos instalados"),
+            ("4,000 Ah", "capacidad nominal a 48 VCD"),
+            ("192 kWh", "energía nominal equivalente"),
+        ],
+    },
+    {
         "slug": {"es": "hub-santa-fe", "en": "santa-fe-hub"},
         "nombre": "HUB SANTA FE",
         "ubicacion": "Santa Fe - Ciudad de México",
@@ -736,6 +1091,9 @@ PROJECT_UI = {
         "tipo_obra": "Tipo de obra",
         "superficie": "Superficie intervenida",
         "capacidad": "Capacidad instalada",
+        # Para proyectos donde el equipo es el protagonista y no la capacidad:
+        # marca y tipo de tecnología instalada. Opcional, como todos los demás.
+        "tecnologia": "Tecnología",
         "duracion": "Duración",
         "entrega": "Año de entrega",
         "certificacion": "Certificación",
@@ -765,6 +1123,7 @@ PROJECT_UI = {
         "tipo_obra": "Type of work",
         "superficie": "Area covered",
         "capacidad": "Installed capacity",
+        "tecnologia": "Technology",
         "duracion": "Duration",
         "entrega": "Delivery year",
         "certificacion": "Certification",

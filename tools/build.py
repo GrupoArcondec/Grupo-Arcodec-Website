@@ -983,7 +983,8 @@ def render_project(hub, lang, anterior, siguiente):
     elif hub.get("sector"):
         filas.append((c["cliente"], c["cliente_nda"]))
     for campo in ("sector", "ubicacion_exacta", "tipo_obra", "superficie",
-                  "capacidad", "duracion", "entrega", "certificacion"):
+                  "capacidad", "tecnologia", "duracion", "entrega",
+                  "certificacion"):
         if hub.get(campo):
             filas.append((c[campo], hub[campo]))
 

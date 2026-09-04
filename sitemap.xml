@@ -90,6 +90,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.vercel.app/en/projects/montes-urales.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/montes-urales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/montes-urales.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/montes-urales.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/projects/santa-catarina-hub.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-santa-catarina.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/santa-catarina-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-santa-catarina.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/projects/satelite-hub.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-satelite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/satelite-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-satelite.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.vercel.app/en/projects/sevilla-hub.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-sevilla.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/sevilla-hub.html"/>
@@ -210,10 +234,34 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.vercel.app/proyectos/hub-santa-catarina.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-santa-catarina.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/santa-catarina-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-santa-catarina.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/proyectos/hub-satelite.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-satelite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/satelite-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-satelite.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.vercel.app/proyectos/hub-sevilla.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-sevilla.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/sevilla-hub.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-sevilla.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/proyectos/montes-urales.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/montes-urales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/montes-urales.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/montes-urales.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
