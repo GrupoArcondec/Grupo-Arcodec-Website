@@ -2025,12 +2025,29 @@ def main():
         # Los vecinos se calculan aquí y no dentro de la plantilla para que
         # render_project no tenga que conocer la lista completa: recibe solo
         # el proyecto anterior y el siguiente, ya resueltos.
-        # El recorrido es circular: del primero se va al último y del último al
-        # primero, para que ninguna página del bucle quede con una pestaña sola.
-        # El índice negativo de Python ya envuelve hacia atrás por sí solo.
+        # Vecinos para las pestañas del pie. El recorrido es circular, así que
+        # ninguna página queda con una sola pestaña.
+        #
+        # Una página publicada solo recorre proyectos publicados, aunque no
+        # sean contiguos en la lista: con dos publicados salteados entre trece
+        # borradores, tomar el vecino literal dejaría el pie vacío. Una página
+        # en revisión recorre la lista completa, para poder repasar las 16.
+        publicados = [h for h in P.HUBS if h.get("publicado")]
+
+        def vecinos(hub, i):
+            if not hub.get("publicado"):
+                return P.HUBS[i - 1], P.HUBS[(i + 1) % len(P.HUBS)]
+            if len(publicados) < 2:
+                return None, None
+            j = publicados.index(hub)
+            # Con exactamente dos publicados, anterior y siguiente caen en el
+            # mismo proyecto —es lo que da un bucle de dos—. Se muestran las dos
+            # pestañas igual, para que el pie no quede descuadrado; en cuanto se
+            # publique un tercero dejan de repetirse solas.
+            return publicados[j - 1], publicados[(j + 1) % len(publicados)]
+
         for i, hub in enumerate(P.HUBS):
-            anterior = P.HUBS[i - 1]
-            siguiente = P.HUBS[(i + 1) % len(P.HUBS)]
+            anterior, siguiente = vecinos(hub, i)
             written.append(
                 write(
                     url("prj-" + hub["slug"]["es"], lang),

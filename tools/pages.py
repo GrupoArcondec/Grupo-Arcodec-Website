@@ -305,8 +305,105 @@ HUBS = [
         "slug": {"es": "hub-sevilla", "en": "sevilla-hub"},
         "nombre": "HUB SEVILLA",
         "ubicacion": "Sevilla - CDMX",
-        "foto": "arcondec-sevilla-01.jpg",
-        "publicado": False,
+        "foto": "arcondec-sevilla-banner.jpg",
+        # ─────────────────────────────────────────────────────────────────
+        # Datos reales, de HUB_Sevilla_ficha_proyecto.docx (fuente: Anexo C,
+        # Formato de cotización VF 01, 04-nov-2024, pestaña "Hub Sevilla 01";
+        # confirmados por José Carlos).
+        #
+        # PENDIENTES antes de publicar (la ficha los marca sin confirmar):
+        #   · Superficie intervenida — no aparece en el presupuesto
+        #   · Certificación — sin dato
+        #   · Faltan 1 o 2 cifras de resultados (incidentes, disponibilidad)
+        #   · Redacción final del subtítulo
+        #
+        # DISCREPANCIA A RESOLVER: la descripción de la ficha dice "9 equipos",
+        # pero la tabla técnica dice 8 equipos de 10 TR = 80 TR (partida EQ-1).
+        # Aquí se usó 8 porque es lo que sostiene la aritmética y la partida
+        # del presupuesto. Confirmar cuál es el número correcto.
+        #
+        # NO PUBLICAR el monto del presupuesto: la ficha lo marca como dato
+        # interno de control de proyecto.
+        # ─────────────────────────────────────────────────────────────────
+        "publicado": True,
+        "titulo": "HUB Sevilla",
+        "subtitulo": (
+            "Reemplazo de aires acondicionados de precisión en el HUB Sevilla "
+            "de IZZI, en la Ciudad de México."
+        ),
+        "descripcion": [
+            "El proyecto consistió en el reemplazo de los equipos de aire "
+            "acondicionado de precisión tipo InRow del HUB Sevilla, sustituyendo "
+            "unidades existentes marca Data Aire por equipos con compresor "
+            "inverter, e incluyendo confinamiento de pasillos fríos y el "
+            "proyecto de ingeniería completo.",
+            "La ejecución en sitio duró dos meses una vez que llegó el equipo, "
+            "con el centro de datos operando de forma continua durante toda la "
+            "obra.",
+        ],
+        # La destacada la recorta el CSS a una franja muy ancha, así que tiene
+        # que ser una toma cuyo motivo se extienda en horizontal. Esta vista de
+        # la azotea deja ver toda la hilera de condensadores incluso en la
+        # franja; una foto de motivo centrado se perdería en el recorte.
+        "imagen": "arcondec-sevilla-condensadores-azotea.jpg",
+        "imagen_alt": "Hilera de condensadores instalados en la azotea del HUB Sevilla",
+        "cliente": "IZZI / TVI",
+        "sector": "Telecomunicaciones",
+        "ubicacion_exacta": "Sevilla, Ciudad de México",
+        "tipo_obra": "Remodelación",
+        "capacidad": "8 equipos InRow de 10 TR sensibles c/u (80 TR)",
+        "duracion": "2 meses de ejecución en sitio",
+        "entrega": "2025",
+        "reto": (
+            "El principal reto fue coordinar los trabajos sin afectar la "
+            "operación crítica del sitio. Todo tuvo que ejecutarse a través de "
+            "ventanas de mantenimiento, contando siempre con respaldos de "
+            "enfriamiento para no dejar la sala desprotegida en ningún momento."
+        ),
+        "solucion": [
+            ("HVAC",
+             "Suministro e instalación de equipos de aire acondicionado de "
+             "precisión tipo InRow con compresor inverter, incluyendo tubería "
+             "de refrigeración de alta y baja presión, carga de gas R-410A, "
+             "sistema de monitoreo Team Work por POD e instalación hidráulica "
+             "de drenaje."),
+            ("Área blanca",
+             "Confinamiento de pasillos fríos en tres pasillos, para separar el "
+             "aire frío del caliente y elevar la eficiencia del sistema."),
+            ("Obra civil",
+             "Pasos de muro para las tuberías y suministro e instalación de "
+             "tinaco de 750 litros."),
+            ("Desinstalación",
+             "Retiro y disposición de los equipos InRow existentes marca Data "
+             "Aire, con recuperación certificada del gas refrigerante y "
+             "manifiesto de destrucción."),
+        ],
+        "alcances": [
+            "Equipos de aire acondicionado de precisión tipo InRow, 10 TR sensibles c/u, con compresor inverter",
+            "Confinamiento de pasillos fríos en 3 pasillos (AB, BC y DE)",
+            "Desinstalación y disposición certificada de 4 equipos existentes marca Data Aire",
+            "Proyecto de ingeniería completo: planos de trayectorias, 3D, cortes, diagramas y carpeta técnica",
+            "Sistema de monitoreo Team Work configurado por cada POD",
+        ],
+        # El orden cuenta la obra: llega el equipo, se instala en azotea, se
+        # tiende la tubería y se cierra dentro de la sala.
+        "galeria": [
+            ("arcondec-sevilla-equipo-nuevo.jpg",
+             "Condensador ATTOM embalado a su llegada a la azotea"),
+            ("arcondec-sevilla-condensador.jpg",
+             "Condensador instalado sobre la estructura de azotea"),
+            ("arcondec-sevilla-cobre.jpg",
+             "Instalación de las líneas de cobre aisladas"),
+            ("arcondec-sevilla-plafon.jpg",
+             "Tubería de refrigeración en cobre sobre el plafón"),
+            ("arcondec-sevilla-canalizacion.jpg",
+             "Canalización y tubería sobre la fila de racks"),
+            ("arcondec-sevilla-sala.jpg",
+             "Técnico en el pasillo confinado del centro de datos"),
+        ],
+        "resultados": [
+            ("2", "meses de ejecución en sitio"),
+        ],
     },
     {
         "slug": {"es": "hub-rio-colorado", "en": "rio-colorado-hub"},
