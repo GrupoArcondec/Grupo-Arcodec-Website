@@ -480,6 +480,9 @@ PROJECT_UI = {
         "resultados_title": "Resultados",
         "prev": "Proyecto anterior",
         "next": "Proyecto siguiente",
+        # Etiqueta para cuando solo hay dos proyectos publicados y no existe un
+        # anterior distinto del siguiente. Ver render_project() en build.py.
+        "otro": "Otro proyecto",
         "back": "Ver todos los proyectos",
         "cta_title": "¿Tienes un proyecto similar?",
         "cta_text": "Cuéntanos qué necesitas y te acompañamos desde la etapa conceptual hasta la entrega final.",
@@ -506,6 +509,7 @@ PROJECT_UI = {
         "resultados_title": "Results",
         "prev": "Previous project",
         "next": "Next project",
+        "otro": "Another project",
         "back": "View all projects",
         "cta_title": "Have a similar project?",
         "cta_text": "Tell us what you need and we will support you from the concept stage through final delivery.",

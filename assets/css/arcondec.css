@@ -704,6 +704,19 @@ footer.footer-area.footer-2-area { background: #132D67; }
     box-shadow: 0 12px 28px rgba(19, 45, 103, .18);
     transform: translateY(-2px);
 }
+/* Con solo dos proyectos publicados no hay un anterior distinto del siguiente,
+   así que la fila baja a dos pestañas. Se centran como pareja en lugar de dejar
+   una columna vacía, que se leía como un hueco. Vuelve sola a tres columnas en
+   cuanto se publica un tercer proyecto. */
+.arc-prevnext.is-duo {
+    grid-template-columns: auto auto;
+    justify-content: center;
+}
+.arc-prevnext.is-duo .arc-prevnext-link.is-prev,
+.arc-prevnext.is-duo .arc-prevnext-all {
+    grid-column: auto;
+    justify-self: auto;
+}
 
 /* Tres pestañas de 30px de relleno no caben en una fila de 768px: se apilan
    desde que desaparece la retícula de escritorio, no hasta el móvil. */

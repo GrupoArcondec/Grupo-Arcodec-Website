@@ -1091,18 +1091,33 @@ def render_project(hub, lang, anterior, siguiente):
                 </a>""" % (clase, url("prj-" + vecino["slug"]["es"], lang),
                            flecha, e(etiqueta), e(vecino["nombre"]))
 
+    pestana_prev = enlace(anterior, c["prev"], "is-prev", "←")
+    pestana_next = enlace(siguiente, c["next"], "is-next", "→")
+
+    # Con solo dos proyectos publicados no existe un "anterior" distinto del
+    # "siguiente": en un bucle de dos, ambos vecinos son la misma página y las
+    # dos pestañas acababan mostrando el mismo nombre. En ese caso se muestra
+    # una sola pestaña con etiqueta neutra y la fila se centra sobre dos
+    # columnas. En cuanto se publique un tercer proyecto vuelve sola a las tres.
+    clase_fila = "arc-prevnext"
+    if bool(pestana_prev) != bool(pestana_next):
+        vecino_unico = anterior or siguiente
+        pestana_prev = enlace(vecino_unico, c["otro"], "is-prev", "←")
+        pestana_next = ""
+        clase_fila = "arc-prevnext is-duo"
+
     navegacion = """
     <section class="arc-soft-area pt-60 pb-60">
         <div class="container">
-            <div class="arc-prevnext">
+            <div class="%s">
 %s
                 <a class="arc-prevnext-all" href="%s">%s</a>
 %s
             </div>
         </div>
     </section>
-""" % (enlace(anterior, c["prev"], "is-prev", "←"), url("projects", lang),
-       e(c["back"]), enlace(siguiente, c["next"], "is-next", "→"))
+""" % (clase_fila, pestana_prev, url("projects", lang),
+       e(c["back"]), pestana_next)
 
     body = '\n    <main id="main">\n' + articulo + navegacion + "\n    </main>\n"
 
@@ -2040,10 +2055,11 @@ def main():
             if len(publicados) < 2:
                 return None, None
             j = publicados.index(hub)
-            # Con exactamente dos publicados, anterior y siguiente caen en el
-            # mismo proyecto —es lo que da un bucle de dos—. Se muestran las dos
-            # pestañas igual, para que el pie no quede descuadrado; en cuanto se
-            # publique un tercero dejan de repetirse solas.
+            if len(publicados) == 2:
+                # Un bucle de dos no tiene anterior y siguiente distintos: los
+                # dos vecinos son la misma página. Se devuelve uno solo y la
+                # plantilla lo pinta como pestaña única con etiqueta neutra.
+                return publicados[1 - j], None
             return publicados[j - 1], publicados[(j + 1) % len(publicados)]
 
         for i, hub in enumerate(P.HUBS):
