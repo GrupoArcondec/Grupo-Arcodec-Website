@@ -74,6 +74,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.vercel.app/en/projects/crt-industria-chihuahua-hub.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/crt-industria-chihuahua.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/crt-industria-chihuahua-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/crt-industria-chihuahua.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.vercel.app/en/projects/sevilla-hub.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-sevilla.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/sevilla-hub.html"/>
@@ -166,6 +174,14 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/proyectos/crt-industria-chihuahua.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/crt-industria-chihuahua.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/crt-industria-chihuahua-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/crt-industria-chihuahua.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

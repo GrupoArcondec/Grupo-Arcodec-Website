@@ -1131,13 +1131,19 @@ def render_project(hub, lang, anterior, siguiente):
         "creator": {"@type": "Organization", "name": "Grupo Arcondec S.A. de C.V."},
     }
 
+    # `nombre` viene en mayúsculas para las tarjetas del índice. Para el título
+    # de la pestaña y la miga hace falta capitalización normal, pero .title()
+    # sola rompe las siglas —"CRT" acababa como "Crt"—. Cuando el proyecto trae
+    # `titulo` escrito a mano se usa ese, que ya viene con la grafía correcta.
+    nombre_legible = hub.get("titulo") or nombre.title()
+
     return (
         head(
             lang=lang,
             key=key,
-            title=nombre.title(),
+            title=nombre_legible,
             description=hub.get("subtitulo")
-            or c["meta_tpl"] % (nombre.title(), ubicacion or "México"),
+            or c["meta_tpl"] % (nombre_legible, ubicacion or "México"),
             og_image=foto,
             extra_ld=ld,
             noindex=not hub.get("publicado"),
@@ -1147,7 +1153,7 @@ def render_project(hub, lang, anterior, siguiente):
         + page_banner(
             lang=lang,
             title=nombre,
-            crumb=nombre.title(),
+            crumb=nombre_legible,
             parent=(c["crumb"], url("projects", lang)),
             bg=foto,
         )

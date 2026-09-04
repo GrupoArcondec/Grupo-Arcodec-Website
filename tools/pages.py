@@ -253,6 +253,151 @@ HUBS = [
         ],
     },
     {
+        "slug": {"es": "crt-industria-chihuahua", "en": "crt-industria-chihuahua-hub"},
+        "nombre": "CRT INDUSTRIA CHIHUAHUA",
+        "ubicacion": "Chihuahua - Chihuahua",
+        "foto": "arcondec-chihuahua-banner.jpg",
+        # ─────────────────────────────────────────────────────────────────
+        # Datos reales, de HUB_Industria_Chihuahua_Informacion_Web_Arcondec.pdf
+        # (fuente técnica: catálogo EA250101B — Instalaciones eléctricas;
+        # nombre, ubicación, transformador de 112.5 kVA y equipos InRow
+        # confirmados por Grupo Arcondec).
+        #
+        # NOMBRE: la ficha lo llama "HUB Industria"; aquí se publica como
+        # "CRT Industria Chihuahua", que es como lo nombran internamente y
+        # como viene rotulado en la fotografía de obra.
+        #
+        # PENDIENTES antes de considerarla completa (la ficha los marca sin
+        # confirmar, y por eso esos campos no aparecen aquí):
+        #   · Superficie intervenida
+        #   · Duración total (fecha de inicio y término)
+        #   · Año de entrega — el catálogo de origen está fechado en 2025
+        #   · Capacidad en kW/kVA de la planta de emergencia
+        #   · Cifras de cierre (incidentes, cumplimiento de ventana)
+        #
+        # FOTOGRAFÍAS: las 19 originales documentan obra civil y acometida de
+        # media tensión. No hay tomas del transformador, del UPS Huawei, de
+        # los PDC ni de los InRow, que es el equipo que sostiene la ficha.
+        # Cuando lleguen, sustituir la galería. Todas las originales traían
+        # incrustadas las coordenadas GPS exactas del sitio: se recortó el 20%
+        # inferior de cada una para eliminarlas antes de publicar.
+        #
+        # La ficha advierte que el catálogo no documenta una planta de
+        # corriente directa independiente, así que no se le atribuye ese
+        # alcance: la disciplina se limita al UPS y su distribución.
+        # ─────────────────────────────────────────────────────────────────
+        "publicado": True,
+        "titulo": "CRT Industria Chihuahua",
+        "subtitulo": (
+            "Integración de infraestructura eléctrica crítica, respaldo, UPS y "
+            "climatización InRow para el CRT Industria de IZZI en Chihuahua."
+        ),
+        "descripcion": [
+            "Grupo Arcondec ejecutó la integración de infraestructura crítica "
+            "para el CRT Industria de IZZI en Chihuahua. El proyecto abarcó "
+            "media tensión, transformación, distribución eléctrica normal y de "
+            "emergencia, UPS, tableros de transferencia, canalizaciones, "
+            "alimentadores, puesta a tierra y sistemas auxiliares para cargas "
+            "críticas.",
+            "El alcance incluyó un transformador de distribución trifásico de "
+            "112.5 kVA, la integración de un UPS Huawei 1200/900 kVA, cuatro "
+            "gabinetes de distribución de potencia Huawei, la conexión con el "
+            "sistema de generación de emergencia y el suministro de "
+            "climatización de precisión mediante dos equipos InRow de 10 "
+            "toneladas de refrigeración cada uno. La ejecución consideró "
+            "pruebas, puesta en marcha y trabajos especializados asociados a la "
+            "continuidad operativa del sitio.",
+        ],
+        # La destacada la recorta el CSS a una franja muy ancha. Esta toma de la
+        # zanja de acometida funciona porque el motivo corre en horizontal a lo
+        # largo del encuadre; además la franja deja fuera los rótulos
+        # comerciales de los negocios vecinos que aparecen en la parte alta.
+        "imagen": "arcondec-chihuahua-zanja-acometida.jpg",
+        "imagen_alt": (
+            "Cuadrilla abriendo la zanja para el alimentador de media tensión"
+        ),
+        "cliente": "IZZI",
+        "sector": "Telecomunicaciones / infraestructura crítica",
+        "ubicacion_exacta": "Chihuahua, Chihuahua",
+        "tipo_obra": (
+            "Adecuación e integración de infraestructura eléctrica crítica y "
+            "climatización de precisión"
+        ),
+        "capacidad": "Transformador trifásico de 112.5 kVA, 13.2 kV / 220-127 V",
+        "reto": (
+            "El reto principal fue integrar varios subsistemas de energía "
+            "crítica dentro de un mismo sitio de telecomunicaciones: acometida "
+            "y media tensión, transformación, distribución normal y de "
+            "emergencia, respaldo mediante UPS, transferencia hacia generación "
+            "de emergencia y climatización de precisión. La intervención exigió "
+            "coordinar alimentadores de alta capacidad, tableros "
+            "autosoportados, protecciones, canalizaciones y puestas a tierra "
+            "sin perder de vista la continuidad de las cargas críticas, e "
+            "incluyó gestiones ante CFE, libranzas, trámite de UVIE y pruebas "
+            "VLF en media tensión."
+        ),
+        "solucion": [
+            ("Media tensión / subestación",
+             "Gestoría ante CFE, libranza, registro de media tensión, cable "
+             "XLP, protecciones, medición, pruebas VLF y conexión del "
+             "transformador de 112.5 kVA."),
+            ("Corriente directa / UPS",
+             "Integración del UPS Huawei 1200/900 kVA, incluyendo conexiones de "
+             "entrada, salida y bypass, tableros asociados y distribución "
+             "regulada."),
+            ("Planta de emergencia",
+             "Integración eléctrica del sistema de respaldo mediante dos "
+             "tableros de transferencia, tablero general de emergencia y "
+             "conexión del alimentador al interruptor a pie de generador."),
+            ("HVAC",
+             "Suministro e instalación de dos equipos de aire acondicionado de "
+             "precisión tipo InRow de 10 TR cada uno, además de tableros "
+             "generales de aire acondicionado, tablero de servicios e "
+             "interruptores de seguridad."),
+            ("Distribución crítica",
+             "Instalación de tableros generales normal y de emergencia, "
+             "tableros de enlace, tableros UPS y cuatro Precision Power "
+             "Distribution Cabinet Huawei."),
+            ("Puesta a tierra",
+             "Barras master para áreas críticas, conexión de equipos y racks, "
+             "conductor de puesta a tierra, electrodo copperweld, soldadura "
+             "exotérmica y pararrayos."),
+            ("Alumbrado y contactos",
+             "Circuitos de alumbrado interior y exterior, contactos y servicios "
+             "de emergencia, con canalización y cableado asociado."),
+            ("Gestoría y cumplimiento",
+             "Trámites de aumento de carga, libranza, permisos y servicio de "
+             "Unidad Verificadora de Instalaciones Eléctricas (UVIE)."),
+        ],
+        "alcances": [
+            "Transformador trifásico tipo pedestal de 112.5 kVA, 13.2 kV / 220-127 V, con registro, protecciones, medición, cable XLP y pruebas VLF",
+            "Dos tableros de transferencia, tablero de enlace, tablero general de emergencia y alimentador al interruptor a pie de generador",
+            "UPS Huawei 1200/900 kVA con circuitos de entrada, salida y bypass, tableros asociados y distribución regulada",
+            "Cuatro Precision Power Distribution Cabinet Huawei, tableros generales y alimentadores de potencia",
+            "Dos equipos de climatización de precisión tipo InRow de 10 TR cada uno (20 TR totales), con su infraestructura eléctrica asociada",
+            "Sistema de tierra física para tableros, UPS, racks y áreas críticas, con barras master, electrodo, soldadura exotérmica, supresores de transitorios y pararrayos",
+        ],
+        # El orden cuenta la obra: se traza la zanja, se abre el cruce, llega el
+        # registro de media tensión, se tienden los ductos y se cierra a nivel.
+        "galeria": [
+            ("arcondec-chihuahua-trazo.jpg",
+             "Trazo de la zanja del alimentador hacia el edificio"),
+            ("arcondec-chihuahua-cruce.jpg",
+             "Apertura de la zanja en el cruce vehicular, con señalización de obra"),
+            ("arcondec-chihuahua-registro-llegada.jpg",
+             "Llegada del registro de media tensión a la obra"),
+            ("arcondec-chihuahua-registro-ductos.jpg",
+             "Banco de ductos del alimentador de media tensión en la excavación"),
+            ("arcondec-chihuahua-registro-terminado.jpg",
+             "Cierre y nivelación del registro terminado sobre la banqueta"),
+        ],
+        "resultados": [
+            ("112.5 kVA", "transformador principal"),
+            ("1200/900 kVA", "UPS Huawei integrado"),
+            ("20 TR", "climatización InRow instalada"),
+        ],
+    },
+    {
         "slug": {"es": "hub-santa-fe", "en": "santa-fe-hub"},
         "nombre": "HUB SANTA FE",
         "ubicacion": "Santa Fe - Ciudad de México",

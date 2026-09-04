@@ -500,6 +500,12 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-case-figure img {
     display: block;
     width: 100%;
+    /* height:auto es obligatorio. La etiqueta lleva width/height reales para
+       reservar el espacio y evitar saltos de layout, pero mientras el alto siga
+       siendo el del atributo el navegador ignora aspect-ratio por completo: la
+       foto salía a ~1.44:1 recortada por los lados en lugar de la franja ancha.
+       aspect-ratio solo manda cuando el alto es auto. */
+    height: auto;
     aspect-ratio: 6 / 1;
     object-fit: cover;
 }
