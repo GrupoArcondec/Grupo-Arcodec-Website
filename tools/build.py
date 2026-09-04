@@ -477,91 +477,52 @@ def render_services_index(lang):
 def render_about(lang):
     c = P.ABOUT[lang]
     key = "about"
-    t = UI[lang]
 
     history = "\n".join("                        <p>%s</p>" % e(p) for p in c["history"])
 
-    # "Qué nos distingue" adopta el lenguaje de tarjeta de las páginas de
-    # servicio (.service-2-item): mismo componente, para que Nosotros se lea
-    # como parte de la misma familia visual que Servicios. Sin párrafo por
-    # tarjeta —no hay una frase propia por palabra clave en el contenido
-    # original—, así que usa la variante "arc-spec" (icono + título).
-    DISTINCT_ICONS = ["fal fa-handshake", "fal fa-bullseye-arrow", "fal fa-binoculars"]
-    distinct_cards = "\n".join(
-        """                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="service-2-item arc-spec text-center mt-30">
-                        <div class="icon"><i class="%s"></i></div>
-                        <h3 class="title">%s</h3>
-                        <div class="service-dot">
-                            <img src="/assets/images/service-dot-2.png" alt="">
-                            <div class="item">
-                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>"""
-        % (DISTINCT_ICONS[n % len(DISTINCT_ICONS)], e(k), (n % 6) + 1)
-        for n, k in enumerate(c["distinct_keywords"])
+    # Las tres palabras clave rematan el bloque como fichas, no como tarjetas:
+    # son etiquetas del propio párrafo, no elementos independientes que merezcan
+    # una caja con ícono cada uno.
+    distinct_chips = "\n".join(
+        """                            <li>%s</li>""" % e(k)
+        for k in c["distinct_keywords"]
     )
 
-    # Propósito/Meta/Visión dejan la banda oscura de manifiesto por el mismo
-    # lenguaje de tarjeta .service-2-item: icono en círculo + título + texto.
-    MV_ICONS = {"meta": "fal fa-bullseye-arrow", "vision": "fal fa-eye"}
-    def _mv_card(n, key, title, text):
-        return (
-            """                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="service-2-item text-center mt-30">
-                        <div class="icon"><i class="%s"></i></div>
-                        <h3 class="title">%s</h3>
-                        <p>%s</p>
-                        <div class="service-dot">
-                            <img src="/assets/images/service-dot-2.png" alt="">
-                            <div class="item">
-                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>"""
-            % (MV_ICONS[key], e(title), e(text), (n % 6) + 1)
-        )
-
-    mv_cards = "\n".join([
-        _mv_card(0, "meta", c["meta_title"], c["meta_text"]),
-        _mv_card(1, "vision", c["vision_title"], c["vision"]),
-    ])
-
-    # Valores: en es, cada renglón es (letra, resto de la palabra) y la letra
-    # arma el acróstico IDEAS. En en no hay acróstico que traducir, así que el
-    # marcador es solo la primera letra de la palabra completa. La letra vive
-    # en el mismo círculo que llevaría un ícono fa en cualquier otra tarjeta
-    # .service-2-item — incluye el mismo lenguaje visual, cambia el contenido
-    # del círculo. La palabra completa es el título; no es texto duplicado
-    # para quien usa lector de pantalla porque la letra va aria-hidden.
-    def _value_card(n, v):
+    # Valores: en es cada renglón es (letra, resto de la palabra) y las letras
+    # arman el acróstico IDEAS. En en no hay acróstico que traducir, así que la
+    # marca es solo la inicial de la frase y el sello del acróstico no se pinta.
+    #
+    # Cinco tarjetas cuadradas en una sola fila, no una rejilla de tres: con las
+    # cinco alineadas, las iniciales se leen de izquierda a derecha y el
+    # acróstico aparece solo. En tres columnas quedaría partido (IDE / AS) y la
+    # palabra se perdería.
+    #
+    # La letra va aria-hidden y la frase completa incluye su inicial, así que
+    # un lector de pantalla oye la frase una sola vez y bien formada.
+    def _value_card(v):
         if isinstance(v, tuple):
             letter, rest = v
-            mark = e(letter)
-            full = e(letter + rest)
+            mark, full = e(letter), e(letter + rest)
         else:
-            mark = e(v[0])
-            full = e(v)
+            mark, full = e(v[0]), e(v)
         return (
-            """                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="service-2-item arc-spec text-center mt-30">
-                        <div class="icon"><span class="arc-mv-letter" aria-hidden="true">%s</span></div>
-                        <h3 class="title">%s</h3>
-                        <div class="service-dot">
-                            <img src="/assets/images/service-dot-2.png" alt="">
-                            <div class="item">
-                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
-                            </div>
-                        </div>
+            """                <div class="arc-value-col">
+                    <div class="arc-value">
+                        <span class="arc-value-letter" aria-hidden="true">%s</span>
+                        <p class="arc-value-text">%s</p>
                     </div>
                 </div>"""
-            % (mark, full, (n % 6) + 1)
+            % (mark, full)
         )
 
-    values = "\n".join(_value_card(n, v) for n, v in enumerate(c["values"]))
+    values = "\n".join(_value_card(v) for v in c["values"])
+
+    acronym = c.get("values_acronym") or ""
+    acronym_seal = (
+        """                        <span class="arc-values-seal" aria-hidden="true">%s</span>"""
+        % e(acronym)
+        if acronym else ""
+    )
 
     # Certificaciones: la misma tarjeta .service-2-item de Servicios
     # (icono en círculo + título + párrafo), no ya la insignia con sello
@@ -599,7 +560,6 @@ def render_about(lang):
                         <span class="service-eyebrow">{history_eyebrow}</span>
                         <h2 class="arc-h2">{history_title}</h2>
 {history}
-                        <a class="main-btn main-btn-3 mt-30" href="{projects}">{projects_label}</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -613,70 +573,115 @@ def render_about(lang):
         </div>
     </section>
 
-    <!--====== 2 · PROPÓSITO, META Y VISIÓN ======-->
-    <!-- Mismo lenguaje que Servicios: título+intro centrados y grid de
-         tarjetas .service-2-item. La banda oscura de manifiesto se dejó por
-         consistencia con el resto del sitio. -->
+    <!--====== 1b · QUÉ NOS DISTINGUE ======-->
+    <!-- Cierra la historia en vez de ser sección aparte: habla del equipo, que
+         es la continuación natural del relato de la empresa. Las seis secciones
+         con nombre propio quedan así claramente delimitadas. -->
 
-    <section class="service-area service-page-area arc-soft-area pt-90 pb-100">
+    <section class="arc-distinct-area pb-100">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title-9 text-center">
-                        <span class="service-eyebrow">{purpose_title}</span>
-                        <h2 class="title">{purpose}</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="arc-story-media">
+                        <div class="arc-story-frame">
+                            <img src="{img}/rh/equipo-arcondec.jpg" alt="{alt_equipo}" loading="lazy" {dims_equipo}>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center arc-service-grid">
-{mv_cards}
+                <div class="col-lg-6">
+                    <div class="arc-story-copy arc-distinct-copy mt-30">
+                        <h2 class="arc-h2">{distinct_title}</h2>
+                        <p>{distinct_quote}</p>
+                        <p>{distinct_rest}</p>
+                        <ul class="arc-distinct-chips">
+{distinct_chips}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!--====== 2b · VALORES ======-->
+    <!--====== 2 · PROPÓSITO ======-->
+    <!-- Banda oscura y una sola frase. El propósito es la línea más corta y más
+         importante de la página: darle una sección entera, sin nada que compita,
+         es lo que la vuelve legible como declaración y no como relleno. -->
 
-    <section class="service-area service-page-area pt-90 pb-100">
+    <section class="arc-manifest arc-manifest-purpose pt-100 pb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 text-center">
+                    <span class="arc-manifest-eyebrow">{purpose_title}</span>
+                    <h2 class="title arc-manifest-title">{purpose}</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== 3 · VALORES ======-->
+
+    <section class="arc-values-area arc-soft-area pt-100 pb-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title-9 text-center">
                         <h2 class="title">{values_title}</h2>
+                        <div class="text">
+                            <p>{values_lead}</p>
+                        </div>
+{acronym_seal}
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center arc-service-grid">
+            <div class="row justify-content-center arc-values-list">
 {values}
             </div>
         </div>
     </section>
 
-    <!--====== 3 · QUÉ NOS DISTINGUE ======-->
-    <!-- Mismo lenguaje que las páginas de Servicios: título+intro centrados
-         (.section-title-9) y grid de tarjetas .service-2-item, para que
-         Nosotros se lea como parte de la misma familia visual del sitio. -->
+    <!--====== 4 · VISIÓN ======-->
+    <!-- Centrada: el rótulo arriba y el párrafo debajo, con un ancho máximo que
+         corta la línea antes de que se vuelva incómoda de leer. La versión a dos
+         columnas dejaba media pantalla vacía a la izquierda. -->
 
-    <section class="service-area service-page-area arc-soft-area pt-90 pb-100">
+    <section class="arc-vision-area pt-100 pb-100">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title-9 text-center">
-                        <h2 class="title">{distinct_title}</h2>
-                        <div class="text">
-                            <p>{distinct_intro}</p>
-                        </div>
+                <div class="col-lg-9">
+                    <div class="arc-vision-block text-center">
+                        <h2 class="title arc-vision-title">{vision_title}</h2>
+                        <p>{vision}</p>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center arc-service-grid">
-{distinct_cards}
             </div>
         </div>
     </section>
 
-    <!--====== 4 · CERTIFICACIONES ======-->
+    <!--====== 5 · BHAG ======-->
+    <!-- Segunda banda oscura, la del cierre. La cifra sale del enunciado y se
+         pinta aparte para que la meta tenga un punto de fuga: "500 MW" es lo
+         único cuantificable de toda la página y es lo que se recuerda. -->
 
-    <section class="service-area service-page-area pt-90 pb-100">
+    <section class="arc-manifest arc-manifest-bhag pt-100 pb-100">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-7">
+                    <span class="arc-manifest-eyebrow">{bhag_eyebrow}</span>
+                    <h2 class="title arc-manifest-title arc-bhag-title">{bhag_text}</h2>
+                </div>
+                <div class="col-lg-4 offset-lg-1">
+                    <div class="arc-bhag-figure">
+                        <span class="arc-bhag-number"><span class="arc-count" data-count="{bhag_num}">0</span> {bhag_unit}</span>
+                        <span class="arc-bhag-label">{bhag_figure_label}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== 6 · CERTIFICACIONES ======-->
+
+    <section class="service-area service-page-area pt-100 pb-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -699,18 +704,27 @@ def render_about(lang):
         history_title=e(c["history_title"]),
         history_eyebrow=e(c["history_eyebrow"]),
         history=history,
-        projects=url("projects", lang),
-        projects_label=e(t["nav_projects"]),
         img=IMG,
         alt_historia=e(c["alt_historia"]),
         dims_historia=dims("%s/rh/historia-3.jpg" % IMG),
-        mv_cards=mv_cards,
+        alt_equipo=e(c["alt_equipo"]),
+        dims_equipo=dims("%s/rh/equipo-arcondec.jpg" % IMG),
         purpose_title=e(c["purpose_title"]),
         purpose=e(c["purpose"]),
+        vision_title=e(c["vision_title"]),
+        vision=e(c["vision"]),
+        bhag_eyebrow=e(c["bhag_eyebrow"]),
+        bhag_text=e(c["bhag_text"]),
+        bhag_num=c["bhag_num"],
+        bhag_unit=e(c["bhag_unit"]),
+        bhag_figure_label=e(c["bhag_figure_label"]),
         distinct_title=e(c["distinct_title"]),
-        distinct_intro=e(c["distinct_quote"] + " " + c["distinct_rest"]),
-        distinct_cards=distinct_cards,
+        distinct_quote=e(c["distinct_quote"]),
+        distinct_rest=e(c["distinct_rest"]),
+        distinct_chips=distinct_chips,
         values_title=e(c["values_title"]),
+        values_lead=e(c["values_lead"]),
+        acronym_seal=acronym_seal,
         values=values,
         certs_title=e(c["certs_title"]),
         certs_lead=e(c["certs_lead"]),
@@ -731,7 +745,13 @@ def render_about(lang):
         + page_banner(lang=lang, title=c["h1"], crumb=c["eyebrow"], bg="%s/rh/historia-2.jpg" % IMG)
         + body
         + commitment_band(lang)
-        + footer(lang=lang, key=key)
+        # El contador de la cifra del BHAG es el mismo de Proyectos: cuenta y
+        # formatea con separador de miles, y si el visitante pidió menos
+        # movimiento escribe el valor final sin animar.
+        + footer(
+            lang=lang, key=key,
+            extra_scripts=("/assets/js/arcondec-counters.js",)
+        )
     )
 
 def render_projects(lang):

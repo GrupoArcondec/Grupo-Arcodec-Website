@@ -151,7 +151,11 @@
     // grande, no lleva etiquetas dentro y tiene texto suficiente. Así entran los
     // de sección (48px) y el del hero (80px), y quedan fuera los de tarjeta
     // (22px) y cosas como la caja «30+», que son tres caracteres.
-    var HEADING_SEL = 'h1.title, h2.title, h3.title';
+    // `.arc-h2` entra a la lista para que los titulares de Nosotros —Nuestra
+    // Historia y Qué nos distingue— se revelen por líneas como los demás. Usan
+    // esa clase y no `.title` porque no llevan los estilos del template, pero
+    // el gesto de entrada debe ser el mismo en todo el sitio.
+    var HEADING_SEL = 'h1.title, h2.title, h3.title, h2.arc-h2';
     var HEADING_MIN_SIZE = 32;
     var HEADING_MIN_CHARS = 8;
 
@@ -1117,6 +1121,94 @@
     // igual y, sobre todo, se llega al refresco y a la red de rescate del final.
     // Sin esto, una excepción a mitad dejaría medio sitio con el estado inicial
     // aplicado y sin nadie que lo revele: contenido invisible.
+    /* ==========================================================================
+       Nosotros · el gesto propio de cada sección
+       --------------------------------------------------------------------------
+       El sistema genérico ya hace entrar las filas y parte los titulares, así que
+       aquí solo van los detalles que ese sistema no puede adivinar: piezas que
+       significan algo por cómo se mueven, no solo por aparecer.
+
+       Todo se engancha a la sección que lo contiene y se dispara una sola vez.
+       Si alguna sección no existe en la página, el módulo simplemente no hace
+       nada: las mismas clases no aparecen fuera de Nosotros.
+       ========================================================================== */
+    function nosotros() {
+        // --- Valores: las iniciales entran creciendo, una tras otra -----------
+        // El acróstico se lee de izquierda a derecha, así que las letras entran
+        // en ese orden: el escalonado dibuja la palabra en lugar de mostrarla
+        // hecha. Van aparte de la tarjeta —que sube con su fila— para que se
+        // note la letra y no solo la caja.
+        var letras = document.querySelectorAll('.arc-value-letter');
+        if (letras.length) {
+            gsap.from(letras, {
+                scale: 0.4,
+                opacity: 0,
+                duration: dur(0.55),
+                ease: 'back.out(1.7)',
+                stagger: dur(0.09),
+                clearProps: 'transform,opacity',
+                scrollTrigger: {
+                    trigger: letras[0].closest('.arc-values-list') || letras[0],
+                    start: START,
+                    once: true
+                }
+            });
+        }
+
+        // --- Valores: el sello IDEAS se abre ---------------------------------
+        // Separando las letras al entrar, el sello "hace" lo que dice: cinco
+        // iniciales que se despliegan. Solo existe en español; en inglés los
+        // valores no forman acróstico y la plantilla no lo dibuja.
+        var sello = document.querySelector('.arc-values-seal');
+        if (sello) {
+            gsap.from(sello, {
+                letterSpacing: '0em',
+                opacity: 0,
+                duration: dur(0.9),
+                ease: EASE,
+                clearProps: 'letterSpacing,opacity',
+                scrollTrigger: { trigger: sello, start: START, once: true }
+            });
+        }
+
+        // --- Qué nos distingue: las fichas rematan el bloque ------------------
+        // Entran después del texto, no con él: son el cierre de la idea y se
+        // leen mejor si llegan cuando el párrafo ya está puesto.
+        var fichas = document.querySelectorAll('.arc-distinct-chips li');
+        if (fichas.length) {
+            gsap.from(fichas, {
+                y: 18,
+                opacity: 0,
+                duration: dur(0.5),
+                ease: EASE,
+                stagger: dur(0.1),
+                delay: dur(0.25),
+                clearProps: 'transform,opacity',
+                scrollTrigger: {
+                    trigger: fichas[0].parentElement,
+                    start: START,
+                    once: true
+                }
+            });
+        }
+
+        // --- BHAG: el filete crece antes de la cifra --------------------------
+        // La barra amarilla se dibuja de arriba hacia abajo y deja la cifra
+        // colgando de ella. El contador de la cifra lo lleva
+        // arcondec-counters.js, que ya sabe respetar prefers-reduced-motion.
+        var cifra = document.querySelector('.arc-bhag-figure');
+        if (cifra) {
+            gsap.from(cifra, {
+                clipPath: 'inset(0 0 100% 0)',
+                opacity: 0,
+                duration: dur(0.9),
+                ease: EASE,
+                clearProps: 'clipPath,opacity',
+                scrollTrigger: { trigger: cifra, start: START, once: true }
+            });
+        }
+    }
+
     function safely(nombre, fn) {
         try {
             fn();
@@ -1136,6 +1228,7 @@
         safely('revealMap', revealMap);
         safely('sloganStrip', sloganStrip);
         safely('aboutPhotoGrow', aboutPhotoGrow);
+        safely('nosotros', nosotros);
         safely('revealBanner', revealBanner);
         safely('parallaxBackgrounds', parallaxBackgrounds);
         safely('heroSlides', heroSlides);

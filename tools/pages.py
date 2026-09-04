@@ -27,6 +27,16 @@ ABOUT = {
         # de la página salía con este texto en vez de con el real). Se
         # renombra a "meta_text" para no repetir el error.
         "meta_text": "Una de las principales empresas en LATAM en la construcción de proyectos de gran impacto, habiendo implementado 500 MW.",
+        # BHAG: la meta larga se parte en enunciado y cifra para que la sección
+        # tenga un punto de fuga visual. La cifra NO se repite dentro del
+        # enunciado, justo para no leer dos veces lo mismo.
+        "bhag_eyebrow": "BHAG 2035",
+        "bhag_text": "Ser una de las principales empresas en LATAM en la construcción de proyectos de gran impacto.",
+        # La cifra se parte en número y unidad para que el contador anime solo
+        # el número: "500 MW" entero se leería mal a media cuenta.
+        "bhag_num": 500,
+        "bhag_unit": "MW",
+        "bhag_figure_label": "implementados a 2035",
         "purpose_title": "Propósito",
         "purpose": "Habilitamos la infraestructura que hace posible el mundo digital.",
         "vision_title": "Visión",
@@ -61,6 +71,9 @@ ABOUT = {
         "distinct_keywords": ["Compromiso", "Precisión", "Visión estratégica"],
         "areas_label": "Áreas clave",
         "values_title": "Valores",
+        "values_lead": "Cinco principios que ordenan cada decisión.",
+        # Solo aplica al español: en inglés los valores no forman acróstico.
+        "values_acronym": "IDEAS",
         "services_title": "Nuestros servicios",
         # (letra, resto de la palabra) — la letra inicial es la que arma el
         # acróstico IDEAS.
@@ -72,7 +85,7 @@ ABOUT = {
             ("S", "er honestos nos hace rentables a todos"),
         ],
         "alt_historia": "Trabajos de ingeniería eléctrica de Grupo Arcondec",
-        "alt_equipo": "Sala eléctrica de distribución ejecutada por Grupo Arcondec",
+        "alt_equipo": "Dos técnicos de Grupo Arcondec trabajando en el armado de barras de un tablero de distribución",
         "years_label": "Años de experiencia",
     },
     "en": {
@@ -84,6 +97,11 @@ ABOUT = {
         "lead": "Electrical engineering and data center solutions for high-availability operations",
         "meta_title": "2035 goal",
         "meta_text": "One of the leading companies in Latin America in the construction of high-impact projects, having deployed 500 MW.",
+        "bhag_eyebrow": "BHAG 2035",
+        "bhag_text": "To be one of the leading companies in Latin America in the construction of high-impact projects.",
+        "bhag_num": 500,
+        "bhag_unit": "MW",
+        "bhag_figure_label": "deployed by 2035",
         "purpose_title": "Purpose",
         "purpose": "We enable the infrastructure that makes the digital world possible.",
         "vision_title": "Vision",
@@ -110,6 +128,10 @@ ABOUT = {
         "distinct_keywords": ["Commitment", "Precision", "Strategic vision"],
         "areas_label": "Key areas",
         "values_title": "Values",
+        "values_lead": "Five principles behind every decision.",
+        # Sin acróstico en inglés: la clave existe vacía para que la plantilla
+        # simplemente no dibuje el sello.
+        "values_acronym": "",
         "services_title": "Our services",
         # Same five values as the ES block; the IDEAS acrostic only works in
         # Spanish (ver nota arriba), so this list carries the meaning without
@@ -122,7 +144,7 @@ ABOUT = {
             "Honesty makes us all more profitable",
         ],
         "alt_historia": "Electrical engineering work by Grupo Arcondec",
-        "alt_equipo": "Electrical distribution room delivered by Grupo Arcondec",
+        "alt_equipo": "Two Grupo Arcondec technicians assembling the busbars of a distribution switchboard",
         "years_label": "Years of experience",
     },
 }
