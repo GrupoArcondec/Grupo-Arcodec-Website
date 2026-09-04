@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://grupo-arcodec-website.vercel.app/sitemap.xml
+Sitemap: https://arcondec.vercel.app/sitemap.xml

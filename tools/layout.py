@@ -31,12 +31,13 @@ from content import (
 # Las 28 rutas de este sitio devuelven 404 alli, asi que todos los canonical y
 # hreflang señalaban a paginas inexistentes de otro dominio: Google habria
 # descartado el sitio entero. Ahora apunta al despliegue real.
-# OJO: el dominio va sin la "n" —"arcodec"— porque así se llamó el proyecto en
-# Vercel al crearlo y así quedó su subdominio. El proyecto ya se renombró a
-# grupo-arcondec-website, pero el alias de producción sigue en el nombre viejo.
-# Cuando https://grupo-arcondec-website.vercel.app deje de dar 404, cambiar esta
-# línea, regenerar y volver a enviar el sitemap en Search Console.
-BASE_URL = "https://grupo-arcodec-website.vercel.app"
+#
+# Historial del dominio: el proyecto se creó en Vercel como "grupo-arcodec-website"
+# (sin la "n") y ese typo quedó en el subdominio. Renombrar el proyecto en Settings
+# NO mueve el alias .vercel.app —Vercel lo asigna una sola vez, al crear el proyecto—
+# así que hubo que asignarlo a mano con `vercel alias set <deployment> arcondec.vercel.app`.
+# Los alias viejos siguen resolviendo pero ya no son el canónico.
+BASE_URL = "https://arcondec.vercel.app"
 
 # --------------------------------------------------------------------------
 # Mapa de rutas: clave -> URL en cada idioma.
