@@ -377,24 +377,145 @@ HUBS = [
             "Dos equipos de climatización de precisión tipo InRow de 10 TR cada uno (20 TR totales), con su infraestructura eléctrica asociada",
             "Sistema de tierra física para tableros, UPS, racks y áreas críticas, con barras master, electrodo, soldadura exotérmica, supresores de transitorios y pararrayos",
         ],
-        # El orden cuenta la obra: se traza la zanja, se abre el cruce, llega el
-        # registro de media tensión, se tienden los ductos y se cierra a nivel.
+        # El orden cuenta la obra: se traza la zanja, se abre el cruce, se
+        # tienden los ductos, se cierra a nivel y se cierra con la sala de
+        # tableros ya montada, que es donde aterriza todo lo anterior.
         "galeria": [
             ("arcondec-chihuahua-trazo.jpg",
              "Trazo de la zanja del alimentador hacia el edificio"),
             ("arcondec-chihuahua-cruce.jpg",
              "Apertura de la zanja en el cruce vehicular, con señalización de obra"),
-            ("arcondec-chihuahua-registro-llegada.jpg",
-             "Llegada del registro de media tensión a la obra"),
             ("arcondec-chihuahua-registro-ductos.jpg",
              "Banco de ductos del alimentador de media tensión en la excavación"),
             ("arcondec-chihuahua-registro-terminado.jpg",
              "Cierre y nivelación del registro terminado sobre la banqueta"),
+            ("arcondec-chihuahua-tableros.jpg",
+             "Tableros generales y canalización montados en el cuarto eléctrico"),
         ],
         "resultados": [
             ("112.5 kVA", "transformador principal"),
             ("1200/900 kVA", "UPS Huawei integrado"),
             ("20 TR", "climatización InRow instalada"),
+        ],
+    },
+    {
+        "slug": {"es": "hub-delicias", "en": "delicias-hub"},
+        "nombre": "HUB DELICIAS",
+        "ubicacion": "Delicias - Chihuahua",
+        "foto": "arcondec-delicias-banner.jpg",
+        # ─────────────────────────────────────────────────────────────────
+        # Datos reales, de HUB_Delicias_ficha_proyecto.docx (fuente: Anexo C,
+        # Formato de cotización, 11-mar-2024).
+        #
+        # NOMBRE: la ficha lo titula "HUB Delicias"; la carpeta de obra dice
+        # "Delicias Chihuahua". Se usó el de la ficha, que sigue el patrón de
+        # los demás HUB. La plaza queda en la ubicación de la tarjeta.
+        #
+        # OMITIDOS A PROPÓSITO. La ficha marca estos valores en rojo con la
+        # nota "hay que confirmarlo antes de publicar", así que no se
+        # publican todavía. En cuanto se confirmen, se agregan y la plantilla
+        # los muestra sola:
+        #   · "superficie": "250 m²"      — no aparece en el presupuesto
+        #   · "duracion": "4 meses"       — no aparece en el presupuesto
+        #   · "entrega": "2024"           — la cotización es de marzo 2024,
+        #                                   pero no es la fecha de entrega
+        #   · "certificacion"             — sin dato
+        #
+        # FALTA EL RETO: la sección 3 de la ficha llegó vacía. Es la parte que
+        # más convence a un prospecto, así que conviene pedirla. Mientras, la
+        # plantilla omite el bloque y la página no queda con un hueco.
+        #
+        # NO PUBLICAR el monto del presupuesto: la ficha lo marca como
+        # información interna.
+        #
+        # FOTOGRAFÍAS: las 163 originales traían incrustadas las coordenadas
+        # GPS exactas del sitio. Se recortó el 20% inferior de cada una para
+        # eliminarlas antes de publicar.
+        # ─────────────────────────────────────────────────────────────────
+        "publicado": True,
+        "titulo": "HUB Delicias",
+        "subtitulo": (
+            "Ampliación de la capacidad eléctrica y de respaldo del HUB de "
+            "IZZI en Delicias, Chihuahua."
+        ),
+        "descripcion": [
+            "El proyecto consistió en la ampliación de la capacidad eléctrica y "
+            "de respaldo del HUB ubicado en Delicias, Chihuahua, con el "
+            "reemplazo del transformador y la planta de emergencia existentes "
+            "por equipos de mayor capacidad.",
+            "El alcance incluyó además la actualización de los sistemas de "
+            "corriente directa, UPS y climatización de precisión, junto con la "
+            "obra civil necesaria: cuarto de tableros, plancha para la máquina "
+            "de emergencia y acondicionamiento de una sala nueva.",
+        ],
+        # La destacada se recorta a una franja muy ancha, así que necesita un
+        # motivo que corra en horizontal. La barra de cobre con las derivaciones
+        # numeradas por rack lo hace de punta a punta y además se lee como
+        # centro de datos, no como obra genérica.
+        "imagen": "arcondec-delicias-barra-cobre.jpg",
+        "imagen_alt": (
+            "Barra de cobre con las derivaciones de alimentación numeradas por rack"
+        ),
+        "cliente": "IZZI",
+        "sector": "Telecomunicaciones",
+        "ubicacion_exacta": "Delicias, Chihuahua",
+        "tipo_obra": "Ampliación y remodelación",
+        "capacidad": (
+            "225 kVA (transformador) · 175 kW / 218 kVA (planta de emergencia)"
+        ),
+        "solucion": [
+            ("Media tensión / subestación",
+             "Conexión en media tensión y montaje de transformador tipo "
+             "pedestal de 225 kVA, con apartarrayos, cortacircuitos fusibles y "
+             "base de medición."),
+            ("Corriente directa",
+             "Sistema de inversores de seis módulos de 2.5 kVA cada uno y "
+             "tableros generales de rectificadores y UPS de 225 A."),
+            ("Planta de emergencia",
+             "Planta automática de 175 kW / 218 kVA con caseta acústica, "
+             "tablero de transferencia automática y tanque de combustible de "
+             "800 litros, además del retiro de la planta existente de 50 kW."),
+            ("HVAC",
+             "Instalación de equipos de climatización de precisión de 5 TR, "
+             "unidad InRow y mini split, con sistema de control en modo "
+             "team-work."),
+            ("Obra civil",
+             "Trabajos preliminares, plancha para la máquina de emergencia y "
+             "techumbre, acabados y señalización, construcción del cuarto de "
+             "tableros, cimentación de concreto armado, muros de block y losa "
+             "maciza."),
+            ("Área blanca / piso técnico",
+             "Acondicionamiento de la sala nueva con climatización de "
+             "precisión tipo InRow."),
+        ],
+        "alcances": [
+            "Transformador tipo pedestal de 225 kVA con conexión completa en media tensión",
+            "Tablero general de servicio normal tipo I-Line de 1200 A",
+            "Sistema de inversores de 15 kVA (6 módulos de 2.5 kVA) con puesta en marcha y capacitación",
+            "Tableros generales de rectificadores y UPS de 225 A",
+            "Planta de emergencia automática de 175 kW / 218 kVA con tablero de transferencia automática",
+            "Sistema de aire acondicionado de precisión de 5 TR con equipo InRow para la sala nueva",
+        ],
+        # El orden recorre la obra completa: primero la estructura, luego las
+        # maniobras de equipo, y de ahí hacia dentro hasta la sala terminada.
+        "galeria": [
+            ("arcondec-delicias-losa.jpg",
+             "Armado de la losa de concreto del cuarto de tableros"),
+            ("arcondec-delicias-maniobra.jpg",
+             "Maniobra con grúa para el montaje de equipo en sitio"),
+            ("arcondec-delicias-tableros.jpg",
+             "Tableros generales de servicio normal y de emergencia instalados"),
+            ("arcondec-delicias-rectificadores.jpg",
+             "Módulos rectificadores del sistema de corriente directa"),
+            ("arcondec-delicias-climatizacion.jpg",
+             "Equipo de climatización de precisión de la sala nueva"),
+            ("arcondec-delicias-canalizacion.jpg",
+             "Canalización y charola sobre la fila de racks del área blanca"),
+        ],
+        "resultados": [
+            ("225 kVA", "transformador instalado"),
+            ("175 kW", "planta de emergencia automática"),
+            ("15 kVA", "sistema de inversores"),
         ],
     },
     {

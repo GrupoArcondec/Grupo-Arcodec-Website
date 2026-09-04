@@ -502,22 +502,15 @@ footer.footer-area.footer-2-area { background: #132D67; }
     width: 100%;
     /* height:auto es obligatorio. La etiqueta lleva width/height reales para
        reservar el espacio y evitar saltos de layout, pero mientras el alto siga
-       siendo el del atributo el navegador ignora aspect-ratio por completo: la
-       foto salía a ~1.44:1 recortada por los lados en lugar de la franja ancha.
+       siendo el del atributo el navegador ignora aspect-ratio por completo.
        aspect-ratio solo manda cuando el alto es auto. */
     height: auto;
-    aspect-ratio: 6 / 1;
+    /* 3:2 en todos los anchos. Se probó una franja panorámica de 6:1 y quedaba
+       demasiado baja: la foto se leía como un adorno y no como parte del caso.
+       Al ser una proporción cercana a la de una cámara, no hace falta cambiarla
+       por tamaño de pantalla; se escala sola sin volverse una rendija. */
+    aspect-ratio: 3 / 2;
     object-fit: cover;
-}
-/* Una proporción fija no sirve para todos los anchos: 6:1 se ve bien en una
-   columna de 750px (125px de alto) pero en un celular de 340px queda en 57px
-   —una rendija donde no se distingue nada—. La foto se va haciendo más alta
-   conforme la pantalla se angosta, para que siga mostrando el proyecto. */
-@media (max-width: 991px) {
-    .arc-case-figure img { aspect-ratio: 3 / 1; }
-}
-@media (max-width: 575px) {
-    .arc-case-figure img { aspect-ratio: 16 / 9; }
 }
 /* Los encabezados intermedios necesitan más aire arriba que abajo: así se
    leen como el inicio de un bloque y no como un rótulo suelto entre párrafos. */
