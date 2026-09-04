@@ -436,6 +436,17 @@ footer.footer-area.footer-2-area { background: #132D67; }
     transition: transform .5s ease;
 }
 .arc-project:hover .arc-project-thumb img { transform: scale(1.06); }
+/* Los proyectos que todavía no tienen página se muestran en gris. Siguen
+   contando el portafolio completo, pero de un vistazo se distingue cuáles se
+   pueden abrir sin necesidad de pasar el mouse por encima. En cuanto uno se
+   marca como publicado recupera el color solo, porque la regla depende de
+   `.is-link`, que ya distingue tarjeta enlazada de tarjeta simple.
+   Aquí sí conviene `filter`: el objetivo es apagar la foto entera, incluido el
+   logo ARC incrustado —al revés que el velo azul del hover, que debe respetarlo. */
+.arc-project:not(.is-link) .arc-project-thumb img {
+    filter: grayscale(1);
+    opacity: .78;
+}
 .arc-project-caption { padding: 22px 25px 25px; }
 .arc-project-caption .title { color: #132D67; margin-bottom: 4px; }
 .arc-project-caption span { color: #33415C; font-size: 15px; }
