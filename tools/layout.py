@@ -31,7 +31,7 @@ from content import (
 # Las 28 rutas de este sitio devuelven 404 alli, asi que todos los canonical y
 # hreflang señalaban a paginas inexistentes de otro dominio: Google habria
 # descartado el sitio entero. Ahora apunta al despliegue real.
-BASE_URL = "https://grupo-arcondec.vercel.app"
+BASE_URL = "https://grupo-arcondec-website.vercel.app"
 
 # --------------------------------------------------------------------------
 # Mapa de rutas: clave -> URL en cada idioma.
