@@ -1926,17 +1926,9 @@ HOME_LINK_MAP = {
         "https://arcondec.mx/Servicios/proyectos-eléctricos-integrales.aspx",
         "https://arcondec.mx/EN/Services/PROYE.aspx",
     ],
-    "srv-estel": [
-        "https://arcondec.mx/Servicios/estudios-eléctricos-especializados.aspx",
-        "https://arcondec.mx/EN/Services/ESTEL.aspx",
-    ],
     "srv-corac": [
         "https://arcondec.mx/Servicios/soluciones-en-corriente-directa-dc.aspx",
         "https://arcondec.mx/EN/Services/CORAC.aspx",
-    ],
-    "srv-gespr": [
-        "https://arcondec.mx/Servicios/gestión-integral-de-proyectos-eléctricos.aspx",
-        "https://arcondec.mx/EN/Services/GESPR.aspx",
     ],
     "srv-cosdc": [
         "https://arcondec.mx/Servicios/construcción-de-data-center.aspx",
@@ -1945,10 +1937,6 @@ HOME_LINK_MAP = {
     "srv-civdc": [
         "https://arcondec.mx/Servicios/ingeniería-civil-para-data-center.aspx",
         "https://arcondec.mx/EN/Services/CIVDC.aspx",
-    ],
-    "srv-ingdc": [
-        "https://arcondec.mx/Servicios/servicios-de-ingeniería-integral.aspx",
-        "https://arcondec.mx/EN/Services/INGDC.aspx",
     ],
 }
 
@@ -2011,14 +1999,14 @@ def render_404():
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <meta name="theme-color" content="#1F439B">
+    <meta name="theme-color" content="#1D4598">
     <title>Página no encontrada | Grupo Arcondec</title>
     <link rel="shortcut icon" href="/assets/images/arcondec/brand/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/assets/css/default.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/arcondec.css">
     <style>
-        .arc-404 { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; background: #1F439B; }
+        .arc-404 { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; background: #1D4598; }
         .arc-404 img { width: 150px; margin-bottom: 40px; }
         .arc-404 h1 { color: #fff; font-size: 34px; margin-bottom: 12px; }
         .arc-404 p { color: rgba(255, 255, 255, .82); font-size: 17px; max-width: 480px; margin: 0 auto 8px; }

@@ -130,6 +130,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.vercel.app/en/services/alternating-current-solutions.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/soluciones-corriente-alterna-ca.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/alternating-current-solutions.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/soluciones-corriente-alterna-ca.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.vercel.app/en/services/civil-engineering-data-center.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/ingenieria-civil-data-center.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/civil-engineering-data-center.html"/>
@@ -162,26 +170,10 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arcondec.vercel.app/en/services/electrical-studies.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/estudios-electricos-especializados.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/electrical-studies.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/estudios-electricos-especializados.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arcondec.vercel.app/en/services/engineering-services.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/servicios-ingenieria-integral.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/engineering-services.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/servicios-ingenieria-integral.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arcondec.vercel.app/en/services/project-management.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/project-management.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html"/>
+    <loc>https://arcondec.vercel.app/en/services/grounding-system-design.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/diseno-sistemas-de-tierras.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/grounding-system-design.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/diseno-sistemas-de-tierras.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -282,18 +274,10 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arcondec.vercel.app/servicios/estudios-electricos-especializados.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/estudios-electricos-especializados.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/electrical-studies.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/estudios-electricos-especializados.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/project-management.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/gestion-integral-proyectos-electricos.html"/>
+    <loc>https://arcondec.vercel.app/servicios/diseno-sistemas-de-tierras.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/diseno-sistemas-de-tierras.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/grounding-system-design.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/diseno-sistemas-de-tierras.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -314,10 +298,10 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arcondec.vercel.app/servicios/servicios-ingenieria-integral.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/servicios-ingenieria-integral.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/engineering-services.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/servicios-ingenieria-integral.html"/>
+    <loc>https://arcondec.vercel.app/servicios/soluciones-corriente-alterna-ca.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/soluciones-corriente-alterna-ca.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/alternating-current-solutions.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/soluciones-corriente-alterna-ca.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

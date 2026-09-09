@@ -4,7 +4,7 @@
  * para que una actualizacion del template no pise estos cambios.
  * Compartido por todas las paginas (ES y EN).
  *
- * Paleta oficial: naranja #FFBB00 / #F7931E · azul marino #1F439B / #132D67
+ * Paleta oficial: naranja #FFBB00 / #F7931E · azul marino #1D4598 / #132D67
  */
 
 /* --- Texto visible mientras carga la tipografía -------------------------
@@ -171,7 +171,7 @@
 }
 
 /* ===== Piel de marca Arcondec — colores oficiales de arcondec.mx ===== */
-/* Naranja #FFBB00 / #F7931E (acento y botones) · Azul marino #1F439B / #132D67 (fondos) */
+/* Naranja #FFBB00 / #F7931E (acento y botones) · Azul marino #1D4598 / #132D67 (fondos) */
 .main-btn { background-color: #FFBB00; border-color: #FFBB00; color: #132D67; transition: background-color .2s ease, border-color .2s ease, transform .15s ease; }
 .main-btn:hover { background-color: #E5A800; border-color: #E5A800; color: #132D67; }
 .main-btn:active { transform: scale(0.97); }
@@ -179,11 +179,11 @@
 .main-btn.main-btn-3:hover { background: #E5A800; color: #132D67; }
 .hero-2-content.hero-11-content ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
 .hero-2-content.hero-11-content ul li a:hover { background: #E5A800; border-color: #E5A800; color: #132D67; }
-.hero-2-content.hero-11-content ul li a.main-btn-2 { background: #1F439B; border-color: #1F439B; color: #fff; }
+.hero-2-content.hero-11-content ul li a.main-btn-2 { background: #1D4598; border-color: #1D4598; color: #fff; }
 .hero-2-content.hero-11-content ul li a.main-btn-2:hover { background: #132D67; border-color: #132D67; color: #fff; }
-/* Header en el azul oficial del logo (#1F439B) */
-.header-2-area .header-top { background: #132D67; }
-.header-area.header-2-area .header-nav.sticky { background-color: #1F439B; }
+/* Header en el azul oficial del logo (#1D4598) */
+.header-2-area .header-top { background: #1D4598; }
+.header-area.header-2-area .header-nav.sticky { background-color: #1D4598; }
 /* Logo oficial (wordmark blanco + ícono naranja). El del template es más
    pequeño de lo que pide una marca con wordmark largo; 195px lo hace legible sin
    comerse el nav —queda holgura de sobra hasta el primer ítem del menú—. */
@@ -193,20 +193,20 @@
 }
 .footer-2-top .footer-logo a img { width: 215px; height: auto; }
 /* Fondos del footer en el azul oficial */
-.footer-2-area .footer-2-top { background: #1F439B; }
+.footer-2-area .footer-2-top { background: #1D4598; }
 footer.footer-area.footer-2-area { background: #132D67; }
 .header-2-area.header-11-area .header-top .sicial ul li a:hover { color: #FFBB00; }
 .header-nav .navigation .navbar .navbar-nav .nav-item a:hover { color: #FFBB00; }
 .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu li a:hover { color: #F7931E; }
 /* Tarjetas del carrusel de servicios: ícono temático de cada servicio en el círculo del template */
 .service-2-item.service-11-item .icon { background: rgba(255, 187, 0, 0.14); }
-.service-2-item.service-11-item .icon i { font-size: 38px; line-height: 90px; color: #1F439B; }
+.service-2-item.service-11-item .icon i { font-size: 38px; line-height: 90px; color: #1D4598; }
 /* Fondo de la sección de servicios: foto industrial oficial con overlay azul de marca */
 .service-2-area.service-11-area .section__bg { background-image: linear-gradient(rgba(19, 45, 103, 0.88), rgba(19, 45, 103, 0.88)), url(../images/arcondec/secciones/servicios-bg-2.jpg); }
 /* Tabs de cobertura */
 .case-tab-btn.case-tab-btn-11 .nav .nav-link span::before { background: #FFBB00; }
-.case-tab-btn.case-tab-btn-11 .nav .nav-link.active { background: #1F439B; }
-/* Franja CTA. Iba en el mismo #1F439B que la franja superior del pie, justo
+.case-tab-btn.case-tab-btn-11 .nav .nav-link.active { background: #1D4598; }
+/* Franja CTA. Iba en el mismo #1D4598 que la franja superior del pie, justo
    debajo, y las dos se leían como un único bloque azul de 500px. En azul marino
    el cierre de página queda escalonado: contenido claro → CTA oscuro → pie azul.
    El filo superior en el degradado de marca marca dónde empieza el llamado. */
@@ -222,17 +222,17 @@ footer.footer-area.footer-2-area { background: #132D67; }
 }
 .subscribe-form.subscribe-11-form ul li a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
 /* Bloque del testimonial */
-.testimonial-9-active .testimonial-11-thumb::before { background: #1F439B; }
+.testimonial-9-active .testimonial-11-thumb::before { background: #1D4598; }
 /* Overlay de las tarjetas Data Center */
-.team-2-item.team-12-item .team-overlay { background: linear-gradient(rgba(255, 187, 0, 0.25) 0%, #1F439B 100%); }
+.team-2-item.team-12-item .team-overlay { background: linear-gradient(rgba(255, 187, 0, 0.25) 0%, #1D4598 100%); }
 /* Caja "30+ Años" y caja de fecha con el degradado naranja de la marca */
 .about-2-thumb .thumb-2 .box { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
 .article-2-item .article-content .date .item { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
 .article-2-item .article-content .date .item .title, .article-2-item .article-content .date .item span { color: #132D67; }
-.article-2-item .article-content > a .icon::before { background: #1F439B; }
+.article-2-item .article-content > a .icon::before { background: #1D4598; }
 .article-2-item .article-content .title a:hover { color: #8A6400; }
 /* Newsletter del footer */
-.footer-newsletter-item.footer-newsletter-item-11 { background: #1F439B; }
+.footer-newsletter-item.footer-newsletter-item-11 { background: #1D4598; }
 /* Botón subir y enlaces de acento */
 .back-to-top.back-to-top-11 { background: #FFBB00; color: #132D67; }
 .footer-copyright p a { color: #FFBB00; }
@@ -240,7 +240,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
 .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-btn a:hover { background: transparent; border-color: #FFBB00; color: #FFBB00; }
 @media (max-width: 991px) {
-    .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-collapse { background: #1F439B; }
+    .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-collapse { background: #1D4598; }
 }
 .header-2-area.header-11-area .header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu > li:hover > a { color: #F7931E; }
 .hero-play-11 a { color: #F7931E; }
@@ -250,18 +250,18 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .about-2-content.about-11-content a.main-btn-3 { background: #FFBB00; border-color: #FFBB00; color: #132D67; }
 .about-2-content.about-11-content a.main-btn-3:hover { background: #E5A800; color: #132D67; }
 .about-2-thumb.about-11-thumb .thumb-2 .box { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
-.service-2-item.service-11-item::before { background: linear-gradient(rgba(255, 187, 0, 0.16) 0%, #1F439B 100%); }
+.service-2-item.service-11-item::before { background: linear-gradient(rgba(255, 187, 0, 0.16) 0%, #1D4598 100%); }
 .service-11-active .slick-arrow:hover { background: #FFBB00; color: #132D67; }
 .article-11-item .article-content .date .item { background: linear-gradient(330deg, #F7931E 0%, #FFBB00 80%); }
-.article-11-item .article-content > a .icon::before { background: #1F439B; }
+.article-11-item .article-content > a .icon::before { background: #1D4598; }
 .footer-item .footer-list.footer-list-11 ul li a:hover { color: #FFBB00; }
 /* Botones de redes del pie: el template los pinta en gris #383833, el único gris
    de toda la página. Van en el azul de marca con un filo blanco tenue (ícono
-   blanco sobre #1F439B: 9.0:1). El relleno amarillo del hover ya existía, solo
+   blanco sobre #1D4598: 9.0:1). El relleno amarillo del hover ya existía, solo
    faltaba bajar el ícono a azul marino para que se lea sobre el ámbar: #132D67
    sobre #FFBB00 da 7.7:1, mientras que el blanco que había daba 1.7:1. */
 .footer-2-area .footer-copyright ul li a {
-    background: #1F439B;
+    background: #1D4598;
     border: 1px solid rgba(255, 255, 255, .2);
     line-height: 46px;
     transition: color .3s ease-out 0s;
@@ -332,7 +332,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
 
 /* --- Banda de llamada a la acción --- */
 .arc-cta {
-    background: linear-gradient(120deg, #1F439B 0%, #132D67 100%);
+    background: linear-gradient(120deg, #1D4598 0%, #132D67 100%);
     border-radius: 15px;
     padding: 55px 50px;
     color: #fff;
@@ -362,8 +362,8 @@ footer.footer-area.footer-2-area { background: #132D67; }
     transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .15s ease;
 }
 .arc-links ul li a:hover {
-    background: #1F439B;
-    border-color: #1F439B;
+    background: #1D4598;
+    border-color: #1D4598;
     color: #fff;
 }
 .arc-links ul li a:active { transform: scale(0.97); }
@@ -421,7 +421,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
     content: "";
     position: absolute;
     inset: 0;
-    background: #1F439B;
+    background: #1D4598;
     mix-blend-mode: multiply;
     opacity: 0;
     transition: opacity .35s ease;
@@ -460,7 +460,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
     text-decoration: none;
     color: inherit;
 }
-.arc-project.is-link:hover .arc-project-caption .title { color: #1F439B; }
+.arc-project.is-link:hover .arc-project-caption .title { color: #1D4598; }
 
 /* ==========================================================================
    PÁGINA DE DETALLE DE PROYECTO
@@ -602,7 +602,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
     top: 8px;
     width: 8px;
     height: 8px;
-    background: #1F439B;
+    background: #1D4598;
     border-radius: 2px;
 }
 
@@ -617,7 +617,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
     font-size: 40px;
     font-weight: 700;
     line-height: 1.1;
-    color: #1F439B;
+    color: #1D4598;
 }
 .arc-result-label {
     display: block;
@@ -671,7 +671,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-prevnext-arrow {
     font-size: 22px;
     line-height: 1;
-    color: #1F439B;
+    color: #1D4598;
     flex: none;
 }
 .arc-prevnext-label {
@@ -688,7 +688,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
     font-size: 16px;
     line-height: 1.3;
 }
-.arc-prevnext-link:hover .arc-prevnext-name { color: #1F439B; }
+.arc-prevnext-link:hover .arc-prevnext-name { color: #1D4598; }
 /* El enlace al índice es la tercera pestaña, no un texto suelto: con las tres
    con la misma caja, la fila se lee como un solo control de navegación. Va en
    azul de marca porque es la salida del recorrido, no un paso más dentro de él. */
@@ -698,8 +698,8 @@ footer.footer-area.footer-2-area { background: #132D67; }
     grid-column: 2;
     justify-self: center;
     padding: 30px 34px;
-    background: #1F439B;
-    border: 1px solid #1F439B;
+    background: #1D4598;
+    border: 1px solid #1D4598;
     border-radius: 15px;
     color: #fff;
     font-weight: 600;
@@ -1072,7 +1072,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .arc-panel ul li { margin-bottom: 10px; color: #33415C; }
 .arc-panel ul li:last-child { margin-bottom: 0; }
 .arc-panel ul li span { color: #132D67; font-weight: 500; }
-.arc-panel a { color: #1F439B; }
+.arc-panel a { color: #1D4598; }
 .arc-panel a:hover { color: #8A6400; text-decoration: underline; }
 
 /* --- Acordeón de vacantes (Vacantes) ---------------------------------------
@@ -1125,7 +1125,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
     position: absolute;
     top: 50%;
     left: 50%;
-    background: #1F439B;
+    background: #1D4598;
     transform: translate(-50%, -50%);
     transition: transform .2s ease;
 }
@@ -1246,6 +1246,31 @@ footer.footer-area.footer-2-area { background: #132D67; }
     }
 }
 
+/* Rótulos de área dentro del desplegable de Servicios.
+   Van como <li> sin <a> porque las áreas no tienen página: no hay destino que
+   ofrecer y un enlace muerto confunde, sobre todo con lector de pantalla.
+   Se distinguen del resto por versalitas y color apagado, no por tamaño: el
+   protagonista del menú sigue siendo el servicio, no el grupo. */
+.header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu > li.arc-sub-group {
+    padding: 14px 20px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #8A94A8;
+    cursor: default;
+    pointer-events: none;
+}
+/* El primero no necesita el aire de arriba: ya lo pone la caja del submenú. */
+.header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu > li.arc-sub-group:first-child {
+    padding-top: 4px;
+}
+/* Los servicios se recorren dentro de su área: la sangría hace visible a cuál
+   pertenece cada uno sin necesidad de líneas divisorias. */
+.header-nav .navigation .navbar .navbar-nav .nav-item .sub-menu > li:not(.arc-sub-group) > a {
+    padding-left: 30px;
+}
+
 /* La animación fadeInRight de WOW desplaza el bloque de imágenes ~100px a la
    derecha mientras dura (1s). El template original hace exactamente lo mismo.
    Se contiene EN LA PROPIA SECCIÓN, no en html/body: así no se crea un
@@ -1267,7 +1292,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
 
 /* Relleno del hover con el azul de marca (el demo trae #ff564f → #fad029) */
 .service-2-item::before {
-    background: linear-gradient(330deg, #1F439B 0%, #132D67 80%);
+    background: linear-gradient(330deg, #1D4598 0%, #132D67 80%);
 }
 
 /* Círculo del icono con el ámbar de marca */
@@ -1277,7 +1302,7 @@ footer.footer-area.footer-2-area { background: #132D67; }
 .service-2-item .icon i {
     font-size: 34px;
     line-height: 90px;
-    color: #1F439B;
+    color: #1D4598;
     transition: color .4s ease-out 0s;
 }
 .service-2-item:hover .icon i {
@@ -1298,7 +1323,7 @@ a.service-2-item:hover { text-decoration: none; }
     display: inline-block;
     margin-top: 18px;
     font-weight: 600;
-    color: #1F439B;
+    color: #1D4598;
     transition: color .4s ease-out 0s;
 }
 .service-more i { margin-left: 6px; }
@@ -1366,7 +1391,7 @@ a.service-2-item.arc-spec .title { margin-bottom: 0; }
 .subscribe-form.subscribe-11-form ul li a.main-btn-2:hover {
     background: #fff;
     border-color: #fff;
-    color: #1F439B;
+    color: #1D4598;
 }
 
 /* La galería de obra necesita su propio encabezado para no quedar suelta */
@@ -1681,7 +1706,7 @@ button.back-to-top {
 .subscribe-11-area a:focus-visible,
 .arc-cta a:focus-visible,
 .whatsapp-float:focus-visible {
-    outline-color: #FFBB00;               /* 5.29 sobre #1F439B · 7.73 sobre ámbar */
+    outline-color: #FFBB00;               /* 5.29 sobre #1D4598 · 7.73 sobre ámbar */
 }
 
 /* El CTA de la franja de compromiso viraba a blanco con texto índigo del demo */
@@ -1934,7 +1959,7 @@ a.service-2-item:hover { color: #fff; }
     text-align: center;
     font-size: 34px;
     line-height: 1;
-    color: #1F439B;
+    color: #1D4598;
 }
 
 /* El template esconde la tercera tarjeta entre 768 y 991px para no dejar un
@@ -2309,7 +2334,7 @@ video.arc-hero-media {
     font-size: 28px;
     font-weight: 700;
     line-height: 1;
-    color: #1F439B;
+    color: #1D4598;
 }
 @media (max-width: 767px) {
     .arc-about-story { padding: 58px 0 52px; }
@@ -2355,7 +2380,7 @@ video.arc-hero-media {
    el cierre de la idea. No son enlaces y no lo parecen: los botones del sitio
    son amarillos o de contorno, nunca pastillas azules llenas. */
 .arc-distinct-chips li {
-    background: #1F439B;
+    background: #1D4598;
     color: #fff;
     font-size: 17px;
     font-weight: 600;
@@ -2493,7 +2518,7 @@ video.arc-hero-media {
     font-size: 15px;
     font-weight: 700;
     letter-spacing: .38em;
-    color: #1F439B;
+    color: #1D4598;
     background: #EEF2FA;
     border-radius: 999px;
     padding: 8px 12px 8px 20px;
@@ -2536,7 +2561,7 @@ video.arc-hero-media {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #1F439B;
+    background: #1D4598;
     color: #fff;
     border-radius: 16px;
     font-family: "space_grotesk";

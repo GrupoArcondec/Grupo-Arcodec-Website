@@ -20,6 +20,7 @@ from content import (
     LOGIN_URL,
     PRIVACY_PDF,
     SERVICES,
+    SERVICE_GROUPS,
     SOCIAL,
     WHATSAPP,
 )
@@ -95,8 +96,6 @@ UI = {
         "home": "Inicio",
         "advisor": "Habla con un asesor",
         "foot_company": "Compañía",
-        "foot_ie": "Ingeniería eléctrica",
-        "foot_dc": "Centro de datos",
         "news_title": "Suscríbete a nuestro boletín para recibir novedades.",
         "news_ph": "Escribe tu correo…",
         "news_btn": "Únete",
@@ -120,8 +119,6 @@ UI = {
         "home": "Home",
         "advisor": "Speak with an advisor",
         "foot_company": "Company",
-        "foot_ie": "Electrical Engineering",
-        "foot_dc": "Data Center",
         "news_title": "Subscribe to our newsletter to receive updates.",
         "news_ph": "Enter email…",
         "news_btn": "Join us",
@@ -260,7 +257,7 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
     <meta name="keywords" content="{kw}">
     <meta name="author" content="Grupo Arcondec S.A. de C.V.">
     <meta name="robots" content="{robots}">
-    <meta name="theme-color" content="#1F439B">
+    <meta name="theme-color" content="#1D4598">
 
     <title>{title}</title>
 
@@ -327,11 +324,30 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
 def header(*, lang, key):
     t = UI[lang]
     other = "en" if lang == "es" else "es"
-    sub = "\n".join(
-        '                                                <li><a href="%s"%s>%s</a></li>'
-        % (url("srv-" + s["key"], lang), _active_attr(key, "srv-" + s["key"]), e(s[lang]["nav"]))
-        for s in SERVICES
-    )
+    # El desplegable va en dos niveles: el nombre del área como rótulo y sus
+    # servicios debajo. Se arma como una sola lista con los rótulos intercalados
+    # en lugar de anidar otro <ul>: el JS del template abre y cierra `.sub-menu`
+    # en móvil, y un submenú dentro de otro lo dejaría a medias. Los rótulos no
+    # son enlaces —las áreas no tienen página— así que van como <li> sin <a>,
+    # que es además lo correcto para un lector de pantalla: no anuncia un
+    # destino que no existe.
+    partes = []
+    for gid, etiquetas in SERVICE_GROUPS:
+        del_grupo = [s for s in SERVICES if s["group"] == gid]
+        if not del_grupo:
+            continue
+        partes.append(
+            '                                                <li class="arc-sub-group" role="presentation">%s</li>'
+            % e(etiquetas[lang])
+        )
+        partes.extend(
+            '                                                <li><a href="%s"%s>%s</a></li>'
+            % (url("srv-" + s["key"], lang),
+               _active_attr(key, "srv-" + s["key"]),
+               e(s[lang]["nav"]))
+            for s in del_grupo
+        )
+    sub = "\n".join(partes)
     social = "\n".join(
         '                                    <li><a href="%s" target="_blank" rel="noopener" aria-label="%s"><i class="fab fa-%s"></i></a></li>'
         % (u, n, i)
@@ -519,8 +535,12 @@ def page_banner(*, lang, title, crumb, bg=None, parent=None):
 # --------------------------------------------------------------------------
 def footer(*, lang, key, extra_scripts=()):
     t = UI[lang]
-    ie = [s for s in SERVICES if s["group"] == "ie"]
-    dc = [s for s in SERVICES if s["group"] == "dc"]
+    # Las dos columnas de servicios del pie salen de SERVICE_GROUPS, la misma
+    # fuente que el desplegable de la cabecera: así el pie no se queda con la
+    # agrupación vieja cuando cambie el menú. El orden también es el mismo.
+    _g1, _g2 = SERVICE_GROUPS
+    grupo1 = [s for s in SERVICES if s["group"] == _g1[0]]
+    grupo2 = [s for s in SERVICES if s["group"] == _g2[0]]
 
     def links(items):
         return "\n".join(
@@ -695,10 +715,10 @@ def footer(*, lang, key, extra_scripts=()):
         company=company,
         login_url=LOGIN_URL,
         login=e(t["login"]),
-        ie_title=e(t["foot_ie"]),
-        ie_links=links(ie),
-        dc_title=e(t["foot_dc"]),
-        dc_links=links(dc),
+        ie_title=e(_g1[1][lang]),
+        ie_links=links(grupo1),
+        dc_title=e(_g2[1][lang]),
+        dc_links=links(grupo2),
         news_title=e(t["news_title"]),
         news_ph=e(t["news_ph"]),
         news_btn=e(t["news_btn"]),
