@@ -2307,12 +2307,12 @@ video.arc-hero-media {
        aspect-ratio mande: con el alto del atributo puesto, el navegador lo
        ignora (mismo caso que la destacada de las páginas de proyecto). */
     height: auto;
-    aspect-ratio: 1 / 1;
+    /* 5:4. Más alta que 4:3, que se veía achatada, pero sin llegar al cuadrado:
+       en cuadrado el recorte se comía a dos personas de cada lado de la foto
+       del equipo, que es justo lo que esa imagen viene a mostrar. */
+    aspect-ratio: 5 / 4;
     object-fit: cover;
-    /* El motivo de las dos fotos cae por debajo del centro —el técnico en una,
-       la cuadrilla en la otra—, así que el recorte se corre hacia abajo para
-       no dejarlos cortados a la altura del pecho. */
-    object-position: 50% 62%;
+    object-position: center;
     border-radius: 15px;
 }
 @media (max-width: 767px) {

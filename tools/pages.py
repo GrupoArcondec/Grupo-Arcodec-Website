@@ -84,8 +84,8 @@ ABOUT = {
             ("A", "ctuamos para hacer que las cosas sucedan"),
             ("S", "er honestos nos hace rentables a todos"),
         ],
-        "alt_historia": "Trabajos de ingeniería eléctrica de Grupo Arcondec",
-        "alt_equipo": "Dos técnicos de Grupo Arcondec trabajando en el armado de barras de un tablero de distribución",
+        "alt_equipo": "Cuadrilla de Grupo Arcondec ejecutando obra eléctrica en sitio",
+        "alt_historia": "Equipo de Grupo Arcondec frente a los tableros generales de un centro de datos",
         "years_label": "Años de experiencia",
     },
     "en": {
@@ -143,8 +143,8 @@ ABOUT = {
             "We act to make things happen",
             "Honesty makes us all more profitable",
         ],
-        "alt_historia": "Electrical engineering work by Grupo Arcondec",
-        "alt_equipo": "Two Grupo Arcondec technicians assembling the busbars of a distribution switchboard",
+        "alt_equipo": "Grupo Arcondec crew carrying out electrical works on site",
+        "alt_historia": "Grupo Arcondec team in front of the main switchboards of a data center",
         "years_label": "Years of experience",
     },
 }

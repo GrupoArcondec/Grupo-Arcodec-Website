@@ -566,7 +566,7 @@ def render_about(lang):
                 <div class="col-lg-6">
                     <div class="arc-story-media mt-30">
                         <div class="arc-story-frame">
-                            <img src="{img}/rh/historia-3.jpg" alt="{alt_historia}" {dims_historia}>
+                            <img src="{img}/rh/nosotros-equipo.jpg" alt="{alt_historia}" {dims_historia}>
                         </div>
                     </div>
                 </div>
@@ -585,7 +585,7 @@ def render_about(lang):
                 <div class="col-lg-6">
                     <div class="arc-story-media">
                         <div class="arc-story-frame">
-                            <img src="{img}/rh/equipo-arcondec.jpg" alt="{alt_equipo}" loading="lazy" {dims_equipo}>
+                            <img src="{img}/rh/nosotros-obra.jpg" alt="{alt_equipo}" loading="lazy" {dims_equipo}>
                         </div>
                     </div>
                 </div>
@@ -707,9 +707,9 @@ def render_about(lang):
         history=history,
         img=IMG,
         alt_historia=e(c["alt_historia"]),
-        dims_historia=dims("%s/rh/historia-3.jpg" % IMG),
+        dims_historia=dims("%s/rh/nosotros-equipo.jpg" % IMG),
         alt_equipo=e(c["alt_equipo"]),
-        dims_equipo=dims("%s/rh/equipo-arcondec.jpg" % IMG),
+        dims_equipo=dims("%s/rh/nosotros-obra.jpg" % IMG),
         purpose_title=e(c["purpose_title"]),
         purpose=e(c["purpose"]),
         vision_title=e(c["vision_title"]),
@@ -739,11 +739,11 @@ def render_about(lang):
             title=c["title"],
             description=c["meta"],
             keywords=c["keywords"],
-            og_image="%s/rh/historia-2.jpg" % IMG,
+            og_image="%s/rh/nosotros-banner.jpg" % IMG,
         )
         + body_open()
         + header(lang=lang, key=key)
-        + page_banner(lang=lang, title=c["h1"], crumb=c["eyebrow"], bg="%s/rh/historia-2.jpg" % IMG)
+        + page_banner(lang=lang, title=c["h1"], crumb=c["eyebrow"], bg="%s/rh/nosotros-banner.jpg" % IMG)
         + body
         + commitment_band(lang)
         # El contador de la cifra del BHAG es el mismo de Proyectos: cuenta y
