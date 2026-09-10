@@ -640,8 +640,11 @@
             slidesToShow: 5,
             slidesToScroll: 1,
             autoplay: true,
-            autoplaySpeed: 3000,
-            speed: 700,
+            // Ritmo de la cinta: 1.6s de pausa entre logos y 500ms de
+            // desplazamiento. Antes eran 3s y 700ms, y la cinta se sentía
+            // parada. Bajar más la pausa vuelve difícil leer cada marca.
+            autoplaySpeed: 1600,
+            speed: 500,
             infinite: true,
             arrows: false,
             dots: false,
@@ -1209,6 +1212,148 @@
         }
     }
 
+    /* ==========================================================================
+       Mapa de presencia: resaltado recíproco estado ↔ tarjeta
+       --------------------------------------------------------------------------
+       Al señalar una tarjeta se enciende su estado en el mapa, y al señalar un
+       estado se enciende su tarjeta. Es lo único que una imagen no podía hacer y
+       lo que vuelve el mapa consultable en lugar de decorativo.
+
+       Va por delegación desde el contenedor: son 32 trazos más 12 tarjetas y
+       poner un escucha en cada uno no aporta nada. `focusin` acompaña a
+       `mouseover` para que también funcione recorriendo con el teclado.
+       ========================================================================== */
+    function mapaPresencia() {
+        var mapa = document.querySelector('.arc-mapa');
+        if (!mapa) { return; }
+
+        /* --- Entrada: el país se arma de noroeste a sureste -----------------
+           El escalonado sigue la longitud real de cada estado, no el orden del
+           DOM: la mirada recorre el país como se lee un mapa y el gesto dice
+           "cobertura nacional" en lugar de ser un fundido cualquiera.
+
+           Solo se anima opacidad y transform, que van por GPU. Animar `fill`
+           en treinta y dos trazos —el efecto obvio, pintar los estados uno a
+           uno— es repintado puro y hunde los cuadros por segundo en cuanto el
+           mapa ocupa media pantalla.
+
+           `clearProps` al final devuelve los nodos a su estado del CSS: sin
+           eso el resaltado al pasar el mouse pelearía contra estilos en línea
+           que GSAP deja puestos. */
+        function porLongitud(sel) {
+            var nodos = Array.prototype.slice.call(mapa.querySelectorAll(sel));
+            return nodos.sort(function (a, b) {
+                try { return a.getBBox().x - b.getBBox().x; } catch (err) { return 0; }
+            });
+        }
+
+        var estados = porLongitud('.arc-mapa-estado');
+        var lienzo = mapa.querySelector('.arc-mapa-lienzo');
+        var tarjetas = mapa.querySelectorAll('.arc-mapa-card');
+
+        /* El país llega desarmado y se arma con el scroll.
+           Cada estado parte desplazado hacia afuera —en la dirección que va del
+           centro del mapa a su propia posición— girado y encogido, y vuelve a su
+           sitio conforme avanza la barra. Al salir cada pieza por el lado que le
+           corresponde, el gesto se lee como un rompecabezas cerrándose y no como
+           un montón de formas entrando al azar.
+
+           `scrub` ata la línea de tiempo al scroll: se arma al ritmo que marque
+           el visitante y se deshace si sube. El escalonado sigue la longitud, así
+           que el país se cierra de noroeste a sureste.
+
+           Solo transform y opacity, que van por GPU. */
+        if (estados.length) {
+            var caja = lienzo ? lienzo.getBoundingClientRect() : null;
+            var centro = { x: 450, y: 300 };   // centro del viewBox del mapa
+
+            var origenes = estados.map(function (nodo) {
+                var b;
+                try { b = nodo.getBBox(); } catch (err) { b = { x: 450, y: 300, width: 0, height: 0 }; }
+                var ex = b.x + b.width / 2 - centro.x;
+                var ey = b.y + b.height / 2 - centro.y;
+                var largo = Math.sqrt(ex * ex + ey * ey) || 1;
+                // Empuje proporcional a lo lejos que esté del centro, con un
+                // mínimo para que los estados centrales también se despeguen.
+                var empuje = 90 + largo * 0.55;
+                return {
+                    x: (ex / largo) * empuje,
+                    y: (ey / largo) * empuje,
+                    giro: (ex >= 0 ? 1 : -1) * (6 + (largo % 9))
+                };
+            });
+
+            var tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: mapa,
+                    start: 'top 95%',
+                    end: 'top 30%',
+                    scrub: 0.8
+                }
+            });
+
+            tl.from(estados, {
+                x: function (i) { return origenes[i].x; },
+                y: function (i) { return origenes[i].y; },
+                rotation: function (i) { return origenes[i].giro; },
+                scale: 0.55,
+                opacity: 0,
+                ease: 'power2.out',
+                duration: 0.6,
+                stagger: { each: 0.03, from: 'start' }
+            }, 0);
+        }
+
+        /* Las tarjetas llevan otro gesto: no se arman, se abren. Entran con un
+           rebote corto de escala en vez del desplazamiento del resto del sitio,
+           para que se lean como una capa distinta del mapa y no como su
+           continuación. Van sin `scrub` —son texto que se lee, y atarlas a la
+           barra las deja a medio aparecer mientras alguien intenta leerlas—. */
+        if (tarjetas.length) {
+            gsap.from(tarjetas, {
+                scale: 0.88,
+                opacity: 0,
+                duration: dur(0.5),
+                ease: 'back.out(1.6)',
+                stagger: dur(0.05),
+                clearProps: 'transform,opacity',
+                scrollTrigger: {
+                    trigger: mapa.querySelector('.arc-mapa-rejilla') || mapa,
+                    start: START,
+                    once: true
+                }
+            });
+        }
+
+        var marcados = [];
+
+        function limpiar() {
+            for (var i = 0; i < marcados.length; i++) {
+                marcados[i].classList.remove('is-marcado');
+            }
+            marcados = [];
+        }
+
+        function marcar(clave) {
+            limpiar();
+            if (!clave) { return; }
+            var nodos = mapa.querySelectorAll('[data-estado="' + clave + '"]');
+            for (var i = 0; i < nodos.length; i++) {
+                nodos[i].classList.add('is-marcado');
+                marcados.push(nodos[i]);
+            }
+        }
+
+        function claveDe(destino) {
+            var nodo = destino && destino.closest ? destino.closest('[data-estado]') : null;
+            return nodo ? nodo.getAttribute('data-estado') : null;
+        }
+
+        mapa.addEventListener('mouseover', function (ev) { marcar(claveDe(ev.target)); });
+        mapa.addEventListener('focusin', function (ev) { marcar(claveDe(ev.target)); });
+        mapa.addEventListener('mouseleave', limpiar);
+    }
+
     function safely(nombre, fn) {
         try {
             fn();
@@ -1229,6 +1374,7 @@
         safely('sloganStrip', sloganStrip);
         safely('aboutPhotoGrow', aboutPhotoGrow);
         safely('nosotros', nosotros);
+        safely('mapaPresencia', mapaPresencia);
         safely('revealBanner', revealBanner);
         safely('parallaxBackgrounds', parallaxBackgrounds);
         safely('heroSlides', heroSlides);

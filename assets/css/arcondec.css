@@ -2619,3 +2619,175 @@ video.arc-hero-media {
     .arc-values-list { grid-template-columns: 1fr; }
     .arc-value { min-height: 0; }
 }
+
+/* ==========================================================================
+   MAPA DE PRESENCIA NACIONAL (inicio)
+   --------------------------------------------------------------------------
+   Sustituye al JPG que había antes. Al ser SVG en línea + HTML, los colores
+   salen de esta hoja —así el mapa sigue la marca sin reexportar nada—, el
+   texto se traduce y se puede resaltar cada estado.
+
+   El mapa va arriba a todo lo ancho y las tarjetas debajo en rejilla. La
+   primera versión las puso en dos columnas laterales y el mapa quedaba en
+   630px: más de la mitad del ancho se iba en texto para un bloque cuyo
+   protagonista es el mapa. Abajo caben igual, con tipografía menor.
+   ========================================================================== */
+.arc-mapa { margin-top: 34px; }
+
+/* El mapa se sale del contenedor en pantallas anchas: es la pieza que debe
+   pesar y el contenedor de 1140px le queda corto. */
+.arc-mapa-lienzo {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+@media (min-width: 1400px) {
+    .arc-mapa-lienzo { max-width: 1240px; }
+}
+.arc-mapa-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* --- Estados -------------------------------------------------------------
+   Ninguno queda en gris: el mapa habla de cobertura nacional y medio país
+   apagado decía lo contrario. Los que tienen obra van en el azul de marca;
+   el resto, en un azul claro que los mantiene dentro del mismo lenguaje. */
+.arc-mapa-estado {
+    /* Para que el giro y la escala de la entrada ocurran alrededor del centro
+       de cada estado y no del origen del SVG, que los mandaría a la esquina. */
+    transform-box: fill-box;
+    transform-origin: center center;
+    fill: #AFC3E4;
+    stroke: #fff;
+    stroke-width: 0.9;
+    transition: fill .25s ease;
+}
+.arc-mapa-estado.is-fuerte { fill: #1D4598; }
+.arc-mapa-estado.is-marcado { fill: #FFBB00; }
+.arc-mapa-punto {
+    /* Para que el punto crezca desde su propio centro y no desde el origen del
+       SVG, que lo mandaría volando a la esquina. */
+    transform-box: fill-box;
+    transform-origin: center;
+    fill: #fff;
+    stroke: #132D67;
+    stroke-width: 2.2;
+    transition: r .25s ease;
+}
+.arc-mapa-punto.is-marcado { r: 8; fill: #FFBB00; }
+
+/* --- Rejilla de tarjetas -------------------------------------------------- */
+/* Columnas y no rejilla: con `grid` cada fila mide lo que la tarjeta más alta
+   de esa fila —Nuevo León tiene nueve renglones— y las vecinas quedaban con un
+   hueco blanco debajo esperando a la siguiente fila. En multicolumna las
+   tarjetas fluyen y rellenan el espacio, sin huecos. */
+.arc-mapa-rejilla {
+    column-count: 4;
+    column-gap: 16px;
+    margin-top: 38px;
+}
+.arc-mapa-card {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin-bottom: 16px;
+}
+.arc-mapa-card {
+    background: #fff;
+    border: 1px solid #E7EBF3;
+    border-radius: 12px;
+    padding: 14px 15px;
+    transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.arc-mapa-card.is-marcado {
+    border-color: #1D4598;
+    box-shadow: 0 12px 28px rgba(19, 45, 103, .12);
+    transform: translateY(-2px);
+}
+.arc-mapa-estado-nombre {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: #1D4598;
+    margin: 0 0 8px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #EEF2FA;
+}
+.arc-mapa-lista { list-style: none; margin: 0; padding: 0; }
+.arc-mapa-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 12.5px;
+    line-height: 1.32;
+    color: #33415C;
+}
+.arc-mapa-item strong { font-weight: 600; color: #132D67; }
+.arc-mapa-texto { display: block; }
+.arc-mapa-sub {
+    display: block;
+    font-size: 11.5px;
+    color: #8A94A8;
+    margin-top: 1px;
+}
+
+/* --- Marca de categoría --------------------------------------------------
+   Un cuadro de color por tipo de proyecto en lugar de un icono: son cinco
+   categorías repetidas 34 veces y con iconos el bloque se volvía ruido. */
+.arc-mapa-marca {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    margin-top: 4px;
+    background: #1D4598;
+}
+.is-datos   .arc-mapa-marca { background: #1D4598; }
+.is-telecom .arc-mapa-marca { background: #4A7BD8; }
+.is-energia .arc-mapa-marca { background: #16A085; }
+.is-hvac    .arc-mapa-marca { background: #3FA9C9; }
+.is-mt      .arc-mapa-marca { background: #FFBB00; }
+/* La sede es la única redonda: es un lugar, no un tipo de trabajo, y así se
+   distingue del resto sin depender del color. */
+.is-sede    .arc-mapa-marca {
+    background: #132D67;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2.5px rgba(19, 45, 103, .15);
+}
+
+/* --- Leyenda ------------------------------------------------------------- */
+.arc-mapa-leyenda {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 26px;
+    list-style: none;
+    margin: 30px 0 0;
+    padding: 18px 20px;
+    background: #F6F8FC;
+    border-radius: 12px;
+}
+.arc-mapa-leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #132D67;
+}
+.arc-mapa-leyenda-item .arc-mapa-marca { margin-top: 0; }
+
+@media (max-width: 1199px) {
+    .arc-mapa-rejilla { column-count: 3; }
+}
+@media (max-width: 767px) {
+    .arc-mapa-rejilla { column-count: 2; column-gap: 12px; }
+    .arc-mapa-card { margin-bottom: 12px; }
+}
+@media (max-width: 479px) {
+    .arc-mapa-rejilla { column-count: 1; }
+    .arc-mapa-leyenda { gap: 9px 16px; padding: 16px 14px; }
+}

@@ -22,6 +22,7 @@ from urllib.parse import quote
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 
 import pages as P  # noqa: E402
+import mapa_mexico as MAPA  # noqa: E402
 from content import (  # noqa: E402
     CONTACT,
     PRIVACY_PDF,
@@ -753,6 +754,136 @@ def render_about(lang):
             extra_scripts=("/assets/js/arcondec-counters.js",)
         )
     )
+
+
+# --------------------------------------------------------------------------
+# Mapa de presencia nacional (inicio)
+# --------------------------------------------------------------------------
+def render_mapa(lang):
+    """Mapa de cobertura como SVG con los estados y tarjetas HTML alrededor.
+
+    Antes era un JPG. Al armarlo con datos se gana todo lo que una imagen no
+    puede dar: se traduce, un buscador lee los 34 proyectos que lista, se
+    reacomoda en celular y toma los colores del sitio en vez de llevarlos
+    quemados. El SVG va en línea —no como <img>— porque solo así se puede
+    pintar cada estado por CSS y resaltarlo al pasar el mouse.
+
+    Las tarjetas se reparten en dos columnas según de qué lado del país cae su
+    estado, para que cada una quede cerca de la zona que describe.
+    """
+    c = P.MAPA_UI[lang]
+    presencia = dict(P.MAPA_PRESENCIA)
+
+    # --- el mapa ---------------------------------------------------------
+    # Los estados sin proyecto también se dibujan: sin el resto del país, las
+    # manchas de color no significan nada.
+    # El azul fuerte no lo decide "tener proyecto" sino MAPA_DESTACADOS: la
+    # sección habla de cobertura nacional, así que casi todo el país va marcado.
+    # `data-estado` es otra cosa: solo lo llevan los estados con tarjeta, porque
+    # es lo que engancha el resaltado recíproco al pasar el mouse.
+    trazos = []
+    for clave, est in MAPA.ESTADOS.items():
+        clases = "arc-mapa-estado"
+        if clave in P.MAPA_DESTACADOS:
+            clases += " is-fuerte"
+        trazos.append(
+            '                        <path class="%s" d="%s"%s>'
+            '<title>%s</title></path>'
+            % (clases,
+               est["d"],
+               ' data-estado="%s"' % clave if clave in presencia else "",
+               e(est[lang] if lang in est else est["es"]))
+        )
+
+    # Un punto por cada estado marcado, en un punto interior suyo. Antes solo lo
+    # llevaban las sedes; puestos en los veintiocho, el punto pasa a leerse como
+    # "aquí hay presencia" y el mapa se recorre por marcas y no por manchas de
+    # color, que a la distancia se confunden entre estados vecinos.
+    # `data-estado` solo va en los que tienen tarjeta: es lo que engancha el
+    # resaltado recíproco.
+    puntos = []
+    for clave in P.MAPA_DESTACADOS:
+        cx, cy = MAPA.ESTADOS[clave]["centro"]
+        puntos.append(
+            '                        <circle class="arc-mapa-punto" cx="%.1f" cy="%.1f" '
+            'r="4"%s></circle>'
+            % (cx, cy, ' data-estado="%s"' % clave if clave in presencia else "")
+        )
+
+    svg = """                <div class="arc-mapa-lienzo">
+                    <svg viewBox="%s" role="img" aria-label="%s" class="arc-mapa-svg">
+%s
+%s
+                    </svg>
+                </div>""" % (MAPA.VIEWBOX, e(c["alt"]),
+                             "\n".join(trazos), "\n".join(puntos))
+
+    # --- tarjetas por estado ---------------------------------------------
+    def tarjeta(clave, items):
+        est = MAPA.ESTADOS[clave]
+        filas = []
+        for cat, txt_es, txt_en, sub_es, sub_en in items:
+            txt = txt_es if lang == "es" else txt_en
+            sub = (sub_es if lang == "es" else sub_en)
+            filas.append(
+                '                            <li class="arc-mapa-item is-%s">'
+                '<span class="arc-mapa-marca" aria-hidden="true"></span>'
+                '<span class="arc-mapa-texto"><strong>%s</strong>%s</span></li>'
+                % (cat, e(txt),
+                   '<span class="arc-mapa-sub">%s</span>' % e(sub) if sub else "")
+            )
+        return """                    <article class="arc-mapa-card" data-estado="%s">
+                        <h3 class="arc-mapa-estado-nombre">%s</h3>
+                        <ul class="arc-mapa-lista">
+%s
+                        </ul>
+                    </article>""" % (clave, e(est[lang] if lang in est else est["es"]),
+                                     "\n".join(filas))
+
+    # Reparto por longitud: lo que cae al oeste del centro del mapa va a la
+    # izquierda; el resto, a la derecha. Así ninguna tarjeta queda del lado
+    # contrario al estado que describe.
+    # Las tarjetas van debajo del mapa, no a los lados. Con dos columnas
+    # laterales el mapa se quedaba en 630px de ancho —la mitad de la pantalla se
+    # iba en texto—; abajo y en rejilla, el mapa se lleva todo el ancho y las
+    # tarjetas caben igual con tipografía más pequeña.
+    # Se ordenan de oeste a este para que recorrer la rejilla siga el mapa.
+    ordenadas = sorted(P.MAPA_PRESENCIA,
+                       key=lambda par: MAPA.ESTADOS[par[0]]["centro"][0])
+
+    leyenda = "\n".join(
+        '                    <li class="arc-mapa-leyenda-item is-%s">'
+        '<span class="arc-mapa-marca" aria-hidden="true"></span>%s</li>'
+        % (cat, e(et[lang]))
+        for cat, et in P.MAPA_CATEGORIAS
+    ) + ('\n                    <li class="arc-mapa-leyenda-item is-sede">'
+         '<span class="arc-mapa-marca" aria-hidden="true"></span>%s</li>' % e(c["sede"]))
+
+    return """
+    <section class="arc-mapa-area pt-90 pb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title-9 text-center">
+                        <h2 class="title">%s</h2>
+                        <div class="text"><p>%s</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="arc-mapa" data-arc-motion="off">
+%s
+                <div class="arc-mapa-rejilla">
+%s
+                </div>
+            </div>
+            <ul class="arc-mapa-leyenda">
+%s
+            </ul>
+        </div>
+    </section>
+""" % (e(c["titulo"]), e(c["lead"]), svg,
+       "\n".join(tarjeta(k, v) for k, v in ordenadas), leyenda)
+
 
 def render_projects(lang):
     c = P.PROJECTS[lang]
@@ -1799,6 +1930,11 @@ def render_home(lang, i18n):
     for route, patterns in HOME_LINK_MAP.items():
         for pat in patterns:
             src = src.replace('href="%s"' % pat, 'href="%s"' % url(route, lang))
+
+    # 3.a) El mapa de presencia. Se genera aquí y no en home_source.html porque
+    #      sale de datos —MAPA_PRESENCIA y los trazos de los estados— y necesita
+    #      el idioma de la página para traducir los 34 proyectos que lista.
+    src = src.replace("<!--ARC-MAPA-->", render_mapa(lang))
 
     # 3.b) El nav del inicio viene del HTML original, donde "Servicios" era un
     #      ancla muerta (href="#") y el <li> no llevaba marca de desplegable.

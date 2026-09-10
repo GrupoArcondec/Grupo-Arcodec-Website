@@ -1616,3 +1616,111 @@ ARTICLES = [
         "en": ("Electrical engineering that backs you up", "Infrastructure designed to sustain today's operation and enable future growth."),
     },
 ]
+
+
+# --------------------------------------------------------------------------
+# Mapa de presencia nacional (inicio)
+# --------------------------------------------------------------------------
+# Sustituye a la imagen que había antes. Al ser datos y no un JPG, el mapa se
+# traduce, lo lee un buscador, se adapta al celular y toma los colores del sitio.
+#
+# Cada renglón es (categoría, texto es, texto en, subtítulo es, subtítulo en).
+# El subtítulo solo lo llevan las sedes: es la ciudad debajo del nombre.
+# Las categorías son las cinco de la leyenda más "sede", que es el pin.
+# Estados que van en el azul fuerte del mapa. Son los de la lámina de
+# referencia del cliente: prácticamente todo el país, porque la sección habla
+# de cobertura nacional y no solo de dónde hay obra abierta hoy.
+# Quedan en azul claro únicamente estos cuatro, que en la lámina venían en gris:
+#   Sonora, Coahuila, Oaxaca y Chiapas.
+MAPA_DESTACADOS = [
+    "bc", "bcs", "chih", "nl", "tamps", "sin", "dgo", "zac", "slp", "nay",
+    "jal", "ags", "gto", "qro", "hgo", "col", "mich", "mex", "cdmx", "mor",
+    "tlax", "pue", "ver", "gro", "tab", "camp", "yuc", "qroo",
+]
+
+MAPA_CATEGORIAS = [
+    ("datos",   {"es": "Centro de datos / hubs",      "en": "Data centers / hubs"}),
+    ("telecom", {"es": "Telecom, redes",              "en": "Telecom, networks"}),
+    ("energia", {"es": "Energía crítica y continuidad","en": "Critical power and continuity"}),
+    ("hvac",    {"es": "HVAC / enfriamiento",         "en": "HVAC / cooling"}),
+    ("mt",      {"es": "Media tensión y transformadores", "en": "Medium voltage and transformers"}),
+]
+
+MAPA_PRESENCIA = [
+    ("bc", [
+        ("datos", "Infraestructura Tijuana", "Tijuana infrastructure", None, None),
+        ("sede",  "HUB Mexicali", "Mexicali Hub", "Mexicali, Baja California", "Mexicali, Baja California"),
+    ]),
+    ("chih", [
+        ("datos",   "CTR Industries (2 fases)", "CTR Industries (2 phases)", None, None),
+        ("datos",   "CTR Washington", "CTR Washington", None, None),
+        ("telecom", "Instalación de tubería e intercomunicación de gabinetes",
+                    "Conduit installation and cabinet interconnection", None, None),
+        ("sede",    "HUB Delicias", "Delicias Hub", "Delicias, Chihuahua", "Delicias, Chihuahua"),
+    ]),
+    ("nl", [
+        ("telecom", "Sector Montaña (2 fases)", "Sector Montaña (2 phases)", None, None),
+        ("telecom", "Real del Sol (2 fases)", "Real del Sol (2 phases)", None, None),
+        ("energia", "Transformador Sector Montaña", "Sector Montaña transformer", None, None),
+        ("mt",      "Torre Obispado, obra eléctrica", "Torre Obispado, electrical works", None, None),
+        ("hvac",    "Matriz MTY, VRF y adicionales", "MTY headquarters, VRF and add-ons", None, None),
+        ("datos",   "Mantenimiento a chillers", "Chiller maintenance", None, None),
+        ("sede",    "Monterrey", "Monterrey", "Oficinas centrales", "Head office"),
+        ("sede",    "HUB Apodaca", "Apodaca Hub", "Apodaca, Nuevo León", "Apodaca, Nuevo León"),
+        ("sede",    "HUB Valle Oriente", "Valle Oriente Hub", "Monterrey, Nuevo León", "Monterrey, Nuevo León"),
+    ]),
+    ("tamps", [
+        ("energia", "Suministro de baterías para UPS", "UPS battery supply", None, None),
+        ("energia", "Matamoros, bancos de baterías", "Matamoros, battery banks", None, None),
+    ]),
+    ("jal", [
+        ("energia", "Renovación de bancos de baterías (litio)", "Battery bank renewal (lithium)", None, None),
+        ("energia", "Cambio de bancos de batería (plomo a litio)", "Battery bank swap (lead to lithium)", None, None),
+        ("energia", "Emergencia inversor", "Inverter emergency response", None, None),
+        ("energia", "Zapopan Critical Power", "Zapopan Critical Power", None, None),
+    ]),
+    ("mich", [
+        ("energia", "Tepatitlán, emergencia inversores", "Tepatitlán, inverter emergency", None, None),
+        ("energia", "Cd. Guzmán, cambio de bancos de batería", "Cd. Guzmán, battery bank swap", None, None),
+        ("datos",   "Hub Melchor Ocampo", "Melchor Ocampo Hub", None, None),
+    ]),
+    ("cdmx", [
+        ("datos", "HUB Central (confinamiento)", "Central Hub (containment)", None, None),
+        ("datos", "TVSA Hermanos Coraje (4 adicionales)", "TVSA Hermanos Coraje (4 add-ons)", None, None),
+        ("datos", "Control de acceso Iztapalapa", "Iztapalapa access control", None, None),
+        ("sede",  "Ciudad de México", "Mexico City", "Matriz", "Headquarters"),
+    ]),
+    ("mex", [
+        ("sede", "HUB Toluca", "Toluca Hub", "Toluca, Estado de México", "Toluca, State of Mexico"),
+    ]),
+    ("qro", [
+        ("sede", "HUB Querétaro", "Querétaro Hub", "Querétaro, Querétaro", "Querétaro, Querétaro"),
+        ("sede", "HUB Cerco Querétaro", "Cerco Querétaro Hub", "Querétaro, Querétaro", "Querétaro, Querétaro"),
+    ]),
+    ("hgo", [
+        ("telecom", "FTTH Pachuca (2 fases)", "Pachuca FTTH (2 phases)", None, None),
+    ]),
+    ("tlax", [
+        ("datos", "Infraestructura Tlaxcala", "Tlaxcala infrastructure", None, None),
+    ]),
+    ("qroo", [
+        ("sede", "HUB Isla Mujeres", "Isla Mujeres Hub", "Isla Mujeres, Quintana Roo", "Isla Mujeres, Quintana Roo"),
+    ]),
+]
+
+MAPA_UI = {
+    "es": {
+        "titulo": "Cobertura nacional de infraestructura",
+        "lead": "Proyectos de infraestructura crítica en doce estados de la República, con hubs en Mexicali, Delicias, Monterrey, Apodaca, Valle Oriente, Querétaro, Toluca, Ciudad de México e Isla Mujeres.",
+        "leyenda": "Tipo de proyecto",
+        "sede": "Sede o hub",
+        "alt": "Mapa de México con los estados donde Grupo Arcondec tiene proyectos",
+    },
+    "en": {
+        "titulo": "Nationwide infrastructure footprint",
+        "lead": "Critical infrastructure projects across twelve Mexican states, with hubs in Mexicali, Delicias, Monterrey, Apodaca, Valle Oriente, Querétaro, Toluca, Mexico City and Isla Mujeres.",
+        "leyenda": "Project type",
+        "sede": "Office or hub",
+        "alt": "Map of Mexico showing the states where Grupo Arcondec has projects",
+    },
+}
