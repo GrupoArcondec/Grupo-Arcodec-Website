@@ -1136,41 +1136,31 @@
        nada: las mismas clases no aparecen fuera de Nosotros.
        ========================================================================== */
     function nosotros() {
-        // --- Valores: las iniciales entran creciendo, una tras otra -----------
-        // El acróstico se lee de izquierda a derecha, así que las letras entran
-        // en ese orden: el escalonado dibuja la palabra en lugar de mostrarla
-        // hecha. Van aparte de la tarjeta —que sube con su fila— para que se
-        // note la letra y no solo la caja.
-        var letras = document.querySelectorAll('.arc-value-letter');
-        if (letras.length) {
-            gsap.from(letras, {
-                scale: 0.4,
-                opacity: 0,
-                duration: dur(0.55),
-                ease: 'back.out(1.7)',
-                stagger: dur(0.09),
-                clearProps: 'transform,opacity',
-                scrollTrigger: {
-                    trigger: letras[0].closest('.arc-values-list') || letras[0],
-                    start: START,
-                    once: true
-                }
-            });
-        }
+        /* --- Valores: el acróstico se forma con el scroll --------------------
+           Las cinco pestañas entran una por una atadas a la barra, de izquierda
+           a derecha, así que IDEAS se va deletreando conforme se baja. Por eso
+           la fila lleva data-arc-motion="off" en la plantilla: sin eso el
+           sistema genérico de columnas también las animaría y habría dos
+           gestos encima del mismo elemento.
 
-        // --- Valores: el sello IDEAS se abre ---------------------------------
-        // Separando las letras al entrar, el sello "hace" lo que dice: cinco
-        // iniciales que se despliegan. Solo existe en español; en inglés los
-        // valores no forman acróstico y la plantilla no lo dibuja.
-        var sello = document.querySelector('.arc-values-seal');
-        if (sello) {
-            gsap.from(sello, {
-                letterSpacing: '0em',
+           El recorrido termina bastante antes de que la sección salga de
+           pantalla, para que la palabra quede completa mientras se está
+           leyendo y no a medias. */
+        var pestanas = document.querySelectorAll('.arc-values-list .arc-value-col');
+        var listaValores = document.querySelector('.arc-values-list');
+        if (pestanas.length && listaValores) {
+            gsap.from(pestanas, {
+                y: 34,
+                scale: 0.88,
                 opacity: 0,
-                duration: dur(0.9),
-                ease: EASE,
-                clearProps: 'letterSpacing,opacity',
-                scrollTrigger: { trigger: sello, start: START, once: true }
+                ease: 'none',
+                stagger: { each: 0.5, from: 'start' },
+                scrollTrigger: {
+                    trigger: listaValores,
+                    start: 'top 88%',
+                    end: 'top 42%',
+                    scrub: 0.7
+                }
             });
         }
 

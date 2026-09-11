@@ -72,8 +72,6 @@ ABOUT = {
         "areas_label": "Áreas clave",
         "values_title": "Valores",
         "values_lead": "Cinco principios que ordenan cada decisión.",
-        # Solo aplica al español: en inglés los valores no forman acróstico.
-        "values_acronym": "IDEAS",
         "services_title": "Nuestros servicios",
         # (letra, resto de la palabra) — la letra inicial es la que arma el
         # acróstico IDEAS.
@@ -129,9 +127,6 @@ ABOUT = {
         "areas_label": "Key areas",
         "values_title": "Values",
         "values_lead": "Five principles behind every decision.",
-        # Sin acróstico en inglés: la clave existe vacía para que la plantilla
-        # simplemente no dibuje el sello.
-        "values_acronym": "",
         "services_title": "Our services",
         # Same five values as the ES block; the IDEAS acrostic only works in
         # Spanish (ver nota arriba), so this list carries the meaning without

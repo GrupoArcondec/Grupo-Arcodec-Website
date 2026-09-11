@@ -2509,20 +2509,6 @@ video.arc-hero-media {
 }
 
 /* --- Valores: el acróstico se lee en vertical ----------------------------- */
-/* El sello con la palabra completa aparece solo en español, donde las
-   iniciales sí forman IDEAS. La plantilla no lo dibuja en inglés. */
-.arc-values-seal {
-    display: inline-block;
-    margin-top: 6px;
-    font-family: "space_grotesk";
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .38em;
-    color: #1D4598;
-    background: #EEF2FA;
-    border-radius: 999px;
-    padding: 8px 12px 8px 20px;
-}
 /* Rejilla propia de cinco columnas: Bootstrap no tiene un ancho de 1/5, y con
    tres o cuatro por renglón el acróstico se partiría (IDE / AS). La fila sigue
    siendo un `.row` para que el motor de movimiento la reconozca y escalone las

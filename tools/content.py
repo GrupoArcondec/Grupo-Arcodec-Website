@@ -75,7 +75,12 @@ SERVICE_GROUPS = [
 SERVICES = [
     {
         "key": "cosdc",
-        "photos": [7, 8, 9, 10, 1, 2, 3, 4, 5, 6],
+        # La 11 va primero: es la que se usa de banner y de imagen principal.
+        # Entró con número nuevo y no sustituyendo a la 7 a propósito —
+        # vercel.json marca /assets/images como `immutable` por un año, así que
+        # reemplazar un archivo en su sitio deja a los visitantes recurrentes
+        # con la versión vieja hasta 2027. Foto nueva, nombre nuevo.
+        "photos": [11, 8, 9, 10, 1, 2, 3, 4, 5, 6],
         "group": "llave",
         "icon": "fal fa-server",
         "slug": {"es": "construccion-data-center", "en": "data-center-construction"},

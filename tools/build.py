@@ -518,13 +518,6 @@ def render_about(lang):
 
     values = "\n".join(_value_card(v) for v in c["values"])
 
-    acronym = c.get("values_acronym") or ""
-    acronym_seal = (
-        """                        <span class="arc-values-seal" aria-hidden="true">%s</span>"""
-        % e(acronym)
-        if acronym else ""
-    )
-
     # Certificaciones: la misma tarjeta .service-2-item de Servicios
     # (icono en círculo + título + párrafo), no ya la insignia con sello
     # propia. El campo `icon` llevaba definido desde antes sin usarse; el
@@ -630,11 +623,10 @@ def render_about(lang):
                         <div class="text">
                             <p>{values_lead}</p>
                         </div>
-{acronym_seal}
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center arc-values-list">
+            <div class="row justify-content-center arc-values-list" data-arc-motion="off">
 {values}
             </div>
         </div>
@@ -725,7 +717,6 @@ def render_about(lang):
         distinct_chips=distinct_chips,
         values_title=e(c["values_title"]),
         values_lead=e(c["values_lead"]),
-        acronym_seal=acronym_seal,
         values=values,
         certs_title=e(c["certs_title"]),
         certs_lead=e(c["certs_lead"]),
