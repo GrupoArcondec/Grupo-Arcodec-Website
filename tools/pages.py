@@ -1202,32 +1202,6 @@ PROJECTS = {
 # SERVICIOS (índice). Sigue el modelo services-2.html del template aball.
 # Los textos son los de arcondec.mx/Servicios/LandingPage_IE y _DC.
 # --------------------------------------------------------------------------
-SERVICES_INDEX = {
-    "es": {
-        "title": "Servicios",
-        "meta": "Servicios de Grupo Arcondec: proyectos y estudios eléctricos, corriente directa, gestión de proyectos, construcción de data centers e ingeniería civil.",
-        "keywords": "servicios ingeniería eléctrica, data center, corriente directa, estudios eléctricos, gestión de proyectos, Grupo Arcondec",
-        "eyebrow": "Conoce nuestros servicios",
-        "h1": "Servicios especializados",
-        "lead": "Ingeniería eléctrica y centros de datos, desde la etapa conceptual hasta la entrega final.",
-        "intro_title": "En Grupo Arcondec ejecutamos proyectos de gran escala",
-        "intro": "Nuestra experiencia abarca proyectos de alta capacidad y sistemas de respaldo en corriente directa (DC), estudios eléctricos normativos y la gestión completa de obra técnica. Atendemos industrias, centros de datos y telecomunicaciones con soluciones hechas a la medida, ejecutadas con precisión, cumplimiento de normas nacionales e internacionales y un enfoque interdisciplinario que garantiza resultados confiables y sostenibles. Los grandes proyectos comienzan con grandes decisiones. Empezar aquí, es una de ellas.",
-        "dc_title": "Construimos Data Center que garantizan continuidad total",
-        "more": "Ver servicio",
-    },
-    "en": {
-        "title": "Services",
-        "meta": "Grupo Arcondec services: electrical projects and studies, direct current, project management, data center construction and civil engineering.",
-        "keywords": "electrical engineering services, data center, direct current, electrical studies, project management, Grupo Arcondec",
-        "eyebrow": "Explore our services",
-        "h1": "Specialized services",
-        "lead": "Electrical engineering and data centers, from the conceptual stage to final delivery.",
-        "intro_title": "At Grupo Arcondec, we execute large-scale projects",
-        "intro": "Our expertise covers high-capacity electrical projects and direct current (DC) backup systems, regulatory electrical studies, and full technical project management. We serve industries, data centers, and telecommunications with tailor-made solutions executed with precision, compliance with national and international standards, and an interdisciplinary approach that ensures reliable and sustainable results. Great projects start with great decisions. Starting here is one of them.",
-        "dc_title": "We build Data Centers that ensure total continuity",
-        "more": "View service",
-    },
-}
 
 # --------------------------------------------------------------------------
 # CONTACTO / CONTACT

@@ -50,7 +50,6 @@ ROUTES = {
     "about": {"es": "/nosotros.html", "en": "/en/about.html"},
     "projects": {"es": "/proyectos.html", "en": "/en/projects.html"},
     "careers": {"es": "/vacantes.html", "en": "/en/careers.html"},
-    "services": {"es": "/servicios.html", "en": "/en/services.html"},
     "blog": {"es": "/blog.html", "en": "/en/blog.html"},
     "contact": {"es": "/contacto.html", "en": "/en/contact.html"},
 }
@@ -466,7 +465,6 @@ def header(*, lang, key):
         nav_about=nav("about", t["nav_about"]),
         nav_projects=nav("projects", t["nav_projects"]),
         services=e(t["nav_services"]),
-        services_url=url("services", lang),
         services_active=services_active,
         sub=sub,
         nav_blog=nav("blog", t["nav_blog"]),

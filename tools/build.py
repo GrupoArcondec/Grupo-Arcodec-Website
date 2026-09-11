@@ -127,9 +127,16 @@ def render_service(svc, lang):
         "fal fa-network-wired", "fal fa-tools", "fal fa-battery-bolt",
         "fal fa-project-diagram",
     ]
-    items = "\n".join(
-        """                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="service-2-item arc-spec text-center mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="%dms">
+    # `list` admite dos formas y el servicio elige la que le conviene:
+    #   · cadena suelta            -> tarjeta con icono, sin texto (el original)
+    #   · (título, descripción)    -> etapa numerada con su explicación
+    # Un mismo servicio no mezcla ambas. La segunda existe porque hay servicios
+    # cuyo alcance no se entiende con un rótulo de cuatro palabras y necesita
+    # una frase; forzarlos al formato de icono obligaba a recortar el contenido.
+    def _item_icono(n, x):
+        return (
+            """                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="service-2-item arc-spec text-center mt-30">
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
                         <div class="service-dot">
@@ -140,9 +147,31 @@ def render_service(svc, lang):
                         </div>
                     </div>
                 </div>"""
-        % ((n % 3) * 150, ICONOS_SPEC[n % len(ICONOS_SPEC)], e(x), (n % 6) + 1)
+            % (ICONOS_SPEC[n % len(ICONOS_SPEC)], e(x), (n % 6) + 1)
+        )
+
+    def _item_etapa(n, par):
+        titulo, detalle = par
+        return (
+            """                <div class="col-lg-4 col-md-6">
+                    <div class="arc-etapa mt-30">
+                        <span class="arc-etapa-num" aria-hidden="true">%02d</span>
+                        <h3 class="arc-etapa-titulo">%s</h3>
+                        <p class="arc-etapa-texto">%s</p>
+                    </div>
+                </div>"""
+            % (n + 1, e(titulo), e(detalle))
+        )
+
+    por_etapas = bool(c["list"]) and isinstance(c["list"][0], (tuple, list))
+    items = "\n".join(
+        (_item_etapa if por_etapas else _item_icono)(n, x)
         for n, x in enumerate(c["list"])
     )
+
+    # La introducción puede ser una cadena o una lista de párrafos.
+    _parrafos = c["intro"] if isinstance(c["intro"], (list, tuple)) else [c["intro"]]
+    intro_html = "\n".join("                        <p>%s</p>" % e(x) for x in _parrafos)
 
     benefits = "\n".join(
         """                <div class="col-lg-4 col-md-6 col-sm-6">
@@ -204,7 +233,9 @@ def render_service(svc, lang):
             "@type": "OfferCatalog",
             "name": c["list_title"],
             "itemListElement": [
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": x}}
+                {"@type": "Offer", "itemOffered": {
+                    "@type": "Service",
+                    "name": x[0] if isinstance(x, (tuple, list)) else x}}
                 for x in c["list"]
             ],
         },
@@ -222,7 +253,7 @@ def render_service(svc, lang):
                     <div class="about-2-content about-11-content mt-30">
                         <span class="service-eyebrow">{eyebrow}</span>
                         <h2 class="title">{intro_h2}</h2>
-                        <p>{intro}</p>
+{intro}
                         <a class="main-btn main-btn-3 mt-30" href="{contact}">{contact_label}</a>
                     </div>
                 </div>
@@ -323,9 +354,11 @@ def render_service(svc, lang):
 """.format(
         eyebrow=e(c["tagline"]),
         intro_h2=e(c["intro_h2"]),
-        intro=e(c["intro"]),
+        intro=intro_html,
         contact=url("contact", lang),
-        contact_label=e(t["nav_contact"]),
+        # Cada servicio puede poner su propia llamada a la acción; si no la
+        # define, se usa el rótulo genérico del menú.
+        contact_label=e(c.get("cta_btn") or t["nav_contact"]),
         photo1=photos[0],
         alt=e(c["h1"]),
         list_title=e(c["list_title"]),
@@ -360,121 +393,6 @@ def render_service(svc, lang):
         + commitment_band(lang)
         + footer(lang=lang, key=key)
     )
-
-
-# ==========================================================================
-# SERVICIOS (índice) — modelo services-2.html del template aball
-# ==========================================================================
-def render_services_index(lang):
-    c = P.SERVICES_INDEX[lang]
-    key = "services"
-
-    # Rejilla de tarjetas idéntica a la del template: col-lg-4 col-md-6 col-sm-6
-    # con .service-2-item, icono en círculo, título, texto y el punteado .service-dot.
-    cards = []
-    for n, svc in enumerate(SERVICES):
-        sc = svc[lang]
-        cards.append(
-            """                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <a class="service-2-item text-center mt-30 animated wow fadeInUp" href="%s" data-wow-duration="1000ms" data-wow-delay="%dms">
-                        <div class="icon"><i class="%s"></i></div>
-                        <h3 class="title">%s</h3>
-                        <p>%s</p>
-                        <span class="service-more">%s <i class="fal fa-arrow-right"></i></span>
-                        <div class="service-dot">
-                            <img src="/assets/images/service-dot-2.png" alt="">
-                            <div class="item">
-                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
-                            </div>
-                        </div>
-                    </a>
-                </div>"""
-            % (
-                url("srv-" + svc["key"], lang),
-                (n % 3) * 150,
-                svc["icon"],
-                e(sc["nav"]),
-                e(sc["lead"]),
-                e(c["more"]),
-                (n % 6) + 1,
-            )
-        )
-
-    ld = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": c["h1"],
-        "numberOfItems": len(SERVICES),
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": i + 1,
-                "name": svc[lang]["nav"],
-                "url": BASE_URL + url("srv-" + svc["key"], lang),
-            }
-            for i, svc in enumerate(SERVICES)
-        ],
-    }
-
-    body = """
-    <main id="contenido">
-
-    <!--====== INTRO ======-->
-
-    <section class="pt-90 pb-30">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-9">
-                    <div class="section-title-9 text-center">
-                        <h2 class="title">{intro_title}</h2>
-                        <div class="text">
-                            <p>{intro}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--====== SERVICIOS ======-->
-
-    <section class="service-area service-page-area pb-100">
-        <div class="container">
-            <div class="row justify-content-center arc-service-grid">
-{cards}
-            </div>
-        </div>
-    </section>
-
-    </main>
-""".format(intro_title=e(c["intro_title"]), intro=e(c["intro"]), cards="\n".join(cards))
-
-    return (
-        head(
-            lang=lang,
-            key=key,
-            title=c["title"],
-            description=c["meta"],
-            keywords=c["keywords"],
-            og_image="%s/servicios/proele-7.jpg" % IMG,
-            extra_ld=ld,
-        )
-        + body_open()
-        + header(lang=lang, key=key)
-        + page_banner(
-            lang=lang, title=c["h1"], crumb=c["title"],
-            bg="%s/servicios/proele-7.jpg" % IMG,
-        )
-        + '\n    <p class="service-lead-strip">%s</p>\n' % e(c["lead"])
-        + body
-        + commitment_band(lang)
-        + footer(lang=lang, key=key)
-    )
-
-
-# ==========================================================================
-# NOSOTROS
-# ==========================================================================
 def render_about(lang):
     c = P.ABOUT[lang]
     key = "about"
@@ -1927,14 +1845,6 @@ def render_home(lang, i18n):
     #      el idioma de la página para traducir los 34 proyectos que lista.
     src = src.replace("<!--ARC-MAPA-->", render_mapa(lang))
 
-    # 3.b) El nav del inicio viene del HTML original, donde "Servicios" era un
-    #      ancla muerta (href="#") y el <li> no llevaba marca de desplegable.
-    #      Se apunta a la página índice y se marca para que salga la flecha.
-    src = re.sub(
-        r'<a class="nav-link" href="#"(\s[^>]*)?>',
-        '<a class="nav-link" href="%s"\\1>' % url("services", lang),
-        src,
-    )
     src = re.sub(
         r'<li class="nav-item">(\s*<a class="nav-link"[^>]*>[^<]*</a>\s*<ul class="sub-menu">)',
         r'<li class="nav-item arc-has-sub">\1',
@@ -2173,7 +2083,6 @@ def main():
         written.append(write(url("projects", lang), render_projects(lang)))
         written.append(write(url("contact", lang), render_contact(lang)))
         written.append(write(url("careers", lang), render_careers(lang)))
-        written.append(write(url("services", lang), render_services_index(lang)))
         written.append(write(url("blog", lang), render_blog(lang)))
         for svc in SERVICES:
             written.append(
