@@ -156,7 +156,11 @@ SERVICES = [
     },
     {
         "key": "civdc",
-        "photos": [7, 8, 9, 1, 2, 3, 4, 5, 6],
+        # Se retiró la 9 —terraza con sillas—: no es obra civil, es mobiliario.
+        # PENDIENTE: falta la foto nueva de banner e imagen principal; la que
+        # mandó el cliente (estructura metálica en obra) no llegó a subirse.
+        # Cuando llegue entra como civdc-10 y va al principio de esta lista.
+        "photos": [7, 8, 1, 2, 3, 4, 5, 6],
         "group": "llave",
         "icon": "fal fa-drafting-compass",
         "slug": {"es": "ingenieria-civil-data-center", "en": "civil-engineering-data-center"},
