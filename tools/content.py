@@ -80,7 +80,10 @@ SERVICES = [
         # vercel.json marca /assets/images como `immutable` por un año, así que
         # reemplazar un archivo en su sitio deja a los visitantes recurrentes
         # con la versión vieja hasta 2027. Foto nueva, nombre nuevo.
-        "photos": [11, 8, 9, 10, 1, 2, 3, 4, 5, 6],
+        # Se retiraron la 8 y la 9: salas vacías con cajas de cartón apiladas,
+        # que no muestran obra terminada. Los archivos siguen en disco por si
+        # se quieren recuperar.
+        "photos": [11, 10, 1, 2, 3, 4, 5, 6],
         "group": "llave",
         "icon": "fal fa-server",
         "slug": {"es": "construccion-data-center", "en": "data-center-construction"},

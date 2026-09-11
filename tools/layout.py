@@ -415,7 +415,7 @@ def header(*, lang, key):
 {nav_about}
 {nav_projects}
                                         <li class="nav-item arc-has-sub{services_active}">
-                                            <a class="nav-link" href="{services_url}">{services}</a>
+                                            <a class="nav-link arc-nav-solo-menu" role="button" tabindex="0" aria-haspopup="true">{services}</a>
                                             <ul class="sub-menu">
 {sub}
                                             </ul>

@@ -2777,3 +2777,13 @@ video.arc-hero-media {
     .arc-mapa-rejilla { column-count: 1; }
     .arc-mapa-leyenda { gap: 9px 16px; padding: 16px 14px; }
 }
+
+/* "Servicios" en el menú abre el desplegable pero no navega: es un <a> sin
+   href, así que el navegador no lo trata como enlace y hay que devolverle el
+   cursor y el estado de foco a mano. Va con role="button" y tabindex para que
+   siga siendo alcanzable con teclado, y con aria-haspopup para que un lector
+   de pantalla anuncie que abre un menú en vez de prometer un destino. */
+.header-nav .navigation .navbar .navbar-nav .nav-item > a.arc-nav-solo-menu {
+    cursor: pointer;
+    user-select: none;
+}
