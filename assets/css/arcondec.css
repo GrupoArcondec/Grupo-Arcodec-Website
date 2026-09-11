@@ -843,12 +843,26 @@ footer.footer-area.footer-2-area { background: #132D67; }
 }
 
 /* Las fotos de servicio son apaisadas; sin acotar, la columna crecía el doble
-   que el texto y dejaba un hueco enorme. */
+   que el texto y dejaba un hueco enorme.
+   Con las introducciones a tres párrafos el problema se invirtió: el texto pasó
+   a medir ~830px y la foto se quedaba en 409, como una miniatura flotando al
+   lado. Sube a 4:5 (~680px) para que las dos columnas pesen parejo.
+   No se estira hasta igualar el alto exacto del texto —lo más vistoso— porque
+   son tomas apaisadas de obra: un recorte vertical agresivo se comería la
+   escena que la foto viene a mostrar. 4:5 recorta lo justo. */
 .about-2-thumb.about-11-thumb .thumb img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 5;
     object-fit: cover;
-    max-height: 460px;
+    max-height: 720px;
+}
+/* Apilada en móvil la foto ya no compite con nada, y tan alta solo empuja el
+   contenido hacia abajo: vuelve a proporción de cámara. */
+@media (max-width: 991px) {
+    .about-2-thumb.about-11-thumb .thumb img {
+        aspect-ratio: 3 / 2;
+        max-height: 420px;
+    }
 }
 
 /* Las <img> llevan width/height explícitos (evitan saltos de maquetación al
@@ -2860,4 +2874,22 @@ video.arc-hero-media {
     .arc-etapa { padding: 22px 20px 20px; }
     .arc-etapa-num { font-size: 50px; }
     .arc-etapa-titulo { font-size: 18px; }
+}
+
+/* ==========================================================================
+   Aire entre el texto y la foto del bloque de introducción
+   --------------------------------------------------------------------------
+   Lo usan las seis páginas de servicio en los dos idiomas, más Inicio y
+   Vacantes: dieciséis páginas con el mismo problema. El canal por defecto de
+   la rejilla son 30px, y con la foto pegada al último renglón de cada línea
+   el texto se lee apretado contra la imagen.
+
+   El relleno va en la cara interior de cada columna y no en la fila, para que
+   el bloque conserve el ancho del contenedor y no se encoja por los lados.
+   Funciona igual con la foto a izquierda o a derecha, porque solo ensancha el
+   canal; no depende de cuál columna lleve el texto.
+   ========================================================================== */
+@media (min-width: 992px) {
+    .about-2-area .row > div:first-child { padding-right: 40px; }
+    .about-2-area .row > div:last-child { padding-left: 40px; }
 }
