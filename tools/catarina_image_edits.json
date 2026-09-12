@@ -1,0 +1,42 @@
+{
+  "tool": "ChatGPT built-in image_gen",
+  "prompt": "Retouch this exact documentary construction project photograph for a professional website. Remove only superimposed camera date/time/address/location stamps if any. Preserve all physical signage, equipment labels, safety warnings, uniform branding. Subtle natural exposure and white balance correction, reduce haze/noise modestly and improve clarity without artificial oversharpening. Preserve original scene, every person identity face pose body clothing PPE, all equipment wiring architecture objects and current construction state. Do not invent or complete construction work. Keep full original framing and aspect ratio, no new crop, no added people or objects. Output one photograph, not collage.",
+  "images": [
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.13.11 (3).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-catarina-retocada-1.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.13.15.jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-catarina-retocada-2.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.13.16 (5).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-catarina-retocada-3.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.13.18 (3).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-catarina-retocada-4.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.13.29 (2).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-catarina-retocada-5.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.13.31 (2).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-catarina-retocada-6.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.13.32 (2).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-catarina-retocada-7.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.13.38 (3).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-catarina-retocada-8.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.13.47.jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-catarina-retocada-9.jpg"
+    }
+  ]
+}

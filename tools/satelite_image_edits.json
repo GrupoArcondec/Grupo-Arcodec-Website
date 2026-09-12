@@ -1,0 +1,43 @@
+{
+  "project": "HUB Satélite",
+  "prompt": "Retouch this exact documentary electrical project photograph for a professional website. Remove ONLY superimposed camera stamps (date/time, GPS addresses/coordinates, phone brand watermark, GPS Map Camera logo, inset map and its translucent text panel) if present. Seamlessly reconstruct underlying textures. Subtle natural exposure correction, white balance, noise reduction and clarity. Preserve exact composition and original aspect ratio, people identity face pose clothing, safety labels, real equipment labels, wiring and connections, equipment condition. Do not invent completed work or change installation. No new crop, no added or removed physical objects. One edited photograph, no collage. Replace any old Arcondec vest branding or yellow www.arcondec.mx text on uniforms with the exact supplied new ARCONDEC logo (white letters and yellow power-symbol O), naturally printed on the existing fabric, matching perspective folds lighting and appropriate original branding size. MANDATORY: erase the old badge INCLUDING its oval/rectangular border; print the supplied white ARCONDEC wordmark with yellow power O directly on the blue vest. Do not retain any old badge or website lettering. The second image is only a logo reference; output only the edited photograph.",
+  "logo_prompt": "Replace ALL yellow www.arcondec.mx lettering on the workers' blue vests or shirts with the NEW LOGO in image 2: white ARCONDEC with yellow power-button O. Remove old lettering completely. Match logo perspective, fabric folds and light. This branding replacement is the entire task. Keep all other photo contents and dimensions unchanged. Output edited photograph only.",
+  "logo": "/Volumes/DDSAM/ARCONDEC/LOGO/PNG/logoblanco_fondotransparente.png",
+  "images": [
+    {
+      "source": "/Volumes/DDSAM/ARCONDEC/IMAGENES/PROYECTOS/HUB SATÉLITE/WhatsApp Image 2026-09-04 at 09.18.12.jpeg",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-45384b69-937c-4f4e-adf1-866ac77644d1.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-satelite-retocada-1.jpg"
+    },
+    {
+      "source": "/Volumes/DDSAM/ARCONDEC/IMAGENES/PROYECTOS/HUB SATÉLITE/WhatsApp Image 2026-09-04 at 09.18.13 (6).jpeg",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-8eab90b6-ff06-4082-ae3e-3b7148aeeb1c.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-satelite-retocada-2.jpg"
+    },
+    {
+      "source": "/Volumes/DDSAM/ARCONDEC/IMAGENES/PROYECTOS/HUB SATÉLITE/WhatsApp Image 2026-09-04 at 09.18.14 (6).jpeg",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-15d8c4a0-d92c-459f-9123-9137eea385a4.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-satelite-retocada-3.jpg"
+    },
+    {
+      "source": "/Volumes/DDSAM/ARCONDEC/IMAGENES/PROYECTOS/HUB SATÉLITE/WhatsApp Image 2026-09-04 at 09.18.17 (3).jpeg",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-6a2811ad-2e7d-4137-9062-07910a9d761e.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-satelite-retocada-4.jpg"
+    },
+    {
+      "source": "/Volumes/DDSAM/ARCONDEC/IMAGENES/PROYECTOS/HUB SATÉLITE/WhatsApp Image 2026-09-04 at 09.18.17 (5).jpeg",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-318bdfbf-bd09-4250-bf9d-61ce0873d987.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-satelite-retocada-5.jpg"
+    },
+    {
+      "source": "/Volumes/DDSAM/ARCONDEC/IMAGENES/PROYECTOS/HUB SATÉLITE/WhatsApp Image 2026-09-04 at 09.18.17 (9).jpeg",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-de79e452-2bfc-400c-b54a-a2ea79502510.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-satelite-retocada-6.jpg"
+    },
+    {
+      "source": "/Volumes/DDSAM/ARCONDEC/IMAGENES/PROYECTOS/HUB SATÉLITE/WhatsApp Image 2026-09-04 at 09.18.18 (2).jpeg",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-cd1fa25e-6e54-48dc-a56e-43436dea8a88.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-satelite-retocada-7.jpg"
+    }
+  ]
+}

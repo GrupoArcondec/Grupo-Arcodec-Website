@@ -377,8 +377,8 @@ def header(*, lang, key):
                         <div class="header-top-item">
                             <div class="info">
                                 <ul>
-                                    <li><img src="/assets/images/phone.svg" alt=""> <a href="tel:{p1t}">{p1}</a> / <a href="tel:{p2t}">{p2}</a></li>
-                                    <li><img src="/assets/images/email.svg" alt=""> <a href="mailto:{mail}">{mail}</a> / <a href="mailto:{sales}">{sales}</a></li>
+                                    <li><i class="fa fa-phone arc-contact-icon" aria-hidden="true"></i> <a href="tel:{p1t}">{p1}</a> / <a href="tel:{p2t}">{p2}</a></li>
+                                    <li><i class="fa fa-envelope arc-contact-icon" aria-hidden="true"></i> <a href="mailto:{mail}">{mail}</a> / <a href="mailto:{sales}">{sales}</a></li>
                                     <li><a href="{login_url}" target="_blank" rel="noopener">{login}</a></li>
                                     <li><a class="lang-switch{es_active}" href="{es_url}" hreflang="es" lang="es">ESP</a> | <a class="lang-switch{en_active}" href="{en_url}" hreflang="en" lang="en">EN</a></li>
                                 </ul>
@@ -579,14 +579,14 @@ def footer(*, lang, key, extra_scripts=()):
                     <div class="col-lg-3 col-md-4">
                         <div class="footer-info">
                             <ul>
-                                <li><img src="/assets/images/icon/footer-icon-4.png" alt=""> {address}</li>
+                                <li><i class="fa fa-map-marker arc-contact-icon" aria-hidden="true"></i> {address}</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4">
                         <div class="footer-info">
                             <ul>
-                                <li><img src="/assets/images/icon/footer-icon-5.png" alt=""> <a href="tel:{p1t}">{p1}</a></li>
+                                <li><i class="fa fa-phone arc-contact-icon" aria-hidden="true"></i> <a href="tel:{p1t}">{p1}</a></li>
                                 <li><a href="tel:{p2t}">{p2}</a> · <a href="tel:{mt}">{mobile}</a></li>
                             </ul>
                         </div>
@@ -594,7 +594,7 @@ def footer(*, lang, key, extra_scripts=()):
                     <div class="col-lg-3 col-md-4">
                         <div class="footer-info">
                             <ul>
-                                <li><img src="/assets/images/icon/footer-icon-6.png" alt=""> <a href="mailto:{mail}">{mail}</a></li>
+                                <li><i class="fa fa-envelope arc-contact-icon" aria-hidden="true"></i> <a href="mailto:{mail}">{mail}</a></li>
                                 <li><a href="mailto:{sales}">{sales}</a></li>
                             </ul>
                         </div>
@@ -633,7 +633,7 @@ def footer(*, lang, key, extra_scripts=()):
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="footer-newsletter-item footer-newsletter-item-11 mt-30">
                             <div class="dot">
-                                <img src="/assets/images/icon/footer-newsletter-dot.png" alt="">
+
                             </div>
                             <h2 class="title h3">{news_title}</h2>
                             <form action="mailto:{sales}" method="post" enctype="text/plain">

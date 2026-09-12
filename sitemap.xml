@@ -66,14 +66,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arcondec.vercel.app/en/projects/apodaca-hub.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-apodaca.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/apodaca-hub.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-apodaca.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://arcondec.vercel.app/en/projects/crt-industria-chihuahua-hub.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/crt-industria-chihuahua.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/crt-industria-chihuahua-hub.html"/>
@@ -154,10 +146,10 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arcondec.vercel.app/en/services/electrical-projects.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/proyectos-electricos-integrales.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/electrical-projects.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/proyectos-electricos-integrales.html"/>
+    <loc>https://arcondec.vercel.app/en/services/electrical-solutions.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/soluciones-electricas.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/electrical-solutions.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/soluciones-electricas.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -198,14 +190,6 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/crt-industria-chihuahua.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/crt-industria-chihuahua-hub.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/crt-industria-chihuahua.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arcondec.vercel.app/proyectos/hub-apodaca.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-apodaca.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/apodaca-hub.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-apodaca.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -274,14 +258,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arcondec.vercel.app/servicios/proyectos-electricos-integrales.html</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/proyectos-electricos-integrales.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/electrical-projects.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/proyectos-electricos-integrales.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://arcondec.vercel.app/servicios/soluciones-corriente-alterna-ca.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/soluciones-corriente-alterna-ca.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/alternating-current-solutions.html"/>
@@ -294,6 +270,14 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/soluciones-corriente-directa-dc.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/direct-current-solutions.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/soluciones-corriente-directa-dc.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/servicios/soluciones-electricas.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/soluciones-electricas.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/electrical-solutions.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/servicios/soluciones-electricas.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -117,6 +117,7 @@ def render_service(svc, lang):
     c = svc[lang]
     key = "srv-" + svc["key"]
     photos = ["%s/servicios/%s-%d.jpg" % (IMG, svc["key"], n) for n in svc["photos"]]
+    main_photo = "%s/servicios/%s-%d.jpg" % (IMG, svc["key"], svc.get("main_photo", svc["photos"][0]))
     t = UI[lang]
 
     # Viñetas de "Servicios especializados" con el modelo de tarjeta de
@@ -140,9 +141,9 @@ def render_service(svc, lang):
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
                         <div class="service-dot">
-                            <img src="/assets/images/service-dot-2.png" alt="">
+
                             <div class="item">
-                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
+                                <span aria-hidden="true" data-decoration="%d"></span>
                             </div>
                         </div>
                     </div>
@@ -152,22 +153,67 @@ def render_service(svc, lang):
 
     def _item_etapa(n, par):
         titulo, detalle = par
+        # Cada etapa ocupa un renglón entero, no una tarjeta en rejilla. Con
+        # cinco elementos, una rejilla de tres deja dos huérfanos en el segundo
+        # renglón; y las descripciones son de cinco líneas, que en una columna
+        # angosta se vuelven un bloque ilegible.
         return (
-            """                <div class="col-lg-4 col-md-6">
-                    <div class="arc-etapa mt-30">
-                        <span class="arc-etapa-num" aria-hidden="true">%02d</span>
+            """                <li class="arc-etapa">
+                    <span class="arc-etapa-num" aria-hidden="true">%02d</span>
+                    <div class="arc-etapa-cuerpo">
                         <h3 class="arc-etapa-titulo">%s</h3>
                         <p class="arc-etapa-texto">%s</p>
                     </div>
-                </div>"""
+                </li>"""
             % (n + 1, e(titulo), e(detalle))
         )
 
+    # El envoltorio viaja con los elementos porque cada formato necesita el
+    # suyo: las etapas van en una lista ordenada a una columna, y las tarjetas
+    # de icono en la rejilla de tres del template. Meter ambas en el mismo
+    # contenedor rompía una de las dos.
     por_etapas = bool(c["list"]) and isinstance(c["list"][0], (tuple, list))
-    items = "\n".join(
+    cuerpo = "\n".join(
         (_item_etapa if por_etapas else _item_icono)(n, x)
         for n, x in enumerate(c["list"])
     )
+    if por_etapas:
+        items = ('            <ol class="arc-etapas">\n' + cuerpo + '\n'
+                 '            </ol>')
+    else:
+        items = ('            <div class="row justify-content-center arc-service-grid">\n'
+                 + cuerpo + '\n'
+                 '            </div>')
+
+    # Las etapas van sobre banda oscura y las tarjetas de icono sobre blanco.
+    # La piel de la sección la decide el formato, no cada servicio a mano.
+    seccion_clase = ("service-area service-page-area arc-etapas-area pt-100 pb-100"
+                     if por_etapas else "service-area service-page-area pb-100")
+
+    # Servicios con scope_photos: panel fotográfico y acordeón nativo.
+    scope_section = ""
+    if svc.get("scope_photos"):
+        scope_photos = svc["scope_photos"]
+        captions = [item[0] for item in c["list"]]
+        figures, panels = [], []
+        for n, ((title, detail), photo, caption) in enumerate(zip(c["list"], scope_photos, captions), 1):
+            src = "%s/servicios/%s-%d.jpg" % (IMG, svc["key"], photo)
+            figures.append(f'''<figure class="arc-civil-photo arc-civil-photo-{n}">
+                <img src="{src}" alt="{e(caption)} — {e("Imagen ilustrativa" if lang == "es" else "Illustrative image")}" loading="lazy" {dims(src)}>
+                <figcaption><span>{n:02d} / 05</span>{e(caption)}</figcaption>
+            </figure>''')
+            opened = " open" if n == 1 else ""
+            panels.append(f'''<details class="arc-civil-detail" id="civil-stage-{n}" name="civil-scope"{opened}>
+                <summary><span class="arc-civil-number" aria-hidden="true">{n:02d}</span><h3>{e(title)}</h3><span class="arc-civil-toggle" aria-hidden="true"></span></summary>
+                <div class="arc-civil-description"><p>{e(detail)}</p></div>
+            </details>''')
+        scope_section = f'''<section class="arc-civil" id="alcance-constructivo" aria-labelledby="civil-title" data-arc-motion="off">
+            <div class="container">
+                <header class="arc-civil-header"><div><span class="arc-civil-eyebrow">{e(c['scope_eyebrow'])}</span>
+                    <h2 id="civil-title">{e(c['list_title'])}</h2></div><p>{e(c['scope_intro'])}</p></header>
+                <div class="arc-civil-layout"><div class="arc-civil-visual">{''.join(figures)}</div>
+                    <div class="arc-civil-accordion">{''.join(panels)}</div></div>
+            </div></section>'''
 
     # La introducción puede ser una cadena o una lista de párrafos.
     _parrafos = c["intro"] if isinstance(c["intro"], (list, tuple)) else [c["intro"]]
@@ -180,9 +226,9 @@ def render_service(svc, lang):
                         <h3 class="title">%s</h3>
                         <p>%s</p>
                         <div class="service-dot">
-                            <img src="/assets/images/service-dot-2.png" alt="">
+
                             <div class="item">
-                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
+                                <span aria-hidden="true" data-decoration="%d"></span>
                             </div>
                         </div>
                     </div>
@@ -210,9 +256,9 @@ def render_service(svc, lang):
                         <div class="icon"><i class="%s"></i></div>
                         <h3 class="title">%s</h3>
                         <div class="service-dot">
-                            <img src="/assets/images/service-dot-2.png" alt="">
+
                             <div class="item">
-                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
+                                <span aria-hidden="true" data-decoration="%d"></span>
                             </div>
                         </div>
                     </a>
@@ -246,44 +292,27 @@ def render_service(svc, lang):
 
     <!--====== INTRO ======-->
 
-    <section class="about-2-area about-11-area pt-90 pb-60">
+    <section class="arc-service-editorial">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="about-2-content about-11-content mt-30">
-                        <span class="service-eyebrow">{eyebrow}</span>
-                        <h2 class="title">{intro_h2}</h2>
-{intro}
-                        <a class="main-btn main-btn-3 mt-30" href="{contact}">{contact_label}</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-2-thumb about-11-thumb mt-30">
-                        <div class="thumb text-right">
-                            <img src="{photo1}" alt="{alt}" %s>
-                        </div>
-                    </div>
-                </div>
+            <div class="row align-items-end arc-service-editorial-heading">
+                <div class="col-lg-8"><p class="arc-editorial-label">{eyebrow}</p><h2>{intro_h2}</h2></div>
+                <div class="col-lg-4"><p class="arc-service-editorial-summary">{intro_lead}</p></div>
             </div>
+            <div class="arc-service-panorama arc-story-frame">
+                <img src="{photo1}" alt="{alt}" {photo1_dims}>
+            </div>
+            <div class="row"><div class="col-12">
+                <div class="arc-service-reading">
+{intro}
+                    <a class="main-btn main-btn-3 mt-30" href="{contact}">{contact_label}</a>
+                </div>
+            </div></div>
         </div>
     </section>
 
     <!--====== SERVICIOS ESPECIALIZADOS ======-->
 
-    <section class="service-area service-page-area pb-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title-9 text-center">
-                        <h2 class="title">{list_title}</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center arc-service-grid">
-{items}
-            </div>
-        </div>
-    </section>
+    {scope_section}
 
     <!--====== BENEFICIOS ======-->
 
@@ -352,16 +381,20 @@ def render_service(svc, lang):
 
     </main>
 """.format(
+        scope_section=scope_section or '    <section class="{seccion_clase}">\n        <div class="container">\n            <div class="row justify-content-center">\n                <div class="col-lg-8">\n                    <div class="section-title-9 text-center">\n                        <h2 class="title">{list_title}</h2>\n                    </div>\n                </div>\n            </div>\n{items}\n        </div>\n    </section>\n\n'.format(seccion_clase=seccion_clase, list_title=e(c["list_title"]), items=items),
         eyebrow=e(c["tagline"]),
         intro_h2=e(c["intro_h2"]),
         intro=intro_html,
+        intro_lead=e(c["lead"]),
         contact=url("contact", lang),
         # Cada servicio puede poner su propia llamada a la acción; si no la
         # define, se usa el rótulo genérico del menú.
         contact_label=e(c.get("cta_btn") or t["nav_contact"]),
-        photo1=photos[0],
+        photo1=main_photo,
+        photo1_dims=dims(main_photo),
         alt=e(c["h1"]),
         list_title=e(c["list_title"]),
+        seccion_clase=seccion_clase,
         items=items,
         benefits_title=e(c["benefits_title"]),
         benefits_intro=e(c["benefits_intro"]),
@@ -382,13 +415,12 @@ def render_service(svc, lang):
             title=c["title"],
             description=c["meta"],
             keywords=c["keywords"],
-            og_image=photos[0],
+            og_image=main_photo,
             extra_ld=faq_ld,
         )
         + body_open()
         + header(lang=lang, key=key)
-        + page_banner(lang=lang, title=c["h1"], crumb=c["nav"], bg=photos[0])
-        + '\n    <p class="service-lead-strip">%s</p>\n' % e(c["lead"])
+        + page_banner(lang=lang, title=c["h1"], crumb=c["nav"], bg=main_photo)
         + body
         + commitment_band(lang)
         + footer(lang=lang, key=key)
@@ -407,34 +439,12 @@ def render_about(lang):
         for k in c["distinct_keywords"]
     )
 
-    # Valores: en es cada renglón es (letra, resto de la palabra) y las letras
-    # arman el acróstico IDEAS. En en no hay acróstico que traducir, así que la
-    # marca es solo la inicial de la frase y el sello del acróstico no se pinta.
-    #
-    # Cinco tarjetas cuadradas en una sola fila, no una rejilla de tres: con las
-    # cinco alineadas, las iniciales se leen de izquierda a derecha y el
-    # acróstico aparece solo. En tres columnas quedaría partido (IDE / AS) y la
-    # palabra se perdería.
-    #
-    # La letra va aria-hidden y la frase completa incluye su inicial, así que
-    # un lector de pantalla oye la frase una sola vez y bien formada.
-    def _value_card(v):
-        if isinstance(v, tuple):
-            letter, rest = v
-            mark, full = e(letter), e(letter + rest)
-        else:
-            mark, full = e(v[0]), e(v)
-        return (
-            """                <div class="arc-value-col">
-                    <div class="arc-value">
-                        <span class="arc-value-letter" aria-hidden="true">%s</span>
-                        <p class="arc-value-text">%s</p>
-                    </div>
-                </div>"""
-            % (mark, full)
-        )
-
-    values = "\n".join(_value_card(v) for v in c["values"])
+    # IDEAS conserva la identidad de marca en ambos idiomas.
+    values = "\n".join(
+        '<li class="arc-principle"><span aria-hidden="true">%s</span><p>%s</p></li>'
+        % ("IDEAS"[i], e("".join(v) if isinstance(v, tuple) else v))
+        for i, v in enumerate(c["values"])
+    )
 
     # Certificaciones: la misma tarjeta .service-2-item de Servicios
     # (icono en círculo + título + párrafo), no ya la insignia con sello
@@ -447,9 +457,9 @@ def render_about(lang):
                         <h3 class="title">%s</h3>
                         <p><strong>%s.</strong> %s</p>
                         <div class="service-dot">
-                            <img src="/assets/images/service-dot-2.png" alt="">
+
                             <div class="item">
-                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
+                                <span aria-hidden="true" data-decoration="%d"></span>
                             </div>
                         </div>
                     </div>
@@ -463,55 +473,30 @@ def render_about(lang):
 
     <!--====== 1 · HISTORIA ======-->
 
-    <section class="arc-about-story">
+    <section class="arc-story-premium">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="arc-story-copy">
-                        <span class="arc-story-year" aria-hidden="true">1991</span>
-                        <span class="service-eyebrow">{history_eyebrow}</span>
-                        <h2 class="arc-h2">{history_title}</h2>
-{history}
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="arc-story-media mt-30">
-                        <div class="arc-story-frame">
-                            <img src="{img}/rh/nosotros-equipo.jpg" alt="{alt_historia}" {dims_historia}>
-                        </div>
-                    </div>
-                </div>
+            <div class="row align-items-end arc-story-intro">
+                <div class="col-lg-8"><p class="arc-editorial-label">{history_eyebrow}</p><h2>{story_headline}</h2></div>
+                <div class="col-lg-4"><p class="arc-story-summary">{story_summary}</p></div>
+            </div>
+            <div class="arc-story-panorama arc-story-frame">
+                <img src="{img}/rh/nosotros-equipo.jpg" alt="{alt_historia}" {dims_historia}>
+                <div class="arc-origin"><strong>1991</strong><span>{story_origin}</span></div>
+            </div>
+            <div class="row arc-history-editorial">
+                <div class="col-12"><div class="arc-history-reading"><h3>{history_title}</h3><div class="arc-history-columns">{history}</div></div></div>
             </div>
         </div>
     </section>
-
-    <!--====== 1b · QUÉ NOS DISTINGUE ======-->
-    <!-- Cierra la historia en vez de ser sección aparte: habla del equipo, que
-         es la continuación natural del relato de la empresa. Las seis secciones
-         con nombre propio quedan así claramente delimitadas. -->
-
-    <section class="arc-distinct-area pb-100">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="arc-story-media">
-                        <div class="arc-story-frame">
-                            <img src="{img}/rh/nosotros-obra.jpg" alt="{alt_equipo}" loading="lazy" {dims_equipo}>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="arc-story-copy arc-distinct-copy mt-30">
-                        <h2 class="arc-h2">{distinct_title}</h2>
-                        <p>{distinct_quote}</p>
-                        <p>{distinct_rest}</p>
-                        <ul class="arc-distinct-chips">
-{distinct_chips}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="arc-team-premium">
+        <div class="container"><div class="row align-items-center">
+            <div class="col-lg-6"><div class="arc-team-photo arc-story-frame"><img src="{img}/rh/nosotros-obra.jpg" alt="{alt_equipo}" loading="lazy" {dims_equipo}></div></div>
+            <div class="col-lg-6"><div class="arc-team-copy">
+                <p class="arc-editorial-label">{team_eyebrow}</p><h2>{distinct_title}</h2>
+                <p>{distinct_quote}</p><p>{distinct_rest}</p>
+                <ol class="arc-team-principles">{distinct_chips}</ol>
+            </div></div>
+        </div></div>
     </section>
 
     <!--====== 2 · PROPÓSITO ======-->
@@ -532,21 +517,16 @@ def render_about(lang):
 
     <!--====== 3 · VALORES ======-->
 
-    <section class="arc-values-area arc-soft-area pt-100 pb-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title-9 text-center">
-                        <h2 class="title">{values_title}</h2>
-                        <div class="text">
-                            <p>{values_lead}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center arc-values-list" data-arc-motion="off">
+    <section class="arc-values-editorial" aria-labelledby="values-heading" data-arc-motion="off">
+        <div class="container arc-values-composition">
+            <header class="arc-values-heading">
+                <p class="arc-values-eyebrow">{values_title}</p>
+                <h2 id="values-heading">{values_lead}</h2>
+                <span class="arc-values-signature" aria-hidden="true">IDEAS</span>
+            </header>
+            <ol class="arc-principles">
 {values}
-            </div>
+            </ol>
         </div>
     </section>
 
@@ -612,6 +592,10 @@ def render_about(lang):
 
     </main>
 """.format(
+        story_headline=e(c["story_headline"]),
+        story_summary=e(c["story_summary"]),
+        story_origin=e(c["story_origin"]),
+        team_eyebrow=e(c["team_eyebrow"]),
         history_title=e(c["history_title"]),
         history_eyebrow=e(c["history_eyebrow"]),
         history=history,
@@ -798,18 +782,6 @@ def render_projects(lang):
     c = P.PROJECTS[lang]
     key = "projects"
 
-    stats = "\n".join(
-        """                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="overview-counter-item text-center mt-30">
-                        <span class="arc-counter-pre">%s</span>
-                        <h3 class="title">+<span class="arc-count" data-count="%s">0</span></h3>
-                        <p>%s</p>
-                    </div>
-                </div>"""
-        % (e(pre), value, e(label))
-        for value, label, pre in c["stats"]
-    )
-
     # La leyenda va siempre visible (no solo en :hover): en movil no hay hover
     # y el nombre del hub es informacion, no decoracion.
     # La tarjeta se envuelve en <a> solo cuando el proyecto está publicado.
@@ -834,11 +806,12 @@ def render_projects(lang):
         else:
             cuerpo = ('<div class="arc-project mt-30">\n%s\n'
                       '                    </div>' % interior)
-        return ('                <div class="col-lg-4 col-md-6">\n'
+        return ('                <div class="col-lg-6 col-md-6">\n'
                 '                    %s\n                </div>' % cuerpo)
 
+    proyectos_ordenados = sorted(P.HUBS, key=lambda h: not h.get("publicado", False))
     hubs = "\n".join(
-        _tarjeta(h) for h in P.HUBS
+        _tarjeta(h) for h in proyectos_ordenados
     )
 
     ld = {
@@ -853,44 +826,20 @@ def render_projects(lang):
                 "item": {"@type": "Place", "name": h["nombre"],
                          "address": h.get("ubicacion", "")},
             }
-            for i, h in enumerate(P.HUBS)
+            for i, h in enumerate(proyectos_ordenados)
         ],
     }
 
     body = """
     <main id="contenido">
 
-    <!--====== CIFRAS ======-->
-
-    <section class="arc-soft-area pt-90 pb-60">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title-9 text-center">
-                        <h2 class="title">{stats_title}</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-{stats}
-            </div>
-        </div>
-    </section>
-
     <!--====== HUBS ======-->
 
-    <section class="portfolio-style-3-area pt-100 pb-90">
+    <section class="portfolio-style-3-area arc-portfolio-editorial pt-100 pb-90" id="proyectos">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title-9 text-center mb-50">
-                        <span class="service-eyebrow">{hubs_eyebrow}</span>
-                        <h2 class="title">{hubs_title}</h2>
-                        <div class="text">
-                            <p>{hubs_intro}</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="row align-items-end arc-portfolio-heading">
+                <div class="col-lg-7"><p class="arc-editorial-label">{hubs_eyebrow}</p><h2>{hubs_title}</h2></div>
+                <div class="col-lg-5"><p class="arc-portfolio-intro">{hubs_intro}</p></div>
             </div>
             <div class="row">
 {hubs}
@@ -900,8 +849,6 @@ def render_projects(lang):
 
     </main>
 """.format(
-        stats_title=e(c["stats_title"]),
-        stats=stats,
         hubs_eyebrow=e(c["hubs_eyebrow"]),
         hubs_title=e(c["hubs_title"]),
         hubs_intro=e(c["hubs_intro"]),
@@ -926,7 +873,6 @@ def render_projects(lang):
             crumb=c["eyebrow"],
             bg="%s/proyectos/arcondec-propyectos-banner.jpg" % IMG,
         )
-        + '\n    <p class="service-lead-strip">%s</p>\n' % e(c["lead"])
         + body
         + commitment_band(lang)
         + footer(
@@ -970,7 +916,7 @@ def render_project(hub, lang, anterior, siguiente):
             '                        <figure class="arc-case-figure">\n'
             '                            <img src="%s/proyectos/%s" alt="%s" %s>\n'
             "                        </figure>"
-            % (IMG, hub["imagen"], e(hub.get("imagen_alt") or nombre),
+            % (IMG, hub["imagen"], e((hub.get("imagen_alt_en") if lang == "en" else hub.get("imagen_alt")) or hub.get("imagen_alt") or nombre),
                dims("%s/proyectos/%s" % (IMG, hub["imagen"])))
         )
 
@@ -1006,20 +952,24 @@ def render_project(hub, lang, anterior, siguiente):
         def _foto(entrada):
             if isinstance(entrada, (tuple, list)):
                 archivo, alt = entrada
+                if isinstance(alt, dict):
+                    alt = alt[lang]
             else:
                 archivo, alt = entrada, nombre
+            encuadre = hub.get("galeria_encuadres", {}).get(archivo, "")
+            estilo = ' style="%s"' % e(encuadre) if encuadre else ""
             return """                            <div class="col-md-6">
                                 <div class="arc-project-thumb mt-30">
-                                    <img src="%s/proyectos/%s" alt="%s" loading="lazy" %s>
+                                    <img src="%s/proyectos/%s" alt="%s" loading="lazy" %s%s>
                                 </div>
                             </div>""" % (IMG, archivo, e(alt),
-                                         dims("%s/proyectos/%s" % (IMG, archivo)))
+                                         dims("%s/proyectos/%s" % (IMG, archivo)), estilo)
 
         fotos = "\n".join(_foto(entrada) for entrada in hub["galeria"])
         relato.append(
             '                        <h3 class="title h4 arc-case-h">%s</h3>\n'
-            '                        <div class="row">\n%s\n                        </div>'
-            % (e(c["galeria_title"]), fotos)
+            '                        <div class="row%s">\n%s\n                        </div>'
+            % (e(c["galeria_title"]), ' arc-gallery-top' if hub.get('galeria_encuadre_superior') else '', fotos)
         )
 
     # Sin nada que contar, la columna izquierda no se queda muda: se dice lo
@@ -1285,7 +1235,7 @@ def render_contact(lang):
     }
 
     body = """
-    <main id="contenido">
+    <main id="contenido" class="arc-contact-editorial">
 
     <!--====== DOS BLOQUES: FORMULARIO Y VÍAS DIRECTAS ======-->
     <!--
@@ -1304,13 +1254,9 @@ def render_contact(lang):
 
     <section class="arc-soft-area pt-90 pb-90">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title-9 text-center">
-                        <h2 class="title h3">{direct_title}</h2>
-                        <div class="text"><p>{direct_text}</p></div>
-                    </div>
-                </div>
+            <div class="row align-items-end arc-contact-heading">
+                <div class="col-lg-7"><h2>{direct_title}</h2></div>
+                <div class="col-lg-5"><p>{direct_text}</p></div>
             </div>
             <div class="row">
 
@@ -1432,28 +1378,17 @@ def render_contact(lang):
         hueco muerto en medio (el mismo fallo que había en Nosotros).
     -->
 
-    <section class="pt-90 pb-90">
+    <section class="arc-location" id="ubicacion">
         <div class="container">
-            <!-- La dirección y el botón van en el encabezado, no en un panel
-                 aparte: así el mapa se queda con todo el ancho y la sección es un
-                 solo bloque en vez de dos. -->
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title-9 text-center">
-                        <h2 class="title">{map_title}</h2>
-                        <div class="text">
-                            <p>{addr_text}</p>
-                            <p class="arc-hours">{hours_text}</p>
-                        </div>
-                        <a class="main-btn mt-20" href="{maps}" target="_blank" rel="noopener">{directions_btn}</a>
-                    </div>
+            <div class="arc-location-layout">
+                <div class="arc-location-copy">
+                    <h2>{map_title}</h2>
+                    <p>{addr_text}</p>
+                    <p class="arc-hours">{hours_text}</p>
+                    <a class="main-btn" href="{maps}" target="_blank" rel="noopener">{directions_btn}</a>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="contact-map mt-40">
-                        <iframe title="{map_iframe_title}" src="https://www.google.com/maps?q=Grupo+Arcondec+Monterrey&amp;output=embed" width="100%" height="520" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                <div class="contact-map arc-location-map">
+                    <iframe title="{map_iframe_title}" src="https://www.google.com/maps?q=Grupo+Arcondec+Monterrey&amp;output=embed" width="100%" height="480" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
@@ -1539,21 +1474,8 @@ def render_careers(lang):
     key = "careers"
 
     why = "\n".join(
-        """                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="service-2-item text-center mt-30 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="%dms">
-                        <div class="icon"><i class="%s"></i></div>
-                        <h3 class="title">%s</h3>
-                        <p>%s</p>
-                        <div class="service-dot">
-                            <img src="/assets/images/service-dot-2.png" alt="">
-                            <div class="item">
-                                <img src="/assets/images/icon/service-icon-%d.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>"""
-        % (n * 150, icon, e(title), e(text), n + 1)
-        for n, (title, text, icon) in enumerate(c["why"])
+        '<div class="col-lg-4"><article class="arc-career-benefit"><span class="arc-benefit-number">%02d</span><h3>%s</h3><p>%s</p></article></div>'
+        % (n + 1, e(title), e(text)) for n, (title, text, icon) in enumerate(c["why"])
     )
 
     policy = "\n".join(
@@ -1602,49 +1524,32 @@ def render_careers(lang):
             e(c["apply_btn"]),
             e(c["apply_note"]),
         )
-        for v in P.VACANCIES
+        for v in (vacancy["en"] if lang == "en" else vacancy for vacancy in P.VACANCIES)
     )
 
     subject = "Vacante" if lang == "es" else "Job application"
 
     body = """
-    <main id="contenido">
+    <main id="contenido" class="arc-careers-editorial">
 
-    <section class="about-2-area about-11-area pt-90 pb-60">
+    <section class="arc-service-editorial">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="about-2-content about-11-content mt-30">
-                        <h2 class="title">{why_title}</h2>
-                        <p>{why_text}</p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-2-thumb about-11-thumb mt-30">
-                        <div class="thumb text-right">
-                            <img src="{img}/rh/arcondec_vacantes_equipo.jpg" alt="{why_title}" {dims_equipo}>
-                        </div>
-                    </div>
-                </div>
+            <div class="row align-items-end arc-service-editorial-heading">
+                <div class="col-lg-8"><p class="arc-editorial-label">{vacancies_eyebrow}</p><h2>{why_title}</h2></div>
+                <div class="col-lg-4"><p class="arc-service-editorial-summary">{why_text}</p></div>
             </div>
+            <div class="arc-service-panorama arc-story-frame"><img src="{img}/rh/arcondec_vacantes_equipo.jpg" alt="{why_title}" {dims_equipo}></div>
         </div>
     </section>
 
     <section class="arc-soft-area pt-100 pb-90">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title-9 text-center">
-                        <span class="service-eyebrow">{vacancies_eyebrow}</span>
-                        <h2 class="title">{vacancies_title}</h2>
-                        <div class="text">
-                            <p>{vacancies_intro}</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="row align-items-end arc-careers-heading">
+                <div class="col-lg-7"><p class="arc-editorial-label">{vacancies_eyebrow}</p><h2>{vacancies_title}</h2></div>
+                <div class="col-lg-5"><p>{vacancies_intro}</p></div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-lg-11">
+                <div class="col-12">
                     <div class="arc-vacancies">
 {vacancies}
                     </div>
@@ -1653,34 +1558,19 @@ def render_careers(lang):
         </div>
     </section>
 
-    <section class="pt-90 pb-90">
-        <div class="container">
-            <div class="row justify-content-center arc-service-grid">
-{why}
-            </div>
-        </div>
+    <section class="arc-career-benefits">
+        <div class="container"><div class="row arc-benefits-band">{why}</div></div>
+    </section>
+    <section class="arc-career-policy">
+        <div class="container"><div class="row">
+            <div class="col-lg-5"><p class="arc-editorial-label">{policy_eyebrow}</p><h2>{policy_title}</h2></div>
+            <div class="col-lg-7"><p>{policy_text}</p><ul>{policy}</ul></div>
+        </div></div>
     </section>
 
-    <section class="pt-40 pb-130">
+    <section class="arc-career-contact">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="arc-panel">
-                        <span class="service-eyebrow">{policy_eyebrow}</span>
-                        <h2 class="title h3">{policy_title}</h2>
-                        <p>{policy_text}</p>
-                        <ul class="mt-20">
-{policy}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pb-90">
-        <div class="container">
-            <div class="arc-cta">
+            <div class="arc-career-contact-inner">
                 <div class="row align-items-center">
                     <div class="col-lg-8">
                         <h2 class="title h3">{cta_title}</h2>
@@ -1733,7 +1623,6 @@ def render_careers(lang):
             crumb=c["eyebrow"],
             bg="%s/rh/arcondec_vacantes_banner.jpg" % IMG,
         )
-        + '\n    <p class="service-lead-strip">%s</p>\n' % e(c["lead"])
         + body
         + commitment_band(lang)
         + footer(lang=lang, key=key)
@@ -1748,7 +1637,7 @@ def render_blog(lang):
     key = "blog"
 
     cards = "\n".join(
-        """                <div class="col-lg-4 col-md-6">
+        """                <div class="col-lg-6 col-md-6">
                     <div class="article-2-item article-11-item mt-30">
                         <div class="article-thumb">
                             <img src="%s/blog/%s" alt="%s" loading="lazy" %s>
@@ -1767,16 +1656,21 @@ def render_blog(lang):
     body = """
     <main id="contenido">
 
-    <section class="article-2-area article-11-area pt-90 pb-90">
+    <section class="article-2-area article-11-area arc-blog-editorial pt-90 pb-90">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-end arc-blog-heading">
+                <div class="col-lg-7"><p class="arc-editorial-label">{blog_label}</p><h2>{blog_heading}</h2></div>
+                <div class="col-lg-5"><p>{blog_intro}</p></div>
+            </div>
+            <div class="row" id="blog-articles" data-arc-motion="off">
 {cards}
             </div>
+            <nav class="arc-blog-pagination" aria-label="{pagination_label}" hidden></nav>
         </div>
     </section>
 
     </main>
-""".format(cards=cards)
+""".format(cards=cards, blog_label=e(c["eyebrow"]), blog_heading=e(c["grid_title"]), blog_intro=e(c["lead"]), pagination_label="Páginas de noticias" if lang == "es" else "News pages")
 
     return (
         head(
@@ -1795,10 +1689,9 @@ def render_blog(lang):
             crumb=c["eyebrow"],
             bg="%s/blog/%s" % (IMG, P.ARTICLES[0]["img"]),
         )
-        + '\n    <p class="service-lead-strip">%s</p>\n' % e(c["lead"])
         + body
         + commitment_band(lang)
-        + footer(lang=lang, key=key)
+        + footer(lang=lang, key=key, extra_scripts=("/assets/js/arcondec-blog.js",))
     )
 
 
@@ -2121,6 +2014,14 @@ def main():
                     render_project(hub, lang, anterior, siguiente),
                 )
             )
+
+    # Retirar los productos de las rutas anteriores tras generar sus reemplazos.
+    # Las rutas vigentes, enlaces y SEO se obtienen de ROUTES.
+    for old_path in ("servicios/proyectos-electricos-integrales.html",
+                     "en/services/electrical-projects.html"):
+        legacy = ROOT / old_path
+        if legacy.exists():
+            legacy.unlink()
 
     write("/404.html", render_404())
     write("/sitemap.xml", render_sitemap(SITEMAP_ROUTES, BASE_URL))

@@ -1,0 +1,36 @@
+{
+  "prompt": "Retouch this exact documentary photograph of electrical equipment for a corporate project gallery. Remove only superimposed camera date/GPS/location stamps and their translucent backgrounds, reconstructing underlying surfaces naturally. Correct exposure and white balance subtly; reduce noise and gently improve clarity. Preserve exact composition, aspect ratio, equipment geometry, wiring, all physical labels and manufacturer branding, and all illuminated indicator states and colors. Do not invent details in blurry text, do not change installation or add logos, do not crop. Output one edited photo.",
+  "excluded_pending_confirmation": "09.08.52",
+  "images": [
+    {
+      "source": "09.08.45 (2)",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-21a513ab-1ac5-48f7-8b8a-134ec45d8b78.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-urales-retocada-1.jpg"
+    },
+    {
+      "source": "09.08.45 (3)",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-2a0055f9-473b-4ee7-8ab2-6b22abaaf51e.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-urales-retocada-2.jpg"
+    },
+    {
+      "source": "09.08.46 (4)",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-4c939e94-3277-41d8-9b57-4f3a05276ad5.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-urales-retocada-3.jpg"
+    },
+    {
+      "source": "09.08.49 (2)",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-f4e18876-35ec-4482-8879-28e5bd31476d.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-urales-retocada-4.jpg"
+    },
+    {
+      "source": "09.08.50 (4)",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-a7231d3d-2c2f-4484-9330-435960c16033.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-urales-retocada-5.jpg"
+    },
+    {
+      "source": "09.08.56 (4)",
+      "generated": "/Users/zamuelo/.codex/generated_images/01a09143-4aaf-7130-b100-bd7995d5e461/exec-29e151af-92a2-4cd0-b31b-534b478d6a18.png",
+      "destination": "assets/images/arcondec/proyectos/arcondec-urales-retocada-7.jpg"
+    }
+  ]
+}

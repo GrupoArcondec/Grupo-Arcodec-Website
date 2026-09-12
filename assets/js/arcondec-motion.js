@@ -1136,6 +1136,34 @@
        nada: las mismas clases no aparecen fuera de Nosotros.
        ========================================================================== */
     function nosotros() {
+        // Composición de IDEAS ligada al scroll, sin fijar la pantalla.
+        var editorial = document.querySelector('.arc-values-editorial');
+        if (editorial) {
+            var encabezado = editorial.querySelector('.arc-values-heading');
+            gsap.fromTo(encabezado, { y: 60, opacity: 0.2 }, {
+                y: 0, opacity: 1, ease: 'power2.out',
+                scrollTrigger: { trigger: encabezado, start: 'top 95%', end: 'top 55%', scrub: 0.6 }
+            });
+            var firma = editorial.querySelector('.arc-values-signature');
+            gsap.fromTo(firma, { x: -35, letterSpacing: '0.08em' }, {
+                x: 0, letterSpacing: '-0.055em', ease: 'none',
+                scrollTrigger: { trigger: editorial, start: 'top bottom', end: 'bottom 65%', scrub: 0.8 }
+            });
+            Array.prototype.forEach.call(editorial.querySelectorAll('.arc-principle'), function (fila) {
+                var tl = gsap.timeline({ scrollTrigger: {
+                    trigger: fila, start: 'top 95%', end: 'top 57%',
+                    scrub: 0.65, invalidateOnRefresh: true
+                }});
+                tl.fromTo(fila.querySelector('span'),
+                    { scale: 0.45, rotation: -14, x: -26, opacity: 0.2 },
+                    { scale: 1, rotation: 0, x: 0, opacity: 1, ease: 'back.out(1.3)', duration: 1 }, 0);
+                tl.fromTo(fila.querySelector('p'),
+                    { x: 65, y: 18, opacity: 0.15 },
+                    { x: 0, y: 0, opacity: 1, ease: 'power2.out', duration: 1 }, 0.15);
+                tl.fromTo(fila, { '--arc-rule-scale': 0 },
+                    { '--arc-rule-scale': 1, ease: 'power2.inOut', duration: 0.8 }, 0.1);
+            });
+        }
         /* --- Valores: el acróstico se forma con el scroll --------------------
            Las cinco pestañas entran una por una atadas a la barra, de izquierda
            a derecha, así que IDEAS se va deletreando conforme se baja. Por eso

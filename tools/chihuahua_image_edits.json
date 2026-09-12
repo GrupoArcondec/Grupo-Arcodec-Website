@@ -1,0 +1,26 @@
+{
+  "tool": "ChatGPT built-in image_gen",
+  "prompt": "Edit this exact documentary project photograph. Remove ONLY the superimposed blue CRT INDUSTRIAS CHIHUAHUA name, coordinates, altitude, bearing, date/time and translucent dark rectangle in the lower right. Seamlessly reconstruct the underlying actual textures. Subtly improve exposure, white balance and sharpness for a professional website, natural colors. Preserve exact composition, all people, faces, poses, architecture, cables, equipment, construction condition and all real-world signage including safety text. Do not invent completed work, remove physical objects, or add anything. Keep original 4:3 landscape framing. Output one edited photograph, no collage.",
+  "images": [
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.07.38 (1).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-chihuahua-azotea-retocada.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.07.38 (6).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-chihuahua-tableros-retocada.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.07.38 (3).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-chihuahua-azotea-detalle-retocada.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.07.37.jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-chihuahua-excavacion-retocada.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.07.37 (3).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-chihuahua-acometida-retocada.jpg"
+    }
+  ]
+}

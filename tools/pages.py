@@ -51,7 +51,11 @@ ABOUT = {
             ("ISO 45001", "Seguridad y Salud", "Prevención de riesgos laborales.", "fal fa-user-shield", "45001"),
             ("Dun & Bradstreet", "Certificación financiera", "Respaldo crediticio verificado.", "fal fa-certificate", "D&B"),
         ],
-        "history_title": "Nuestra Historia",
+        "history_title": "Nuestra historia",
+        "story_headline": "Más de tres décadas construyendo confianza.",
+        "story_summary": "Ingeniería eléctrica, infraestructura y construcción de data centers.",
+        "story_origin": "El inicio de nuestra historia",
+        "team_eyebrow": "El equipo detrás de cada proyecto",
         # Antetítulo en píldora, el mismo componente que usan las páginas de
         # servicio (.service-eyebrow) — restatement literal de la primera
         # frase del párrafo, no contenido nuevo.
@@ -70,8 +74,8 @@ ABOUT = {
         # Las mismas tres palabras del propio texto, como remate escaneable.
         "distinct_keywords": ["Compromiso", "Precisión", "Visión estratégica"],
         "areas_label": "Áreas clave",
-        "values_title": "Valores",
-        "values_lead": "Cinco principios que ordenan cada decisión.",
+        "values_title": "Nuestros valores",
+        "values_lead": "Nuestros valores toman forma en cada decisión.",
         "services_title": "Nuestros servicios",
         # (letra, resto de la palabra) — la letra inicial es la que arma el
         # acróstico IDEAS.
@@ -113,6 +117,10 @@ ABOUT = {
             ("Dun & Bradstreet", "Financial certification", "Verified credit standing.", "fal fa-certificate", "D&B"),
         ],
         "history_title": "Our History",
+        "story_headline": "More than three decades building trust.",
+        "story_summary": "Electrical engineering, infrastructure and data center construction.",
+        "story_origin": "The beginning of our story",
+        "team_eyebrow": "The team behind every project",
         "history_eyebrow": "Mexican company founded in 1991",
         "history": [
             "At Grupo Arcondec we are a Mexican company founded in 1991, specialized in delivering comprehensive, timely, and high-quality services in three key areas: electrical engineering, infrastructure, and data center construction.",
@@ -125,8 +133,8 @@ ABOUT = {
         "distinct_rest": "We approach each challenge with commitment, precision, and strategic vision to deliver measurable, sustainable results — enabling our clients to focus on their business with the confidence of having critical and electrical infrastructure designed to support their present and empower their future.",
         "distinct_keywords": ["Commitment", "Precision", "Strategic vision"],
         "areas_label": "Key areas",
-        "values_title": "Values",
-        "values_lead": "Five principles behind every decision.",
+        "values_title": "Our values",
+        "values_lead": "Our values take shape in every decision.",
         "services_title": "Our services",
         # Same five values as the ES block; the IDEAS acrostic only works in
         # Spanish (ver nota arriba), so this list carries the meaning without
@@ -181,19 +189,9 @@ HUBS = [
         "nombre": "HUB APODACA",
         "ubicacion": "Ciudad Apodaca - Nuevo León",
         "foto": "arcondec-apodaca-01.jpg",
-        # ═════════════════════════════════════════════════════════════════
-        # ATENCIÓN — DATOS SIMULADOS, PUBLICADOS EN VIVO
-        #
-        # Las cifras de abajo (2,500 kW, 1,850 m², Tier III, 8 meses, 99.98%)
-        # NO son reales: se inventaron para revisar la maquetación. Esta
-        # página está publicada, indexable y enlazada desde proyectos.html,
-        # así que cualquier visitante las lee como si fueran datos de obra.
-        #
-        # Reemplazar por información verificada en cuanto se tenga. Si el
-        # proyecto real se retrasa, volver `publicado` a False para sacarla
-        # de circulación.
-        # ═════════════════════════════════════════════════════════════════
-        "publicado": True,
+        # Datos simulados para revisar la maquetación. Pendiente de información real.
+        # Mantener sin enlace, en gris y no indexable hasta su validación.
+        "publicado": False,
         "titulo": "HUB Apodaca",
         "imagen": "sala-electrica-de-distribucion-en-media-tension.jpg",
         "imagen_alt": "Sala eléctrica de distribución en media tensión del HUB Apodaca",
@@ -273,7 +271,7 @@ HUBS = [
         "slug": {"es": "crt-industria-chihuahua", "en": "crt-industria-chihuahua-hub"},
         "nombre": "CRT INDUSTRIA CHIHUAHUA",
         "ubicacion": "Chihuahua - Chihuahua",
-        "foto": "arcondec-chihuahua-banner.jpg",
+        "foto": "arcondec-chihuahua-tableros-retocada.jpg",
         # ─────────────────────────────────────────────────────────────────
         # Datos reales, de HUB_Industria_Chihuahua_Informacion_Web_Arcondec.pdf
         # (fuente técnica: catálogo EA250101B — Instalaciones eléctricas;
@@ -329,7 +327,7 @@ HUBS = [
         # zanja de acometida funciona porque el motivo corre en horizontal a lo
         # largo del encuadre; además la franja deja fuera los rótulos
         # comerciales de los negocios vecinos que aparecen en la parte alta.
-        "imagen": "arcondec-chihuahua-zanja-acometida.jpg",
+        "imagen": "arcondec-chihuahua-acometida-retocada.jpg",
         "imagen_alt": (
             "Cuadrilla abriendo la zanja para el alimentador de media tensión"
         ),
@@ -394,20 +392,18 @@ HUBS = [
             "Dos equipos de climatización de precisión tipo InRow de 10 TR cada uno (20 TR totales), con su infraestructura eléctrica asociada",
             "Sistema de tierra física para tableros, UPS, racks y áreas críticas, con barras master, electrodo, soldadura exotérmica, supresores de transitorios y pararrayos",
         ],
-        # El orden cuenta la obra: se traza la zanja, se abre el cruce, se
-        # tienden los ductos, se cierra a nivel y se cierra con la sala de
-        # tableros ya montada, que es donde aterriza todo lo anterior.
+        # Fotografías del cliente retocadas para eliminar el sello de cámara.
         "galeria": [
-            ("arcondec-chihuahua-trazo.jpg",
-             "Trazo de la zanja del alimentador hacia el edificio"),
-            ("arcondec-chihuahua-cruce.jpg",
-             "Apertura de la zanja en el cruce vehicular, con señalización de obra"),
-            ("arcondec-chihuahua-registro-ductos.jpg",
-             "Banco de ductos del alimentador de media tensión en la excavación"),
-            ("arcondec-chihuahua-registro-terminado.jpg",
-             "Cierre y nivelación del registro terminado sobre la banqueta"),
-            ("arcondec-chihuahua-tableros.jpg",
-             "Tableros generales y canalización montados en el cuarto eléctrico"),
+            ("arcondec-chihuahua-excavacion-retocada.jpg",
+             {"es": "Cuadrilla trabajando en la excavación de la acometida", "en": "Crew working on the service entrance excavation"}),
+            ("arcondec-chihuahua-acometida-retocada.jpg",
+             {"es": "Zanja de acometida con señalización de seguridad", "en": "Service entrance trench with safety barriers"}),
+            ("arcondec-chihuahua-azotea-retocada.jpg",
+             {"es": "Vista general de la impermeabilización en azotea", "en": "Overview of rooftop waterproofing"}),
+            ("arcondec-chihuahua-azotea-detalle-retocada.jpg",
+             {"es": "Detalle de impermeabilización y base en azotea", "en": "Detail of rooftop waterproofing and raised base"}),
+            ("arcondec-chihuahua-tableros-retocada.jpg",
+             {"es": "Tableros y canalizaciones del cuarto eléctrico en instalación", "en": "Electrical room panels and cable trays during installation"}),
         ],
         "resultados": [
             ("112.5 kVA", "transformador principal"),
@@ -419,7 +415,7 @@ HUBS = [
         "slug": {"es": "hub-delicias", "en": "delicias-hub"},
         "nombre": "HUB DELICIAS",
         "ubicacion": "Delicias - Chihuahua",
-        "foto": "arcondec-delicias-banner.jpg",
+        "foto": "arcondec-delicias-retocada-7.jpg",
         # ─────────────────────────────────────────────────────────────────
         # Datos reales, de HUB_Delicias_ficha_proyecto.docx (fuente: Anexo C,
         # Formato de cotización, 11-mar-2024).
@@ -465,14 +461,10 @@ HUBS = [
             "obra civil necesaria: cuarto de tableros, plancha para la máquina "
             "de emergencia y acondicionamiento de una sala nueva.",
         ],
-        # La destacada se recorta a una franja muy ancha, así que necesita un
-        # motivo que corra en horizontal. La barra de cobre con las derivaciones
-        # numeradas por rack lo hace de punta a punta y además se lee como
-        # centro de datos, no como obra genérica.
-        "imagen": "arcondec-delicias-barra-cobre.jpg",
-        "imagen_alt": (
-            "Barra de cobre con las derivaciones de alimentación numeradas por rack"
-        ),
+        "imagen": "arcondec-delicias-retocada-7.jpg",
+        "imagen_alt": "Cuarto eléctrico del HUB Delicias con equipos de respaldo y canalizaciones",
+        "imagen_alt_en": "Delicias Hub electrical room with backup equipment and conduits",
+        "galeria_encuadre_superior": True,
         "cliente": "IZZI",
         "sector": "Telecomunicaciones",
         "ubicacion_exacta": "Delicias, Chihuahua",
@@ -513,21 +505,14 @@ HUBS = [
             "Planta de emergencia automática de 175 kW / 218 kVA con tablero de transferencia automática",
             "Sistema de aire acondicionado de precisión de 5 TR con equipo InRow para la sala nueva",
         ],
-        # El orden recorre la obra completa: primero la estructura, luego las
-        # maniobras de equipo, y de ahí hacia dentro hasta la sala terminada.
         "galeria": [
-            ("arcondec-delicias-losa.jpg",
-             "Armado de la losa de concreto del cuarto de tableros"),
-            ("arcondec-delicias-maniobra.jpg",
-             "Maniobra con grúa para el montaje de equipo en sitio"),
-            ("arcondec-delicias-tableros.jpg",
-             "Tableros generales de servicio normal y de emergencia instalados"),
-            ("arcondec-delicias-rectificadores.jpg",
-             "Módulos rectificadores del sistema de corriente directa"),
-            ("arcondec-delicias-climatizacion.jpg",
-             "Equipo de climatización de precisión de la sala nueva"),
-            ("arcondec-delicias-canalizacion.jpg",
-             "Canalización y charola sobre la fila de racks del área blanca"),
+            ("arcondec-delicias-retocada-1.jpg", {"es": "Técnico trabajando en las conexiones del tablero", "en": "Technician working on panel connections"}),
+            ("arcondec-delicias-retocada-2.jpg", {"es": "Instalación de conexiones en el gabinete", "en": "Installing cabinet connections"}),
+            ("arcondec-delicias-retocada-3.jpg", {"es": "Detalle de bastidores y conexiones de distribución", "en": "Distribution chassis and connection detail"}),
+            ("arcondec-delicias-retocada-4.jpg", {"es": "Barras de distribución y conexiones del gabinete", "en": "Cabinet distribution busbars and connections"}),
+            ("arcondec-delicias-retocada-5.jpg", {"es": "Revisión de equipos de respaldo y módulos de potencia", "en": "Inspection of backup equipment and power modules"}),
+            ("arcondec-delicias-retocada-6.jpg", {"es": "Equipos de respaldo y canalizaciones del cuarto eléctrico", "en": "Backup equipment and electrical room conduits"}),
+            ("arcondec-delicias-retocada-7.jpg", {"es": "Vista general del cuarto eléctrico del HUB Delicias", "en": "Overview of the Delicias Hub electrical room"}),
         ],
         "resultados": [
             ("225 kVA", "transformador instalado"),
@@ -539,7 +524,7 @@ HUBS = [
         "slug": {"es": "hub-santa-catarina", "en": "santa-catarina-hub"},
         "nombre": "HUB SANTA CATARINA",
         "ubicacion": "Santa Catarina - Nuevo León",
-        "foto": "arcondec-catarina-banner.jpg",
+        "foto": "arcondec-catarina-retocada-5.jpg",
         # ─────────────────────────────────────────────────────────────────
         # Datos reales, de HUB_Santa_Catarina_Informacion_Web_Arcondec.pdf
         # (presupuesto + presentación de kickoff de Fase 1). La capacidad de
@@ -581,11 +566,16 @@ HUBS = [
             "distribución y plantas de emergencia, y el diseño deja espacios "
             "preparados para futuras ampliaciones.",
         ],
-        "imagen": "arcondec-catarina-sm6.jpg",
-        "imagen_alt": (
-            "Conexión de terminaciones en las celdas de media tensión de la "
-            "subestación"
-        ),
+        "imagen": "arcondec-catarina-retocada-5.jpg",
+        "imagen_alt": "Montaje de tableros y canalizaciones en HUB Santa Catarina",
+        "imagen_alt_en": "Switchgear and cable tray installation at Santa Catarina Hub",
+        "galeria_encuadre_superior": True,
+        "galeria_encuadres": {
+            "arcondec-catarina-retocada-1.jpg": "object-position:center 45%",
+            "arcondec-catarina-retocada-6.jpg": "object-position:center 65%",
+            "arcondec-catarina-retocada-8.jpg": "object-position:center 55%",
+            "arcondec-catarina-retocada-9.jpg": "object-position:center 60%",
+        },
         "cliente": "IZZI",
         "sector": "Telecomunicaciones / infraestructura crítica",
         "ubicacion_exacta": "Ciudad Santa Catarina, Nuevo León",
@@ -641,19 +631,16 @@ HUBS = [
             "Climatización crítica con pasillos fríos y calientes confinados, unidades In-Row y equipos de precisión",
             "Obra civil y PCI: cuartos técnicos, plantas de emergencia, oficinas, terraza y exteriores, con detección y supresión de incendio",
         ],
-        # De lo general a lo particular: primero el conjunto desde el aire,
-        # luego las maniobras mayores y de ahí al detalle de cada sistema.
         "galeria": [
-            ("arcondec-catarina-aerea.jpg",
-             "Vista aérea del conjunto del data center en construcción"),
-            ("arcondec-catarina-izaje.jpg",
-             "Izaje nocturno de una de las plantas de emergencia"),
-            ("arcondec-catarina-terminaciones.jpg",
-             "Terminaciones de media tensión en las celdas de la subestación"),
-            ("arcondec-catarina-tableros.jpg",
-             "Montaje de tableros y canalización en el cuarto eléctrico"),
-            ("arcondec-catarina-condensadores.jpg",
-             "Condensadores de la climatización de precisión en fachada"),
+            ("arcondec-catarina-retocada-1.jpg", {"es": "Trabajos de conexión de la red de tierras", "en": "Grounding network connection work"}),
+            ("arcondec-catarina-retocada-2.jpg", {"es": "Colado de concreto en losa", "en": "Concrete slab pouring"}),
+            ("arcondec-catarina-retocada-3.jpg", {"es": "Preparación y nivelación de losa", "en": "Slab preparation and leveling"}),
+            ("arcondec-catarina-retocada-4.jpg", {"es": "Trabajos interiores de obra civil", "en": "Interior civil construction work"}),
+            ("arcondec-catarina-retocada-5.jpg", {"es": "Montaje de tableros y canalizaciones", "en": "Switchgear and cable tray installation"}),
+            ("arcondec-catarina-retocada-6.jpg", {"es": "Tendido de alimentadores en charolas", "en": "Feeder cable installation in trays"}),
+            ("arcondec-catarina-retocada-7.jpg", {"es": "Canalizaciones y alimentadores del cuarto eléctrico", "en": "Electrical room cable trays and feeders"}),
+            ("arcondec-catarina-retocada-8.jpg", {"es": "Técnicos trabajando en barras de distribución", "en": "Technicians working on distribution busbars"}),
+            ("arcondec-catarina-retocada-9.jpg", {"es": "Gabinete de alta tensión y alimentadores", "en": "High-voltage cabinet and feeders"}),
         ],
         "resultados": [
             ("2.5 MVA", "capacidad instalada"),
@@ -665,7 +652,7 @@ HUBS = [
         "slug": {"es": "hub-satelite", "en": "satelite-hub"},
         "nombre": "HUB SATÉLITE",
         "ubicacion": "Naucalpan - Estado de México",
-        "foto": "arcondec-satelite-banner.jpg",
+        "foto": "arcondec-satelite-retocada-4.jpg",
         # ─────────────────────────────────────────────────────────────────
         # Datos reales, de HUB_Satelite_Informacion_Web_Arcondec.pdf
         # (catálogo de conceptos y manual de operación).
@@ -703,11 +690,9 @@ HUBS = [
             "emergencia, canalizaciones, estructura metálica, adecuaciones "
             "arquitectónicas y elementos de seguridad.",
         ],
-        "imagen": "arcondec-satelite-tablero.jpg",
-        "imagen_alt": (
-            "Técnico trabajando en la migración de alimentadores dentro del "
-            "tablero"
-        ),
+        "imagen": "arcondec-satelite-retocada-4.jpg",
+        "imagen_alt": "Conexiones, alimentadores y barras del tablero de HUB Satélite",
+        "imagen_alt_en": "Connections, feeders and switchboard busbars at Satélite HUB",
         "cliente": "IZZI",
         "sector": "Telecomunicaciones",
         "ubicacion_exacta": "Ciudad Satélite, Naucalpan de Juárez, Estado de México",
@@ -762,17 +747,23 @@ HUBS = [
             "Adecuaciones civiles y arquitectónicas: demoliciones, pasos de instalaciones, muros de Durock, acabados, pintura, puertas y fachada con louver",
             "Infraestructura metálica auxiliar con PTR, perfiles IPR, rejilla tipo Irving, barandales y escalera de acceso",
         ],
+        "galeria_encuadre_superior": True,
+        "galeria_encuadres": {
+            "arcondec-satelite-retocada-1.jpg": "object-position:center 50%",
+            "arcondec-satelite-retocada-2.jpg": "object-position:center 65%",
+            "arcondec-satelite-retocada-3.jpg": "object-position:center 50%",
+            "arcondec-satelite-retocada-4.jpg": "object-position:center 50%",
+            "arcondec-satelite-retocada-5.jpg": "object-position:center 40%",
+            "arcondec-satelite-retocada-6.jpg": "object-position:center 65%",
+        },
         "galeria": [
-            ("arcondec-satelite-barras.jpg",
-             "Trabajos sobre las barras del tablero general"),
-            ("arcondec-satelite-conductores.jpg",
-             "Conductores y terminaciones peinados dentro del tablero"),
-            ("arcondec-satelite-alimentadores.jpg",
-             "Alimentadores de potencia conectados al tablero de transferencia"),
-            ("arcondec-satelite-maniobra.jpg",
-             "Maniobra de conexión durante una ventana nocturna"),
-            ("arcondec-satelite-transferencia.jpg",
-             "Integración del tablero de transferencia con la planta de emergencia"),
+            ("arcondec-satelite-retocada-1.jpg", {"es": "Preparación de alimentadores en tablero", "en": "Preparing switchboard feeder cables"}),
+            ("arcondec-satelite-retocada-2.jpg", {"es": "Conexión de cables de potencia", "en": "Connecting power cables"}),
+            ("arcondec-satelite-retocada-3.jpg", {"es": "Técnicos trabajando en alimentadores", "en": "Technicians working on feeder cables"}),
+            ("arcondec-satelite-retocada-4.jpg", {"es": "Terminaciones y barras del tablero", "en": "Switchboard terminations and busbars"}),
+            ("arcondec-satelite-retocada-5.jpg", {"es": "Instalación de terminales de potencia", "en": "Installing power cable terminals"}),
+            ("arcondec-satelite-retocada-6.jpg", {"es": "Verificación eléctrica con pinza amperimétrica", "en": "Electrical testing with a clamp meter"}),
+            ("arcondec-satelite-retocada-7.jpg", {"es": "Instalación de charolas eléctricas", "en": "Installing electrical cable trays"}),
         ],
         "resultados": [
             ("3", "ventanas nocturnas de intervención eléctrica"),
@@ -782,7 +773,7 @@ HUBS = [
         "slug": {"es": "montes-urales", "en": "montes-urales"},
         "nombre": "MONTES URALES",
         "ubicacion": "Montes Urales - CDMX",
-        "foto": "arcondec-urales-banner.jpg",
+        "foto": "arcondec-urales-retocada-2.jpg",
         # ─────────────────────────────────────────────────────────────────
         # Datos reales, de Montes_Urales_Bancos_Baterias_Informacion_Web_
         # Arcondec.pdf (cotización + reporte de actividades). La capacidad de
@@ -819,11 +810,9 @@ HUBS = [
             "planta de corriente directa externa de 600 A alimentada desde el "
             "tablero de corriente alterna existente.",
         ],
-        "imagen": "arcondec-urales-barras.jpg",
-        "imagen_alt": (
-            "Conexión de los conductores positivo y negativo a las barras "
-            "colectoras del banco"
-        ),
+        "imagen": "arcondec-urales-retocada-2.jpg",
+        "imagen_alt": "Banco de baterías existente en Montes Urales",
+        "imagen_alt_en": "Existing battery bank at Montes Urales",
         "ubicacion_exacta": "Montes Urales, Ciudad de México",
         "tipo_obra": "Modernización del sistema de respaldo en corriente directa",
         "capacidad": "4 bancos × 1,000 Ah a 48 VCD (4,000 Ah · 192 kWh)",
@@ -870,19 +859,22 @@ HUBS = [
             "Reubicación de un banco existente a una nueva posición dentro de la misma área",
             "Configuración, puesta en servicio de los equipos y capacitación al personal local",
         ],
-        # La secuencia cuenta el reemplazo: lo que había, lo que se instaló y
-        # cómo quedó conectado.
+        "galeria_encuadre_superior": True,
+        "galeria_encuadres": {
+            "arcondec-urales-retocada-1.jpg": "object-position:center center",
+            "arcondec-urales-retocada-2.jpg": "object-position:center center",
+            "arcondec-urales-retocada-3.jpg": "object-position:center center",
+            "arcondec-urales-retocada-4.jpg": "object-position:center center",
+            "arcondec-urales-retocada-5.jpg": "object-position:center center",
+            "arcondec-urales-retocada-7.jpg": "object-position:center center",
+        },
         "galeria": [
-            ("arcondec-urales-banco-existente.jpg",
-             "Banco de baterías existente antes de la sustitución"),
-            ("arcondec-urales-banco-nuevo.jpg",
-             "Banco nuevo montado en rack antisísmico Zona 4"),
-            ("arcondec-urales-modulos.jpg",
-             "Módulos de litio de 100 Ah instalados en el rack"),
-            ("arcondec-urales-modulo-detalle.jpg",
-             "Indicadores de estado de carga de un módulo Polarium"),
-            ("arcondec-urales-conexion.jpg",
-             "Conexión y peinado de conductores entre bancos"),
+            ("arcondec-urales-retocada-1.jpg", {"es": "Barras y protecciones del sistema de corriente directa", "en": "DC system busbars and protection devices"}),
+            ("arcondec-urales-retocada-2.jpg", {"es": "Banco de baterías existente", "en": "Existing battery bank"}),
+            ("arcondec-urales-retocada-3.jpg", {"es": "Banco de baterías y canalizaciones del sitio", "en": "Site battery bank and cable trays"}),
+            ("arcondec-urales-retocada-4.jpg", {"es": "Interruptores y conexiones del tablero", "en": "Switchboard breakers and connections"}),
+            ("arcondec-urales-retocada-5.jpg", {"es": "Módulos de baterías de litio en rack", "en": "Rack-mounted lithium battery modules"}),
+            ("arcondec-urales-retocada-7.jpg", {"es": "Indicadores de estado de un módulo de batería", "en": "Battery module status indicators"}),
         ],
         "resultados": [
             ("4", "bancos nuevos instalados"),
@@ -943,7 +935,7 @@ HUBS = [
         "slug": {"es": "hub-sevilla", "en": "sevilla-hub"},
         "nombre": "HUB SEVILLA",
         "ubicacion": "Sevilla - CDMX",
-        "foto": "arcondec-sevilla-banner.jpg",
+        "foto": "arcondec-sevilla-retocada-2.jpg",
         # ─────────────────────────────────────────────────────────────────
         # Datos reales, de HUB_Sevilla_ficha_proyecto.docx (fuente: Anexo C,
         # Formato de cotización VF 01, 04-nov-2024, pestaña "Hub Sevilla 01";
@@ -983,8 +975,9 @@ HUBS = [
         # que ser una toma cuyo motivo se extienda en horizontal. Esta vista de
         # la azotea deja ver toda la hilera de condensadores incluso en la
         # franja; una foto de motivo centrado se perdería en el recorte.
-        "imagen": "arcondec-sevilla-condensadores-azotea.jpg",
+        "imagen": "arcondec-sevilla-retocada-2.jpg",
         "imagen_alt": "Hilera de condensadores instalados en la azotea del HUB Sevilla",
+        "imagen_alt_en": "Condenser units installed on the rooftop of Sevilla HUB",
         "cliente": "IZZI / TVI",
         "sector": "Telecomunicaciones",
         "ubicacion_exacta": "Sevilla, Ciudad de México",
@@ -1023,21 +1016,24 @@ HUBS = [
             "Proyecto de ingeniería completo: planos de trayectorias, 3D, cortes, diagramas y carpeta técnica",
             "Sistema de monitoreo Team Work configurado por cada POD",
         ],
-        # El orden cuenta la obra: llega el equipo, se instala en azotea, se
-        # tiende la tubería y se cierra dentro de la sala.
+        "galeria_encuadre_superior": True,
+        "galeria_encuadres": {
+            "arcondec-sevilla-retocada-1.jpg": "object-position:center center",
+            "arcondec-sevilla-retocada-2.jpg": "object-position:center center",
+            "arcondec-sevilla-retocada-3.jpg": "object-position:center center",
+            "arcondec-sevilla-retocada-4.jpg": "object-position:center center",
+            "arcondec-sevilla-retocada-5.jpg": "object-position:center center",
+            "arcondec-sevilla-retocada-6.jpg": "object-position:center center",
+            "arcondec-sevilla-retocada-7.jpg": "object-position:center center",
+        },
         "galeria": [
-            ("arcondec-sevilla-equipo-nuevo.jpg",
-             "Condensador ATTOM embalado a su llegada a la azotea"),
-            ("arcondec-sevilla-condensador.jpg",
-             "Condensador instalado sobre la estructura de azotea"),
-            ("arcondec-sevilla-cobre.jpg",
-             "Instalación de las líneas de cobre aisladas"),
-            ("arcondec-sevilla-plafon.jpg",
-             "Tubería de refrigeración en cobre sobre el plafón"),
-            ("arcondec-sevilla-canalizacion.jpg",
-             "Canalización y tubería sobre la fila de racks"),
-            ("arcondec-sevilla-sala.jpg",
-             "Técnico en el pasillo confinado del centro de datos"),
+            ("arcondec-sevilla-retocada-1.jpg", {"es": "Pasillo de racks y canalizaciones", "en": "Rack aisle and cable trays"}),
+            ("arcondec-sevilla-retocada-2.jpg", {"es": "Condensadores instalados en azotea", "en": "Rooftop condenser units"}),
+            ("arcondec-sevilla-retocada-3.jpg", {"es": "Medición con manifold digital", "en": "Digital manifold measurement"}),
+            ("arcondec-sevilla-retocada-4.jpg", {"es": "Tuberías y conexiones de refrigeración", "en": "Refrigeration piping and connections"}),
+            ("arcondec-sevilla-retocada-5.jpg", {"es": "Pantalla de monitoreo del equipo InRow", "en": "InRow equipment monitoring display"}),
+            ("arcondec-sevilla-retocada-6.jpg", {"es": "Inspección con cámara termográfica", "en": "Thermal camera inspection"}),
+            ("arcondec-sevilla-retocada-7.jpg", {"es": "Tuberías de cobre y aislamiento", "en": "Copper piping and insulation"}),
         ],
         "resultados": [
             ("2", "meses de ejecución en sitio"),
@@ -1174,9 +1170,9 @@ PROJECTS = {
             ("1300", "m² de área blanca", "Más de"),
             ("30", "Años de experiencia", "Más de"),
         ],
-        "hubs_eyebrow": "Proyectos destacados",
-        "hubs_title": "Proyectos",
-        "hubs_intro": "En Grupo Arcondec hemos desarrollado proyectos de infraestructura crítica en todo México, integrando soluciones eléctricas, civiles y tecnológicas con un enfoque en confiabilidad, eficiencia y continuidad operativa. Cada obra representa nuestro compromiso con la precisión técnica, la calidad garantizada y la entrega en tiempo y forma.",
+        "hubs_eyebrow": "Nuestros proyectos",
+        "hubs_title": "Ingeniería que se ve.",
+        "hubs_intro": "Infraestructura eléctrica y centros de datos en México.",
     },
     "en": {
         "title": "Projects",
@@ -1192,9 +1188,9 @@ PROJECTS = {
             ("1300", "m² of white space", "Over"),
             ("30", "Years of experience", "Over"),
         ],
-        "hubs_eyebrow": "Featured projects",
-        "hubs_title": "Projects",
-        "hubs_intro": "At Grupo Arcondec, we have developed critical infrastructure projects throughout Mexico, integrating electrical, civil, and technological solutions with a focus on reliability, efficiency, and operational continuity. Each project reflects our commitment to technical precision, guaranteed quality, and on-time delivery.",
+        "hubs_eyebrow": "Our projects",
+        "hubs_title": "Engineering you can see.",
+        "hubs_intro": "Electrical infrastructure and data centers in Mexico.",
     },
 }
 
@@ -1416,77 +1412,161 @@ CAREERS = {
     },
 }
 
-# Vacantes activas. El contenido (título, requisitos, funciones) se comparte
-# entre es/en porque son puestos presenciales en Monterrey publicados en
-# español; solo el texto de interfaz alrededor (arriba, en CAREERS) se traduce.
-VACANCIES = [
-    {
-        "title": "Analista de Precios Unitarios",
-        "req": "+3 años de experiencia · Ingeniería Civil, Ingeniería Eléctrica o afín · Excel avanzado · Neodata indispensable · Experiencia cuantificando desde planos.",
-        "func": "Elaboración de presupuestos de instalaciones eléctricas y obra civil. Análisis de precios unitarios y cuantificación de volúmenes de obra. Cotización con proveedores y subcontratistas e integración de costos.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales",
-    },
-    {
-        "title": "Arquitecto Proyectista",
-        "req": "3 a 5 años de experiencia · Licenciatura en Arquitectura, Ingeniería Civil o afín · AutoCAD 2D/3D, Revit/BIM, SketchUp, Lumion, Photoshop, Illustrator, Excel.",
-        "func": "Desarrollo de proyectos arquitectónicos y ejecutivos. Elaboración de planos, renders, memorias descriptivas y documentación técnica. Coordinación e integración de disciplinas de ingeniería.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales",
-    },
-    {
-        "title": "Ingeniero de Control y Planeación Eléctrica",
-        "req": "Experiencia en obra e instalaciones eléctricas · Ingeniería Eléctrica, Electromecánica, Civil o afín · Excel · Deseable MS Project y AutoCAD · Conocimiento de baja y media tensión.",
-        "func": "Seguimiento a cronogramas y programas de obra. Control de avances físicos, financieros, generadores y estimaciones. Seguimiento a costos, presupuestos, materiales y documentación de proyecto.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $25k–30k libres mensuales",
-    },
-    {
-        "title": "Coordinador Eléctrico de Diseño",
-        "req": "4 a 6 años de experiencia en proyectos de misión crítica y Data Centers · Ingeniería Eléctrica o afín · Revit MEP, AutoCAD Electrical · NOM-001-SEDE · Media y baja tensión.",
-        "func": "Diseño y validación de instalaciones eléctricas y sistemas de respaldo. Coordinación y supervisión de proyectistas eléctricos. Catálogos de conceptos e integración con otras especialidades.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales",
-    },
-    {
-        "title": "Coordinador HVAC",
-        "req": "3 a 5 años de experiencia · Ingeniería Mecánica, Electromecánica o afín · Manejo fluido de Revit y AutoCAD · Cálculo de cargas térmicas y selección de equipos HVAC · Experiencia en proyectos de misión crítica o data center.",
-        "func": "Diseño y memorias de cálculo de sistemas HVAC y climatización de precisión. Selección de CRAC/CRAH, chillers, inrow y unidades condensadoras. Coordinación de ductos, cargas térmicas y espacios técnicos con otras especialidades.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales",
-    },
-    {
-        "title": "Coordinador PCI Detección y Pre-Acción",
-        "req": "3 a 5 años de experiencia · Ingeniería Mecánica, Electromecánica o afín · Manejo fluido de Revit y AutoCAD · Indispensable conocimiento de normativa NFPA.",
-        "func": "Diseño de sistemas PCI, rociadores, pre-acción y agentes limpios. Diseño de detección temprana de humo y sistemas convencionales/direccionables. Elaboración de catálogos de conceptos, coordinación con otras especialidades.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales",
-    },
-    {
-        "title": "Coordinador de Sistemas Especiales de Seguridad",
-        "req": "3 a 5 años de experiencia · Ingeniería Electrónica, Telecomunicaciones, Sistemas o afín · CCTV, control de acceso, voz y datos, fibra óptica · Manejo fluido de AutoCAD y Revit.",
-        "func": "Diseño y especificación de sistemas de CCTV y control de acceso. Diseño de cableado estructurado y redes de fibra óptica. Coordinación de planos e integración con otras especialidades.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales",
-    },
-    {
-        "title": "Ingeniero Proyectista Eléctrico",
-        "req": "+3 años de experiencia · Ingeniería Eléctrica, Electromecánica o afín · AutoCAD, Revit, Microsoft Office · Deseable ETAP y conocimiento de normativa vigente · Experiencia en proyectos de misión crítica o data center.",
-        "func": "Diseño de proyectos eléctricos industriales en baja y media tensión. Elaboración de planos, diagramas unifilares y documentación técnica. Cuantificaciones, levantamientos y planos As-Built.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales",
-    },
-    {
-        "title": "Project Manager",
-        "req": "5 a 8 años de experiencia en construcción · 3 años como Project Manager o líder de proyectos · Ingeniería Civil, Arquitectura, Ingeniería Eléctrica o afín · MS Project, AutoCAD, Excel avanzado · Neodata / OPUS.",
-        "func": "Administración integral de proyectos, desde inicio hasta cierre. Coordinación de equipos, contratistas y múltiples frentes de obra. Control de cronogramas, costos, riesgos, calidad y seguridad.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · Disponibilidad para viajar · $30k–40k libres mensuales",
-    },
-    {
-        "title": "Project Manager – SPOC de Operaciones",
-        "req": "3 a 5 años de experiencia · Ingeniería Civil, Eléctrica, Mecánica o afín · Gestión y coordinación de proyectos · Microsoft Project, Smartsheet, lectura de planos · Deseable PMP, CAPM o equivalente.",
-        "func": "Seguimiento de proyectos de ingeniería activos, riesgos, retrasos y desviaciones. Coordinación con Operaciones, Ingeniería y proveedores. Control de acuerdos, compromisos, fechas límite y solicitudes técnicas.",
-        "meta": "Monterrey, N.L. · Zona Cumbres · Presencial · $30k–40k libres mensuales",
-    },
-]
+# Vacantes activas: contenido original en español y traducción completa en inglés.
+VACANCIES = [{'title': 'Analista de Precios Unitarios',
+  'req': '+3 años de experiencia · Ingeniería Civil, Ingeniería Eléctrica o afín · Excel avanzado · Neodata '
+         'indispensable · Experiencia cuantificando desde planos.',
+  'func': 'Elaboración de presupuestos de instalaciones eléctricas y obra civil. Análisis de precios '
+          'unitarios y cuantificación de volúmenes de obra. Cotización con proveedores y subcontratistas e '
+          'integración de costos.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales',
+  'en': {'title': 'Unit Cost Analyst',
+         'req': '3+ years of experience · Degree in Civil Engineering, Electrical Engineering or a related '
+                'field · Advanced Excel · Neodata required · Experience taking quantities from drawings.',
+         'func': 'Prepare estimates for electrical installations and civil works. Analyze unit costs and '
+                 'prepare quantity takeoffs. Obtain supplier and subcontractor quotes and compile costs.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $22k–25k net per month'}},
+ {'title': 'Arquitecto Proyectista',
+  'req': '3 a 5 años de experiencia · Licenciatura en Arquitectura, Ingeniería Civil o afín · AutoCAD 2D/3D, '
+         'Revit/BIM, SketchUp, Lumion, Photoshop, Illustrator, Excel.',
+  'func': 'Desarrollo de proyectos arquitectónicos y ejecutivos. Elaboración de planos, renders, memorias '
+          'descriptivas y documentación técnica. Coordinación e integración de disciplinas de ingeniería.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales',
+  'en': {'title': 'Architectural Designer',
+         'req': '3–5 years of experience · Degree in Architecture, Civil Engineering or a related field · '
+                'AutoCAD 2D/3D, Revit/BIM, SketchUp, Lumion, Photoshop, Illustrator and Excel.',
+         'func': 'Develop architectural designs and construction documentation. Prepare drawings, '
+                 'renderings, design reports and technical documentation. Coordinate and integrate '
+                 'engineering disciplines.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $22k–25k net per month'}},
+ {'title': 'Ingeniero de Control y Planeación Eléctrica',
+  'req': 'Experiencia en obra e instalaciones eléctricas · Ingeniería Eléctrica, Electromecánica, Civil o '
+         'afín · Excel · Deseable MS Project y AutoCAD · Conocimiento de baja y media tensión.',
+  'func': 'Seguimiento a cronogramas y programas de obra. Control de avances físicos, financieros, '
+          'generadores y estimaciones. Seguimiento a costos, presupuestos, materiales y documentación de '
+          'proyecto.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $25k–30k libres mensuales',
+  'en': {'title': 'Electrical Planning and Project Controls Engineer',
+         'req': 'Experience in construction and electrical installations · Degree in Electrical, '
+                'Electromechanical or Civil Engineering, or a related field · Excel · MS Project and AutoCAD '
+                'preferred · Knowledge of low- and medium-voltage systems.',
+         'func': 'Monitor construction schedules and work plans. Track physical and financial progress, '
+                 'quantity records and progress payment estimates. Monitor costs, budgets, materials and '
+                 'project documentation.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $25k–30k net per month'}},
+ {'title': 'Coordinador Eléctrico de Diseño',
+  'req': '4 a 6 años de experiencia en proyectos de misión crítica y Data Centers · Ingeniería Eléctrica o '
+         'afín · Revit MEP, AutoCAD Electrical · NOM-001-SEDE · Media y baja tensión.',
+  'func': 'Diseño y validación de instalaciones eléctricas y sistemas de respaldo. Coordinación y '
+          'supervisión de proyectistas eléctricos. Catálogos de conceptos e integración con otras '
+          'especialidades.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales',
+  'en': {'title': 'Electrical Design Coordinator',
+         'req': '4–6 years of experience in mission-critical and data center projects · Degree in Electrical '
+                'Engineering or a related field · Revit MEP and AutoCAD Electrical · NOM-001-SEDE · Medium- '
+                'and low-voltage systems.',
+         'func': 'Design and validate electrical installations and backup power systems. Coordinate and '
+                 'supervise electrical designers. Prepare bills of quantities and integrate designs with '
+                 'other disciplines.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $30k–35k net per month'}},
+ {'title': 'Coordinador HVAC',
+  'req': '3 a 5 años de experiencia · Ingeniería Mecánica, Electromecánica o afín · Manejo fluido de Revit y '
+         'AutoCAD · Cálculo de cargas térmicas y selección de equipos HVAC · Experiencia en proyectos de '
+         'misión crítica o data center.',
+  'func': 'Diseño y memorias de cálculo de sistemas HVAC y climatización de precisión. Selección de '
+          'CRAC/CRAH, chillers, inrow y unidades condensadoras. Coordinación de ductos, cargas térmicas y '
+          'espacios técnicos con otras especialidades.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales',
+  'en': {'title': 'HVAC Coordinator',
+         'req': '3–5 years of experience · Degree in Mechanical or Electromechanical Engineering, or a '
+                'related field · Proficiency in Revit and AutoCAD · Thermal load calculations and HVAC '
+                'equipment selection · Experience in mission-critical or data center projects.',
+         'func': 'Design HVAC and precision cooling systems and prepare calculation reports. Select '
+                 'CRAC/CRAH units, chillers, in-row cooling units and condensing units. Coordinate ductwork, '
+                 'thermal loads and technical spaces with other disciplines.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $30k–35k net per month'}},
+ {'title': 'Coordinador PCI Detección y Pre-Acción',
+  'req': '3 a 5 años de experiencia · Ingeniería Mecánica, Electromecánica o afín · Manejo fluido de Revit y '
+         'AutoCAD · Indispensable conocimiento de normativa NFPA.',
+  'func': 'Diseño de sistemas PCI, rociadores, pre-acción y agentes limpios. Diseño de detección temprana de '
+          'humo y sistemas convencionales/direccionables. Elaboración de catálogos de conceptos, '
+          'coordinación con otras especialidades.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales',
+  'en': {'title': 'Fire Protection, Detection and Pre-Action Coordinator',
+         'req': '3–5 years of experience · Degree in Mechanical or Electromechanical Engineering, or a '
+                'related field · Proficiency in Revit and AutoCAD · Knowledge of NFPA standards required.',
+         'func': 'Design fire protection, sprinkler, pre-action and clean-agent systems. Design early smoke '
+                 'detection and conventional/addressable systems. Prepare bills of quantities and coordinate '
+                 'with other disciplines.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $30k–35k net per month'}},
+ {'title': 'Coordinador de Sistemas Especiales de Seguridad',
+  'req': '3 a 5 años de experiencia · Ingeniería Electrónica, Telecomunicaciones, Sistemas o afín · CCTV, '
+         'control de acceso, voz y datos, fibra óptica · Manejo fluido de AutoCAD y Revit.',
+  'func': 'Diseño y especificación de sistemas de CCTV y control de acceso. Diseño de cableado estructurado '
+          'y redes de fibra óptica. Coordinación de planos e integración con otras especialidades.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales',
+  'en': {'title': 'Special Security Systems Coordinator',
+         'req': '3–5 years of experience · Degree in Electronics, Telecommunications or Systems Engineering, '
+                'or a related field · CCTV, access control, voice and data networks, and fiber optics · '
+                'Proficiency in AutoCAD and Revit.',
+         'func': 'Design and specify CCTV and access control systems. Design structured cabling and fiber '
+                 'optic networks. Coordinate drawings and integration with other disciplines.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $30k–35k net per month'}},
+ {'title': 'Ingeniero Proyectista Eléctrico',
+  'req': '+3 años de experiencia · Ingeniería Eléctrica, Electromecánica o afín · AutoCAD, Revit, Microsoft '
+         'Office · Deseable ETAP y conocimiento de normativa vigente · Experiencia en proyectos de misión '
+         'crítica o data center.',
+  'func': 'Diseño de proyectos eléctricos industriales en baja y media tensión. Elaboración de planos, '
+          'diagramas unifilares y documentación técnica. Cuantificaciones, levantamientos y planos As-Built.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales',
+  'en': {'title': 'Electrical Design Engineer',
+         'req': '3+ years of experience · Degree in Electrical or Electromechanical Engineering, or a '
+                'related field · AutoCAD, Revit and Microsoft Office · ETAP and knowledge of applicable '
+                'standards preferred · Experience in mission-critical or data center projects.',
+         'func': 'Design low- and medium-voltage industrial electrical systems. Prepare drawings, '
+                 'single-line diagrams and technical documentation. Prepare quantity takeoffs, conduct site '
+                 'surveys and produce as-built drawings.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $22k–25k net per month'}},
+ {'title': 'Project Manager',
+  'req': '5 a 8 años de experiencia en construcción · 3 años como Project Manager o líder de proyectos · '
+         'Ingeniería Civil, Arquitectura, Ingeniería Eléctrica o afín · MS Project, AutoCAD, Excel avanzado '
+         '· Neodata / OPUS.',
+  'func': 'Administración integral de proyectos, desde inicio hasta cierre. Coordinación de equipos, '
+          'contratistas y múltiples frentes de obra. Control de cronogramas, costos, riesgos, calidad y '
+          'seguridad.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · Disponibilidad para viajar · $30k–40k libres '
+          'mensuales',
+  'en': {'title': 'Project Manager',
+         'req': '5–8 years of construction experience · 3 years as a Project Manager or project lead · '
+                'Degree in Civil Engineering, Architecture, Electrical Engineering or a related field · MS '
+                'Project, AutoCAD and advanced Excel · Neodata / OPUS.',
+         'func': 'Manage projects from initiation through closeout. Coordinate teams, contractors and '
+                 'multiple construction work fronts. Control schedules, costs, risks, quality and safety.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · Travel availability required · MXN $30k–40k net '
+                 'per month'}},
+ {'title': 'Project Manager – SPOC de Operaciones',
+  'req': '3 a 5 años de experiencia · Ingeniería Civil, Eléctrica, Mecánica o afín · Gestión y coordinación '
+         'de proyectos · Microsoft Project, Smartsheet, lectura de planos · Deseable PMP, CAPM o '
+         'equivalente.',
+  'func': 'Seguimiento de proyectos de ingeniería activos, riesgos, retrasos y desviaciones. Coordinación '
+          'con Operaciones, Ingeniería y proveedores. Control de acuerdos, compromisos, fechas límite y '
+          'solicitudes técnicas.',
+  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $30k–40k libres mensuales',
+  'en': {'title': 'Project Manager – Operations SPOC',
+         'req': '3–5 years of experience · Degree in Civil, Electrical or Mechanical Engineering, or a '
+                'related field · Project management and coordination · Microsoft Project, Smartsheet and '
+                'drawing interpretation · PMP, CAPM or equivalent preferred.',
+         'func': 'Monitor active engineering projects, risks, delays and deviations. Coordinate with '
+                 'Operations, Engineering and suppliers. Track agreements, commitments, deadlines and '
+                 'technical requests.',
+         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $30k–40k net per month'}}]
 
 # --------------------------------------------------------------------------
 # BLOG (indice). Los articulos completos son la segunda tanda de trabajo.
 # --------------------------------------------------------------------------
 BLOG = {
     "es": {
+        "grid_title": "Ideas para la infraestructura del mañana.",
         "title": "Blogs",
         "meta": "Artículos técnicos de Grupo Arcondec sobre infraestructura eléctrica, corriente directa, data centers e ingeniería para entornos de misión crítica.",
         "keywords": "blog ingeniería eléctrica, data center, corriente directa, infraestructura crítica, Grupo Arcondec",
@@ -1497,6 +1577,7 @@ BLOG = {
         "soon": "Próximamente",
     },
     "en": {
+        "grid_title": "Ideas for tomorrow’s infrastructure.",
         "title": "Blogs",
         "meta": "Technical articles by Grupo Arcondec on electrical infrastructure, direct current, data centers and engineering for mission-critical environments.",
         "keywords": "electrical engineering blog, data center, direct current, critical infrastructure, Grupo Arcondec",

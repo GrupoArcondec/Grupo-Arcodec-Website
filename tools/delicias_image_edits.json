@@ -1,0 +1,34 @@
+{
+  "tool": "ChatGPT built-in image_gen",
+  "prompt": "Edit this exact documentary electrical project photograph for a professional website. Remove ONLY the superimposed white 'izzi delicias chihuahua', GPS coordinates, altitude, bearing and date/time camera stamp at the bottom. Reconstruct underlying textures seamlessly. Subtle natural exposure correction, white balance and sharpening, no dramatic stylization. Preserve exact framing and original aspect ratio, every person identity face pose clothing and equipment, every wire and connection and installation condition. Keep real equipment labels, safety markings and logos unchanged. Do not invent or remove objects or improve the physical installation. One edited photograph, no collage.",
+  "images": [
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.10.43 (6).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-delicias-retocada-1.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.10.43 (2).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-delicias-retocada-2.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.10.42 (7).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-delicias-retocada-3.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.10.42 (5).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-delicias-retocada-4.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.10.41 (6).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-delicias-retocada-5.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.10.40 (7).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-delicias-retocada-6.jpg"
+    },
+    {
+      "source": "WhatsApp Image 2026-09-04 at 09.10.40 (3).jpeg",
+      "output": "assets/images/arcondec/proyectos/arcondec-delicias-retocada-7.jpg"
+    }
+  ]
+}
