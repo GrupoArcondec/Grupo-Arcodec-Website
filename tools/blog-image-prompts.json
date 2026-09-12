@@ -1,0 +1,30 @@
+{
+  "generator": "ChatGPT integrated image generator; version not selectable",
+  "purpose": "Illustrative editorial images, not photographs of actual reported events",
+  "prompts": [
+    [
+      "durango-campus-2026",
+      "Wide editorial photograph of a Mexican data center construction site in semi-arid Durango, steel framing, clean concrete foundations, construction crane far behind, two Mexican civil engineers one woman one man in full PPE checking drawings in foreground, candid activity, believable human anatomy, no readable branding. Illustrative generic project, not a depiction of any named real campus."
+    ],
+    [
+      "densidad-talento-2026",
+      "Wide editorial photograph inside a modern data center, a Mexican woman engineer and a male technician in everyday workwear discussing a tablet beside neat closed high density server racks, overhead cable trays and subtle visible cooling pipework, natural candid expressions, neutral white practical lighting, real materials, no readable screen text or logos."
+    ],
+    [
+      "queretaro-industria-2026",
+      "Wide editorial photograph of a modern industrial data center district in central Mexico, viewed from a slightly elevated pedestrian platform, low contemporary buildings with cooling equipment and electrical infrastructure in distance, two engineers wearing hard hats walking along a safe paved path, pale morning sky and Bajio landscape, no logos. Generic illustrative scene, not an actual named facility."
+    ],
+    [
+      "continuidad-electrica-2026",
+      "Wide editorial photograph in a clean electrical support room of a data center, two Mexican engineers, woman and man, reviewing a checklist and inspecting a row of closed grey UPS and transfer switch cabinets from safe distance, professional blue workwear, warm natural human presence, realistic industrial lighting and details, no exposed live equipment, no readable branding or text."
+    ],
+    [
+      "energia-ia-2026",
+      "Wide editorial photograph of a data center electrical substation seen from outside its safety fence, foreground Mexican engineer with white hard hat and navy vest holding a tablet with back to camera, transformers and gantries in background next to low data center building, golden morning daylight, photorealistic textures, safe access boundaries, no logos or text."
+    ],
+    [
+      "nube-publica-mexico-2026",
+      "Wide editorial photograph of two Mexican IT infrastructure engineers, woman and man, collaborating in a modern public research computing room, parallel black server racks, clean overhead network cabling, practical white lighting, one holds a laptop, subtle smiles while working, natural imperfect human details, generic illustration of public cloud infrastructure in Mexico, no government seals, logos or readable text."
+    ]
+  ]
+}

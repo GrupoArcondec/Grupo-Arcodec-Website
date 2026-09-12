@@ -78,6 +78,9 @@ for _h in _P.HUBS:
 _UNLISTED = {
     "prj-" + _h["slug"]["es"] for _h in _P.HUBS if not _h.get("publicado")
 }
+from news import NEWS
+for _news in NEWS:
+    ROUTES['news-' + _news['key']] = {'es': '/blog/' + _news['key'] + '.html', 'en': '/en/blog/' + _news['key'] + '.html'}
 SITEMAP_ROUTES = {k: v for k, v in ROUTES.items() if k not in _UNLISTED}
 
 UI = {
@@ -354,7 +357,7 @@ def header(*, lang, key):
     )
 
     def nav(route, label):
-        cls = " active" if key == route else ""
+        cls = " active" if key == route or (route == 'blog' and key.startswith('news-')) else ""
         return (
             '                                        <li class="nav-item%s">\n'
             '                                            <a class="nav-link" href="%s"%s>%s</a>\n'

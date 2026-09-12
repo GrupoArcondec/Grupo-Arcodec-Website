@@ -10,6 +10,54 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.vercel.app/blog/continuidad.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/continuidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/continuidad.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/continuidad.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/blog/densidad-talento.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/densidad-talento.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/densidad-talento.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/densidad-talento.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/blog/durango.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/durango.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/durango.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/durango.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/blog/energia-ia.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/energia-ia.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/energia-ia.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/energia-ia.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/blog/nube-publica.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/nube-publica.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/nube-publica.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/nube-publica.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/blog/queretaro.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/queretaro.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/queretaro.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/queretaro.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.vercel.app/contacto.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/contacto.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/contact.html"/>
@@ -30,6 +78,54 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/blog/continuidad.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/continuidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/continuidad.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/continuidad.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/blog/densidad-talento.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/densidad-talento.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/densidad-talento.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/densidad-talento.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/blog/durango.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/durango.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/durango.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/durango.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/blog/energia-ia.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/energia-ia.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/energia-ia.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/energia-ia.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/blog/nube-publica.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/nube-publica.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/nube-publica.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/nube-publica.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/blog/queretaro.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/queretaro.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/queretaro.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/queretaro.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

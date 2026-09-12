@@ -22,6 +22,7 @@ from urllib.parse import quote
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 
 import pages as P  # noqa: E402
+from news import NEWS
 import mapa_mexico as MAPA  # noqa: E402
 from content import (  # noqa: E402
     CONTACT,
@@ -1632,27 +1633,28 @@ def render_careers(lang):
 # ==========================================================================
 # BLOG (indice)
 # ==========================================================================
+def news_cards(lang):
+    return '\n'.join('<div class="col-lg-6 col-md-6"><article class="article-2-item article-11-item mt-30"><a class="article-thumb" href="%s"><img src="%s/blog/%s" alt="%s" loading="lazy" %s></a><div class="article-content"><h2 class="title"><a href="%s">%s</a></h2><p>%s</p><a href="%s">%s →</a></div></article></div>' % (url('news-'+n['key'], lang), IMG, n['img'], e(n[lang][0]), dims(IMG+'/blog/'+n['img']), url('news-'+n['key'],lang), e(n[lang][0]), e(n[lang][1]), url('news-'+n['key'],lang), 'Leer noticia' if lang=='es' else 'Read article') for n in NEWS)
+
+
+def render_news(n, lang):
+    c = n[lang]
+    key = 'news-' + n['key']
+    all_label = 'Ver todas las publicaciones' if lang == 'es' else 'View all posts'
+    sidebar = ''.join('<li><a %s href="%s">%s</a></li>' % ('aria-current="page"' if item == n else '', url('news-'+item['key'],lang), e(item[lang][0])) for item in NEWS)
+    i = NEWS.index(n)
+    prev, nxt = NEWS[(i-1)%len(NEWS)], NEWS[(i+1)%len(NEWS)]
+    image = IMG+'/blog/'+n['img']
+    caption = 'Imagen ilustrativa generada con IA; no representa el proyecto o evento mencionado.' if lang=='es' else 'AI-generated illustrative image; it does not depict the reported project or event.'
+    body = '<main id="contenido" class="container arc-news-layout"><aside><h2>%s</h2><ul>%s</ul></aside><article><p>%s · 12 / 09 / 2026</p><h1>%s</h1><figure><img src="%s" alt="%s" %s><figcaption>%s</figcaption></figure><p class="arc-news-lead">%s</p><p>%s</p><h2>%s</h2><p>%s</p><div class="arc-news-source">%s: <a href="%s" rel="noopener">%s</a><p>%s: %s</p></div><nav class="arc-news-nav"><a href="%s">← %s</a><a href="%s">%s</a><a href="%s">%s →</a></nav></article><section class="arc-news-archive arc-blog-editorial"><h2>%s</h2><div class="row" id="blog-articles">%s</div><nav class="arc-blog-pagination" hidden></nav></section></main>' % ('Publicaciones' if lang=='es' else 'Posts', sidebar, 'Redacción Arcondec' if lang=='es' else 'Arcondec editorial', e(c[0]), image, e(c[0]), dims(image), caption, e(c[1]), e(c[2]), e(c[3]), e(c[4]), 'Fuente' if lang=='es' else 'Source', e(n['link']), e(n['source']), 'Fecha de la fuente / consulta' if lang=='es' else 'Source / access date', n['date'], url('news-'+prev['key'],lang), 'Anterior' if lang=='es' else 'Previous', url('blog',lang), all_label, url('news-'+nxt['key'],lang), 'Siguiente' if lang=='es' else 'Next', all_label, news_cards(lang))
+    return head(lang=lang,key=key,title=c[0],description=c[1],og_image=image,extra_ld={'@context':'https://schema.org','@type':'BlogPosting','headline':c[0],'datePublished':'2026-09-12','inLanguage':lang,'image':BASE_URL+image,'author':{'@type':'Organization','name':'Grupo Arcondec'},'citation':n['link']}) + body_open() + header(lang=lang,key=key) + body + footer(lang=lang,key=key,extra_scripts=('/assets/js/arcondec-blog.js',))
+
+
 def render_blog(lang):
     c = P.BLOG[lang]
     key = "blog"
 
-    cards = "\n".join(
-        """                <div class="col-lg-6 col-md-6">
-                    <div class="article-2-item article-11-item mt-30">
-                        <div class="article-thumb">
-                            <img src="%s/blog/%s" alt="%s" loading="lazy" %s>
-                        </div>
-                        <div class="article-content">
-                            <h2 class="title">%s</h2>
-                            <p>%s</p>
-                            <span class="article-soon">%s</span>
-                        </div>
-                    </div>
-                </div>"""
-        % (IMG, a["img"], e(a[lang][0]), dims("%s/blog/%s" % (IMG, a["img"])), e(a[lang][0]), e(a[lang][1]), e(c["soon"]))
-        for a in P.ARTICLES
-    )
-
+    cards = news_cards(lang)
     body = """
     <main id="contenido">
 
@@ -1679,7 +1681,7 @@ def render_blog(lang):
             title=c["title"],
             description=c["meta"],
             keywords=c["keywords"],
-            og_image="%s/blog/%s" % (IMG, P.ARTICLES[0]["img"]),
+            og_image="%s/blog/%s" % (IMG, NEWS[0]["img"]),
         )
         + body_open()
         + header(lang=lang, key=key)
@@ -1687,7 +1689,7 @@ def render_blog(lang):
             lang=lang,
             title=c["h1"],
             crumb=c["eyebrow"],
-            bg="%s/blog/%s" % (IMG, P.ARTICLES[0]["img"]),
+            bg="%s/blog/%s" % (IMG, NEWS[0]["img"]),
         )
         + body
         + commitment_band(lang)
@@ -1828,6 +1830,8 @@ def render_home(lang, i18n):
     if corte == -1:
         raise SystemExit("No se encontró el inicio del pie en home_source.html")
     body = body[:corte] + footer(lang=lang, key=key).lstrip("\n")
+    # Reutilizar las mismas noticias y enlaces del índice, también en inglés.
+    body = re.sub(r'<section class="article-2-area article-11-area">.*?</section>', '<section class="article-2-area article-11-area arc-blog-editorial"><div class="container"><h2>Blog</h2><div class="row">' + news_cards(lang) + '</div></div></section>', body, count=1, flags=re.S)
 
     return (
         head(
@@ -1977,6 +1981,8 @@ def main():
         written.append(write(url("contact", lang), render_contact(lang)))
         written.append(write(url("careers", lang), render_careers(lang)))
         written.append(write(url("blog", lang), render_blog(lang)))
+        for news in NEWS:
+            written.append(write(url('news-'+news['key'],lang),render_news(news,lang)))
         for svc in SERVICES:
             written.append(
                 write(url("srv-" + svc["key"], lang), render_service(svc, lang))
