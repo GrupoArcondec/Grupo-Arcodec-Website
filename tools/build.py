@@ -1646,7 +1646,22 @@ def render_news(n, lang):
     prev, nxt = NEWS[(i-1)%len(NEWS)], NEWS[(i+1)%len(NEWS)]
     image = IMG+'/blog/'+n['img']
     caption = 'Imagen ilustrativa generada con IA; no representa el proyecto o evento mencionado.' if lang=='es' else 'AI-generated illustrative image; it does not depict the reported project or event.'
-    body = '<main id="contenido" class="container arc-news-layout"><aside><h2>%s</h2><ul>%s</ul></aside><article><p>%s · 12 / 09 / 2026</p><h1>%s</h1><figure><img src="%s" alt="%s" %s><figcaption>%s</figcaption></figure><p class="arc-news-lead">%s</p><p>%s</p><h2>%s</h2><p>%s</p><div class="arc-news-source">%s: <a href="%s" rel="noopener">%s</a><p>%s: %s</p></div><nav class="arc-news-nav"><a href="%s">← %s</a><a href="%s">%s</a><a href="%s">%s →</a></nav></article></main>' % ('Publicaciones' if lang=='es' else 'Posts', sidebar, 'Redacción Arcondec' if lang=='es' else 'Arcondec editorial', e(c[0]), image, e(c[0]), dims(image), caption, e(c[1]), e(c[2]), e(c[3]), e(c[4]), 'Fuente' if lang=='es' else 'Source', e(n['link']), e(n['source']), 'Fecha de la fuente / consulta' if lang=='es' else 'Source / access date', n['date'], url('news-'+prev['key'],lang), 'Anterior' if lang=='es' else 'Previous', url('blog',lang), all_label, url('news-'+nxt['key'],lang), 'Siguiente' if lang=='es' else 'Next')
+    body = '<main id="contenido" class="container arc-news-layout"><aside><h2>%s</h2><ul>%s</ul></aside><article><p>%s · 12 / 09 / 2026</p><h1>%s</h1><figure><img src="%s" alt="%s" %s><figcaption>%s</figcaption></figure><p class="arc-news-lead">%s</p><p>%s</p><h2>%s</h2><p>%s</p><div class="arc-news-source">%s: <a href="%s" rel="noopener">%s</a><p>%s: %s</p></div></article></main>' % ('Publicaciones' if lang=='es' else 'Posts', sidebar, 'Redacción Arcondec' if lang=='es' else 'Arcondec editorial', e(c[0]), image, e(c[0]), dims(image), caption, e(c[1]), e(c[2]), e(c[3]), e(c[4]), 'Fuente' if lang=='es' else 'Source', e(n['link']), e(n['source']), 'Fecha de la fuente / consulta' if lang=='es' else 'Source / access date', n['date'])
+    def news_neighbor(item, direction, arrow, label):
+        return ('<a class="arc-prevnext-link %s" href="%s">'
+                '<span class="arc-prevnext-arrow" aria-hidden="true">%s</span>'
+                '<span class="arc-prevnext-text"><span class="arc-prevnext-label">%s</span>'
+                '<span class="arc-prevnext-name">%s</span></span></a>') % (
+                    direction, url('news-'+item['key'], lang), arrow, label, e(item[lang][0]))
+    navigation = ('<section class="arc-soft-area pt-60 pb-60"><div class="container">'
+                  '<nav class="arc-prevnext" aria-label="%s">%s'
+                  '<a class="arc-prevnext-all" href="%s">%s</a>%s</nav></div></section>') % (
+                      'Navegación de noticias' if lang=='es' else 'News navigation',
+                      news_neighbor(prev, 'is-prev', '←', 'Noticia anterior' if lang=='es' else 'Previous article'),
+                      url('blog',lang), all_label,
+                      news_neighbor(nxt, 'is-next', '→', 'Noticia siguiente' if lang=='es' else 'Next article'))
+    body = body.replace('<main id="contenido" class="container arc-news-layout">', '<main id="contenido"><div class="container arc-news-layout">').replace('</article></main>', '</article></div>'+navigation+'</main>')
+
     return head(lang=lang,key=key,title=c[0],description=c[1],og_image=image,extra_ld={'@context':'https://schema.org','@type':'BlogPosting','headline':c[0],'datePublished':'2026-09-12','inLanguage':lang,'image':BASE_URL+image,'author':{'@type':'Organization','name':'Grupo Arcondec'},'citation':n['link']}) + body_open() + header(lang=lang,key=key) + body + footer(lang=lang,key=key,extra_scripts=('/assets/js/arcondec-blog.js',))
 
 
