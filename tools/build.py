@@ -1633,8 +1633,8 @@ def render_careers(lang):
 # ==========================================================================
 # BLOG (indice)
 # ==========================================================================
-def news_cards(lang):
-    return '\n'.join('<div class="col-lg-6 col-md-6"><article class="article-2-item article-11-item mt-30"><a class="article-thumb" href="%s"><img src="%s/blog/%s" alt="%s" loading="lazy" %s></a><div class="article-content"><h2 class="title"><a href="%s">%s</a></h2><p>%s</p><a href="%s">%s →</a></div></article></div>' % (url('news-'+n['key'], lang), IMG, n['img'], e(n[lang][0]), dims(IMG+'/blog/'+n['img']), url('news-'+n['key'],lang), e(n[lang][0]), e(n[lang][1]), url('news-'+n['key'],lang), 'Leer noticia' if lang=='es' else 'Read article') for n in NEWS)
+def news_cards(lang, limit=None):
+    return '\n'.join('<div class="col-lg-6 col-md-6"><article class="article-2-item article-11-item mt-30"><a class="article-thumb" href="%s"><img src="%s/blog/%s" alt="%s" loading="lazy" %s></a><div class="article-content"><h2 class="title"><a href="%s">%s</a></h2><p>%s</p><a href="%s">%s →</a></div></article></div>' % (url('news-'+n['key'], lang), IMG, n['img'], e(n[lang][0]), dims(IMG+'/blog/'+n['img']), url('news-'+n['key'],lang), e(n[lang][0]), e(n[lang][1]), url('news-'+n['key'],lang), 'Leer noticia' if lang=='es' else 'Read article') for n in NEWS[:limit])
 
 
 def render_news(n, lang):
@@ -1831,7 +1831,13 @@ def render_home(lang, i18n):
         raise SystemExit("No se encontró el inicio del pie en home_source.html")
     body = body[:corte] + footer(lang=lang, key=key).lstrip("\n")
     # Reutilizar las mismas noticias y enlaces del índice, también en inglés.
-    body = re.sub(r'<section class="article-2-area article-11-area">.*?</section>', '<section class="article-2-area article-11-area arc-blog-editorial"><div class="container"><h2>Blog</h2><div class="row">' + news_cards(lang) + '</div></div></section>', body, count=1, flags=re.S)
+    news_preview = (
+        '<section class="article-2-area article-11-area arc-blog-editorial arc-home-news">'
+        '<div class="container"><div class="arc-home-news-heading"><h2>%s</h2><p>%s</p></div>'
+        '<div class="row">%s</div><div class="arc-home-news-more"><a class="main-btn" href="%s">%s</a></div></div></section>'
+    ) % (e(dic['blogTitle']), e(dic['blogIntro']), news_cards(lang, limit=4),
+         url('blog', lang), e(dic['blogMore']))
+    body = re.sub(r'<section class="article-2-area article-11-area">.*?</section>', news_preview, body, count=1, flags=re.S)
 
     return (
         head(

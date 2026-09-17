@@ -90,8 +90,9 @@
             // Sección de blog del inicio: 3 artículos destacados de tools/pages.py
             // (ARTICLES). Si allá se cambian los textos, hay que reflejarlos aquí
             // también — el inicio no lee ese archivo, lleva sus propias claves.
-            blogTitle: 'Ideas sobre infraestructura crítica',
-            blogIntro: 'Artículos sobre energía, data centers y las decisiones de ingeniería detrás de la alta disponibilidad.',
+            blogTitle: 'Noticias que conectan ingeniería e innovación',
+            blogMore: 'Ver más noticias',
+            blogIntro: 'Conoce las novedades de los centros de datos, la energía y la infraestructura crítica que están transformando la industria en México y el mundo.',
             blogSoon: 'Próximamente',
             blogP1T: 'Energía crítica en data centers',
             blogP1D: 'El suministro eléctrico indispensable para sistemas que no pueden fallar: UPS, plantas de emergencia, bancos de baterías y distribución de alta confiabilidad.',
@@ -219,8 +220,9 @@
 
 
             // Sección de blog del inicio (ver nota en el bloque ES).
-            blogTitle: 'Insights on critical infrastructure',
-            blogIntro: 'Articles on power, data centers and the engineering decisions behind high availability.',
+            blogTitle: 'News connecting engineering and innovation',
+            blogMore: 'View more news',
+            blogIntro: 'Explore developments in data centers, energy and critical infrastructure that are transforming the industry in Mexico and around the world.',
             blogSoon: 'Coming soon',
             blogP1T: 'Critical power in data centers',
             blogP1D: 'The electrical supply that mission-critical systems cannot do without: UPS, emergency plants, battery banks and high-reliability distribution.',
