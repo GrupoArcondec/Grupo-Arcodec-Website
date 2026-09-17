@@ -23,6 +23,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 
 import pages as P  # noqa: E402
 from news import NEWS
+from news_analysis import ANALYSIS
 import mapa_mexico as MAPA  # noqa: E402
 from content import (  # noqa: E402
     CONTACT,
@@ -1653,6 +1654,9 @@ def render_news(n, lang):
                 '<span class="arc-prevnext-text"><span class="arc-prevnext-label">%s</span>'
                 '<span class="arc-prevnext-name">%s</span></span></a>') % (
                     direction, url('news-'+item['key'], lang), arrow, label, e(item[lang][0]))
+    analysis = '<p class="arc-editorial-label">%s</p>' % ('Análisis editorial' if lang == 'es' else 'Editorial analysis')
+    analysis += ''.join('<h2>%s</h2><p>%s</p>' % (e(title), e(text)) for title, text in ANALYSIS[n['key']][lang])
+    body = body.replace('<div class="arc-news-source">', analysis + '<div class="arc-news-source">')
     navigation = ('<section class="arc-soft-area pt-60 pb-60"><div class="container">'
                   '<nav class="arc-prevnext" aria-label="%s">%s'
                   '<a class="arc-prevnext-all" href="%s">%s</a>%s</nav></div></section>') % (
