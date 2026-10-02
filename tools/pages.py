@@ -190,8 +190,8 @@ HUBS = [
         "publicado": True,
         "ubicacion": "Pachuca - Hidalgo",
         "titulo": "HUB Pachuca",
-        "foto": "arcondec-pachuca-01.jpg",
-        "imagen": "arcondec-pachuca-01.jpg",
+        "foto": "arcondec-pachuca-retocada-01.jpg",
+        "imagen": "arcondec-pachuca-retocada-01.jpg",
         "imagen_alt": "Equipo de Arcondec instalando alimentadores y charolas en HUB Pachuca",
         "imagen_alt_en": "Arcondec team installing feeders and cable trays at Pachuca HUB",
         "subtitulo": "Reconstrucción de infraestructura crítica para la red FTTH: climatización de precisión, energía en 480 V y renovación de la distribución en corriente directa.",
@@ -217,7 +217,7 @@ HUBS = [
             ("Gestoría", "El alcance incluye aumento de carga ante CFE y verificación UVIE de la instalación eléctrica."),
         ],
         "alcances": ["Climatización de precisión: 2 × 140 kW", "Transformación elevadora: 2 × 300 kVA", "Tablero general de emergencia: 1,200 A", "52 salidas de corriente directa a racks", "Confinamiento de pasillo frío y bajo piso falso", "Adecuaciones de sala, obra civil y verificación UVIE"],
-        "galeria": [("arcondec-pachuca-%02d.jpg" % i, {"es": es, "en": en}) for i, es, en in [
+        "galeria": [("arcondec-pachuca-retocada-%02d.jpg" % i, {"es": es, "en": en}) for i, es, en in [
             (1, "Instalación de alimentadores en HUB Pachuca", "Feeder installation at Pachuca HUB"),
             (2, "Trabajo en tablero de distribución", "Work on the distribution switchboard"),
             (3, "Equipo técnico durante la adecuación del tablero", "Technical team during switchboard modifications"),
