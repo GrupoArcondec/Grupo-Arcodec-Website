@@ -790,6 +790,8 @@ def render_projects(lang):
     # Mientras no tenga información real sigue siendo una tarjeta informativa
     # sin enlace: nadie llega a una página vacía.
     def _tarjeta(h):
+        if lang == "en" and h.get("en"):
+            h = {**h, **h["en"]}
         name, loc, img = h["nombre"], h.get("ubicacion", ""), h["foto"]
         interior = """                        <div class="arc-project-thumb">
                             <img src="%s/proyectos/%s" alt="%s, %s" loading="lazy" %s>
@@ -825,8 +827,8 @@ def render_projects(lang):
             {
                 "@type": "ListItem",
                 "position": i + 1,
-                "item": {"@type": "Place", "name": h["nombre"],
-                         "address": h.get("ubicacion", "")},
+                "item": {"@type": "Place", "name": (h.get("en", {}).get("nombre", h["nombre"]) if lang == "en" else h["nombre"]),
+                         "address": (h.get("en", {}).get("ubicacion", h.get("ubicacion", "")) if lang == "en" else h.get("ubicacion", ""))},
             }
             for i, h in enumerate(proyectos_ordenados)
         ],
@@ -1031,7 +1033,7 @@ def render_project(hub, lang, anterior, siguiente):
                         <ul class="arc-scope">
 %s
                         </ul>
-                    </div>""" % (e(c["alcances_title"]), items)
+                    </div>""" % (e(hub.get("alcances_title", c["alcances_title"])), items)
         )
 
     # --- Resultados ---
@@ -1095,6 +1097,8 @@ def render_project(hub, lang, anterior, siguiente):
     def enlace(vecino, etiqueta, clase, flecha):
         if not vecino:
             return ""
+        if lang == "en" and vecino.get("en"):
+            vecino = {**vecino, **vecino["en"]}
         if not vecino.get("publicado") and not en_revision:
             return ""
         return """                <a class="arc-prevnext-link %s" href="%s">

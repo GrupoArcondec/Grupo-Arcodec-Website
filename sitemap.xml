@@ -178,6 +178,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.vercel.app/en/projects/lithium-battery-renewal.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/renovacion-baterias-litio.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/lithium-battery-renewal.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/renovacion-baterias-litio.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.vercel.app/en/projects/montes-urales.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/montes-urales.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/montes-urales.html"/>
@@ -342,6 +350,14 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/montes-urales.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/montes-urales.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/montes-urales.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/proyectos/renovacion-baterias-litio.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/renovacion-baterias-litio.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/lithium-battery-renewal.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/renovacion-baterias-litio.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

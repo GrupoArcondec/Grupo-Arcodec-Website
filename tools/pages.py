@@ -183,7 +183,10 @@ ABOUT = {
 # (disciplina, detalle)), alcances (lista de textos), galeria (lista de
 # archivos en assets/images/arcondec/proyectos/), resultados (lista de
 # (cifra, etiqueta)).
+from lithium_project import PROJECT as LITHIUM_PROJECT
+
 HUBS = [
+    LITHIUM_PROJECT,
     {
         "slug": {"es": "hub-pachuca", "en": "pachuca-hub"},
         "nombre": "HUB PACHUCA",

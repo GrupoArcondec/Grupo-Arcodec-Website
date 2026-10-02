@@ -1,0 +1,97 @@
+"""Contenido bilingüe del proyecto de baterías.
+
+Fuente: Renovacion_Baterias_Litio_Informacion_Web_Arcondec.pdf.
+No publicar clientes, nombres individuales de sitios ni indicadores de cierre
+sin confirmar las autorizaciones y los datos pendientes señalados en la ficha.
+Las cantidades se presentan como alcance documentado, no como resultados auditados.
+"""
+
+PROJECT = {
+    "publicado": True,
+    "foto": "arcondec-litio-retocada-01.jpg",
+    "imagen": "arcondec-litio-retocada-01.jpg",
+    "imagen_alt": "Gabinetes de baterías de litio instalados en una sala de telecomunicaciones",
+    "imagen_alt_en": "Lithium battery cabinets installed in a telecommunications room",
+    "galeria": [("arcondec-litio-retocada-%02d.jpg" % i, {"es": es, "en": en}) for i, es, en in [
+        (1, "Vista de los gabinetes de baterías de litio", "Overview of lithium battery cabinets"),
+        (2, "Instalación de módulos en el gabinete", "Battery module installation in the cabinet"),
+        (3, "Retiro de conexiones de los bancos existentes", "Removal of connections from existing battery banks"),
+        (4, "Banco de litio y distribución de conexiones", "Lithium battery bank and connection layout"),
+        (5, "Trabajos en el banco de baterías existente", "Work on the existing battery bank"),
+        (6, "Adecuación de trayectorias y conexiones", "Cable route and connection modifications"),
+        (7, "Equipo de trabajo durante la instalación", "Technical team during installation"),
+        (8, "Vista frontal del gabinete de baterías de litio", "Front view of the lithium battery cabinet"),
+    ]],
+    "slug": {"es": "renovacion-baterias-litio", "en": "lithium-battery-renewal"},
+    "nombre": "RENOVACIÓN BATERÍAS LITIO",
+    "titulo": "Renovación Baterías Litio",
+    "ubicacion": "13 sitios · México",
+    "subtitulo": "Renovación del respaldo de energía en 13 sitios de telecomunicaciones: sustitución de 45 bancos de baterías por tecnología de litio de 1,000 Ah en México.",
+    "descripcion": [
+        "Grupo Arcondec ejecutó un proyecto de renovación tecnológica de los sistemas de respaldo de energía en una red de telecomunicaciones con presencia en el norte, centro y sureste de México. La intervención se desarrolló en sitios en operación y se organizó por etapas, dentro de ventanas de mantenimiento.",
+        "El alcance documentado comprende retirar 45 bancos existentes de 1,520 Ah e instalar 45 bancos de baterías de litio de 1,000 Ah. El trabajo integra las conexiones de potencia, la adecuación de soportería para charola, la puesta a tierra, la identificación de conexiones y la carga inicial de cada banco mediante una planta provisional.",
+        "La ejecución tuvo una duración de seis meses, con pausas entre etapas, y entrega en 2025. La cobertura comprende 13 sitios en Tamaulipas, Nuevo León, Aguascalientes, San Luis Potosí, Guerrero, Querétaro, Ciudad de México y Quintana Roo.",
+        "Las cantidades describen el alcance del Anexo C de instalación 124-1025. Las capacidades en amperio-hora corresponden a los bancos retirados y a los nuevos bancos de litio; no se presentan como una comparación de autonomía o desempeño entre ambas tecnologías.",
+    ],
+    "sector": "Telecomunicaciones / infraestructura crítica",
+    "ubicacion_exacta": "13 sitios en ocho entidades de México",
+    "tipo_obra": "Renovación tecnológica de sistemas de respaldo de energía",
+    "capacidad": "Alcance: 45 bancos de litio de 1,000 Ah",
+    "tecnologia": "Baterías de litio",
+    "alcances_title": "Alcance documentado",
+    "duracion": "6 meses, por etapas y con periodos de pausa",
+    "entrega": "2025",
+    "reto": "Sustituir el respaldo de energía de sitios en operación exigió planear cada intervención dentro de una ventana de mantenimiento. La secuencia debía coordinar el retiro de bancos, las nuevas conexiones, las adecuaciones de soportería y la carga inicial dentro del tiempo autorizado. A esta condición se sumó la logística de 13 sitios, con volúmenes de uno a seis bancos por ubicación y pausas entre etapas. El objetivo fue proteger la continuidad del servicio durante la transición tecnológica.",
+    "solucion": [
+        ("Planeación multisitio", "Coordinación de las intervenciones por etapas y ventanas de mantenimiento, con una secuencia de retiro, instalación, conexión y carga inicial para cada ubicación."),
+        ("Retiro e instalación", "Desinstalación de los bancos existentes de 1,520 Ah, acarreo horizontal y vertical, limpieza del área e instalación de bancos de baterías de litio de 1,000 Ah."),
+        ("Conexiones de potencia", "Adecuación del cableado existente y conexiones con zapatas 4/0 AWG de doble ojillo, barreno de 1/2 pulgada y mangas termocontráctiles."),
+        ("Canalización y soportería", "Modificación de soportes de charola existente para adaptar las trayectorias a la nueva configuración de bancos."),
+        ("Puesta a tierra e identificación", "Conexión a tierra de cada banco mediante conductor calibre 2 y zapatas de doble ojillo, con etiquetado de las conexiones."),
+        ("Carga inicial", "Carga de los nuevos bancos con planta provisional suministrada por el proveedor, como parte de la puesta en servicio del sistema de respaldo."),
+    ],
+    "alcances": [
+        "Alcance documentado: 45 bancos de litio de 1,000 Ah en 13 sitios",
+        "Retiro de 45 bancos existentes de 1,520 Ah",
+        "360 zapatas 4/0 AWG y 720 mangas termocontráctiles",
+        "Puesta a tierra de 45 bancos y 360 etiquetas de identificación",
+        "45 cargas iniciales con planta provisional",
+        "132 m de modificación de soportería para charola existente",
+    ],
+    "en": {
+        "nombre": "LITHIUM BATTERY RENEWAL",
+        "titulo": "Lithium Battery Renewal",
+        "ubicacion": "13 sites · Mexico",
+        "subtitulo": "Backup power technology renewal across 13 telecommunications sites, with a scope covering the replacement of 45 battery banks with 1,000 Ah lithium battery banks.",
+        "descripcion": [
+            "Grupo Arcondec carried out a backup power renewal project for a telecommunications network spanning northern, central and southeastern Mexico. Work took place at operational sites and was organised in stages within maintenance windows.",
+            "The documented scope covers removal of 45 existing 1,520 Ah battery banks and installation of 45 new 1,000 Ah lithium battery banks. Work includes power connections, cable tray support modifications, grounding, connection labelling and the initial charge of each bank using a temporary power plant.",
+            "Execution lasted six months, with pauses between stages, and delivery in 2025. The scope covers 13 sites across Tamaulipas, Nuevo León, Aguascalientes, San Luis Potosí, Guerrero, Querétaro, Mexico City and Quintana Roo.",
+            "Quantities describe the scope listed in installation Annex C, reference 124-1025. Ampere-hour capacities refer to the removed banks and the new lithium banks; they are not presented as a comparison of runtime or performance between the two technologies.",
+        ],
+        "sector": "Telecommunications / critical infrastructure",
+        "ubicacion_exacta": "13 sites across eight Mexican states and federal entities",
+        "tipo_obra": "Backup power system technology renewal",
+        "capacidad": "Scope: 45 lithium battery banks rated at 1,000 Ah",
+        "tecnologia": "Lithium batteries",
+        "alcances_title": "Documented scope",
+        "duracion": "6 months, in stages with pauses between interventions",
+        "reto": "Replacing backup power at operational sites required planning each intervention within an authorised maintenance window. The sequence had to coordinate battery removal, new connections, support modifications and initial charging within the allotted time. Logistics across 13 sites added complexity, with one to six banks per location and pauses between stages. The objective was to protect service continuity during the technology transition.",
+        "solucion": [
+            ("Multisite planning", "Coordination of staged interventions and maintenance windows, with a removal, installation, connection and initial charging sequence for each location."),
+            ("Removal and installation", "Removal of existing 1,520 Ah banks, horizontal and vertical handling, area cleaning and installation of 1,000 Ah lithium battery banks."),
+            ("Power connections", "Modification of existing cabling and connections using 4/0 AWG two-hole lugs with 1/2-inch holes and heat-shrink sleeves."),
+            ("Cable tray supports", "Modification of existing cable tray supports to adapt cable routes to the new battery bank configuration."),
+            ("Grounding and identification", "Grounding of each bank using size 2 conductors and two-hole lugs, with connection labelling."),
+            ("Initial charging", "Initial charging of new banks with a temporary power plant supplied by the provider as part of backup system commissioning."),
+        ],
+        "alcances": [
+            "Documented scope: 45 lithium battery banks rated at 1,000 Ah across 13 sites",
+            "Removal of 45 existing 1,520 Ah battery banks",
+            "360 size 4/0 AWG lugs and 720 heat-shrink sleeves",
+            "Grounding of 45 banks and 360 identification labels",
+            "45 initial charges using a temporary power plant",
+            "132 m of modifications to existing cable tray supports",
+        ],
+    },
+}
