@@ -895,6 +895,8 @@ def render_projects(lang):
 # llenando los proyectos de uno en uno sin tocar código.
 # ==========================================================================
 def render_project(hub, lang, anterior, siguiente):
+    if lang == "en" and hub.get("en"):
+        hub = {**hub, **hub["en"]}
     c = P.PROJECT_UI[lang]
     key = "prj-" + hub["slug"]["es"]
     nombre = hub["nombre"]
