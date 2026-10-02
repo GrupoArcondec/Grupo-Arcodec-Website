@@ -184,8 +184,10 @@ ABOUT = {
 # archivos en assets/images/arcondec/proyectos/), resultados (lista de
 # (cifra, etiqueta)).
 from lithium_project import PROJECT as LITHIUM_PROJECT
+from teziutlan_project import PROJECT as TEZIUTLAN_PROJECT
 
 HUBS = [
+    TEZIUTLAN_PROJECT,
     LITHIUM_PROJECT,
     {
         "slug": {"es": "hub-pachuca", "en": "pachuca-hub"},
@@ -1107,13 +1109,6 @@ HUBS = [
         "nombre": "HUB TEPIC",
         "ubicacion": "Tepic - Nayarit",
         "foto": "arcondec-tepic-01.jpg",
-        "publicado": False,
-    },
-    {
-        "slug": {"es": "hub-teziutlan", "en": "teziutlan-hub"},
-        "nombre": "HUB TEZIUTLÁN",
-        "ubicacion": "Teziutlán - Puebla",
-        "foto": "arcondec-teziutlan-01.jpg",
         "publicado": False,
     },
     {

@@ -1,0 +1,78 @@
+"""HUB Teziutlán: contenido del PDF del cliente.
+
+Capacidad del transformador y resultados de cierre pendientes de validación.
+Se omite el cliente hasta confirmar autorización; no se afirma cero interrupciones.
+"""
+
+PROJECT = {
+    "slug": {"es": "hub-teziutlan", "en": "teziutlan-hub"},
+    "nombre": "HUB TEZIUTLÁN",
+    "publicado": True,
+    "titulo": "HUB Teziutlán",
+    "ubicacion": "Teziutlán - Puebla",
+    "foto": "arcondec-teziutlan-retocada-06.jpg",
+    "imagen": "arcondec-teziutlan-retocada-06.jpg",
+    "imagen_alt": "Sala de telecomunicaciones del HUB Teziutlán con gabinetes y canalización de fibra",
+    "imagen_alt_en": "Teziutlán HUB telecommunications room with cabinets and fibre routing",
+    "subtitulo": "Modernización del HUB Teziutlán, Puebla: energía en media y baja tensión, respaldo de emergencia, corriente directa, climatización, tierras y obra civil.",
+    "descripcion": [
+        "Grupo Arcondec ejecutó la modernización del HUB Teziutlán, en Puebla. El proyecto integró la renovación de energía en media y baja tensión, respaldo de emergencia, corriente directa, climatización, sistema de tierras y adecuaciones del inmueble.",
+        "El alcance documentado incluye una acometida de 13.2 kV y una planta de emergencia de 80 kW / 100 kVA para sustituir la unidad existente de 40 kW. La distribución contempla tableros I-Line de 600 A para servicio normal y de emergencia, transferencia automática, monitoreo remoto y protección contra transientes.",
+        "La planta de corriente directa tiene capacidad de 96 kW y contempla 20 rectificadores de 3 kW, equivalentes a 60 kW instalados. El respaldo corresponde a dos bancos de litio de 800 Ah a 48 VCD. El sistema inversor de 30 kVA contempla seis módulos de 2.5 kVA, con 15 kVA instalados, y 25 salidas de corriente alterna regulada a racks.",
+        "La climatización comprende dos equipos tipo paquete de 20 TR cada uno, un minisplit de 3 TR y la reubicación de tres equipos existentes. La intervención también abarca estructura de acero, cerramientos, piso e instalaciones de soporte. Arcondec reporta un periodo de ejecución de cuatro meses y entrega en 2022; las capacidades y cantidades descritas proceden del Anexo C del proyecto.",
+    ],
+    "sector": "Telecomunicaciones / infraestructura crítica",
+    "ubicacion_exacta": "Teziutlán, Puebla",
+    "tipo_obra": "Modernización integral de HUB de telecomunicaciones",
+    "capacidad": "Respaldo de 80 kW; planta CD de 96 kW con 60 kW de rectificación instalada",
+    "tecnologia": "Respaldo en litio: 2 × 800 Ah a 48 VCD; climatización: 2 × 20 TR",
+    "duracion": "4 meses",
+    "entrega": "2022",
+    "alcances_title": "Alcance documentado",
+    "reto": "La renovación reunió trabajos de energía, respaldo, climatización y obra civil en un sitio en operación. La planeación contempló una planta provisional de 50 kW durante tres semanas para apoyar la sustitución del equipo de emergencia y una conexión nocturna de la nueva acometida. La coordinación debía secuenciar la migración de cargas, la integración de tierras y los trabajos dentro del predio, con el objetivo de proteger la continuidad del servicio.",
+    "solucion": [
+        ("Media tensión y gestoría", "Acometida de 13.2 kV, transformación tipo pedestal, cable XLP de 15 kV, ductería PAD, registros, terminales y prueba VLF. El alcance incluye nuevo contrato ante CFE, verificación UVIE y permisos de vía pública."),
+        ("Distribución y emergencia", "Tableros normal y de emergencia de 600 A, dos supresores de transientes de 200 kA y planta de 80 kW / 100 kVA con transferencia automática, monitoreo SNMP, tanque de 500 L y caseta acústica."),
+        ("Corriente directa y energía regulada", "Planta Eltek de 96 kW con 60 kW de rectificación instalada, BDFB de seis paneles de 400 A, dos bancos de litio de 800 Ah e inversor Alpha de 30 kVA con 15 kVA instalados."),
+        ("Climatización", "Dos equipos tipo paquete de 20 TR, minisplit de 3 TR, ductería aislada, rejillas y reubicación de tres minisplits existentes."),
+        ("Canalización y tierras", "Alimentadores, charola tipo escalerilla y conduit galvanizado. Malla de tierra física y malla aislada para electrónica, con 12 varillas, barras master e interconexión con el sistema existente."),
+        ("Obra civil e instalaciones", "Estructura metálica, multipanel en muros y techumbre, fachada con louver, muros de Durock, cancelería, portón, pintura, señalización, instalación hidráulica y 45 luminarias LED."),
+    ],
+    "alcances": ["Acometida de 13.2 kV y tableros normal/emergencia de 600 A", "Planta de emergencia de 80 kW / 100 kVA", "Planta CD de 96 kW con 60 kW de rectificación instalada", "Dos bancos de litio de 800 Ah a 48 VCD", "Inversor de 30 kVA con 15 kVA instalados", "36 salidas CD y 25 salidas de AC regulada a racks", "40 TR en equipos tipo paquete y minisplit de 3 TR", "Tierras, canalizaciones, estructura y obra civil"],
+    "galeria": [("arcondec-teziutlan-retocada-%02d.jpg" % i, {"es": es, "en": en}) for i, es, en in [
+        (1, "Montaje de estructura metálica", "Steel structure assembly"),
+        (2, "Charolas y trayectorias de alimentadores", "Cable trays and feeder routes"),
+        (3, "Transformador tipo pedestal", "Pad-mounted transformer"),
+        (4, "Conexiones al sistema de tierras", "Grounding system connections"),
+        (5, "Trabajos de conexión en tableros", "Switchboard connection work"),
+        (6, "Sala de telecomunicaciones y canalización de fibra", "Telecommunications room and fibre routing"),
+        (7, "Instalación de alimentadores en tableros", "Switchboard feeder installation"),
+        (8, "Sala de energía y planta de corriente directa", "Power room and DC power plant"),
+    ]],
+    "en": {
+        "titulo": "Teziutlán HUB",
+        "subtitulo": "Modernisation of Teziutlán HUB in Puebla: medium- and low-voltage power, emergency backup, DC systems, cooling, grounding and coordinated civil works.",
+        "descripcion": [
+            "Grupo Arcondec carried out the modernisation of Teziutlán HUB in Puebla. The project combined medium- and low-voltage power renewal, emergency backup, DC power, cooling, grounding and building modifications.",
+            "The documented scope includes a 13.2 kV incoming supply and an 80 kW / 100 kVA emergency generator replacing the existing 40 kW unit. Distribution includes 600 A I-Line switchboards for normal and emergency service, automatic transfer, remote monitoring and surge protection.",
+            "The DC power plant has a capacity of 96 kW and specifies twenty 3 kW rectifiers, providing 60 kW of installed rectification. Backup comprises two 800 Ah lithium battery banks at 48 VDC. The 30 kVA inverter system specifies six 2.5 kVA modules, providing 15 kVA installed, and 25 regulated AC outputs to racks.",
+            "Cooling comprises two 20 TR packaged units, a 3 TR minisplit and relocation of three existing units. The scope also covers the steel structure, enclosures, flooring and supporting installations. Arcondec reports a four-month execution period and delivery in 2022; capacities and quantities described here come from the project’s Annex C.",
+        ],
+        "sector": "Telecommunications / critical infrastructure",
+        "tipo_obra": "Integrated telecommunications HUB modernisation",
+        "capacidad": "80 kW backup; 96 kW DC plant with 60 kW installed rectification",
+        "tecnologia": "Lithium backup: 2 × 800 Ah at 48 VDC; cooling: 2 × 20 TR",
+        "duracion": "4 months",
+        "alcances_title": "Documented scope",
+        "reto": "The renewal combined power, backup, cooling and civil works at an operational site. Planning included a temporary 50 kW generator for three weeks to support emergency generator replacement and a night-time connection of the new incoming supply. Coordination had to sequence load migration, grounding integration and on-site works with the objective of protecting service continuity.",
+        "solucion": [
+            ("Medium voltage and coordination", "13.2 kV supply, pad-mounted transformation, 15 kV XLP cable, HDPE ducts, manholes, terminations and VLF testing. Scope includes a new CFE contract, UVIE verification and public-road permits."),
+            ("Distribution and backup", "600 A normal and emergency switchboards, two 200 kA surge protectors and an 80 kW / 100 kVA generator with automatic transfer, SNMP monitoring, a 500 L tank and an acoustic enclosure."),
+            ("DC and regulated power", "96 kW Eltek DC plant with 60 kW installed rectification, a six-panel 400 A BDFB, two 800 Ah lithium banks and a 30 kVA Alpha inverter with 15 kVA installed."),
+            ("Cooling", "Two 20 TR packaged units, a 3 TR minisplit, insulated ducts, grilles and relocation of three existing minisplits."),
+            ("Cable routing and grounding", "Feeders, ladder cable trays and galvanised conduit. Physical and isolated electronics grounding grids with 12 ground rods, master bars and interconnection to the existing system."),
+            ("Civil works and installations", "Steel structure, wall and roof insulated panels, louver facade, Durock walls, glazing, gate, painting, signage, plumbing and 45 LED luminaires."),
+        ],
+        "alcances": ["13.2 kV supply and 600 A normal/emergency switchboards", "80 kW / 100 kVA emergency generator", "96 kW DC plant with 60 kW installed rectification", "Two 800 Ah lithium banks at 48 VDC", "30 kVA inverter with 15 kVA installed", "36 DC and 25 regulated AC outputs to racks", "40 TR packaged cooling and a 3 TR minisplit", "Grounding, cable routing, structure and civil works"],
+    },
+}

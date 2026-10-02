@@ -226,6 +226,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.vercel.app/en/projects/teziutlan-hub.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-teziutlan.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/teziutlan-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-teziutlan.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.vercel.app/en/services/alternating-current-solutions.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/servicios/soluciones-corriente-alterna-ca.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/services/alternating-current-solutions.html"/>
@@ -342,6 +350,14 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-sevilla.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/sevilla-hub.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-sevilla.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/proyectos/hub-teziutlan.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/proyectos/hub-teziutlan.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/projects/teziutlan-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/proyectos/hub-teziutlan.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
