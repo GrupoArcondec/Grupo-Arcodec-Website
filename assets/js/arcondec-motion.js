@@ -1322,6 +1322,25 @@
             }, 0);
         }
 
+        // La versión de calor es una imagen: conserva el gesto ligado al
+        // scroll sin depender de los trazos SVG del mapa anterior.
+        var calor = mapa.querySelector('img.arc-mapa-svg');
+        if (!estados.length && calor) {
+            gsap.from(calor, {
+                y: 80,
+                scale: 0.82,
+                opacity: 0,
+                transformOrigin: '50% 50%',
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: lienzo || mapa,
+                    start: 'top 95%',
+                    end: 'top 30%',
+                    scrub: 0.8
+                }
+            });
+        }
+
         /* Las tarjetas llevan otro gesto: no se arman, se abren. Entran con un
            rebote corto de escala en vez del desplazamiento del resto del sitio,
            para que se lean como una capa distinta del mapa y no como su
