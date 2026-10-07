@@ -10,6 +10,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.vercel.app/blog/cfe-transmision-2030.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/cfe-transmision-2030.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/cfe-transmision-2030.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/cfe-transmision-2030.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.vercel.app/blog/continuidad.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/continuidad.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/continuidad.html"/>
@@ -50,6 +58,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.vercel.app/blog/queretaro-campus-etapas.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/queretaro-campus-etapas.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/queretaro-campus-etapas.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/queretaro-campus-etapas.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.vercel.app/blog/queretaro.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/queretaro.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/queretaro.html"/>
@@ -78,6 +94,14 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/blog/cfe-transmision-2030.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/cfe-transmision-2030.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/cfe-transmision-2030.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/cfe-transmision-2030.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -118,6 +142,14 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/nube-publica.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/nube-publica.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/nube-publica.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.vercel.app/en/blog/queretaro-campus-etapas.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/blog/queretaro-campus-etapas.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/blog/queretaro-campus-etapas.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/blog/queretaro-campus-etapas.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

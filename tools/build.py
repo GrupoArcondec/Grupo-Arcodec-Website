@@ -1626,8 +1626,18 @@ def render_careers(lang):
 # ==========================================================================
 # BLOG (indice)
 # ==========================================================================
+def news_img(n):
+    """Imagen de una noticia: 'archivo.jpg' vive en blog/; 'carpeta/archivo.jpg' es relativa a IMG."""
+    return IMG + '/' + (n['img'] if '/' in n['img'] else 'blog/' + n['img'])
+
+
+def news_published(n):
+    """Fecha de publicacion AAAA-MM-DD; las noticias sin el campo salieron el 2026-09-12."""
+    return n.get('published', '2026-09-12')
+
+
 def news_cards(lang, limit=None):
-    return '\n'.join('<div class="col-lg-6 col-md-6"><article class="article-2-item article-11-item mt-30"><a class="article-thumb" href="%s"><img src="%s/blog/%s" alt="%s" loading="lazy" %s></a><div class="article-content"><h2 class="title"><a href="%s">%s</a></h2><p>%s</p><a href="%s">%s →</a></div></article></div>' % (url('news-'+n['key'], lang), IMG, n['img'], e(n[lang][0]), dims(IMG+'/blog/'+n['img']), url('news-'+n['key'],lang), e(n[lang][0]), e(n[lang][1]), url('news-'+n['key'],lang), 'Leer noticia' if lang=='es' else 'Read article') for n in NEWS[:limit])
+    return '\n'.join('<div class="col-lg-6 col-md-6"><article class="article-2-item article-11-item mt-30"><a class="article-thumb" href="%s"><img src="%s" alt="%s" loading="lazy" %s></a><div class="article-content"><h2 class="title"><a href="%s">%s</a></h2><p>%s</p><a href="%s">%s →</a></div></article></div>' % (url('news-'+n['key'], lang), news_img(n), e(n[lang][0]), dims(news_img(n)), url('news-'+n['key'],lang), e(n[lang][0]), e(n[lang][1]), url('news-'+n['key'],lang), 'Leer noticia' if lang=='es' else 'Read article') for n in NEWS[:limit])
 
 
 def render_news(n, lang):
@@ -1637,9 +1647,13 @@ def render_news(n, lang):
     sidebar = ''.join('<li><a %s href="%s">%s</a></li>' % ('aria-current="page"' if item == n else '', url('news-'+item['key'],lang), e(item[lang][0])) for item in NEWS)
     i = NEWS.index(n)
     prev, nxt = NEWS[(i-1)%len(NEWS)], NEWS[(i+1)%len(NEWS)]
-    image = IMG+'/blog/'+n['img']
+    image = news_img(n)
+    y, m, d = news_published(n).split('-')
+    pub = '%s / %s / %s' % (d, m, y)
     caption = 'Imagen ilustrativa generada con IA; no representa el proyecto o evento mencionado.' if lang=='es' else 'AI-generated illustrative image; it does not depict the reported project or event.'
-    body = '<main id="contenido" class="container arc-news-layout"><aside><h2>%s</h2><ul>%s</ul></aside><article><p>%s · 12 / 09 / 2026</p><h1>%s</h1><figure><img src="%s" alt="%s" %s><figcaption>%s</figcaption></figure><p class="arc-news-lead">%s</p><p>%s</p><h2>%s</h2><p>%s</p><div class="arc-news-source">%s: <a href="%s" rel="noopener">%s</a><p>%s: %s</p></div></article></main>' % ('Publicaciones' if lang=='es' else 'Posts', sidebar, 'Redacción Arcondec' if lang=='es' else 'Arcondec editorial', e(c[0]), image, e(c[0]), dims(image), caption, e(c[1]), e(c[2]), e(c[3]), e(c[4]), 'Fuente' if lang=='es' else 'Source', e(n['link']), e(n['source']), 'Fecha de la fuente / consulta' if lang=='es' else 'Source / access date', n['date'])
+    if n.get('caption'):
+        caption = e(n['caption'][0 if lang == 'es' else 1])
+    body = '<main id="contenido" class="container arc-news-layout"><aside><h2>%s</h2><ul>%s</ul></aside><article><p>%s · %s</p><h1>%s</h1><figure><img src="%s" alt="%s" %s><figcaption>%s</figcaption></figure><p class="arc-news-lead">%s</p><p>%s</p><h2>%s</h2><p>%s</p><div class="arc-news-source">%s: <a href="%s" rel="noopener">%s</a><p>%s: %s</p></div></article></main>' % ('Publicaciones' if lang=='es' else 'Posts', sidebar, 'Redacción Arcondec' if lang=='es' else 'Arcondec editorial', pub, e(c[0]), image, e(c[0]), dims(image), caption, e(c[1]), e(c[2]), e(c[3]), e(c[4]), 'Fuente' if lang=='es' else 'Source', e(n['link']), e(n['source']), 'Fecha de la fuente / consulta' if lang=='es' else 'Source / access date', n['date'])
     def news_neighbor(item, direction, arrow, label):
         return ('<a class="arc-prevnext-link %s" href="%s">'
                 '<span class="arc-prevnext-arrow" aria-hidden="true">%s</span>'
@@ -1658,7 +1672,7 @@ def render_news(n, lang):
                       news_neighbor(nxt, 'is-next', '→', 'Noticia siguiente' if lang=='es' else 'Next article'))
     body = body.replace('<main id="contenido" class="container arc-news-layout">', '<main id="contenido"><div class="container arc-news-layout">').replace('</article></main>', '</article></div>'+navigation+'</main>')
 
-    return head(lang=lang,key=key,title=c[0],description=c[1],og_image=image,extra_ld={'@context':'https://schema.org','@type':'BlogPosting','headline':c[0],'datePublished':'2026-09-12','inLanguage':lang,'image':BASE_URL+image,'author':{'@type':'Organization','name':'Grupo Arcondec'},'citation':n['link']}) + body_open() + header(lang=lang,key=key) + body + footer(lang=lang,key=key,extra_scripts=('/assets/js/arcondec-blog.js',))
+    return head(lang=lang,key=key,title=c[0],description=c[1],og_image=image,extra_ld={'@context':'https://schema.org','@type':'BlogPosting','headline':c[0],'datePublished':news_published(n),'inLanguage':lang,'image':BASE_URL+image,'author':{'@type':'Organization','name':'Grupo Arcondec'},'citation':n['link']}) + body_open() + header(lang=lang,key=key) + body + footer(lang=lang,key=key,extra_scripts=('/assets/js/arcondec-blog.js',))
 
 
 def render_blog(lang):
@@ -1692,7 +1706,7 @@ def render_blog(lang):
             title=c["title"],
             description=c["meta"],
             keywords=c["keywords"],
-            og_image="%s/blog/%s" % (IMG, NEWS[0]["img"]),
+            og_image=news_img(NEWS[0]),
         )
         + body_open()
         + header(lang=lang, key=key)
@@ -1700,7 +1714,7 @@ def render_blog(lang):
             lang=lang,
             title=c["h1"],
             crumb=c["eyebrow"],
-            bg="%s/blog/%s" % (IMG, NEWS[0]["img"]),
+            bg=news_img(NEWS[0]),
         )
         + body
         + commitment_band(lang)
