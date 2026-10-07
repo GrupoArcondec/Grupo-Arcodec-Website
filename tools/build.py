@@ -664,12 +664,40 @@ def render_mapa(lang):
         if lang == "es" else
         "Arcondec coverage map in Mexico: warm areas in highlighted states and navy blue in the remaining states."
     )
-    svg = (
-        '<div class="arc-mapa-lienzo arc-mapa-calor">'
-        '<img class="arc-mapa-svg arc-mapa-base" src="%s" alt="%s" %s loading="lazy" decoding="async">'
-        '<img class="arc-mapa-calor-capa" src="%s" alt="" aria-hidden="true" %s loading="lazy" decoding="async">'
-        '</div>'
-    ) % (mapa_src, e(mapa_alt), dims(mapa_src), mapa_src, dims(mapa_src))
+    # Máscara con regiones difusas: la imagen aprobada permanece intacta.
+    w, h = _TAMANOS[mapa_src]
+    regiones = [(0.16, .28, .18, .36), (.37, .29, .18, .25),
+                (.56, .43, .15, .23), (.40, .62, .19, .22),
+                (.57, .73, .19, .20), (.80, .76, .25, .24)]
+    manchas = "".join(
+        '<ellipse class="arc-calor-region" cx="%s" cy="%s" rx="%s" ry="%s" fill="url(#arc-calor-difusion)"/>'
+        % (x*w, y*h, rx*w, ry*h) for x, y, rx, ry in regiones
+    )
+    svg = f"""<div class="arc-mapa-lienzo arc-mapa-calor">
+        <svg class="arc-mapa-svg" viewBox="0 0 {w} {h}" role="img" aria-label="{e(mapa_alt)}">
+            <defs>
+                <filter id="arc-calor-frio" color-interpolation-filters="sRGB">
+                    <feColorMatrix type="saturate" values="0"/>
+                    <feComponentTransfer>
+                        <feFuncR type="table" tableValues="0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 1"/>
+                        <feFuncG type="table" tableValues="0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 1"/>
+                        <feFuncB type="table" tableValues="0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 1"/>
+                    </feComponentTransfer>
+                </filter>
+                <radialGradient id="arc-calor-difusion">
+                    <stop offset="0" stop-color="white"/>
+                    <stop offset=".55" stop-color="white"/>
+                    <stop offset="1" stop-color="white" stop-opacity="0"/>
+                </radialGradient>
+                <mask id="arc-calor-mascara" maskUnits="userSpaceOnUse" x="0" y="0" width="{w}" height="{h}">
+                    {manchas}
+                    <rect class="arc-calor-completo" width="{w}" height="{h}" fill="white"/>
+                </mask>
+            </defs>
+            <image href="{mapa_src}" width="{w}" height="{h}" filter="url(#arc-calor-frio)"/>
+            <image href="{mapa_src}" width="{w}" height="{h}" mask="url(#arc-calor-mascara)"/>
+        </svg>
+    </div>"""
 
     # --- tarjetas por estado ---------------------------------------------
     def tarjeta(clave, items):

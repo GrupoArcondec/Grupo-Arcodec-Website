@@ -1322,24 +1322,28 @@
             }, 0);
         }
 
-        // El contorno permanece quieto y visible mientras el calor se forma.
-        // Sin JS o con movimiento reducido, la capa final queda visible por CSS.
-        var calor = mapa.querySelector('.arc-mapa-calor-capa');
-        if (!estados.length && calor) {
-            gsap.fromTo(calor, {
-                clipPath: 'ellipse(0% 0% at 50% 55%)',
-                opacity: 0
-            }, {
-                clipPath: 'ellipse(85% 85% at 50% 55%)',
-                opacity: 1,
-                ease: 'none',
+        // Encendido regional sin mover ni recortar el contorno del país.
+        // El rectángulo blanco deja el mapa final visible sin JS o con reduce.
+        var regiones = mapa.querySelectorAll('.arc-calor-region');
+        var completo = mapa.querySelector('.arc-calor-completo');
+        if (!estados.length && regiones.length && completo) {
+            var calor = gsap.timeline({
                 scrollTrigger: {
                     trigger: lienzo || mapa,
                     start: 'top 85%',
-                    end: 'top 15%',
+                    end: 'top 10%',
                     scrub: 0.8
                 }
             });
+            calor.fromTo(completo, { opacity: 0 }, {
+                opacity: 1, duration: 0.35, ease: 'none'
+            }, 0.95);
+            calor.fromTo(regiones, { opacity: 0 }, {
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.12,
+                ease: 'sine.inOut'
+            }, 0);
         }
 
         /* Las tarjetas llevan otro gesto: no se arman, se abren. Entran con un
