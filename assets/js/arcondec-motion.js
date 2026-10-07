@@ -1322,20 +1322,21 @@
             }, 0);
         }
 
-        // La versión de calor es una imagen: conserva el gesto ligado al
-        // scroll sin depender de los trazos SVG del mapa anterior.
-        var calor = mapa.querySelector('img.arc-mapa-svg');
+        // El contorno permanece quieto y visible mientras el calor se forma.
+        // Sin JS o con movimiento reducido, la capa final queda visible por CSS.
+        var calor = mapa.querySelector('.arc-mapa-calor-capa');
         if (!estados.length && calor) {
-            gsap.from(calor, {
-                y: 80,
-                scale: 0.82,
-                opacity: 0,
-                transformOrigin: '50% 50%',
-                ease: 'power2.out',
+            gsap.fromTo(calor, {
+                clipPath: 'ellipse(0% 0% at 50% 55%)',
+                opacity: 0
+            }, {
+                clipPath: 'ellipse(85% 85% at 50% 55%)',
+                opacity: 1,
+                ease: 'none',
                 scrollTrigger: {
                     trigger: lienzo || mapa,
-                    start: 'top 95%',
-                    end: 'top 30%',
+                    start: 'top 85%',
+                    end: 'top 15%',
                     scrub: 0.8
                 }
             });

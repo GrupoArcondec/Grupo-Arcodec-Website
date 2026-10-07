@@ -658,17 +658,18 @@ def render_mapa(lang):
     """Mapa de calor aprobado con tarjetas de cobertura bilingües."""
     c = P.MAPA_UI[lang]
     presencia = dict(P.MAPA_PRESENCIA)
-    mapa_src = IMG + "/secciones/mapa-calor-cobertura-v1.png"
+    mapa_src = IMG + "/secciones/mapa-calor-cobertura-v2.png"
     mapa_alt = (
         "Mapa de cobertura de Arcondec en México: zonas cálidas en los estados destacados y azul marino en los demás."
         if lang == "es" else
         "Arcondec coverage map in Mexico: warm areas in highlighted states and navy blue in the remaining states."
     )
     svg = (
-        '<div class="arc-mapa-lienzo">'
-        '<img class="arc-mapa-svg" src="%s" alt="%s" %s loading="lazy" decoding="async">'
+        '<div class="arc-mapa-lienzo arc-mapa-calor">'
+        '<img class="arc-mapa-svg arc-mapa-base" src="%s" alt="%s" %s loading="lazy" decoding="async">'
+        '<img class="arc-mapa-calor-capa" src="%s" alt="" aria-hidden="true" %s loading="lazy" decoding="async">'
         '</div>'
-    ) % (mapa_src, e(mapa_alt), dims(mapa_src))
+    ) % (mapa_src, e(mapa_alt), dims(mapa_src), mapa_src, dims(mapa_src))
 
     # --- tarjetas por estado ---------------------------------------------
     def tarjeta(clave, items):
