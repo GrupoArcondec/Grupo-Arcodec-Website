@@ -655,63 +655,20 @@ def render_about(lang):
 # Mapa de presencia nacional (inicio)
 # --------------------------------------------------------------------------
 def render_mapa(lang):
-    """Mapa de cobertura como SVG con los estados y tarjetas HTML alrededor.
-
-    Antes era un JPG. Al armarlo con datos se gana todo lo que una imagen no
-    puede dar: se traduce, un buscador lee los 34 proyectos que lista, se
-    reacomoda en celular y toma los colores del sitio en vez de llevarlos
-    quemados. El SVG va en línea —no como <img>— porque solo así se puede
-    pintar cada estado por CSS y resaltarlo al pasar el mouse.
-
-    Las tarjetas se reparten en dos columnas según de qué lado del país cae su
-    estado, para que cada una quede cerca de la zona que describe.
-    """
+    """Mapa de calor aprobado con tarjetas de cobertura bilingües."""
     c = P.MAPA_UI[lang]
     presencia = dict(P.MAPA_PRESENCIA)
-
-    # --- el mapa ---------------------------------------------------------
-    # Los estados sin proyecto también se dibujan: sin el resto del país, las
-    # manchas de color no significan nada.
-    # El azul fuerte no lo decide "tener proyecto" sino MAPA_DESTACADOS: la
-    # sección habla de cobertura nacional, así que casi todo el país va marcado.
-    # `data-estado` es otra cosa: solo lo llevan los estados con tarjeta, porque
-    # es lo que engancha el resaltado recíproco al pasar el mouse.
-    trazos = []
-    for clave, est in MAPA.ESTADOS.items():
-        clases = "arc-mapa-estado"
-        if clave in P.MAPA_DESTACADOS:
-            clases += " is-fuerte"
-        trazos.append(
-            '                        <path class="%s" d="%s"%s>'
-            '<title>%s</title></path>'
-            % (clases,
-               est["d"],
-               ' data-estado="%s"' % clave if clave in presencia else "",
-               e(est[lang] if lang in est else est["es"]))
-        )
-
-    # Un punto por cada estado marcado, en un punto interior suyo. Antes solo lo
-    # llevaban las sedes; puestos en los veintiocho, el punto pasa a leerse como
-    # "aquí hay presencia" y el mapa se recorre por marcas y no por manchas de
-    # color, que a la distancia se confunden entre estados vecinos.
-    # `data-estado` solo va en los que tienen tarjeta: es lo que engancha el
-    # resaltado recíproco.
-    puntos = []
-    for clave in P.MAPA_DESTACADOS:
-        cx, cy = MAPA.ESTADOS[clave]["centro"]
-        puntos.append(
-            '                        <circle class="arc-mapa-punto" cx="%.1f" cy="%.1f" '
-            'r="4"%s></circle>'
-            % (cx, cy, ' data-estado="%s"' % clave if clave in presencia else "")
-        )
-
-    svg = """                <div class="arc-mapa-lienzo">
-                    <svg viewBox="%s" role="img" aria-label="%s" class="arc-mapa-svg">
-%s
-%s
-                    </svg>
-                </div>""" % (MAPA.VIEWBOX, e(c["alt"]),
-                             "\n".join(trazos), "\n".join(puntos))
+    mapa_src = IMG + "/secciones/mapa-calor-cobertura-v1.png"
+    mapa_alt = (
+        "Mapa de cobertura de Arcondec en México: zonas cálidas en los estados destacados y azul marino en los demás."
+        if lang == "es" else
+        "Arcondec coverage map in Mexico: warm areas in highlighted states and navy blue in the remaining states."
+    )
+    svg = (
+        '<div class="arc-mapa-lienzo">'
+        '<img class="arc-mapa-svg" src="%s" alt="%s" %s loading="lazy" decoding="async">'
+        '</div>'
+    ) % (mapa_src, e(mapa_alt), dims(mapa_src))
 
     # --- tarjetas por estado ---------------------------------------------
     def tarjeta(clave, items):
