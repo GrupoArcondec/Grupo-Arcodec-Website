@@ -861,3 +861,8 @@ COMMIT_TEXT = {
     "es": "Fortalecemos cada día nuestro compromiso contigo, brindando un servicio excepcional como tu aliado estratégico en ingeniería eléctrica y centros de datos.",
     "en": "We strengthen our commitment to you every day by delivering exceptional service as your strategic partner in electrical engineering and data centers.",
 }
+
+
+# Servicio de operación y mantenimiento: después de construcción, antes de obra civil.
+from operations_service import SERVICE as OPERATIONS_SERVICE
+SERVICES.insert(1, OPERATIONS_SERVICE)
