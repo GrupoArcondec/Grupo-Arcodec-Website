@@ -676,12 +676,13 @@ def render_mapa(lang):
     svg = f"""<div class="arc-mapa-lienzo arc-mapa-calor">
         <svg class="arc-mapa-svg" viewBox="0 0 {w} {h}" role="img" aria-label="{e(mapa_alt)}">
             <defs>
+                <!-- Los blancos de 95–100% permanecen blancos: evita amplificar la textura del fondo. -->
                 <filter id="arc-calor-frio" color-interpolation-filters="sRGB">
                     <feColorMatrix type="saturate" values="0"/>
                     <feComponentTransfer>
-                        <feFuncR type="table" tableValues="0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 1"/>
-                        <feFuncG type="table" tableValues="0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 1"/>
-                        <feFuncB type="table" tableValues="0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 1"/>
+                        <feFuncR type="table" tableValues="0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 1 1"/>
+                        <feFuncG type="table" tableValues="0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 1 1"/>
+                        <feFuncB type="table" tableValues="0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 0.35 1 1"/>
                     </feComponentTransfer>
                 </filter>
                 <radialGradient id="arc-calor-difusion">
