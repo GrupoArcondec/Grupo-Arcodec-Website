@@ -3344,3 +3344,16 @@ body:has(.arc-news-layout) .header-area .header-nav{background:#1D4598}
 
 /* Las regiones del mapa se encienden mediante su máscara SVG. */
 .arc-mapa-calor { position: relative; }
+
+/* Indicador de la especialidad activa: línea que se extiende suavemente. */
+.arc-civil-detail { position: relative; }
+.arc-civil-detail[open] { border-bottom-color: #425782; }
+.arc-civil-detail::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -1px;
+    height: 1px; background: #ffbb00; transform: scaleX(0);
+    transform-origin: left; transition: transform .4s ease; pointer-events: none;
+}
+.arc-civil-detail[open]::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+    .arc-civil-detail::after { transition: none; }
+}

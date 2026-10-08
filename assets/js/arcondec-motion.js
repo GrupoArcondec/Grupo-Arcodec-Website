@@ -1406,6 +1406,46 @@
         }
     }
 
+    function serviceScopes() {
+        document.querySelectorAll('.arc-civil').forEach(function (section) {
+            var header = section.querySelector('.arc-civil-header');
+            var visual = section.querySelector('.arc-civil-visual');
+            var details = section.querySelectorAll('.arc-civil-detail');
+            var entrance = gsap.timeline({ scrollTrigger: {
+                trigger: section, start: 'top 78%', once: true
+            }});
+            entrance.from(header, { y: 24, opacity: 0, duration: .55,
+                ease: 'power2.out', clearProps: 'transform,opacity' }, 0);
+            entrance.from(visual, { y: 28, opacity: 0, duration: .65,
+                ease: 'power2.out', clearProps: 'transform,opacity' }, .15);
+            entrance.from(details, { y: 18, opacity: 0, duration: .45,
+                stagger: .09, ease: 'power2.out', clearProps: 'transform,opacity' }, .25);
+
+            details.forEach(function (detail, index) {
+                var description = detail.querySelector('.arc-civil-description');
+                var photo = section.querySelector('.arc-civil-photo-' + (index + 1) + ' img');
+                detail.addEventListener('toggle', function () {
+                    gsap.killTweensOf(description);
+                    if (!detail.open) {
+                        gsap.set(description, { clearProps: 'height,opacity,overflow' });
+                        ScrollTrigger.refresh();
+                        return;
+                    }
+                    gsap.fromTo(description, { height: 0, opacity: 0, overflow: 'hidden' }, {
+                        height: 'auto', opacity: 1, duration: .38, ease: 'power2.out',
+                        clearProps: 'height,opacity,overflow',
+                        onComplete: function () { ScrollTrigger.refresh(); }
+                    });
+                    if (photo) {
+                        gsap.killTweensOf(photo);
+                        gsap.fromTo(photo, { scale: 1.035 }, { scale: 1, duration: .65,
+                            ease: 'power2.out', clearProps: 'transform' });
+                    }
+                });
+            });
+        });
+    }
+
     function start() {
         // Va antes que revealRows: marca sus columnas con data-arc-motion="off"
         // para que el sistema genérico no las anime también.
@@ -1417,6 +1457,7 @@
         safely('aboutPhotoGrow', aboutPhotoGrow);
         safely('nosotros', nosotros);
         safely('mapaPresencia', mapaPresencia);
+        safely('serviceScopes', serviceScopes);
         safely('revealBanner', revealBanner);
         safely('parallaxBackgrounds', parallaxBackgrounds);
         safely('heroSlides', heroSlides);
