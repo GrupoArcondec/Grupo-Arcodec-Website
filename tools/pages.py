@@ -1464,63 +1464,7 @@ CAREERS = {
 }
 
 # Vacantes activas: contenido original en español y traducción completa en inglés.
-VACANCIES = [{'title': 'Analista de Precios Unitarios',
-  'req': '+3 años de experiencia · Ingeniería Civil, Ingeniería Eléctrica o afín · Excel avanzado · Neodata '
-         'indispensable · Experiencia cuantificando desde planos.',
-  'func': 'Elaboración de presupuestos de instalaciones eléctricas y obra civil. Análisis de precios '
-          'unitarios y cuantificación de volúmenes de obra. Cotización con proveedores y subcontratistas e '
-          'integración de costos.',
-  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales',
-  'en': {'title': 'Unit Cost Analyst',
-         'req': '3+ years of experience · Degree in Civil Engineering, Electrical Engineering or a related '
-                'field · Advanced Excel · Neodata required · Experience taking quantities from drawings.',
-         'func': 'Prepare estimates for electrical installations and civil works. Analyze unit costs and '
-                 'prepare quantity takeoffs. Obtain supplier and subcontractor quotes and compile costs.',
-         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $22k–25k net per month'}},
- {'title': 'Arquitecto Proyectista',
-  'req': '3 a 5 años de experiencia · Licenciatura en Arquitectura, Ingeniería Civil o afín · AutoCAD 2D/3D, '
-         'Revit/BIM, SketchUp, Lumion, Photoshop, Illustrator, Excel.',
-  'func': 'Desarrollo de proyectos arquitectónicos y ejecutivos. Elaboración de planos, renders, memorias '
-          'descriptivas y documentación técnica. Coordinación e integración de disciplinas de ingeniería.',
-  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales',
-  'en': {'title': 'Architectural Designer',
-         'req': '3–5 years of experience · Degree in Architecture, Civil Engineering or a related field · '
-                'AutoCAD 2D/3D, Revit/BIM, SketchUp, Lumion, Photoshop, Illustrator and Excel.',
-         'func': 'Develop architectural designs and construction documentation. Prepare drawings, '
-                 'renderings, design reports and technical documentation. Coordinate and integrate '
-                 'engineering disciplines.',
-         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $22k–25k net per month'}},
- {'title': 'Ingeniero de Control y Planeación Eléctrica',
-  'req': 'Experiencia en obra e instalaciones eléctricas · Ingeniería Eléctrica, Electromecánica, Civil o '
-         'afín · Excel · Deseable MS Project y AutoCAD · Conocimiento de baja y media tensión.',
-  'func': 'Seguimiento a cronogramas y programas de obra. Control de avances físicos, financieros, '
-          'generadores y estimaciones. Seguimiento a costos, presupuestos, materiales y documentación de '
-          'proyecto.',
-  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $25k–30k libres mensuales',
-  'en': {'title': 'Electrical Planning and Project Controls Engineer',
-         'req': 'Experience in construction and electrical installations · Degree in Electrical, '
-                'Electromechanical or Civil Engineering, or a related field · Excel · MS Project and AutoCAD '
-                'preferred · Knowledge of low- and medium-voltage systems.',
-         'func': 'Monitor construction schedules and work plans. Track physical and financial progress, '
-                 'quantity records and progress payment estimates. Monitor costs, budgets, materials and '
-                 'project documentation.',
-         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $25k–30k net per month'}},
- {'title': 'Coordinador Eléctrico de Diseño',
-  'req': '4 a 6 años de experiencia en proyectos de misión crítica y Data Centers · Ingeniería Eléctrica o '
-         'afín · Revit MEP, AutoCAD Electrical · NOM-001-SEDE · Media y baja tensión.',
-  'func': 'Diseño y validación de instalaciones eléctricas y sistemas de respaldo. Coordinación y '
-          'supervisión de proyectistas eléctricos. Catálogos de conceptos e integración con otras '
-          'especialidades.',
-  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $30k–35k libres mensuales',
-  'en': {'title': 'Electrical Design Coordinator',
-         'req': '4–6 years of experience in mission-critical and data center projects · Degree in Electrical '
-                'Engineering or a related field · Revit MEP and AutoCAD Electrical · NOM-001-SEDE · Medium- '
-                'and low-voltage systems.',
-         'func': 'Design and validate electrical installations and backup power systems. Coordinate and '
-                 'supervise electrical designers. Prepare bills of quantities and integrate designs with '
-                 'other disciplines.',
-         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $30k–35k net per month'}},
- {'title': 'Coordinador HVAC',
+VACANCIES = [{'title': 'Coordinador HVAC',
   'req': '3 a 5 años de experiencia · Ingeniería Mecánica, Electromecánica o afín · Manejo fluido de Revit y '
          'AutoCAD · Cálculo de cargas térmicas y selección de equipos HVAC · Experiencia en proyectos de '
          'misión crítica o data center.',
@@ -1563,21 +1507,6 @@ VACANCIES = [{'title': 'Analista de Precios Unitarios',
          'func': 'Design and specify CCTV and access control systems. Design structured cabling and fiber '
                  'optic networks. Coordinate drawings and integration with other disciplines.',
          'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $30k–35k net per month'}},
- {'title': 'Ingeniero Proyectista Eléctrico',
-  'req': '+3 años de experiencia · Ingeniería Eléctrica, Electromecánica o afín · AutoCAD, Revit, Microsoft '
-         'Office · Deseable ETAP y conocimiento de normativa vigente · Experiencia en proyectos de misión '
-         'crítica o data center.',
-  'func': 'Diseño de proyectos eléctricos industriales en baja y media tensión. Elaboración de planos, '
-          'diagramas unifilares y documentación técnica. Cuantificaciones, levantamientos y planos As-Built.',
-  'meta': 'Monterrey, N.L. · Zona Cumbres · Presencial · $22k–25k libres mensuales',
-  'en': {'title': 'Electrical Design Engineer',
-         'req': '3+ years of experience · Degree in Electrical or Electromechanical Engineering, or a '
-                'related field · AutoCAD, Revit and Microsoft Office · ETAP and knowledge of applicable '
-                'standards preferred · Experience in mission-critical or data center projects.',
-         'func': 'Design low- and medium-voltage industrial electrical systems. Prepare drawings, '
-                 'single-line diagrams and technical documentation. Prepare quantity takeoffs, conduct site '
-                 'surveys and produce as-built drawings.',
-         'meta': 'Monterrey, N.L. · Cumbres area · On-site · MXN $22k–25k net per month'}},
  {'title': 'Project Manager',
   'req': '5 a 8 años de experiencia en construcción · 3 años como Project Manager o líder de proyectos · '
          'Ingeniería Civil, Arquitectura, Ingeniería Eléctrica o afín · MS Project, AutoCAD, Excel avanzado '
