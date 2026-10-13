@@ -83,7 +83,7 @@ SERVICES = [
         # Se retiraron la 8 y la 9: salas vacías con cajas de cartón apiladas,
         # que no muestran obra terminada. Los archivos siguen en disco por si
         # se quieren recuperar.
-        "photos": [17, 10, 1, 2, 3, 4, 5, 6],
+        "photos": [17, 18, 1, 2, 3, 4, 19, 6],
         "scope_photos": [12, 13, 14, 15, 16],
         "group": "llave",
         "icon": "fal fa-server",
