@@ -385,7 +385,7 @@ HUBS = [
         # zanja de acometida funciona porque el motivo corre en horizontal a lo
         # largo del encuadre; además la franja deja fuera los rótulos
         # comerciales de los negocios vecinos que aparecen en la parte alta.
-        "imagen": "arcondec-chihuahua-acometida-retocada.jpg",
+        "imagen": "arcondec-chihuahua-acometida-retocada-sin-logos-v2.png",
         "imagen_alt": (
             "Cuadrilla abriendo la zanja para el alimentador de media tensión"
         ),
@@ -452,11 +452,11 @@ HUBS = [
         ],
         # Fotografías del cliente retocadas para eliminar el sello de cámara.
         "galeria": [
-            ("arcondec-chihuahua-excavacion-retocada.jpg",
+            ("arcondec-chihuahua-excavacion-retocada-sin-logos-v2.png",
              {"es": "Cuadrilla trabajando en la excavación de la acometida", "en": "Crew working on the service entrance excavation"}),
-            ("arcondec-chihuahua-acometida-retocada.jpg",
+            ("arcondec-chihuahua-acometida-retocada-sin-logos-v2.png",
              {"es": "Zanja de acometida con señalización de seguridad", "en": "Service entrance trench with safety barriers"}),
-            ("arcondec-chihuahua-azotea-retocada.jpg",
+            ("arcondec-chihuahua-azotea-retocada-sin-logos-v2.png",
              {"es": "Vista general de la impermeabilización en azotea", "en": "Overview of rooftop waterproofing"}),
             ("arcondec-chihuahua-azotea-detalle-retocada.jpg",
              {"es": "Detalle de impermeabilización y base en azotea", "en": "Detail of rooftop waterproofing and raised base"}),
@@ -473,7 +473,7 @@ HUBS = [
         "slug": {"es": "hub-delicias", "en": "delicias-hub"},
         "nombre": "HUB DELICIAS",
         "ubicacion": "Delicias - Chihuahua",
-        "foto": "arcondec-delicias-retocada-7.jpg",
+        "foto": "arcondec-delicias-retocada-7-sin-logos-v2.png",
         # ─────────────────────────────────────────────────────────────────
         # Datos reales, de HUB_Delicias_ficha_proyecto.docx (fuente: Anexo C,
         # Formato de cotización, 11-mar-2024).
@@ -519,7 +519,7 @@ HUBS = [
             "obra civil necesaria: cuarto de tableros, plancha para la máquina "
             "de emergencia y acondicionamiento de una sala nueva.",
         ],
-        "imagen": "arcondec-delicias-retocada-7.jpg",
+        "imagen": "arcondec-delicias-retocada-7-sin-logos-v2.png",
         "imagen_alt": "Cuarto eléctrico del HUB Delicias con equipos de respaldo y canalizaciones",
         "imagen_alt_en": "Delicias Hub electrical room with backup equipment and conduits",
         "galeria_encuadre_superior": True,
@@ -568,9 +568,9 @@ HUBS = [
             ("arcondec-delicias-retocada-2.jpg", {"es": "Instalación de conexiones en el gabinete", "en": "Installing cabinet connections"}),
             ("arcondec-delicias-retocada-3.jpg", {"es": "Detalle de bastidores y conexiones de distribución", "en": "Distribution chassis and connection detail"}),
             ("arcondec-delicias-retocada-4.jpg", {"es": "Barras de distribución y conexiones del gabinete", "en": "Cabinet distribution busbars and connections"}),
-            ("arcondec-delicias-retocada-5.jpg", {"es": "Revisión de equipos de respaldo y módulos de potencia", "en": "Inspection of backup equipment and power modules"}),
-            ("arcondec-delicias-retocada-6.jpg", {"es": "Equipos de respaldo y canalizaciones del cuarto eléctrico", "en": "Backup equipment and electrical room conduits"}),
-            ("arcondec-delicias-retocada-7.jpg", {"es": "Vista general del cuarto eléctrico del HUB Delicias", "en": "Overview of the Delicias Hub electrical room"}),
+            ("arcondec-delicias-retocada-5-sin-logos-v2.png", {"es": "Revisión de equipos de respaldo y módulos de potencia", "en": "Inspection of backup equipment and power modules"}),
+            ("arcondec-delicias-retocada-6-sin-logos-v2.png", {"es": "Equipos de respaldo y canalizaciones del cuarto eléctrico", "en": "Backup equipment and electrical room conduits"}),
+            ("arcondec-delicias-retocada-7-sin-logos-v2.png", {"es": "Vista general del cuarto eléctrico del HUB Delicias", "en": "Overview of the Delicias Hub electrical room"}),
         ],
         "resultados": [
             ("225 kVA", "transformador instalado"),
@@ -993,7 +993,7 @@ HUBS = [
         "slug": {"es": "hub-sevilla", "en": "sevilla-hub"},
         "nombre": "HUB SEVILLA",
         "ubicacion": "Sevilla - CDMX",
-        "foto": "arcondec-sevilla-retocada-2.jpg",
+        "foto": "arcondec-sevilla-retocada-2-sin-logos-v2.png",
         # ─────────────────────────────────────────────────────────────────
         # Datos reales, de HUB_Sevilla_ficha_proyecto.docx (fuente: Anexo C,
         # Formato de cotización VF 01, 04-nov-2024, pestaña "Hub Sevilla 01";
@@ -1033,7 +1033,7 @@ HUBS = [
         # que ser una toma cuyo motivo se extienda en horizontal. Esta vista de
         # la azotea deja ver toda la hilera de condensadores incluso en la
         # franja; una foto de motivo centrado se perdería en el recorte.
-        "imagen": "arcondec-sevilla-retocada-2.jpg",
+        "imagen": "arcondec-sevilla-retocada-2-sin-logos-v2.png",
         "imagen_alt": "Hilera de condensadores instalados en la azotea del HUB Sevilla",
         "imagen_alt_en": "Condenser units installed on the rooftop of Sevilla HUB",
         "cliente": "IZZI / TVI",
@@ -1077,19 +1077,19 @@ HUBS = [
         "galeria_encuadre_superior": True,
         "galeria_encuadres": {
             "arcondec-sevilla-retocada-1.jpg": "object-position:center center",
-            "arcondec-sevilla-retocada-2.jpg": "object-position:center center",
+            "arcondec-sevilla-retocada-2-sin-logos-v2.png": "object-position:center center",
             "arcondec-sevilla-retocada-3.jpg": "object-position:center center",
             "arcondec-sevilla-retocada-4.jpg": "object-position:center center",
-            "arcondec-sevilla-retocada-5.jpg": "object-position:center center",
+            "arcondec-sevilla-retocada-5-sin-logos-v2.png": "object-position:center center",
             "arcondec-sevilla-retocada-6.jpg": "object-position:center center",
             "arcondec-sevilla-retocada-7.jpg": "object-position:center center",
         },
         "galeria": [
             ("arcondec-sevilla-retocada-1.jpg", {"es": "Pasillo de racks y canalizaciones", "en": "Rack aisle and cable trays"}),
-            ("arcondec-sevilla-retocada-2.jpg", {"es": "Condensadores instalados en azotea", "en": "Rooftop condenser units"}),
+            ("arcondec-sevilla-retocada-2-sin-logos-v2.png", {"es": "Condensadores instalados en azotea", "en": "Rooftop condenser units"}),
             ("arcondec-sevilla-retocada-3.jpg", {"es": "Medición con manifold digital", "en": "Digital manifold measurement"}),
             ("arcondec-sevilla-retocada-4.jpg", {"es": "Tuberías y conexiones de refrigeración", "en": "Refrigeration piping and connections"}),
-            ("arcondec-sevilla-retocada-5.jpg", {"es": "Pantalla de monitoreo del equipo InRow", "en": "InRow equipment monitoring display"}),
+            ("arcondec-sevilla-retocada-5-sin-logos-v2.png", {"es": "Pantalla de monitoreo del equipo InRow", "en": "InRow equipment monitoring display"}),
             ("arcondec-sevilla-retocada-6.jpg", {"es": "Inspección con cámara termográfica", "en": "Thermal camera inspection"}),
             ("arcondec-sevilla-retocada-7.jpg", {"es": "Tuberías de cobre y aislamiento", "en": "Copper piping and insulation"}),
         ],

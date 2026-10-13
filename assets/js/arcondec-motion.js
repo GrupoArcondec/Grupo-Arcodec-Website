@@ -640,11 +640,9 @@
             slidesToShow: 5,
             slidesToScroll: 1,
             autoplay: true,
-            // Ritmo de la cinta: 1.6s de pausa entre logos y 500ms de
-            // desplazamiento. Antes eran 3s y 700ms, y la cinta se sentía
-            // parada. Bajar más la pausa vuelve difícil leer cada marca.
-            autoplaySpeed: 1600,
-            speed: 500,
+            // Ritmo ágil: pausa breve y transición suave entre clientes.
+            autoplaySpeed: 700,
+            speed: 400,
             infinite: true,
             arrows: false,
             dots: false,
