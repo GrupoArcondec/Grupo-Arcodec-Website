@@ -3357,3 +3357,6 @@ body:has(.arc-news-layout) .header-area .header-nav{background:#1D4598}
 @media (prefers-reduced-motion: reduce) {
     .arc-civil-detail::after { transition: none; }
 }
+
+/* Encuadre de la nueva foto vertical dentro de la portada 3:2 de Pachuca. */
+.arc-case-figure img[src$="arcondec-pachuca-equipo-v2.png"] { object-position: center top; }

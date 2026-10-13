@@ -196,7 +196,7 @@ HUBS = [
         "ubicacion": "Pachuca - Hidalgo",
         "titulo": "HUB Pachuca",
         "foto": "arcondec-pachuca-retocada-01.jpg",
-        "imagen": "arcondec-pachuca-retocada-01.jpg",
+        "imagen": "arcondec-pachuca-equipo-v2.png",
         "imagen_alt": "Equipo de Arcondec instalando alimentadores y charolas en HUB Pachuca",
         "imagen_alt_en": "Arcondec team installing feeders and cable trays at Pachuca HUB",
         "subtitulo": "Reconstrucción de infraestructura crítica para la red FTTH: climatización de precisión, energía en 480 V y renovación de la distribución en corriente directa.",
