@@ -195,7 +195,7 @@ HUBS = [
         "publicado": True,
         "ubicacion": "Pachuca - Hidalgo",
         "titulo": "HUB Pachuca",
-        "foto": "arcondec-pachuca-retocada-01.jpg",
+        "foto": "arcondec-pachuca-equipo-v2.png",
         "imagen": "arcondec-pachuca-equipo-v2.png",
         "imagen_alt": "Equipo de Arcondec instalando alimentadores y charolas en HUB Pachuca",
         "imagen_alt_en": "Arcondec team installing feeders and cable trays at Pachuca HUB",
