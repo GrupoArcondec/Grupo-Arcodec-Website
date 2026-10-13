@@ -40,6 +40,13 @@ from content import (
 # Los alias viejos siguen resolviendo pero ya no son el canónico.
 BASE_URL = "https://arcondec.vercel.app"
 
+# Indexación: el sitio solo se abre a los buscadores cuando vive en arcondec.mx.
+# Mientras BASE_URL sea el subdominio de Vercel (sitio en revisión por la Dirección),
+# todas las páginas llevan robots "noindex, nofollow" y robots.txt no anuncia el
+# sitemap. Al cambiar BASE_URL a https://arcondec.mx se vuelve indexable solo.
+# Decisión de Samuel del 8 de octubre de 2026.
+INDEXABLE = BASE_URL.startswith("https://arcondec.mx")
+
 # --------------------------------------------------------------------------
 # Mapa de rutas: clave -> URL en cada idioma.
 # Es la unica fuente de verdad de los enlaces internos y de las etiquetas
@@ -306,7 +313,7 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
         lang=lang,
         desc=e(description),
         kw=e(keywords),
-        robots=("noindex, nofollow" if noindex
+        robots=("noindex, nofollow" if (noindex or not INDEXABLE)
                 else "index, follow, max-image-preview:large"),
         title=e(full_title),
         canonical=canonical,

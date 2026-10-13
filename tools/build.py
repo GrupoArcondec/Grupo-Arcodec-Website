@@ -35,6 +35,7 @@ from content import (  # noqa: E402
 )
 from layout import (  # noqa: E402
     BASE_URL,
+    INDEXABLE,
     ROUTES,
     SITEMAP_ROUTES,
     UI,
@@ -2065,7 +2066,9 @@ def main():
     write("/sitemap.xml", render_sitemap(SITEMAP_ROUTES, BASE_URL))
     write(
         "/robots.txt",
-        "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % BASE_URL,
+        ("User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % BASE_URL)
+        if INDEXABLE
+        else "User-agent: *\nAllow: /\n",
     )
 
     for p in written:
