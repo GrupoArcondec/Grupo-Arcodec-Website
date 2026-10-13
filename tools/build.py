@@ -1750,6 +1750,10 @@ def render_home(lang, i18n):
         flags=re.S,
     )
 
+    # Descripciones accesibles de las imágenes del inicio.
+    src = re.sub(r'alt="[^"]*"\s+data-i18n-alt="([^"]+)"',
+                 lambda m: 'alt="%s"' % e(dic[m.group(1)]) if m.group(1) in dic else m.group(0), src)
+
     # 2) Placeholders traducidos
     def swap_ph(m):
         km = m.group(1)

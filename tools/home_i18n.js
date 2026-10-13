@@ -9,6 +9,7 @@
 
     var I18N = {
         es: {
+            aboutTeamAlt: 'Trabajadores de Arcondec instalando infraestructura eléctrica en el HUB Pachuca',
             pageTitle: 'Grupo Arcondec — Infraestructura Eléctrica y Data Centers',
             metaDesc: 'Infraestructura eléctrica industrial y data centers en México: más de 30 años en proyectos llave en mano, de la etapa conceptual a la entrega final.',
 
@@ -143,6 +144,7 @@
         },
 
         en: {
+            aboutTeamAlt: 'Arcondec workers installing electrical infrastructure at the Pachuca hub',
             pageTitle: 'Grupo Arcondec — Electrical Infrastructure and Data Centers',
             metaDesc: 'Grupo Arcondec — Industrial electrical infrastructure and data centers in Mexico. Over 30 years of turnkey projects, from conceptual stage to final delivery.',
 
