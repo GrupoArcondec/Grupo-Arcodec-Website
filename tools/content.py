@@ -75,7 +75,7 @@ SERVICE_GROUPS = [
 SERVICES = [
     {
         "key": "cosdc",
-        # La 11 va primero: es la que se usa de banner y de imagen principal.
+        # La 17 va primero: versión sin Huawei para banner e imagen principal.
         # Entró con número nuevo y no sustituyendo a la 7 a propósito —
         # vercel.json marca /assets/images como `immutable` por un año, así que
         # reemplazar un archivo en su sitio deja a los visitantes recurrentes
@@ -83,7 +83,7 @@ SERVICES = [
         # Se retiraron la 8 y la 9: salas vacías con cajas de cartón apiladas,
         # que no muestran obra terminada. Los archivos siguen en disco por si
         # se quieren recuperar.
-        "photos": [11, 10, 1, 2, 3, 4, 5, 6],
+        "photos": [17, 10, 1, 2, 3, 4, 5, 6],
         "scope_photos": [12, 13, 14, 15, 16],
         "group": "llave",
         "icon": "fal fa-server",
