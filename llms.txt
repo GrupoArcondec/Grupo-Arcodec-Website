@@ -1,0 +1,74 @@
+# Grupo Arcondec S.A. de C.V.
+
+> Empresa mexicana de ingeniería eléctrica y construcción de centros de datos. Fundada en 1991 en Monterrey, Nuevo León. Diseña y ejecuta infraestructura eléctrica industrial y data centers llave en mano, desde la etapa conceptual hasta la entrega final.
+
+Opera en toda la República Mexicana. Sitio bilingüe: español en la raíz, inglés bajo /en/.
+
+## Datos de contacto
+
+- Razón social: Grupo Arcondec S.A. de C.V.
+- Fundación: 1991
+- Domicilio: Calle del Gran Parque 419, Cumbres 2o, 64610 Monterrey, N.L.
+- Teléfono: 81 1934 1192
+- Correo general: info@arcondec.mx
+- Ventas: ventas@arcondec.mx
+- Reclutamiento: rh@arcondec.mx
+- Sitio: https://arcondec.mx/
+
+## Servicios
+
+### Construcción llave en mano
+
+- [Construcción Data Centers](https://arcondec.mx/servicios/construccion-data-center.html): Asesoría y construcción de data centers llave en mano: ingeniería, obra civil, infraestructura eléctrica crítica, MEP, sistemas especiales y comisionamiento
+- [Operación y Mantenimiento de Data Centers](https://arcondec.mx/servicios/operacion-mantenimiento-data-centers.html): Operación y mantenimiento de data centers: atención 24/7, mantenimiento preventivo y correctivo, diagnóstico y modernización de infraestructura crítica en México
+- [Obra Civil](https://arcondec.mx/servicios/ingenieria-civil-data-center.html): Obra civil para centros de datos e infraestructura crítica: cimentación, estructura, albañilería, acabados, herrería, cancelería e instalaciones hidrosanitarias
+
+### Ingeniería eléctrica
+
+- [Soluciones Eléctricas](https://arcondec.mx/servicios/soluciones-electricas.html): Soluciones eléctricas para data centers e industria: ingeniería, UPS, respaldo, distribución, protecciones y puesta a tierra para tu infraestructura crítica
+- [Corriente Directa](https://arcondec.mx/servicios/soluciones-corriente-directa-dc.html): Soluciones de corriente directa: ingeniería, plantas DC, bancos de baterías, gabinetes de distribución, pruebas y mantenimiento para infraestructura crítica
+- [Corriente Alterna](https://arcondec.mx/servicios/soluciones-corriente-alterna-ca.html): Sistemas de corriente alterna: tableros de distribución, transferencia automática, alimentadores y respaldo con planta de emergencia para infraestructura crítica
+- [Diseño de Tierras](https://arcondec.mx/servicios/diseno-sistemas-de-tierras.html): Diseño y construcción de sistemas de tierra física: malla, electrodos, soldadura exotérmica, barras master, supresión de transitorios y protección contra descargas
+
+## Proyectos documentados
+
+Obras con ficha pública en el sitio. No es el total de proyectos ejecutados por la empresa.
+
+- [HUB Teziutlán](https://arcondec.mx/proyectos/hub-teziutlan.html): Teziutlán - Puebla
+- [Renovación Baterías Litio](https://arcondec.mx/proyectos/renovacion-baterias-litio.html): 13 sitios · México
+- [HUB Pachuca](https://arcondec.mx/proyectos/hub-pachuca.html): Pachuca - Hidalgo
+- [CRT Industria Chihuahua](https://arcondec.mx/proyectos/crt-industria-chihuahua.html): Chihuahua - Chihuahua
+- [HUB Delicias](https://arcondec.mx/proyectos/hub-delicias.html): Delicias - Chihuahua
+- [HUB Santa Catarina](https://arcondec.mx/proyectos/hub-santa-catarina.html): Santa Catarina - Nuevo León
+- [HUB Satélite](https://arcondec.mx/proyectos/hub-satelite.html): Naucalpan - Estado de México
+- [Bancos de baterías, Montes Urales](https://arcondec.mx/proyectos/montes-urales.html): Montes Urales - CDMX
+- [HUB Sevilla](https://arcondec.mx/proyectos/hub-sevilla.html): Sevilla - CDMX
+
+## Artículos técnicos
+
+- [Energía crítica en data centers](https://arcondec.mx/blog/energia-critica-data-centers-ia.html): El suministro eléctrico indispensable para sistemas que no pueden fallar: UPS, plantas de emergencia, bancos de baterías y distribución de alta confiabilidad
+- [Sistemas de alimentación en 400 volts de corriente directa](https://arcondec.mx/blog/400v-dc-transformacion-centros-de-datos.html): Distribución en DC a 400 V: alimenta los equipos de TI directamente, reduce pérdidas por conversión y mejora la eficiencia del sistema
+- [La corriente directa que impulsa a los líderes en infraestructura crítica](https://arcondec.mx/blog/corriente-directa-infraestructura-critica.html): La mayoría de los equipos ya operan internamente en DC: mantener la energía en ese formato reduce pérdidas, conversiones y puntos de falla
+- [Claves de infraestructura crítica de un centro de datos](https://arcondec.mx/blog/claves-de-infraestructura-critica-de-un-centro-de-datos.html): Los subsistemas que determinan la disponibilidad real de un data center y cómo se coordinan entre sí
+- [La ingeniería eléctrica está revolucionando los data centers](https://arcondec.mx/blog/ingenieria-electrica-ai-hpc.html): IA y HPC disparan la densidad de potencia por rack y obligan a rediseñar la infraestructura eléctrica
+- [Sistemas de tierras físicas y pararrayos en centros de datos](https://arcondec.mx/blog/sistemas-tierras-fisicas-pararrayos.html): Protección contra descargas atmosféricas y referencia de potencial en instalaciones de misión crítica
+- [Por qué el peinado de cables puede salvar la operación de tu data center](https://arcondec.mx/blog/peinado-de-cables-data-center.html): El orden del cableado como factor de mantenibilidad, disipación térmica y seguridad operativa
+- [Instalación de tableros auto soportados y de distribución](https://arcondec.mx/blog/instalacion-tableros-auto-soportados-y-distribucion.html): Criterios de montaje, coordinación y pruebas para tableros de media y baja tensión
+- [Cómo asegurar precisión en la implementación de un centro de datos](https://arcondec.mx/blog/implementacion-centro-de-datos-precisa.html): Del diseño conceptual a la puesta en marcha documentada, sin retrabajos ni entregas parciales
+- [Modernización eléctrica: migrar a tecnología digital sin interrumpir la operación](https://arcondec.mx/blog/modernizacion-electrica-mexico-tecnologia-digital.html): Cómo sustituir equipos obsoletos y digitalizar la infraestructura manteniendo la continuidad
+- [5 tendencias que están transformando los data centers](https://arcondec.mx/blog/tendencias-infraestructura-electrica.html): Eficiencia, redundancia y monitoreo inteligente se consolidan como estándar del sector
+- [Ingeniería eléctrica que respalda](https://arcondec.mx/blog/ingenieria-electrica-que-respalda.html): Infraestructura diseñada para sostener la operación presente y habilitar el crecimiento futuro
+
+## Páginas principales
+
+- [Inicio](https://arcondec.mx/index.html)
+- [Nosotros](https://arcondec.mx/nosotros.html): historia, propósito, visión, valores y certificaciones
+- [Proyectos](https://arcondec.mx/proyectos.html): Cada proyecto es una muestra de nuestra capacidad técnica, calidad y cumplimiento en tiempo récord
+- [Blog](https://arcondec.mx/blog.html)
+- [Vacantes](https://arcondec.mx/vacantes.html)
+- [Contacto](https://arcondec.mx/contacto.html)
+
+## Opcional
+
+- [Sitemap XML](https://arcondec.mx/sitemap.xml)
+- [Versión en inglés](https://arcondec.mx/en/index.html)

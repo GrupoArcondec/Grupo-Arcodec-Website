@@ -55,6 +55,13 @@ python3 tools/check.py    # debe terminar en "Sin problemas." antes de commitear
 - Contraste WCAG AA ya auditado: no aclarar colores de texto sin recalcular el ratio.
 - No borrar ni renombrar páginas por fuera del generador: `ROUTES` en
   `tools/layout.py` es la fuente de las rutas, hreflang y sitemap.
+- `google335a6999dfbfb9d5.html` y `googleffdcbbc6c2922af6.html` en la raíz **no se
+  tocan, no se borran y no se "arreglan"**. Son los tokens de verificación de Google
+  Search Console heredados del sitio `.aspx` anterior. Su contenido debe seguir
+  siendo exactamente la línea `google-site-verification: <nombre-del-archivo>`.
+  Si alguien les agrega `<title>`, `<h1>` o canonical creyendo que son páginas rotas,
+  Google deja de reconocerlas y se pierde el acceso a Search Console del dominio.
+  `check.py` ya los exime de las reglas SEO por eso. Tampoco entran al sitemap.
 - `vercel.json` no se modifica: declara que no hay build, la caché escalonada
   (imágenes/fuentes 1 año inmutable; css/js 1 hora, compensada por el versionado
   `?v=<hash>` que añade el generador) y las cabeceras de seguridad (nosniff,

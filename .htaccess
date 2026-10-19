@@ -1,0 +1,206 @@
+# =========================================================================
+# Grupo Arcondec — configuración de Apache (hosting Plesk)
+#
+# Sustituye lo que en Vercel hacía vercel.json. Vive en la raíz del sitio
+# (httpdocs). Reemplaza al .htaccess del sitio .aspx anterior: antes de
+# subirlo, guardar una copia del viejo por si trae reglas propias.
+#
+# Orden de las secciones: primero canonicalización del dominio, luego los
+# redirects 301 del sitio anterior, después configuración y cabeceras.
+# =========================================================================
+
+
+# -------------------------------------------------------------------------
+# 1. Dominio canónico: https:// y sin www
+#
+# Google tiene indexado https://www.arcondec.mx y el sitio nuevo declara su
+# canonical en https://arcondec.mx. Sin esta regla, Google ve dos sitios
+# distintos y reparte la autoridad entre ambos.
+# -------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # www -> sin www (y de paso fuerza https)
+    RewriteCond %{HTTP_HOST} ^www\.arcondec\.mx$ [NC]
+    RewriteRule ^(.*)$ https://arcondec.mx/$1 [R=301,L]
+
+    # http -> https
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://arcondec.mx/$1 [R=301,L]
+</IfModule>
+
+
+# -------------------------------------------------------------------------
+# 2. Redirects 301 del sitio anterior (.aspx)
+#
+# Ninguna URL del sitio viejo existe en el nuevo: las 86 darían 404 el día
+# del cambio. Cada regla manda a su equivalente más cercana y traspasa la
+# autoridad acumulada.
+#
+# Notas de implementación:
+#   - Cada página vieja existía en dos formas: /Nosotros y /Nosotros.aspx.
+#     El sufijo opcional (\.aspx)? cubre las dos.
+#   - [NC] porque las rutas viejas usan mayúsculas y la gente las teclea
+#     de cualquier forma.
+#   - Las rutas con acento (construcción, eléctricos, ingeniería) llegan
+#     percent-encoded. Por eso se usa .+ en lugar de la letra acentuada:
+#     coincide tanto con la forma codificada como con la decodificada.
+# -------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+
+    # --- Páginas principales ---------------------------------------------
+    RewriteRule ^Default(\.aspx)?/?$                https://arcondec.mx/ [R=301,L,NC]
+    RewriteRule ^EN/Default(\.aspx)?/?$             https://arcondec.mx/en/ [R=301,L,NC]
+
+    RewriteRule ^Nosotros(\.aspx)?/?$               /nosotros.html [R=301,L,NC]
+    RewriteRule ^EN/About(\.aspx)?/?$               /en/about.html [R=301,L,NC]
+
+    RewriteRule ^Proyectos(\.aspx)?/?$              /proyectos.html [R=301,L,NC]
+    RewriteRule ^EN/Projects(\.aspx)?/?$            /en/projects.html [R=301,L,NC]
+
+    RewriteRule ^Reclutamiento(\.aspx)?/?$          /vacantes.html [R=301,L,NC]
+    RewriteRule ^EN/Careers(\.aspx)?/?$             /en/careers.html [R=301,L,NC]
+
+    RewriteRule ^Contactanos(\.aspx)?/?$            /contacto.html [R=301,L,NC]
+    RewriteRule ^EN/Contact(\.aspx)?/?$             /en/contact.html [R=301,L,NC]
+
+    # --- Blog -------------------------------------------------------------
+    # Decisión de Samuel (19/10/2026): los 13 artículos del sitio anterior
+    # no se republican. Todos van al índice del blog nuevo.
+    RewriteRule ^Blogs(\.aspx)?/?$                  /blog.html [R=301,L,NC]
+    RewriteRule ^Blog/.*$                           /blog.html [R=301,L,NC]
+    RewriteRule ^EN/Blogs?(\.aspx)?/?$              /en/blog.html [R=301,L,NC]
+
+    # --- Servicios que siguen existiendo ----------------------------------
+    RewriteRule ^Servicios/construcci.+n-de-data-center(\.aspx)?/?$ \
+        /servicios/construccion-data-center.html [R=301,L,NC]
+    RewriteRule ^EN/Services/COSDC(\.aspx)?/?$ \
+        /en/services/data-center-construction.html [R=301,L,NC]
+
+    RewriteRule ^Servicios/ingenier.+a-civil-para-data-center(\.aspx)?/?$ \
+        /servicios/ingenieria-civil-data-center.html [R=301,L,NC]
+    RewriteRule ^EN/Services/CIVDC(\.aspx)?/?$ \
+        /en/services/civil-engineering-data-center.html [R=301,L,NC]
+
+    RewriteRule ^Servicios/soluciones-en-corriente-directa-dc(\.aspx)?/?$ \
+        /servicios/soluciones-corriente-directa-dc.html [R=301,L,NC]
+    RewriteRule ^EN/Services/CORAC(\.aspx)?/?$ \
+        /en/services/direct-current-solutions.html [R=301,L,NC]
+
+    # --- Servicios dados de baja ------------------------------------------
+    # Estudios eléctricos especializados, Gestión integral de proyectos
+    # eléctricos y Servicios de ingeniería integral ya no se ofrecen como
+    # servicio propio. Se mandan al servicio vigente que mejor los absorbe.
+    RewriteRule ^Servicios/proyectos-el.+ctricos-integrales(\.aspx)?/?$ \
+        /servicios/soluciones-electricas.html [R=301,L,NC]
+    RewriteRule ^EN/Services/PROYE(\.aspx)?/?$ \
+        /en/services/electrical-solutions.html [R=301,L,NC]
+
+    RewriteRule ^Servicios/estudios-el.+ctricos-especializados(\.aspx)?/?$ \
+        /servicios/soluciones-electricas.html [R=301,L,NC]
+    RewriteRule ^EN/Services/ESTEL(\.aspx)?/?$ \
+        /en/services/electrical-solutions.html [R=301,L,NC]
+
+    RewriteRule ^Servicios/gesti.+n-integral-de-proyectos-el.+ctricos(\.aspx)?/?$ \
+        /servicios/soluciones-electricas.html [R=301,L,NC]
+    RewriteRule ^EN/Services/GESPR(\.aspx)?/?$ \
+        /en/services/electrical-solutions.html [R=301,L,NC]
+
+    RewriteRule ^Servicios/servicios-de-ingenier.+a-integral(\.aspx)?/?$ \
+        /servicios/construccion-data-center.html [R=301,L,NC]
+    RewriteRule ^EN/Services/INGDC(\.aspx)?/?$ \
+        /en/services/data-center-construction.html [R=301,L,NC]
+
+    # --- Landing pages de campaña -----------------------------------------
+    RewriteRule ^Servicios/LandingPage_IE_EN(\.aspx)?/?$ \
+        /en/services/electrical-solutions.html [R=301,L,NC]
+    RewriteRule ^Servicios/LandingPage_IE(\.aspx)?/?$ \
+        /servicios/soluciones-electricas.html [R=301,L,NC]
+    RewriteRule ^Servicios/LandingPage_DC_EN(\.aspx)?/?$ \
+        /en/services/data-center-construction.html [R=301,L,NC]
+    RewriteRule ^Servicios/LandingPage_DC(\.aspx)?/?$ \
+        /servicios/construccion-data-center.html [R=301,L,NC]
+
+    # --- Red de seguridad --------------------------------------------------
+    # Cualquier .aspx que se haya quedado fuera del mapa va al inicio en vez
+    # de morir en 404. Deliberadamente al final: solo atrapa lo no previsto.
+    RewriteRule ^EN/.*\.aspx$                       /en/index.html [R=301,L,NC]
+    RewriteRule ^.*\.aspx$                          /index.html [R=301,L,NC]
+
+    # Restos del sitio anterior que no deben servirse nunca.
+    RewriteRule ^(bin|modules|system|vendor|data|dev)/ - [F,L,NC]
+</IfModule>
+
+
+# -------------------------------------------------------------------------
+# 3. Página de error
+#
+# A diferencia de Vercel, Apache no sirve /404.html por su cuenta.
+# -------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+DirectoryIndex index.html
+
+# Sin listados de directorio: nadie debe poder navegar /assets/ como carpeta.
+Options -Indexes
+
+
+# -------------------------------------------------------------------------
+# 4. Caché — equivalente a los headers de vercel.json
+#
+# Imágenes y fuentes: 1 año inmutable. Para cambiar una foto hay que
+# cambiarle el nombre de archivo (regla documentada en AGENTS.md).
+# CSS y JS: 1 hora, compensado por el ?v=<hash> que añade el generador.
+# HTML: nunca en caché, para que un deploy se vea de inmediato.
+# -------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|svg|ico|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=3600, stale-while-revalidate=86400"
+    </FilesMatch>
+
+    <FilesMatch "\.(html|xml|txt)$">
+        Header set Cache-Control "public, max-age=0, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+
+# -------------------------------------------------------------------------
+# 5. Cabeceras de seguridad — equivalente a vercel.json
+# -------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+    # HSTS: solo se activa sobre https. Dos años, como en Vercel.
+    # Ojo: una vez enviado, el navegador recuerda la regla aunque se quite.
+    # No activar hasta confirmar que el certificado del dominio es válido.
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains" env=HTTPS
+</IfModule>
+
+
+# -------------------------------------------------------------------------
+# 6. Compresión
+# -------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml \
+        application/javascript application/json application/xml \
+        image/svg+xml
+</IfModule>
+
+
+# -------------------------------------------------------------------------
+# 7. Tipos MIME que algunos servidores no traen configurados
+# -------------------------------------------------------------------------
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType image/avif .avif
+    AddType font/woff2 .woff2
+    AddType application/manifest+json .webmanifest
+</IfModule>

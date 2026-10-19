@@ -1,2 +1,67 @@
+# Grupo Arcondec — https://arcondec.mx
+# El sitio es estatico y publico: se rastrea completo.
+# La exclusion de paginas puntuales va con <meta robots> en el HTML,
+# no aqui. No bloquear rutas del sitio .aspx anterior: deben rastrearse
+# para que Google procese los redirects 301.
+
 User-agent: *
 Allow: /
+
+# Carpetas heredadas del sitio anterior que se conservan solo para que
+# no se rompan enlaces externos (firmas de correo, codigos QR impresos).
+# Siguen accesibles; simplemente no son contenido que deba salir en
+# resultados de busqueda.
+Disallow: /Firma/
+Disallow: /TarjetasPresentacion/
+
+# --- Buscadores con IA -------------------------------------------
+# Acceso explicito para los rastreadores que alimentan respuestas
+# generativas (ChatGPT, Perplexity, Claude, AI Overviews, Copilot).
+# La regla general de arriba ya los permite; se nombran uno por uno
+# porque algunos solo entran cuando se les menciona, y porque deja
+# constancia de que es una decision tomada y no un descuido.
+#
+# Decision de negocio: Arcondec QUIERE ser citada en respuestas de IA.
+# Para revertirlo, cambiar Allow por Disallow en el bot que
+# corresponda. Google-Extended solo controla el uso del contenido
+# para entrenar e informar a Gemini; no afecta el ranking en
+# la Busqueda de Google.
+
+User-agent: GPTBot  # OpenAI — entrenamiento
+Allow: /
+
+User-agent: OAI-SearchBot  # OpenAI — busqueda en ChatGPT
+Allow: /
+
+User-agent: ChatGPT-User  # OpenAI — visita a peticion del usuario
+Allow: /
+
+User-agent: ClaudeBot  # Anthropic
+Allow: /
+
+User-agent: Claude-User  # Anthropic — visita a peticion del usuario
+Allow: /
+
+User-agent: PerplexityBot  # Perplexity
+Allow: /
+
+User-agent: Google-Extended  # Google — Gemini y AI Overviews
+Allow: /
+
+User-agent: Applebot-Extended  # Apple Intelligence
+Allow: /
+
+User-agent: CCBot  # Common Crawl — fuente de muchos modelos
+Allow: /
+
+User-agent: meta-externalagent  # Meta AI
+Allow: /
+
+User-agent: Bingbot  # Bing y Copilot
+Allow: /
+
+Sitemap: https://arcondec.mx/sitemap.xml
+
+# Resumen del sitio en texto plano para modelos de lenguaje:
+# https://arcondec.mx/llms.txt  (es)
+# https://arcondec.mx/en/llms.txt  (en)

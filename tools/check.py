@@ -25,7 +25,15 @@ SKIP_DIRS = {"tools", "assets"}
 
 # La 404 es noindex y no forma parte del sitio indexable: se le exigen enlaces
 # sanos y alt en las imagenes, pero no canonical, hreflang ni h1 unico.
-SEO_EXEMPT = {"404.html"}
+#
+# Los google*.html son tokens de verificacion de Search Console heredados del
+# sitio anterior (.aspx). NO son paginas: su contenido debe ser exactamente la
+# linea "google-site-verification: <archivo>" que Google entrego. Si alguien
+# les agrega <title>, <h1> o canonical para "arreglarlos", la verificacion se
+# rompe y se pierde el acceso a Search Console del dominio.
+SEO_EXEMPT = {"404.html"} | {
+    p.name for p in ROOT.glob("google*.html")
+}
 
 # <h2 class="title" data-delay="0.6s"Texto</h2>  ->  falta el '>' de cierre.
 # Ancla en un atributo entrecomillado completo seguido de letra (no de espacio ni '>').
@@ -144,7 +152,7 @@ def main():
         for m in re.finditer(r"<(h[1-6])\b[^>]*>(.*?)</\1>", raw, re.S):
             if not re.sub(r"<[^>]+>", "", m.group(2)).strip():
                 problems.append("%s: <%s> vacío" % (rel, m.group(1)))
-        if not (page.title or "").strip():
+        if seo and not (page.title or "").strip():
             problems.append("%s sin <title>" % rel)
         if seo and not (page.description or "").strip():
             problems.append("%s sin meta description" % rel)
@@ -159,7 +167,7 @@ def main():
                     problems.append("%s: hreflang apunta a %s, que no existe" % (rel, alt))
         if page.imgs_sin_alt:
             problems.append("%s: %d imagen(es) sin atributo alt" % (rel, page.imgs_sin_alt))
-        if not page.lang:
+        if seo and not page.lang:
             problems.append("%s sin atributo lang en <html>" % rel)
 
         # Longitudes recomendadas en resultados de Google: title <=60 visibles,

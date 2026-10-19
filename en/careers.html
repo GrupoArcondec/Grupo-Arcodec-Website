@@ -10,16 +10,16 @@
     <meta name="description" content="Join Grupo Arcondec. High-level technical electrical and data center projects, a collaborative environment and equal opportunities.">
     <meta name="keywords" content="careers, technical talent, electrical engineers, data center technicians, workplace inclusion, Grupo Arcondec">
     <meta name="author" content="Grupo Arcondec S.A. de C.V.">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="theme-color" content="#1D4598">
 
     <title>Careers | Grupo Arcondec</title>
 
     <!--====== Canonical y versiones por idioma ======-->
-    <link rel="canonical" href="https://arcondec.vercel.app/en/careers.html">
-    <link rel="alternate" hreflang="es-MX" href="https://arcondec.vercel.app/vacantes.html">
-    <link rel="alternate" hreflang="en" href="https://arcondec.vercel.app/en/careers.html">
-    <link rel="alternate" hreflang="x-default" href="https://arcondec.vercel.app/vacantes.html">
+    <link rel="canonical" href="https://arcondec.mx/en/careers.html">
+    <link rel="alternate" hreflang="es-MX" href="https://arcondec.mx/vacantes.html">
+    <link rel="alternate" hreflang="en" href="https://arcondec.mx/en/careers.html">
+    <link rel="alternate" hreflang="x-default" href="https://arcondec.mx/vacantes.html">
 
     <!--====== Open Graph / Twitter ======-->
     <meta property="og:type" content="website">
@@ -28,18 +28,30 @@
     <meta property="og:locale:alternate" content="es_MX">
     <meta property="og:title" content="Careers | Grupo Arcondec">
     <meta property="og:description" content="Join Grupo Arcondec. High-level technical electrical and data center projects, a collaborative environment and equal opportunities.">
-    <meta property="og:url" content="https://arcondec.vercel.app/en/careers.html">
-    <meta property="og:image" content="https://arcondec.vercel.app/assets/images/arcondec/rh/arcondec_vacantes_banner.jpg">
+    <meta property="og:url" content="https://arcondec.mx/en/careers.html">
+    <meta property="og:image" content="https://arcondec.mx/assets/images/arcondec/rh/arcondec_vacantes_banner.jpg">
     <meta property="og:image:alt" content="Careers | Grupo Arcondec">
     <meta property="og:image:width" content="1600">
     <meta property="og:image:height" content="837">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Careers | Grupo Arcondec">
     <meta name="twitter:description" content="Join Grupo Arcondec. High-level technical electrical and data center projects, a collaborative environment and equal opportunities.">
-    <meta name="twitter:image" content="https://arcondec.vercel.app/assets/images/arcondec/rh/arcondec_vacantes_banner.jpg">
+    <meta name="twitter:image" content="https://arcondec.mx/assets/images/arcondec/rh/arcondec_vacantes_banner.jpg">
 
     <!--====== Favicon ======-->
-    <link rel="shortcut icon" href="/assets/images/arcondec/brand/favicon.ico" type="image/x-icon">
+    <!-- Cada formato cubre un contexto distinto y ninguno sustituye al resto:
+         .ico en la raiz para navegadores viejos y rastreadores que lo piden
+         ahi por costumbre; .svg para navegadores modernos (nitido en
+         cualquier densidad de pantalla); PNG de 32 px como respaldo; el
+         apple-touch-icon para cuando alguien guarda el sitio en la pantalla
+         de inicio de un iPhone o iPad; y el manifest para Android. -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/images/arcondec/brand/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/images/arcondec/brand/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/assets/images/arcondec/brand/favicon-16.png" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="/assets/images/arcondec/brand/apple-touch-icon.png" sizes="180x180">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="apple-mobile-web-app-title" content="Arcondec">
 
     <!--====== Estilos del template aball ======-->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css?v=16b78428">
@@ -56,14 +68,41 @@
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": [
+    "Organization",
+    "LocalBusiness"
+  ],
+  "additionalType": "https://schema.org/ElectricalContractor",
   "name": "Grupo Arcondec S.A. de C.V.",
   "alternateName": "Grupo Arcondec",
-  "url": "https://arcondec.vercel.app/",
-  "logo": "https://arcondec.vercel.app/assets/images/arcondec/brand/logo.png",
+  "url": "https://arcondec.mx/",
+  "logo": "https://arcondec.mx/assets/images/arcondec/brand/logo.png",
+  "image": "https://arcondec.mx/assets/images/arcondec/brand/logo.png",
   "description": "Join Grupo Arcondec. High-level technical electrical and data center projects, a collaborative environment and equal opportunities.",
   "foundingDate": "1991",
   "areaServed": "MX",
+  "telephone": "+52-81-1934-1192",
+  "email": "info@arcondec.mx",
+  "hasMap": "https://www.google.com/maps/place/Grupo+Arcondec+S.A.+de+C.V./@25.7124378,-100.3761168,17z",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 25.7124378,
+    "longitude": -100.3761168
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
   "sameAs": [
     "https://www.facebook.com/grupoarcondec",
     "https://www.instagram.com/grupoarcondec",
@@ -101,13 +140,13 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://arcondec.vercel.app/en/index.html"
+      "item": "https://arcondec.mx/en/index.html"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Careers",
-      "item": "https://arcondec.vercel.app/en/careers.html"
+      "item": "https://arcondec.mx/en/careers.html"
     }
   ]
 }
@@ -563,7 +602,7 @@
                             <li><a href="https://www.linkedin.com/company/grupoarcondec/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
                             <li><a href="https://www.youtube.com/@grupoarcondec" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                         </ul>
-                        <p><span>Grupo Arcondec S.A. de C.V. Copyright © 2026 | All rights reserved</span> | <a href="https://www.arcondec.mx/AvisoPrivacidad.pdf" target="_blank" rel="noopener">Privacy Notice</a></p>
+                        <p><span>Grupo Arcondec S.A. de C.V. Copyright © 2026 | All rights reserved</span> | <a href="/AvisoPrivacidad.pdf" target="_blank" rel="noopener">Privacy Notice</a></p>
                     </div>
                 </div>
             </div>

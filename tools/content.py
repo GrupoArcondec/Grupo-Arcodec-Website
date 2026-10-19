@@ -48,7 +48,12 @@ SOCIAL = [
     ("youtube", "YouTube", "https://www.youtube.com/@grupoarcondec"),
 ]
 
-PRIVACY_PDF = "https://www.arcondec.mx/AvisoPrivacidad.pdf"
+# Ruta relativa, no absoluta con www: el PDF vive en la raíz del propio sitio.
+# Antes apuntaba a https://www.arcondec.mx/… y con la canonicalización a
+# arcondec.mx sin www cada clic daba un salto 301 de más.
+# El archivo se conserva con el MISMO nombre porque está citado en documentos
+# impresos y en correos ya enviados.
+PRIVACY_PDF = "/AvisoPrivacidad.pdf"
 LOGIN_URL = "https://apps.arcondec.mx/"
 VIDEO_URL = "https://www.youtube.com/watch?v=Q9PNm51CVK8"
 

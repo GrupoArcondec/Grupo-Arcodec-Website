@@ -38,7 +38,10 @@ from content import (
 # NO mueve el alias .vercel.app —Vercel lo asigna una sola vez, al crear el proyecto—
 # así que hubo que asignarlo a mano con `vercel alias set <deployment> arcondec.vercel.app`.
 # Los alias viejos siguen resolviendo pero ya no son el canónico.
-BASE_URL = "https://arcondec.vercel.app"
+# 19 de octubre de 2026: el sitio se muda al hosting propio (Plesk) y reemplaza
+# al sitio ASP.NET en arcondec.mx. Al cambiar el dominio canónico, INDEXABLE
+# pasa a True y el sitio se abre a los buscadores.
+BASE_URL = "https://arcondec.mx"
 
 # Indexación: el sitio solo se abre a los buscadores cuando vive en arcondec.mx.
 # Mientras BASE_URL sea el subdominio de Vercel (sitio en revisión por la Dirección),
@@ -188,16 +191,40 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
         else ""
     )
 
+    # Dos tipos a la vez: Organization sostiene el panel de marca y
+    # LocalBusiness es el que Google cruza con la ficha de Google Business
+    # Profile (domicilio, telefono, horario, mapa). Los datos tienen que
+    # coincidir al pie de la letra con los de la ficha o Google desconfia
+    # de ambos. ElectricalContractor afina el giro.
     ld = {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["Organization", "LocalBusiness"],
+        "additionalType": "https://schema.org/ElectricalContractor",
         "name": "Grupo Arcondec S.A. de C.V.",
         "alternateName": "Grupo Arcondec",
         "url": BASE_URL + "/",
         "logo": BASE_URL + "/assets/images/arcondec/brand/logo.png",
+        "image": BASE_URL + "/assets/images/arcondec/brand/logo.png",
         "description": description,
         "foundingDate": "1991",
         "areaServed": "MX",
+        "telephone": "+52-81-1934-1192",
+        "email": CONTACT["mail_info"],
+        "hasMap": CONTACT["maps"],
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 25.7124378,
+            "longitude": -100.3761168,
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday",
+                              "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "18:00",
+            }
+        ],
         "sameAs": [u for _, _, u in SOCIAL],
         "contactPoint": [
             {
@@ -292,7 +319,19 @@ def head(*, lang, key, title, description, keywords="", og_image=None, extra_ld=
     <meta name="twitter:image" content="{og_image}">
 
     <!--====== Favicon ======-->
-    <link rel="shortcut icon" href="/assets/images/arcondec/brand/favicon.ico" type="image/x-icon">
+    <!-- Cada formato cubre un contexto distinto y ninguno sustituye al resto:
+         .ico en la raiz para navegadores viejos y rastreadores que lo piden
+         ahi por costumbre; .svg para navegadores modernos (nitido en
+         cualquier densidad de pantalla); PNG de 32 px como respaldo; el
+         apple-touch-icon para cuando alguien guarda el sitio en la pantalla
+         de inicio de un iPhone o iPad; y el manifest para Android. -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/images/arcondec/brand/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/images/arcondec/brand/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/assets/images/arcondec/brand/favicon-16.png" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="/assets/images/arcondec/brand/apple-touch-icon.png" sizes="180x180">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="apple-mobile-web-app-title" content="Arcondec">
 
     <!--====== Estilos del template aball ======-->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">

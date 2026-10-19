@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    =====================================================================
+    Grupo Arcondec — configuración de IIS (hosting Plesk para Windows)
+
+    Equivale a lo que vercel.json hacía en Vercel y a lo que un .htaccess
+    haría en Apache. IIS NO lee .htaccess: este es el archivo que manda.
+
+    Vive en la raíz del sitio (httpdocs).
+
+    Secciones:
+      1. Documento por defecto
+      2. Redirecciones 301 del sitio .aspx anterior
+      3. Dominio canónico (https, sin www)
+      4. Página de error 404
+      5. Caché y tipos MIME
+      6. Cabeceras de seguridad
+    =====================================================================
+-->
+<configuration>
+
+  <system.webServer>
+
+    <!-- ==============================================================
+         1. Documento por defecto
+         El sitio es estático: la raíz sirve index.html.
+         ============================================================== -->
+    <defaultDocument enabled="true">
+      <files>
+        <clear />
+        <add value="index.html" />
+      </files>
+    </defaultDocument>
+
+    <directoryBrowse enabled="false" />
+
+    <rewrite>
+      <rules>
+
+        <!-- ==========================================================
+             2. Dominio canónico: sin www y sobre https
+
+             Google tiene indexado https://www.arcondec.mx y el sitio
+             nuevo declara su canonical en https://arcondec.mx. Sin esto,
+             Google ve dos sitios y reparte la autoridad entre ambos.
+
+             Van PRIMERO para que cualquier redirección posterior ya
+             ocurra sobre el dominio correcto (un solo salto, no dos).
+             ========================================================== -->
+        <rule name="www a sin www" stopProcessing="true">
+          <match url="(.*)" />
+          <conditions>
+            <add input="{HTTP_HOST}" pattern="^www\.arcondec\.mx$" />
+          </conditions>
+          <action type="Redirect" url="https://arcondec.mx/{R:1}"
+                  redirectType="Permanent" />
+        </rule>
+
+        <rule name="http a https" stopProcessing="true">
+          <match url="(.*)" />
+          <conditions>
+            <add input="{HTTPS}" pattern="^OFF$" />
+          </conditions>
+          <action type="Redirect" url="https://arcondec.mx/{R:1}"
+                  redirectType="Permanent" />
+        </rule>
+
+        <!-- ==========================================================
+             3. Redirecciones 301 del sitio anterior
+
+             Ninguna URL del sitio .aspx existe en el nuevo: las 86
+             darían 404. Cada regla manda a su equivalente más cercana
+             y traspasa la autoridad acumulada en buscadores.
+
+             Notas:
+               - Cada página existía en dos formas: /Nosotros y
+                 /Nosotros.aspx. El sufijo (\.aspx)? cubre ambas.
+               - IIS compara sin distinguir mayúsculas por defecto.
+               - Las rutas con acento llegan percent-encoded. Por eso
+                 se usa .+ en vez de la letra acentuada: coincide con
+                 la forma codificada y con la decodificada.
+             ========================================================== -->
+
+        <!-- Páginas principales -->
+        <rule name="301 Default" stopProcessing="true">
+          <match url="^Default(\.aspx)?/?$" />
+          <action type="Redirect" url="/" redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN Default" stopProcessing="true">
+          <match url="^EN/Default(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/index.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 Nosotros" stopProcessing="true">
+          <match url="^Nosotros(\.aspx)?/?$" />
+          <action type="Redirect" url="/nosotros.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN About" stopProcessing="true">
+          <match url="^EN/About(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/about.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 Proyectos" stopProcessing="true">
+          <match url="^Proyectos(\.aspx)?/?$" />
+          <action type="Redirect" url="/proyectos.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN Projects" stopProcessing="true">
+          <match url="^EN/Projects(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/projects.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 Reclutamiento" stopProcessing="true">
+          <match url="^Reclutamiento(\.aspx)?/?$" />
+          <action type="Redirect" url="/vacantes.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN Careers" stopProcessing="true">
+          <match url="^EN/Careers(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/careers.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 Contactanos" stopProcessing="true">
+          <match url="^Contactanos(\.aspx)?/?$" />
+          <action type="Redirect" url="/contacto.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN Contact" stopProcessing="true">
+          <match url="^EN/Contact(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/contact.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 Gracias" stopProcessing="true">
+          <match url="^Gracias(\.aspx)?/?$" />
+          <action type="Redirect" url="/contacto.html" redirectType="Permanent" />
+        </rule>
+
+        <!-- Blog
+             Decisión de Samuel (19/10/2026): los 13 artículos del sitio
+             anterior no se republican. Todos al índice del blog nuevo. -->
+        <rule name="301 Blogs indice" stopProcessing="true">
+          <match url="^Blogs(\.aspx)?/?$" />
+          <action type="Redirect" url="/blog.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 Blog articulos" stopProcessing="true">
+          <match url="^Blog/.*$" />
+          <action type="Redirect" url="/blog.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN Blog" stopProcessing="true">
+          <match url="^EN/Blogs?(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/blog.html" redirectType="Permanent" />
+        </rule>
+
+        <!-- Servicios vigentes -->
+        <rule name="301 Construccion DC" stopProcessing="true">
+          <match url="^Servicios/construcci.+n-de-data-center(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/construccion-data-center.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN COSDC" stopProcessing="true">
+          <match url="^EN/Services/COSDC(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/services/data-center-construction.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 Obra civil DC" stopProcessing="true">
+          <match url="^Servicios/ingenier.+a-civil-para-data-center(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/ingenieria-civil-data-center.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN CIVDC" stopProcessing="true">
+          <match url="^EN/Services/CIVDC(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/services/civil-engineering-data-center.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 Corriente directa" stopProcessing="true">
+          <match url="^Servicios/soluciones-en-corriente-directa-dc(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/soluciones-corriente-directa-dc.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN CORAC" stopProcessing="true">
+          <match url="^EN/Services/CORAC(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/services/direct-current-solutions.html"
+                  redirectType="Permanent" />
+        </rule>
+
+        <!-- Servicios dados de baja
+             Estudios eléctricos especializados, Gestión integral de
+             proyectos eléctricos y Servicios de ingeniería integral ya no
+             se ofrecen. Van al servicio vigente que mejor los absorbe. -->
+        <rule name="301 Proyectos electricos" stopProcessing="true">
+          <match url="^Servicios/proyectos-el.+ctricos-integrales(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/soluciones-electricas.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN PROYE" stopProcessing="true">
+          <match url="^EN/Services/PROYE(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/services/electrical-solutions.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 Estudios electricos" stopProcessing="true">
+          <match url="^Servicios/estudios-el.+ctricos-especializados(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/soluciones-electricas.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN ESTEL" stopProcessing="true">
+          <match url="^EN/Services/ESTEL(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/services/electrical-solutions.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 Gestion proyectos" stopProcessing="true">
+          <match url="^Servicios/gesti.+n-integral-de-proyectos-el.+ctricos(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/soluciones-electricas.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN GESPR" stopProcessing="true">
+          <match url="^EN/Services/GESPR(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/services/electrical-solutions.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 Ingenieria integral" stopProcessing="true">
+          <match url="^Servicios/servicios-de-ingenier.+a-integral(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/construccion-data-center.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 EN INGDC" stopProcessing="true">
+          <match url="^EN/Services/INGDC(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/services/data-center-construction.html"
+                  redirectType="Permanent" />
+        </rule>
+
+        <!-- Páginas sueltas de la raíz del sitio anterior -->
+        <rule name="301 ingenieria-civil" stopProcessing="true">
+          <match url="^ingenieria-civil(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/ingenieria-civil-data-center.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 ingenieria-electrica" stopProcessing="true">
+          <match url="^ingenieria-electrica(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/soluciones-electricas.html"
+                  redirectType="Permanent" />
+        </rule>
+
+        <!-- Landing pages de campaña -->
+        <rule name="301 Landing IE EN" stopProcessing="true">
+          <match url="^Servicios/LandingPage_IE_EN(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/services/electrical-solutions.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 Landing IE" stopProcessing="true">
+          <match url="^Servicios/LandingPage_IE(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/soluciones-electricas.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 Landing DC EN" stopProcessing="true">
+          <match url="^Servicios/LandingPage_DC_EN(\.aspx)?/?$" />
+          <action type="Redirect" url="/en/services/data-center-construction.html"
+                  redirectType="Permanent" />
+        </rule>
+        <rule name="301 Landing DC" stopProcessing="true">
+          <match url="^Servicios/LandingPage_DC(\.aspx)?/?$" />
+          <action type="Redirect" url="/servicios/construccion-data-center.html"
+                  redirectType="Permanent" />
+        </rule>
+
+        <!-- Red de seguridad: cualquier .aspx no previsto va al inicio
+             en vez de morir en 404. Deliberadamente al final. -->
+        <rule name="301 resto EN aspx" stopProcessing="true">
+          <match url="^EN/.*\.aspx$" />
+          <action type="Redirect" url="/en/index.html" redirectType="Permanent" />
+        </rule>
+        <rule name="301 resto aspx" stopProcessing="true">
+          <match url="^.*\.aspx$" />
+          <action type="Redirect" url="/" redirectType="Permanent" />
+        </rule>
+
+        <!-- Restos del sitio anterior que no deben servirse nunca.
+             Se bloquean en vez de borrarse: si hubiera algo
+             comprometido, borrarlo destruye la evidencia. -->
+        <rule name="Bloquear restos" stopProcessing="true">
+          <match url="^(bin|modules|system|vendor|data|dev|static|\.antigravity|\.aml)(/|$)" />
+          <action type="CustomResponse" statusCode="403"
+                  statusReason="Forbidden" subStatusCode="0" />
+        </rule>
+
+      </rules>
+    </rewrite>
+
+    <!-- ==============================================================
+         4. Página de error
+
+         A diferencia de Vercel, IIS no sirve /404.html por su cuenta.
+         existingResponse="Replace" hace que también sustituya los 404
+         que genera el propio servidor.
+         ============================================================== -->
+    <httpErrors errorMode="Custom" existingResponse="Replace">
+      <remove statusCode="404" subStatusCode="-1" />
+      <error statusCode="404" path="/404.html" responseMode="ExecuteURL" />
+      <remove statusCode="403" subStatusCode="-1" />
+      <error statusCode="403" path="/404.html" responseMode="ExecuteURL" />
+    </httpErrors>
+
+    <!-- ==============================================================
+         5. Tipos MIME y caché
+
+         IIS no conoce .webp, .avif ni .woff2 de fábrica: sin esto se
+         sirven como descarga o dan 404.
+
+         Caché: imágenes y fuentes un año. Para cambiar una foto hay
+         que cambiarle el nombre de archivo (regla en AGENTS.md).
+         El HTML no se cachea, para que un despliegue se vea de
+         inmediato. CSS y JS llevan ?v=<hash> del generador.
+         ============================================================== -->
+    <staticContent>
+      <remove fileExtension=".webp" />
+      <mimeMap fileExtension=".webp" mimeType="image/webp" />
+      <remove fileExtension=".avif" />
+      <mimeMap fileExtension=".avif" mimeType="image/avif" />
+      <remove fileExtension=".woff" />
+      <mimeMap fileExtension=".woff" mimeType="font/woff" />
+      <remove fileExtension=".woff2" />
+      <mimeMap fileExtension=".woff2" mimeType="font/woff2" />
+      <remove fileExtension=".svg" />
+      <mimeMap fileExtension=".svg" mimeType="image/svg+xml" />
+      <remove fileExtension=".json" />
+      <mimeMap fileExtension=".json" mimeType="application/json" />
+      <remove fileExtension=".webmanifest" />
+      <mimeMap fileExtension=".webmanifest" mimeType="application/manifest+json" />
+
+      <clientCache cacheControlMode="UseMaxAge"
+                   cacheControlMaxAge="365.00:00:00" />
+    </staticContent>
+
+    <caching>
+      <profiles>
+        <add extension=".html" policy="DisableCache" kernelCachePolicy="DisableCache" />
+        <add extension=".xml"  policy="DisableCache" kernelCachePolicy="DisableCache" />
+        <add extension=".txt"  policy="DisableCache" kernelCachePolicy="DisableCache" />
+      </profiles>
+    </caching>
+
+    <!-- ==============================================================
+         6. Cabeceras
+
+         Las de seguridad replican vercel.json.
+
+         HSTS: es la ÚNICA regla irreversible del archivo. Una vez que
+         el navegador la recibe, recuerda dos años que el sitio solo se
+         sirve por https. No activarla hasta confirmar que el
+         certificado del dominio es válido y cubre también el www.
+         ============================================================== -->
+    <httpProtocol>
+      <customHeaders>
+        <remove name="X-Powered-By" />
+        <add name="X-Content-Type-Options" value="nosniff" />
+        <add name="X-Frame-Options" value="SAMEORIGIN" />
+        <add name="Referrer-Policy" value="strict-origin-when-cross-origin" />
+        <add name="Permissions-Policy" value="camera=(), microphone=(), geolocation=()" />
+        <!-- Descomentar después de verificar el certificado:
+        <add name="Strict-Transport-Security" value="max-age=63072000; includeSubDomains" />
+        -->
+      </customHeaders>
+    </httpProtocol>
+
+    <!-- Compresión. Si el servidor no tiene el módulo, IIS ignora
+         esta sección sin fallar. -->
+    <urlCompression doStaticCompression="true" doDynamicCompression="true" />
+
+  </system.webServer>
+
+  <!-- ==================================================================
+       El sitio es estático: no hay código ASP.NET que ejecutar.
+       Esto evita que el runtime de .NET intente procesar las peticiones
+       y devuelva "Server Error in '/' Application".
+       ================================================================== -->
+  <system.web>
+    <customErrors mode="Off" />
+    <compilation debug="false" />
+  </system.web>
+
+</configuration>

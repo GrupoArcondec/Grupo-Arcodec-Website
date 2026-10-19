@@ -1,0 +1,19 @@
+{
+  "name": "Grupo Arcondec S.A. de C.V.",
+  "short_name": "Arcondec",
+  "description": "Ingeniería eléctrica y construcción de data centers en México.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "lang": "es-MX",
+  "background_color": "#1D4598",
+  "theme_color": "#1D4598",
+  "icons": [
+    { "src": "/assets/images/arcondec/brand/icon-192.png",
+      "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/images/arcondec/brand/icon-512.png",
+      "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/images/arcondec/brand/icon-maskable-512.png",
+      "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

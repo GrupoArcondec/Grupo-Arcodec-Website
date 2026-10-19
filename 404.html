@@ -7,31 +7,64 @@
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#1D4598">
     <title>Página no encontrada | Grupo Arcondec</title>
-    <link rel="shortcut icon" href="/assets/images/arcondec/brand/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/images/arcondec/brand/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/css/default.css?v=f761d8ec">
     <link rel="stylesheet" href="/assets/css/style.css?v=abdd83aa">
     <link rel="stylesheet" href="/assets/css/arcondec.css?v=258aeebc">
     <style>
-        .arc-404 { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; background: #1D4598; }
-        .arc-404 img { width: 150px; margin-bottom: 40px; }
-        .arc-404 h1 { color: #fff; font-size: 34px; margin-bottom: 12px; }
-        .arc-404 p { color: rgba(255, 255, 255, .82); font-size: 17px; max-width: 480px; margin: 0 auto 8px; }
-        .arc-404 .arc-404-en { margin-bottom: 32px; }
-        .arc-404 a.arc-404-btn { display: inline-block; margin: 6px 8px; padding: 14px 32px; border-radius: 30px; background: #FFBB00; color: #132D67; font-weight: 700; text-decoration: none; }
-        .arc-404 a.arc-404-btn.arc-404-alt { background: transparent; border: 2px solid rgba(255, 255, 255, .6); color: #fff; }
+        /* Autosuficiente a proposito: si las hojas de estilo del sitio
+           fallaran, esta pagina sigue siendo legible y de marca. */
+        body { margin: 0; }
+        .arc-404 { min-height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 20px; background: #132D67; font-family: "space_grotesk", "Helvetica Neue", Arial, sans-serif; position: relative; overflow: hidden; }
+        .arc-404::before { content: ""; position: absolute; top: -40%; left: 50%; width: 1100px; height: 1100px; transform: translateX(-50%); background: radial-gradient(circle, rgba(29,69,152,.55) 0%, rgba(19,45,103,0) 63%); pointer-events: none; }
+        .arc-404 > * { position: relative; }
+        .arc-404 img { width: 230px; margin-bottom: 38px; }
+        .arc-404 .arc-404-num { display: block; font-size: 92px; font-weight: 700; line-height: .9; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px #FFBB00; margin-bottom: 18px; }
+        .arc-404 h1 { color: #fff; font-size: 32px; line-height: 1.25; margin: 0 0 14px; }
+        .arc-404 p { color: rgba(255,255,255,.80); font-size: 17px; line-height: 1.6; max-width: 520px; margin: 0 auto 6px; }
+        .arc-404 .arc-404-en { margin-bottom: 34px; color: rgba(255,255,255,.60); font-size: 15.5px; }
+        .arc-404 a.arc-404-btn { display: inline-block; margin: 6px 6px 30px; padding: 14px 32px; border-radius: 30px; background: #FFBB00; color: #132D67; font-weight: 700; text-decoration: none; }
+        .arc-404 a.arc-404-btn.arc-404-alt { background: transparent; border: 2px solid rgba(255,255,255,.55); color: #fff; }
+        .arc-404-mapa { border-top: 1px solid rgba(255,255,255,.16); padding-top: 26px; width: 100%; max-width: 760px; }
+        .arc-404-mapa h2 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); font-weight: 600; margin: 0 0 16px; }
+        .arc-404-mapa ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .arc-404-mapa a { display: block; padding: 10px 20px; border: 1px solid rgba(255,255,255,.26); border-radius: 24px; color: #fff; text-decoration: none; font-size: 15px; transition: background .25s ease, border-color .25s ease; }
+        .arc-404-mapa a:hover { background: rgba(255,255,255,.10); border-color: rgba(255,187,0,.6); }
+        @media (max-width: 575px) {
+            .arc-404 { padding: 44px 18px; }
+            .arc-404 img { width: 180px; margin-bottom: 26px; }
+            .arc-404 .arc-404-num { font-size: 64px; }
+            .arc-404 h1 { font-size: 25px; }
+            .arc-404 p { font-size: 15.5px; }
+            .arc-404-mapa a { font-size: 14px; padding: 9px 16px; }
+        }
     </style>
 </head>
 
 <body>
     <main class="arc-404">
-        <img src="/assets/images/arcondec/brand/logo-light.png" alt="Grupo Arcondec">
-        <h1>Página no encontrada <span aria-hidden="true">(404)</span></h1>
-        <p>La dirección que buscas no existe o cambió de lugar.</p>
-        <p class="arc-404-en" lang="en">The page you are looking for does not exist or has moved.</p>
+        <img src="/assets/images/arcondec/brand/logo-arcondec-white.png" alt="Grupo Arcondec">
+        <span class="arc-404-num" aria-hidden="true">404</span>
+        <h1>Esta página ya no está aquí</h1>
+        <p>Renovamos el sitio y algunas direcciones cambiaron. Abajo están las secciones; seguro encuentras lo que buscabas.</p>
+        <p class="arc-404-en" lang="en">We rebuilt our website and some addresses changed. Pick a section below.</p>
         <div>
             <a class="arc-404-btn" href="/index.html">Ir al inicio</a>
             <a class="arc-404-btn arc-404-alt" href="/en/index.html" lang="en">Go to homepage</a>
         </div>
+        <nav class="arc-404-mapa" aria-label="Secciones del sitio">
+            <h2>Secciones</h2>
+            <ul>
+                <li><a href="/nosotros.html">Nosotros</a></li>
+                <li><a href="/proyectos.html">Proyectos</a></li>
+                <li><a href="/servicios/construccion-data-center.html">Construcción de data centers</a></li>
+                <li><a href="/servicios/soluciones-electricas.html">Soluciones eléctricas</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/vacantes.html">Vacantes</a></li>
+                <li><a href="/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
     </main>
 </body>
 

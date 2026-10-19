@@ -31,6 +31,7 @@ from content import (  # noqa: E402
     LIST_DC,
     LIST_IE,
     SERVICES,
+    SERVICE_GROUPS,
     WHATSAPP,
 )
 from layout import (  # noqa: E402
@@ -1934,6 +1935,187 @@ def load_home_i18n():
 # ==========================================================================
 # SITEMAP + ROBOTS
 # ==========================================================================
+def render_llms(lang="es"):
+    """/llms.txt — mapa del sitio en texto plano para modelos de lenguaje.
+
+    Convención de llmstxt.org: markdown mínimo, sin navegación ni adornos,
+    para que un modelo que consulta el sitio (ChatGPT, Perplexity, Claude,
+    AI Overviews) encuentre los hechos sin tener que interpretar el HTML.
+
+    NO reemplaza nada: el sitemap sigue siendo para buscadores clásicos y el
+    JSON-LD sigue siendo lo que alimenta el panel de marca. Este archivo es
+    complementario y barato de mantener porque se genera del mismo origen.
+
+    Regla: aquí solo van hechos verificables que ya están publicados en el
+    sitio. Nada de cifras, certificaciones ni nombres de cliente que no
+    aparezcan en una página.
+    """
+    B = BASE_URL
+    c = P.PROJECTS[lang]
+
+    lineas = [
+        "# Grupo Arcondec S.A. de C.V.",
+        "",
+        "> Empresa mexicana de ingeniería eléctrica y construcción de centros "
+        "de datos. Fundada en 1991 en Monterrey, Nuevo León. Diseña y ejecuta "
+        "infraestructura eléctrica industrial y data centers llave en mano, "
+        "desde la etapa conceptual hasta la entrega final.",
+        "",
+        "Opera en toda la República Mexicana. Sitio bilingüe: español en la "
+        "raíz, inglés bajo /en/.",
+        "",
+        "## Datos de contacto",
+        "",
+        "- Razón social: Grupo Arcondec S.A. de C.V.",
+        "- Fundación: 1991",
+        "- Domicilio: %s" % CONTACT["address"],
+        "- Teléfono: %s" % CONTACT["phone1"],
+        "- Correo general: %s" % CONTACT["mail_info"],
+        "- Ventas: %s" % CONTACT["mail_sales_es"],
+        "- Reclutamiento: %s" % CONTACT["mail_rh"],
+        "- Sitio: %s/" % B,
+        "",
+        "## Servicios",
+        "",
+    ]
+
+    for gid, etiquetas in SERVICE_GROUPS:
+        del_grupo = [s for s in SERVICES if s["group"] == gid]
+        if not del_grupo:
+            continue
+        lineas.append("### %s" % etiquetas[lang])
+        lineas.append("")
+        for s in del_grupo:
+            lineas.append(
+                "- [%s](%s%s): %s"
+                % (s[lang]["nav"], B, url("srv-" + s["key"], lang),
+                   s[lang]["meta"].rstrip("."))
+            )
+        lineas.append("")
+
+    publicados = [h for h in P.HUBS if h.get("publicado")]
+    lineas += [
+        "## Proyectos documentados",
+        "",
+        "Obras con ficha pública en el sitio. No es el total de proyectos "
+        "ejecutados por la empresa.",
+        "",
+    ]
+    for h in publicados:
+        hh = {**h, **h["en"]} if lang == "en" and h.get("en") else h
+        lineas.append(
+            "- [%s](%s%s): %s"
+            % (hh.get("titulo") or hh["nombre"], B,
+               url("prj-" + h["slug"]["es"], lang),
+               hh.get("ubicacion", ""))
+        )
+
+    lineas += ["", "## Artículos técnicos", ""]
+    for a in P.ARTICLES:
+        titulo, lead = a[lang][0], a[lang][1]
+        lineas.append(
+            "- [%s](%s/%s/%s.html): %s"
+            % (titulo, B, "en/blog" if lang == "en" else "blog",
+               a["slug"], lead.rstrip("."))
+        )
+
+    lineas += [
+        "",
+        "## Páginas principales",
+        "",
+        "- [Inicio](%s%s)" % (B, url("home", lang)),
+        "- [Nosotros](%s%s): historia, propósito, visión, valores y "
+        "certificaciones" % (B, url("about", lang)),
+        "- [Proyectos](%s%s): %s" % (B, url("projects", lang),
+                                     c["lead"].rstrip(".")),
+        "- [Blog](%s%s)" % (B, url("blog", lang)),
+        "- [Vacantes](%s%s)" % (B, url("careers", lang)),
+        "- [Contacto](%s%s)" % (B, url("contact", lang)),
+        "",
+        "## Opcional",
+        "",
+        "- [Sitemap XML](%s/sitemap.xml)" % B,
+        "- [Versión en inglés](%s/en/index.html)" % B,
+        "",
+    ]
+    return "\n".join(lineas)
+
+
+def render_robots():
+    """robots.txt del sitio.
+
+    Deliberadamente permisivo. robots.txt controla QUE SE RASTREA, no que se
+    indexa: bloquear una ruta aqui no la saca de Google —solo impide que el
+    robot lea la etiqueta noindex que si la sacaria—. Por eso la exclusion de
+    la 404 y de los proyectos sin ficha se hace con <meta robots> en la pagina,
+    no aqui.
+
+    IMPORTANTE para la migracion desde el sitio .aspx: NO agregar Disallow de
+    rutas viejas (/Servicios/, /Blog/, /EN/, *.aspx). Google necesita rastrear
+    esas URLs para encontrar los redirects 301 y traspasar su autoridad a las
+    nuevas. Bloquearlas congela el 404 y se pierde el posicionamiento.
+
+    Mientras BASE_URL no sea arcondec.mx el sitio esta en revision y no se
+    anuncia el sitemap.
+    """
+    lineas = [
+        "# Grupo Arcondec — https://arcondec.mx",
+        "# El sitio es estatico y publico: se rastrea completo.",
+        "# La exclusion de paginas puntuales va con <meta robots> en el HTML,",
+        "# no aqui. No bloquear rutas del sitio .aspx anterior: deben rastrearse",
+        "# para que Google procese los redirects 301.",
+        "",
+        "User-agent: *",
+        "Allow: /",
+        "",
+        "# Carpetas heredadas del sitio anterior que se conservan solo para que",
+        "# no se rompan enlaces externos (firmas de correo, codigos QR impresos).",
+        "# Siguen accesibles; simplemente no son contenido que deba salir en",
+        "# resultados de busqueda.",
+        "Disallow: /Firma/",
+        "Disallow: /TarjetasPresentacion/",
+        "",
+        "# --- Buscadores con IA -------------------------------------------",
+        "# Acceso explicito para los rastreadores que alimentan respuestas",
+        "# generativas (ChatGPT, Perplexity, Claude, AI Overviews, Copilot).",
+        "# La regla general de arriba ya los permite; se nombran uno por uno",
+        "# porque algunos solo entran cuando se les menciona, y porque deja",
+        "# constancia de que es una decision tomada y no un descuido.",
+        "#",
+        "# Decision de negocio: Arcondec QUIERE ser citada en respuestas de IA.",
+        "# Para revertirlo, cambiar Allow por Disallow en el bot que",
+        "# corresponda. Google-Extended solo controla el uso del contenido",
+        "# para entrenar e informar a Gemini; no afecta el ranking en",
+        "# la Busqueda de Google.",
+        "",
+    ]
+    bots = [
+        ("GPTBot", "OpenAI — entrenamiento"),
+        ("OAI-SearchBot", "OpenAI — busqueda en ChatGPT"),
+        ("ChatGPT-User", "OpenAI — visita a peticion del usuario"),
+        ("ClaudeBot", "Anthropic"),
+        ("Claude-User", "Anthropic — visita a peticion del usuario"),
+        ("PerplexityBot", "Perplexity"),
+        ("Google-Extended", "Google — Gemini y AI Overviews"),
+        ("Applebot-Extended", "Apple Intelligence"),
+        ("CCBot", "Common Crawl — fuente de muchos modelos"),
+        ("meta-externalagent", "Meta AI"),
+        ("Bingbot", "Bing y Copilot"),
+    ]
+    for bot, nota in bots:
+        lineas += ["User-agent: %s  # %s" % (bot, nota), "Allow: /", ""]
+
+    if INDEXABLE:
+        lineas += [
+            "Sitemap: %s/sitemap.xml" % BASE_URL,
+            "",
+            "# Resumen del sitio en texto plano para modelos de lenguaje:",
+            "# %s/llms.txt  (es)" % BASE_URL,
+            "# %s/en/llms.txt  (en)" % BASE_URL,
+        ]
+    return "\n".join(lineas) + "\n"
+
+
 def render_sitemap(routes, base):
     """Sitemap con los pares de idioma anunciados (xhtml:link), como recomienda
     Google para sitios bilingues: cada URL declara su version ES y EN."""
@@ -1961,9 +2143,15 @@ def render_sitemap(routes, base):
 
 
 # ==========================================================================
-# 404 — Vercel sirve /404.html automaticamente para toda ruta inexistente.
+# 404 — En Vercel se sirve solo; en Apache/Plesk hace falta la directiva
+# `ErrorDocument 404 /404.html` en .htaccess (ver MANUAL.md).
 # Pagina unica bilingue, noindex: no lleva canonical ni hreflang porque no es
 # una pagina indexable (check.py la exime de esos requisitos).
+#
+# Lleva un directorio de secciones, no solo el boton de inicio: al migrar
+# desde el sitio .aspx mueren 86 URLs viejas y mucha gente va a aterrizar
+# aqui desde Google o desde un enlace guardado. Mandarlos a la portada los
+# obliga a buscar otra vez; ofrecerles las secciones los salva en un clic.
 # ==========================================================================
 def render_404():
     return """<!doctype html>
@@ -1975,31 +2163,64 @@ def render_404():
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#1D4598">
     <title>Página no encontrada | Grupo Arcondec</title>
-    <link rel="shortcut icon" href="/assets/images/arcondec/brand/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/images/arcondec/brand/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/css/default.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/arcondec.css">
     <style>
-        .arc-404 { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; background: #1D4598; }
-        .arc-404 img { width: 150px; margin-bottom: 40px; }
-        .arc-404 h1 { color: #fff; font-size: 34px; margin-bottom: 12px; }
-        .arc-404 p { color: rgba(255, 255, 255, .82); font-size: 17px; max-width: 480px; margin: 0 auto 8px; }
-        .arc-404 .arc-404-en { margin-bottom: 32px; }
-        .arc-404 a.arc-404-btn { display: inline-block; margin: 6px 8px; padding: 14px 32px; border-radius: 30px; background: #FFBB00; color: #132D67; font-weight: 700; text-decoration: none; }
-        .arc-404 a.arc-404-btn.arc-404-alt { background: transparent; border: 2px solid rgba(255, 255, 255, .6); color: #fff; }
+        /* Autosuficiente a proposito: si las hojas de estilo del sitio
+           fallaran, esta pagina sigue siendo legible y de marca. */
+        body { margin: 0; }
+        .arc-404 { min-height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 20px; background: #132D67; font-family: "space_grotesk", "Helvetica Neue", Arial, sans-serif; position: relative; overflow: hidden; }
+        .arc-404::before { content: ""; position: absolute; top: -40%; left: 50%; width: 1100px; height: 1100px; transform: translateX(-50%); background: radial-gradient(circle, rgba(29,69,152,.55) 0%, rgba(19,45,103,0) 63%); pointer-events: none; }
+        .arc-404 > * { position: relative; }
+        .arc-404 img { width: 230px; margin-bottom: 38px; }
+        .arc-404 .arc-404-num { display: block; font-size: 92px; font-weight: 700; line-height: .9; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px #FFBB00; margin-bottom: 18px; }
+        .arc-404 h1 { color: #fff; font-size: 32px; line-height: 1.25; margin: 0 0 14px; }
+        .arc-404 p { color: rgba(255,255,255,.80); font-size: 17px; line-height: 1.6; max-width: 520px; margin: 0 auto 6px; }
+        .arc-404 .arc-404-en { margin-bottom: 34px; color: rgba(255,255,255,.60); font-size: 15.5px; }
+        .arc-404 a.arc-404-btn { display: inline-block; margin: 6px 6px 30px; padding: 14px 32px; border-radius: 30px; background: #FFBB00; color: #132D67; font-weight: 700; text-decoration: none; }
+        .arc-404 a.arc-404-btn.arc-404-alt { background: transparent; border: 2px solid rgba(255,255,255,.55); color: #fff; }
+        .arc-404-mapa { border-top: 1px solid rgba(255,255,255,.16); padding-top: 26px; width: 100%; max-width: 760px; }
+        .arc-404-mapa h2 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); font-weight: 600; margin: 0 0 16px; }
+        .arc-404-mapa ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .arc-404-mapa a { display: block; padding: 10px 20px; border: 1px solid rgba(255,255,255,.26); border-radius: 24px; color: #fff; text-decoration: none; font-size: 15px; transition: background .25s ease, border-color .25s ease; }
+        .arc-404-mapa a:hover { background: rgba(255,255,255,.10); border-color: rgba(255,187,0,.6); }
+        @media (max-width: 575px) {
+            .arc-404 { padding: 44px 18px; }
+            .arc-404 img { width: 180px; margin-bottom: 26px; }
+            .arc-404 .arc-404-num { font-size: 64px; }
+            .arc-404 h1 { font-size: 25px; }
+            .arc-404 p { font-size: 15.5px; }
+            .arc-404-mapa a { font-size: 14px; padding: 9px 16px; }
+        }
     </style>
 </head>
 
 <body>
     <main class="arc-404">
-        <img src="/assets/images/arcondec/brand/logo-light.png" alt="Grupo Arcondec">
-        <h1>Página no encontrada <span aria-hidden="true">(404)</span></h1>
-        <p>La dirección que buscas no existe o cambió de lugar.</p>
-        <p class="arc-404-en" lang="en">The page you are looking for does not exist or has moved.</p>
+        <img src="/assets/images/arcondec/brand/logo-arcondec-white.png" alt="Grupo Arcondec">
+        <span class="arc-404-num" aria-hidden="true">404</span>
+        <h1>Esta página ya no está aquí</h1>
+        <p>Renovamos el sitio y algunas direcciones cambiaron. Abajo están las secciones; seguro encuentras lo que buscabas.</p>
+        <p class="arc-404-en" lang="en">We rebuilt our website and some addresses changed. Pick a section below.</p>
         <div>
             <a class="arc-404-btn" href="/index.html">Ir al inicio</a>
             <a class="arc-404-btn arc-404-alt" href="/en/index.html" lang="en">Go to homepage</a>
         </div>
+        <nav class="arc-404-mapa" aria-label="Secciones del sitio">
+            <h2>Secciones</h2>
+            <ul>
+                <li><a href="/nosotros.html">Nosotros</a></li>
+                <li><a href="/proyectos.html">Proyectos</a></li>
+                <li><a href="/servicios/construccion-data-center.html">Construcción de data centers</a></li>
+                <li><a href="/servicios/soluciones-electricas.html">Soluciones eléctricas</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/vacantes.html">Vacantes</a></li>
+                <li><a href="/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
     </main>
 </body>
 
@@ -2071,12 +2292,10 @@ def main():
 
     write("/404.html", render_404())
     write("/sitemap.xml", render_sitemap(SITEMAP_ROUTES, BASE_URL))
-    write(
-        "/robots.txt",
-        ("User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % BASE_URL)
-        if INDEXABLE
-        else "User-agent: *\nAllow: /\n",
-    )
+    # (render_robots está definido más arriba, junto a render_404)
+    write("/robots.txt", render_robots())
+    write("/llms.txt", render_llms("es"))
+    write("/en/llms.txt", render_llms("en"))
 
     for p in written:
         print("  %s" % p.relative_to(ROOT))
