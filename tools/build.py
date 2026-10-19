@@ -801,16 +801,19 @@ def render_projects(lang):
         return ('                <div class="col-lg-6 col-md-6">\n'
                 '                    %s\n                </div>' % cuerpo)
 
-    proyectos_ordenados = sorted(P.HUBS, key=lambda h: not h.get("publicado", False))
+    # Solo se listan los proyectos publicados. Los demás siguen en pages.py
+    # con publicado=False y vuelven a aparecer en cuanto llegue su ficha:
+    # basta cambiar la bandera, no hay que volver a capturar nada.
+    publicados = [h for h in P.HUBS if h.get("publicado")]
     hubs = "\n".join(
-        _tarjeta(h) for h in proyectos_ordenados
+        _tarjeta(h) for h in publicados
     )
 
     ld = {
         "@context": "https://schema.org",
         "@type": "ItemList",
         "name": c["h1"],
-        "numberOfItems": len(P.HUBS),
+        "numberOfItems": len(publicados),
         "itemListElement": [
             {
                 "@type": "ListItem",
@@ -818,7 +821,7 @@ def render_projects(lang):
                 "item": {"@type": "Place", "name": (h.get("en", {}).get("nombre", h["nombre"]) if lang == "en" else h["nombre"]),
                          "address": (h.get("en", {}).get("ubicacion", h.get("ubicacion", "")) if lang == "en" else h.get("ubicacion", ""))},
             }
-            for i, h in enumerate(proyectos_ordenados)
+            for i, h in enumerate(publicados)
         ],
     }
 

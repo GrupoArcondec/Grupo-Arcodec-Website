@@ -87,3 +87,12 @@ no publicar si reporta problemas.
 webhook de GitHub en Vercel. Para publicar en producción:
 `npx vercel --prod --yes` (la sesión de la CLI y el vínculo del proyecto ya viven
 en esta máquina y en `.vercel/`). No hay paso de build en el despliegue.
+
+
+<claude-mem-context>
+# Memory Context
+
+# [www] recent context, 2026-09-11 12:35pm CST
+
+No previous sessions found.
+</claude-mem-context>
