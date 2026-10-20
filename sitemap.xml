@@ -58,6 +58,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://arcondec.mx/blog/ia-enfriamiento-data-center.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.mx/blog/ia-enfriamiento-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.mx/en/blog/ia-enfriamiento-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.mx/blog/ia-enfriamiento-data-center.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arcondec.mx/blog/incendios-fallas-energia-data-centers.html</loc>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.mx/blog/incendios-fallas-energia-data-centers.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.mx/en/blog/incendios-fallas-energia-data-centers.html"/>
@@ -158,6 +166,14 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.mx/blog/energia-ia.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.mx/en/blog/energia-ia.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.mx/blog/energia-ia.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arcondec.mx/en/blog/ia-enfriamiento-data-center.html</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://arcondec.mx/blog/ia-enfriamiento-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arcondec.mx/en/blog/ia-enfriamiento-data-center.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arcondec.mx/blog/ia-enfriamiento-data-center.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
